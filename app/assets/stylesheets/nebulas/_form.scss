@@ -1,0 +1,21 @@
+.simple_form {
+  > .form-inputs {
+    > .control-group {
+      &.hidden {
+        display: none;
+      }
+
+      > .required {
+        font-weight: bold;
+
+        > abbr {
+          // font-size: 18px;
+        }
+      }
+    }
+  }
+}
+
+form {
+  margin-bottom: $small-space;
+}

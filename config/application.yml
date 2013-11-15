@@ -1,0 +1,13 @@
+defaults: &defaults
+  app:
+    name: '百孚思媒介管理系统'
+    copy_right: '&copy; 2013 北京百孚思广告有限公司 All Rights Reserved.'
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
