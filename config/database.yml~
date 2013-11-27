@@ -7,7 +7,7 @@ development:
   pool: 5
   username: root
   password: admin
-  #socket: /var/run/mysqld/mysqld.sock
+  socket: /var/run/mysqld/mysqld.sock
 
 test:
   adapter: mysql2

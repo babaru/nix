@@ -1,0 +1,60 @@
+<%= render_cell(
+  :page_title,
+  :show,
+  data:
+  {
+    name: "#{t('model.show', model: Supplier.model_name.human)}",
+    toolbar:
+    {
+      right:
+      [
+        render_cell(
+          :button,
+          :show,
+          data:
+          {
+            name: fa_icon('plus-sign', text: t('model.create', :model => Supplier.model_name.human)),
+            url: new_supplier_path,
+            options:
+            {
+              class: 'btn btn-primary'
+            }
+          }
+        )
+      ]
+    }
+  }
+) %>
+
+<div class="padding">
+  <table class="plan-summary" id="master-plan-summary">
+    <tbody><tr>
+       <th style="width:100px;">名称</th>
+      <th style="width:100px;">联系人</th>
+      <th style="width:100px;">联系方式</th>
+        <% if @supplier.business_categories%>
+            <%@supplier.business_categories.each do |c|%>
+                  <th style="width: 70px;"><%=c.name_cn%></th>           
+            <%end%>
+          <%end%>
+ <th></th>
+    </tr>
+    <tr>
+        <td><span class="project-budget"><%=@supplier.name %></span></td>
+      <td><span class="project-budget"><%=@supplier.contact_name %></span></td>
+      <td>
+    <span class="project-budget"><%=@supplier.contact_way %></span>
+      </td>
+      
+          <% if @supplier.business_categories%>
+            <%@supplier.business_categories.each do |c|%>
+            <td>
+              <span class="project-budget"><%=c.get_price(@supplier.id)%></span>
+                    </td>
+            <%end%>
+          <%end%>
+<td></td>
+    </tr>
+  </tbody></table>
+</div>
+

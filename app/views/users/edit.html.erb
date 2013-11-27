@@ -1,0 +1,48 @@
+<div class="narrow-center-page">
+
+<%= render_cell(
+  :page_title,
+  :show,
+  data: {
+    name: "#{t('model.edit', model: User.model_name.human)} <small>#{t('simple_form.required.text') }</small>",
+    toolbar:
+    {
+      left:
+      [
+        render_cell(
+          :button,
+          :show,
+          data:
+          {
+            name: fa_icon('level-up rotate-270'),
+            url: users_path,
+            options:
+            {
+              class: 'btn',
+              rel: 'tooltip',
+              title: "#{t('labels.back_to')}#{t('model.list', :model => User.model_name.human)}",
+            }
+          }
+        )
+      ]
+    }
+  }
+) %>
+
+<%= simple_form_for(@user , :html => {:class => 'form-horizontal' }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name, required: true %>
+    <%= f.input :email, required: true %>
+    <%= f.input :password, required: true %>
+    <%= f.input :password_confirmation, required: true %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+</div>
+

@@ -3,6 +3,13 @@ Nix::Application.routes.draw do
 
   devise_for :users
 
+  scope "/admin" do
+    resources :users, :roles
+  end
+  post 'suppliers/generate_spot_plan' => 'suppliers#generate_spot_plan', as: :generate_spot_plan
+  post 'suppliers/generate_spot_plan_template' => 'suppliers#generate_spot_plan_template', as: :generate_spot_plan_template
+  get 'suppliers/upload_spot_plan' => 'suppliers#upload_spot_plan', as: :upload_spot_plan
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -52,11 +59,16 @@ Nix::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'dashboard#index'
+  resources :business_categories do
+    resources :suppliers
+  end
+  resources :suppliers
+  resources :business_categories
+  root :to => 'suppliers#index'
 
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id))(.:format)'
+  match ':controller(/:action(/:id))(.:format)'
 end

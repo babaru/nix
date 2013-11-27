@@ -1,0 +1,70 @@
+<%= render_cell(
+  :page_title,
+  :show,
+  data:
+  {
+    name: "#{t('model.list', model: BusinessCategory.model_name.human)}",
+    toolbar:
+    {
+      right:
+      [
+        render_cell(
+          :button,
+          :show,
+          data:
+          {
+            name: fa_icon('plus-sign', text: t('model.create', :model => BusinessCategory.model_name.human)),
+            url: new_business_category_path,
+            options:
+            {
+              class: 'btn btn-primary'
+            }
+          }
+        )
+      ]
+    }
+  }
+) %>
+<% show_space = true  %>
+
+<%= grid(@business_categories, :show_filters => :always) do |g|
+
+  g.column name: t('activerecord.attributes.business_category.name_cn') do |c|
+    c.name_cn
+  end
+
+  g.column name: t('activerecord.attributes.business_category.parent_id') do |c|
+    c.parent_name
+  end
+
+  g.column name: t('activerecord.attributes.business_category.is_show') do |c|
+    c.is_show.to_i==0 ? '' : icon('icon-ok-sign')
+  end
+
+
+  g.column name: t('activerecord.attributes.business_category.created_by') do |c|
+    c.created_name
+  end
+
+  g.column name: t('activerecord.attributes.business_category.created_at') do |c|
+    c.created_at.strftime('%Y-%m-%d') if c.created_at
+  end
+
+  g.column name: t('activerecord.attributes.business_category.updated_by') do |c|
+    c.updated_name
+  end
+
+  g.column name: t('activerecord.attributes.business_category.updated_at') do |c|
+    c.updated_at.strftime('%Y-%m-%d') if c.updated_at
+  end
+
+  
+
+  g.column :html => {class: 'btn-cell'} do |c|
+    link_to(icon('icon-edit'), edit_business_category_path(c), :class => 'btn', :rel => 'tooltip', :title => t('buttons.edit'))
+  end
+
+  g.column :html => {class: 'btn-cell'} do |c|
+    link_to(icon('icon-trash'), business_category_path(c), :method => :delete, :confirm => t("confirms.delete"), :class => 'btn btn-danger', :rel => 'tooltip', :title => t('buttons.delete'))
+  end
+end -%>

@@ -1,0 +1,58 @@
+<div class="narrow-center-page">
+
+<%= render_cell(
+  :page_title,
+  :show,
+  data: {
+    name: "#{t('model.create', model: BusinessCategory.model_name.human)} <small>#{t('simple_form.required.text') }</small>",
+    toolbar:
+    {
+      left:
+      [
+        render_cell(
+          :button,
+          :show,
+          data:
+          {
+            name: fa_icon('level-up rotate-270'),
+            url: business_categories_path,
+            options:
+            {
+              class: 'btn',
+              rel: 'tooltip',
+              title: "#{t('labels.back_to')}#{t('model.list', :model => BusinessCategory.model_name.human)}",
+            }
+          }
+        )
+      ]
+    }
+  }
+) %>
+
+
+<%= simple_form_for(@business_category , :html => {:class => 'form-horizontal' }) do |f| %>
+  <%= f.error_notification %>
+  <div class="form-inputs">
+    <%= f.input :name_cn, required: true%>
+    <div class="control-group string required business_category_name_cn"><label class="string required control-label" for="business_category_name_cn"><abbr title="选择上一级类别，如无上一级类别请选'无上一级类别'">*</abbr> 上一级类别</label><div class="controls">
+      <select class="string required" id="business_category_parent_id" name="business_category[parent_id]">
+        <option value="0">无上一级类别</option>
+        <%- if @first_categories %>
+          <% @first_categories.each do |c|%>
+             <option value="<%= c.id%>"><%= c.name_cn%></option>
+          <% end %>
+        <% end %>
+      </select></div></div>
+       <div class="control-group string required business_category_name_cn"><label class="string required control-label" for="business_category_name_cn"><abbr title="带*星号的为必填项">*</abbr> 是否在供应商列表中显示</label><div class="controls">
+      <select class="string required" id="business_category_is_show" name="business_category[is_show]">
+        <option value="0">否</option>
+        <option value="1">是</option>
+      </select></div></div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+</div>

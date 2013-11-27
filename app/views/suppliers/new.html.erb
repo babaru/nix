@@ -1,0 +1,55 @@
+<div class="narrow-center-page">
+
+<%= render_cell(
+  :page_title,
+  :show,
+  data: {
+    name: "#{t('model.create', model: Supplier.model_name.human)} <small>#{t('simple_form.required.text') }</small>",
+    toolbar:
+    {
+      left:
+      [
+        render_cell(
+          :button,
+          :show,
+          data:
+          {
+            name: fa_icon('level-up rotate-270'),
+            url: suppliers_path,
+            options:
+            {
+              class: 'btn',
+              rel: 'tooltip',
+              title: "#{t('labels.back_to')}#{t('model.list', :model => Supplier.model_name.human)}",
+            }
+          }
+        )
+      ]
+    }
+  }
+) %>
+
+
+<%= simple_form_for(@supplier , :html => {:class => 'form-horizontal' }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name, required: true %>
+    <%= f.input :contact_name, required: true %>
+    <%= f.input :contact_way, required: true %>
+    
+    <% if @categories %>
+    <div class="control-group check_boxes required supplier_business_categories"><label class="check_boxes required control-label"><abbr title="带*星号的为必填项">*</abbr> 业务类别(多选)</label>
+      <% @categories.each do |c|%>
+         <div class="controls"><label class="checkbox"><input class="check_boxes required" id="supplier_business_category_ids_<%=c.id%>" name="supplier[business_category_ids][]" type="checkbox" value="<%=c.id%>" <%=params[:supplier][:business_category_ids].include?(c.id.to_s) ? 'checked' : ''%>><%=c.name_cn%>&nbsp;&nbsp;&nbsp;&nbsp;价格:<input name="supplier_price[<%=c.id%>]" type="text" value="<%=c.get_price1(@supplier.id)%>" style="width: 100px;"></label><input name="supplier[business_category_ids][]" type="hidden" value=""></div>
+      <%end%>
+      </div>
+    <%end%>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+</div>

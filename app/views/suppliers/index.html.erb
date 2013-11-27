@@ -1,0 +1,123 @@
+<%= render_cell(
+  :page_title,
+  :show,
+  data:
+  {
+    name: "#{t('model.list', model: '供应商')}",
+    toolbar:
+    {
+      right:
+      [
+        render_cell(
+          :button,
+          :show,
+          data:
+          {
+            name: fa_icon('plus-sign', text: t('model.create', :model => '供应商')),
+            url: new_supplier_path,
+            options:
+            {
+              class: 'btn btn-primary'
+            }
+          }
+        ),
+        render_cell(
+        :button,
+        :show,
+        data:
+        {
+          name: fa_icon('cloud-upload', text: t('model.upload', model: '供应商')),
+          url: upload_spot_plan_path,
+          options: {class: 'btn btn-success'}
+        }
+      ),
+        render_cell(:button, :show,
+          data:
+          {
+            name: fa_icon('download-alt', text: "下载供应商列表"),
+            url: generate_spot_plan_path(first_selected_medium_id: params[:first_selected_medium_id], second_selected_medium_id: params[:second_selected_medium_id]),
+            options:
+            {
+              class: 'btn btn-info',
+              method: :post
+            }
+          }
+        )
+      ]
+    }
+  }
+) %>
+<div>
+  <table class="table picker">
+    <tbody><tr class="selected">
+  <td class="title">您已选择</td>
+  <td>
+    <ul>
+      <li><a href="/suppliers" class="label label-warning"><%=@f_cat.name_cn.to_s+' X' if @f_cat%></a></li>  
+      <% if @s_cat%>
+        <li><a href="/suppliers?first_selected_medium_id=<%=@s_cat.parent_id%>" class="label label-warning"><%=@s_cat.name_cn.to_s+' X'%></a></li> 
+      <%end%>   
+    </ul>
+  </td>
+</tr>
+<tr class="selectors">
+  <td class="title">一级分类</td>
+  <td>
+    <ul class="nav nav-pills">
+      <%@first_categories.each do |fc|%>
+        <li class="<%= (@f_cat and @f_cat.id == fc.id) ? 'active' : ''%>"><a href="/suppliers?first_selected_medium_id=<%=fc.id%>"><%=fc.name_cn%></a></li>
+      <%end%>
+    </ul>
+  </td>
+</tr>
+<% if @f_cat%>
+  <tr class="selectors">
+    <td class="title">二级分类</td>
+    <td>
+      <ul class="nav nav-pills">
+        <%@second_categories.each do |sc|%>
+          <li class="<%= (@s_cat and @s_cat.id == sc.id) ? 'active' : ''%>"><a href="/suppliers?first_selected_medium_id=<%=@f_cat.id%>&second_selected_medium_id=<%=sc.id%>"><%=sc.name_cn%></a></li>
+        <%end%>
+      </ul>
+    </td>
+  </tr>
+<%end%>
+
+    
+    
+    
+  </tbody></table>
+</div>
+
+<%= grid(@suppliers, :show_filters => :always) do |g|
+
+  g.column name: t('activerecord.attributes.supplier.name') do |supplier|
+    supplier.name
+  end
+
+  g.column name: t('activerecord.attributes.supplier.contact_name') do |supplier|
+    link_to content_tag(:strong, supplier.contact_name), supplier_path(supplier)
+  end
+
+  g.column name: t('activerecord.attributes.supplier.contact_way') do |supplier|
+    supplier.contact_way
+  end
+
+  BusinessCategory.show_categories.each do |b|
+    g.column name: t("#{b.name_cn}") do |supplier|
+    b.get_price(supplier.id)
+    end
+  end
+  
+  g.column name: t('activerecord.attributes.supplier.created_by') do |supplier|
+     supplier.created_name
+  end
+
+   g.column :html => {class: 'btn-cell'} do |supplier|
+    link_to(icon('icon-edit'), edit_supplier_path(supplier), :class => 'btn', :rel => 'tooltip', :title => t('buttons.edit'))
+  end
+
+  g.column :html => {class: 'btn-cell'} do |supplier|
+    link_to(icon('icon-trash'), supplier_path(supplier), :method => :delete, :confirm => t("confirms.delete"), :class => 'btn btn-danger', :rel => 'tooltip', :title => t('buttons.delete'))
+  end
+end -%>

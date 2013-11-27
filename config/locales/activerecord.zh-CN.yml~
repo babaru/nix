@@ -13,7 +13,7 @@ zh-CN:
         roles: 用户身份
         spaces: 公司
       supplier:
-        name: 供应商名称
+        name: 类别名称
         contact_name: 联系人
         contact_way: 联系方式
         business_categories: 业务类别(多选)

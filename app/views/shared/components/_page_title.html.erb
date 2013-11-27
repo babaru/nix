@@ -1,0 +1,15 @@
+<div class="page-title">
+  <div class="row-fluid">
+    <div class="span6">
+      <%= render_cell :button_group, :show, data: [{name: fa_icon('level-up'), url: '#', options: {class: 'btn'}}] %>
+      <h3><%= page_title[:title] %>
+        <small>显示Small的效果</small>
+      </%></h3>
+    </div>
+    <div class="span6">
+      <div class="btn-toolbar pull-right">
+        <%= page_title[:toolbar] if page_title[:toolbar] %>
+      </div>
+    </div>
+  </div>
+</div>
