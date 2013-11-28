@@ -27,17 +27,17 @@
 ) %>
 <% show_space = true  %>
 
-<%= grid(@business_categories, :show_filters => :always) do |g|
+<%= grid(@business_categories, :show_filters => :when_filtered) do |g|
 
-  g.column name: t('activerecord.attributes.business_category.name_cn') do |c|
+  g.column name: t('activerecord.attributes.business_category.name_cn'),attribute:'name_cn'  do |c|
     c.name_cn
   end
 
-  g.column name: t('activerecord.attributes.business_category.parent_id') do |c|
+  g.column name: t('activerecord.attributes.business_category.parent_id'),attribute:'parent_id' do |c|
     c.parent_name
   end
 
-  g.column name: t('activerecord.attributes.business_category.is_show') do |c|
+  g.column name: t('activerecord.attributes.business_category.is_show'),attribute:'parent_id' do |c|
     c.is_show.to_i==0 ? '' : icon('icon-ok-sign')
   end
 
@@ -46,7 +46,7 @@
     c.created_name
   end
 
-  g.column name: t('activerecord.attributes.business_category.created_at') do |c|
+  g.column name: t('activerecord.attributes.business_category.created_at'),attribute:'created_at' do |c|
     c.created_at.strftime('%Y-%m-%d') if c.created_at
   end
 
@@ -54,7 +54,7 @@
     c.updated_name
   end
 
-  g.column name: t('activerecord.attributes.business_category.updated_at') do |c|
+  g.column name: t('activerecord.attributes.business_category.updated_at'),attribute:'updated_at' do |c|
     c.updated_at.strftime('%Y-%m-%d') if c.updated_at
   end
 

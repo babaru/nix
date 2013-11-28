@@ -101,7 +101,7 @@
   </tbody></table>
 </div>
 
-<%= grid(@suppliers, :show_filters => :always) do |g|
+<%= grid(@suppliers, :show_filters => :when_filtered) do |g|
 
   g.column name: t('activerecord.attributes.supplier.name') do |supplier|
     supplier.name
