@@ -42,6 +42,18 @@
               method: :post
             }
           }
+        ),
+        render_cell(:button, :show,
+          data:
+          {
+            name: fa_icon('download-alt', text: "下载供应商模板"),
+            url: generate_spot_plan_template_path,
+            options:
+            {
+              class: 'btn btn-info',
+              method: :post
+            }
+          }
         )
       ]
     }

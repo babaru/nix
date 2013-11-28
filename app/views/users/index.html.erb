@@ -36,4 +36,12 @@
     user.email
   end
 
+  g.column :html => {class: 'btn-cell'} do |user|
+      link_to(fa_icon('edit'), edit_user_path(user), :class => 'btn', :rel => 'tooltip', :title => t('buttons.edit'))
+    end
+
+    g.column :html => {class: 'btn-cell'} do |user|
+      link_to(fa_icon('trash'), user_path(user), :method => :delete, :confirm => t("confirms.delete"), :class => 'btn btn-danger', :rel => 'tooltip', :title => t('buttons.delete'))
+    end
+
 end -%>

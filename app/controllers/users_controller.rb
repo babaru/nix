@@ -19,7 +19,12 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.json
   def new
-  
+    @user = User.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @user }
+    end
   end
 
   # GET /users/1/edit
@@ -58,6 +63,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     respond_to do |format|
+      @user.update_attributes(params[:user])
       if @user.update_attributes(params[:user])
         format.html { redirect_to users_path(), notice: 'User was successfully updated.' }
         format.json { head :no_content }
@@ -75,8 +81,13 @@ class UsersController < ApplicationController
     @user.destroy
 
     respond_to do |format|
-      format.html { redirect_to users_url }
-      format.json { head :no_content }
+      if params[:id].to_i != current_user.id
+        format.html { redirect_to users_url , notice: 'User was successfully deleted.'}
+        format.json { head :no_content }
+      else
+        format.html { redirect_to users_url, alert: 'This user is sign_in.' }
+        format.json { head :no_content }
+      end
     end
   end
 end
