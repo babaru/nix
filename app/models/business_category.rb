@@ -8,19 +8,19 @@ class BusinessCategory < ActiveRecord::Base
   # attr_accessible :title, :body
 
   def self.first_categories
-  	b = BusinessCategory.where('parent_id=0');
+  	b = BusinessCategory.where('parent_id=0').order('id desc')
   	b==nil ? [] : b
   end
   def self.second_categories
-  	b = BusinessCategory.where('parent_id <> 0').order('id desc');
+  	b = BusinessCategory.where('parent_id <> 0').order('id desc')
   	b==nil ? [] : b
   end
   def children
-  	bs = BusinessCategory.where('parent_id=?',self.id);
+  	bs = BusinessCategory.where('parent_id=?',self.id).order('id desc')
   	bs.blank? ? [] : bs
   end
   def cat_ids
-    bs = BusinessCategory.where('parent_id=?',self.id);
+    bs = BusinessCategory.where('parent_id=?',self.id)
     bs.blank? ? [self.id] : ([self.id]+bs.map{|b|b.id})
   end
   def get_price(supplier_id=0,show_type='￥')
@@ -37,7 +37,7 @@ class BusinessCategory < ActiveRecord::Base
   end
 
   def self.show_categories
-    b = BusinessCategory.where('is_show=1');
+    b = BusinessCategory.where('is_show=1').order('id desc')
     b==nil ? [] : b
   end
 

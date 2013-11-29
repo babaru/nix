@@ -25,7 +25,6 @@
     }
   }
 ) %>
-<% show_space = true  %>
 
 <%= grid(@business_categories, :show_filters => :when_filtered) do |g|
 
@@ -37,7 +36,7 @@
     c.parent_name
   end
 
-  g.column name: t('activerecord.attributes.business_category.is_show'),attribute:'parent_id' do |c|
+  g.column name: t('activerecord.attributes.business_category.is_show'),attribute:'is_show' do |c|
     c.is_show.to_i==0 ? '' : icon('icon-ok-sign')
   end
 

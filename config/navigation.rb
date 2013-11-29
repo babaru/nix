@@ -57,7 +57,7 @@ SimpleNavigation::Configuration.run do |navigation|
       root_url
     )do |supplier_menu|
 
-      # Client List
+      # 供应商列表
       # ------------------------------------------------------------------------
 
       supplier_menu.item(
@@ -91,7 +91,7 @@ SimpleNavigation::Configuration.run do |navigation|
       root_url
     )do |supplier_menu|
 
-      # Client List
+      # 1级分类列表
       # ------------------------------------------------------------------------
 
       supplier_menu.item(

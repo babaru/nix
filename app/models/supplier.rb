@@ -34,7 +34,7 @@ class Supplier < ActiveRecord::Base
     categories.each do |c|
       excel_title << c.name_cn
     end
-    excel_title = excel_title + ['创建人','创建时间','更新人','更新时间']
+    excel_title = excel_title + ['创建人','创建时间','更新人','更新时间'] unless suppliers.blank?
     format = Spreadsheet::Format.new(:pattern => 1,:color => :white, :weight => :bold, :size => 11)
     sheet1.row(0).default_format = format
     sheet1.row(0).replace excel_title
@@ -48,7 +48,7 @@ class Supplier < ActiveRecord::Base
         categories.each do |c|
           excel_item << c.get_price1(s.id,'')
         end
-        excel_item = excel_item + [s.created_name,s.created_at.blank? ? '' : s.created_at.strftime('%Y-%m-%d'),s.updated_name,s.updated_at.blank? ? '' : s.updated_at.strftime('%Y-%m-%d')]
+        excel_item = excel_item + [s.created_name,s.created_at.blank? ? '' : s.created_at.strftime('%Y-%m-%d'),s.updated_name,s.updated_at.blank? ? '' : s.updated_at.strftime('%Y-%m-%d')] unless suppliers.blank?
         sheet1.row(i+1).replace excel_item
       end
       end

@@ -10,8 +10,6 @@ zh-CN:
         email: 邮箱
         password: 密码
         password_confirmation: 确认密码
-        roles: 用户身份
-        spaces: 公司
       supplier:
         name: 供应商名称
         contact_name: 联系人
@@ -23,13 +21,11 @@ zh-CN:
         updated_at: 更新时间
       business_category:
         name_cn: 类别名称
-        name: 类别名称
-        business_categories: 业务类别(多选)
         created_by: 创建人
         updated_by: 更新人
         created_at: 创建时间
         updated_at: 更新时间
         parent_id: 所属类别
-        is_show: 是否在供应商列表显示
+        is_show: 是否在供应商列表显示？
 
 
