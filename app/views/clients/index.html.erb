@@ -1,0 +1,28 @@
+<%= render_cell(:page_title, :show, data:{name: "#{t('model.list', model: Client.model_name.human)}",
+  toolbar: {
+    right:
+    [
+      (render_cell(:button, :show, data:
+      {
+        name: fa_icon('plus-sign', text: t('model.create', :model => Client.model_name.human)),
+        url: new_client_path,
+        options: {class: 'btn btn-primary'}
+      }))
+    ]
+  }
+})
+%>
+
+<%= render_cell :icon_grid, :show,
+  data:
+  {
+    items: @clients.collect {|client| {
+      name: client.name,
+      url: edit_client_path(client),
+      icon: client.logo_url,
+      edit_url: edit_client_path(client),
+      remove_url: client_path(client),
+    }},
+    editable: true 
+  }
+%>
