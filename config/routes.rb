@@ -62,7 +62,7 @@ Nix::Application.routes.draw do
   resources :business_categories do
     resources :suppliers
   end
-  resources :suppliers
+  resources :suppliers,:clients
   resources :business_categories
   root :to => 'suppliers#index'
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131125043508) do
+ActiveRecord::Schema.define(:version => 20131205010758) do
 
   create_table "business_categories", :force => true do |t|
     t.string   "name_cn",    :default => ""
@@ -40,6 +40,18 @@ ActiveRecord::Schema.define(:version => 20131125043508) do
   add_index "business_categories_suppliers", ["business_category_id"], :name => "index_business_categories_suppliers_on_business_category_id"
   add_index "business_categories_suppliers", ["price"], :name => "index_business_categories_suppliers_on_price"
   add_index "business_categories_suppliers", ["supplier_id"], :name => "index_business_categories_suppliers_on_supplier_id"
+
+  create_table "clients", :force => true do |t|
+    t.string   "name"
+    t.string   "logo"
+    t.integer  "created_by", :default => 0
+    t.integer  "updated_by", :default => 0
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "clients", ["created_by"], :name => "index_clients_on_created_by"
+  add_index "clients", ["updated_by"], :name => "index_clients_on_updated_by"
 
   create_table "suppliers", :force => true do |t|
     t.string   "name",         :default => ""

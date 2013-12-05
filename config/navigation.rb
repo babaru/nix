@@ -50,6 +50,54 @@ SimpleNavigation::Configuration.run do |navigation|
     #                            against the current URI.  You may also use a proc, or the symbol <tt>:subpath</tt>.
     #
     primary.item :page_dashboard, t('dashboard'), root_url
+    #客户
+    primary.item(
+      :page_clients,
+      Client.model_name.human,
+      root_url
+    )do |supplier_menu|
+      supplier_menu.item(
+          :page_clients,
+          t('model.list', model: Client.model_name.human),
+          clients_path,
+          {
+            link:
+            {
+              icon: 'list'
+            }
+          }
+      )
+      Client.all().each do |client|
+        supplier_menu.item(
+          :page_clients,
+          t(client.name.to_s),
+          clients_path
+        )do |sub_menu|
+          sub_menu.item(
+          :page_clients,
+          t('项目列表'),
+          clients_path,
+          {
+            link:
+            {
+              icon: 'list'
+            }
+          }
+          )
+          sub_menu.item(
+          :page_clients,
+          t('客户执行人员管理'),
+          clients_path,
+          {
+            link:
+            {
+              icon: 'male'
+            }
+          }
+          )
+        end
+      end
+    end
     #供应商
     primary.item(
       :page_dashboard,
@@ -151,6 +199,17 @@ SimpleNavigation::Configuration.run do |navigation|
             end
             sub_menu.item(
             :page_suppliers, nil, nil, link: {divider: true})
+            if can? :manage, Supplier
+             
+            end
+             sub_menu.item(
+              :page_suppliers,
+              t('model.edit', model: BusinessCategory.model_name.human),
+              edit_business_category_path(fc),
+              link:
+              {
+                icon: 'pencil'
+              })
             sub_menu.item(
             :page_suppliers,
             t('model.edit', model: BusinessCategory.model_name.human),
