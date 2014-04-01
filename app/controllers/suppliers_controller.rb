@@ -76,7 +76,10 @@ class SuppliersController < ApplicationController
 
   def show
     @supplier = Supplier.find(params[:id])
-    
+    @order_info = @supplier.get_order_info(params[:selected_id].to_i)
+    _f_cat = @supplier.business_categories.first
+    params[:selected_id] ||= _f_cat.id unless _f_cat.blank?
+    @orders_grid = initialize_grid(Order.where('supplier_id = ? and business_category_id = ?',@supplier.id,params[:selected_id].to_i).order('is_finished asc'))
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @supplier }

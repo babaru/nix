@@ -1,0 +1,66 @@
+<div class="narrow-center-page">
+
+  <%= render_cell(
+              :page_title,
+              :show,
+              data: {
+                      name: "#{t('model.create', model: Order.model_name.human)} <small>#{t('simple_form.required.text') }</small>",
+                      toolbar:
+                              {
+                                      left:
+                                              [
+                                                      render_cell(
+                                                              :button,
+                                                              :show,
+                                                              data:
+                                                                      {
+                                                                              name: fa_icon('level-up rotate-270'),
+                                                                              url: orders_path,
+                                                                              options:
+                                                                                      {
+                                                                                              class: 'btn',
+                                                                                              rel: 'tooltip',
+                                                                                              title: "#{t('labels.back_to')}#{t('model.list', :model => Order.model_name.human)}",
+                                                                                      }
+                                                                      }
+                                                      )
+                                              ]
+                              }
+              }
+      ) %>
+
+
+  <%= simple_form_for(@order , :html => {:class => 'form-horizontal' }) do |f| %>
+      <%= f.error_notification %>
+
+      <div class="form-inputs">
+        <%= f.input :name, required: true %>
+        <%= f.input :business_category_id,collection:BusinessCategory.second_categories.map{|bc| [bc.name_cn,bc.id]},required: true%>
+        <%= f.input :supplier_id,collection:@suppliers.map{|s| [s.name,s.id]},required: true%>
+        <%= f.input :project_id,collection:@projects.map{|p| [p.client.name.to_s+'--'+p.name.to_s,p.id]},required: true%>
+        <%= f.input :price, required: true %>
+        <%= f.input :notes, required: false %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, class: 'btn btn-primary' %>
+      </div>
+  <% end %>
+
+</div>
+    <script language='javascript'>
+        $(document).ready(function(){
+         $('#order_business_category_id').bind('change',function(){
+             var category_id = $('#order_business_category_id').val();
+             $.ajax({
+                 url: '/orders/ajax_get_suppliers/' + category_id,
+                 type: 'GET',
+                 data: {
+                 },
+                 success: function(data) {
+                     $('#order_supplier_id').html(data);
+                 }
+             });
+         })
+        });
+    </script>

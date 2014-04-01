@@ -2,10 +2,25 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    if user.name=='yuyang'
-        can :manage,Supplier
-    else
-        can :manage, :all
+
+    can :manage, :all if user and user.is_sys_admin?
+    can :read, :all
+    if user
+      can do |action, subject_class, subject|
+        department_permission = user.departments.any? do |department|
+          department.permissions.find_all_by_action(aliases_for_action(action)).any? do |permission|
+            permission.subject_class == subject_class.to_s &&
+                (subject.nil? || permission.subject_id.nil? || permission.subject_id == subject.id)
+          end
+        end
+
+        user_permission = user.permissions.find_all_by_action(aliases_for_action(action)).any? do |permission|
+          permission.subject_class == subject_class.to_s &&
+              (subject.nil? || permission.subject_id.nil? || permission.subject_id == subject.id)
+        end
+
+        department_permission || user_permission
+      end
     end
     # Define abilities for the passed in user here. For example:
     #

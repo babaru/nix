@@ -8,7 +8,7 @@
     {
       right:
       [
-        render_cell(
+        (render_cell(
           :button,
           :show,
           data:
@@ -20,7 +20,7 @@
               class: 'btn btn-primary'
             }
           }
-        )
+        ) if can? :create,BusinessCategory)
       ]
     }
   }
@@ -60,10 +60,10 @@
   
 
   g.column :html => {class: 'btn-cell'} do |c|
-    link_to(icon('icon-edit'), edit_business_category_path(c), :class => 'btn', :rel => 'tooltip', :title => t('buttons.edit'))
+    link_to(icon('icon-edit'), edit_business_category_path(c), :class => 'btn', :rel => 'tooltip', :title => t('buttons.edit')) if can? :update,BusinessCategory
   end
 
   g.column :html => {class: 'btn-cell'} do |c|
-    link_to(icon('icon-trash'), business_category_path(c), :method => :delete, :confirm => t("confirms.delete"), :class => 'btn btn-danger', :rel => 'tooltip', :title => t('buttons.delete'))
+    link_to(icon('icon-trash'), business_category_path(c), :method => :delete, :confirm => '你确定要删除这个类别么？', :class => 'btn btn-danger', :rel => 'tooltip', :title => t('buttons.delete')) if can? :destroy,BusinessCategory
   end
 end -%>

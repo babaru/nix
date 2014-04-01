@@ -8,7 +8,7 @@
     {
       right:
       [
-        render_cell(
+        (render_cell(
           :button,
           :show,
           data:
@@ -20,7 +20,7 @@
               class: 'btn btn-primary'
             }
           }
-        )
+        ) if can? :create,Supplier)
       ]
     }
   }
@@ -37,6 +37,8 @@
                   <th style="width: 70px;"><%=c.name_cn%></th>           
             <%end%>
           <%end%>
+      <th style="width:180px;">订单总数(已完成订单/总订单)</th>
+      <th style="width:180px;">总金额(已完成金额/总金额)</th>
  <th></th>
     </tr>
     <tr>
@@ -53,8 +55,155 @@
                     </td>
             <%end%>
           <%end%>
+      <td>
+        <div class="label-group master-plan-value-group">
+          <span class="item medium">
+            <%= content_tag(
+                        :span,
+                        @order_info[:finished_order_count].to_i,
+                        class: 'medium-net-cost'
+                ) %>
+          </span>
+          <span class="item company">
+            <%= content_tag(
+                        :span,
+                        @order_info[:all_order_count].to_i,
+                        class: 'company-net-cost'
+                ) %>
+          </span>
+        </div>
+      </td>
+      <td>
+        <div class="label-group master-plan-value-group">
+          <span class="item medium">
+            <%= content_tag(
+                        :span,
+                        number_to_currency(@order_info[:finished_order_price].to_f, precision: 0, unit: '￥'),
+                        class: 'medium-net-cost'
+                ) %>
+          </span>
+          <span class="item company">
+            <%= content_tag(
+                        :span,
+                        number_to_currency(@order_info[:all_order_price].to_f, precision: 0, unit: '￥'),
+                        class: 'company-net-cost'
+                ) %>
+          </span>
+        </div>
+      </td>
 <td></td>
     </tr>
   </tbody></table>
 </div>
+
+<ul class="nav nav-tabs">
+  <% @supplier.business_categories.each do |cat| %>
+      <% if cat.id == params[:selected_id].to_i %>
+          <li class="active">
+      <% else %>
+          <li>
+      <% end %>
+      <%= link_to(content_tag(:span, cat.name_cn),supplier_path(id: @supplier.id,selected_id: cat.id ))%>
+      </li>
+  <% end %>
+</ul>
+
+<div class="padding">
+  <table class="plan-summary" id="medium-master-plan-summary">
+    <tr>
+      <th style="width:10%;">订单数(已完成数/总数)</th>
+      <th style="width:10%;">订单金额(已完成金额/总金额)</th>
+      <th></th>
+    </tr>
+    <tr>
+      <td>
+        <div class="label-group master-plan-value-group">
+          <span class="item medium">
+            <%= content_tag(
+                        :span,
+                        @order_info[:select_finished_order_count].to_i,
+                        class: 'medium-net-cost'
+                ) %>
+          </span>
+          <span class="item company">
+            <%= content_tag(
+                        :span,
+                        @order_info[:select_order_count].to_i,
+                        class: 'company-net-cost'
+                ) %>
+          </span>
+        </div>
+      </td>
+      <td>
+        <div class="label-group master-plan-value-group">
+          <span class="item medium">
+            <%= content_tag(
+                        :span,
+                        number_to_currency(@order_info[:select_finished_order_price].to_f, precision: 0, unit: '￥'),
+                        class: 'medium-net-cost'
+                ) %>
+          </span>
+          <span class="item company">
+            <%= content_tag(
+                        :span,
+                        number_to_currency(@order_info[:select_order_price].to_f, precision: 0, unit: '￥'),
+                        class: 'company-net-cost'
+                ) %>
+          </span>
+        </div>
+      </td>
+      <td></td>
+    </tr>
+
+  </table>
+</div>
+
+<%= grid(@orders_grid, :show_filters => :when_filtered) do |g|
+
+  g.column name: t('activerecord.attributes.order.category_name') do |order|
+    order.business_category.name_cn if order.business_category
+  end
+
+  g.column name: t('activerecord.attributes.order.name'), attribute: 'name' do |order|
+    order.name
+  end
+
+  g.column name: t('activerecord.attributes.project.name') do |order|
+    link_to content_tag(:strong, order.project.name), project_path(order.project),:target => '_blank' if order.project
+  end
+
+  g.column name: t('activerecord.attributes.order.price') do |order|
+    content_tag(:strong, number_to_currency(order.price, precision: 0, unit: '￥'))
+  end
+
+  g.column name: t('activerecord.attributes.order.is_finished'), attribute: 'is_finished' do |order|
+    fa_icon('ok-sign') if order.is_finished?
+  end
+
+
+
+  g.column name: t('activerecord.attributes.order.finished_at') do |order|
+    order.finished_at.strftime('%Y-%m-%d %H:%M:%S') if order.is_finished?
+  end
+
+  g.column name: t('activerecord.attributes.order.notes') do |order|
+    order.notes
+  end
+
+  g.column name: t('activerecord.attributes.order.updated_by'), attribute: 'updated_by' do |order|
+    order.updated_name
+  end
+
+  g.column name: t('activerecord.attributes.order.updated_at'), attribute: 'updated_at' do |order|
+    order.updated_at.strftime('%Y-%m-%d') if order.updated_at
+  end
+
+  g.column name: t('activerecord.attributes.order.created_by'), attribute: 'created_by' do |order|
+    order.created_name
+  end
+
+  g.column name: t('activerecord.attributes.order.created_at'), attribute: 'created_at' do |order|
+    order.created_at.strftime('%Y-%m-%d') if order.created_at
+  end
+end -%>
 

@@ -1,0 +1,47 @@
+<div class="narrow-center-page">
+
+  <%= render_cell(
+              :page_title,
+              :show,
+              data:
+                      {
+                              name: "<strong>#{@client.name}</strong> #{t('客户执行人员管理')}",
+                              toolbar:
+                                      {
+                                              left:
+                                                      [
+                                                              render_cell(
+                                                                      :button,
+                                                                      :show,
+                                                                      data:
+                                                                              {
+                                                                                      name: fa_icon('level-up rotate-270'),
+                                                                                      url: client_projects_path(@client.id),
+                                                                                      options:
+                                                                                              {
+                                                                                                      class: 'btn',
+                                                                                                      rel: 'tooltip',
+                                                                                                      title: "#{t('labels.back_to')} #{@client.name} #{t('model.list', :model => Project.model_name.human)}",
+                                                                                              }
+                                                                              }
+                                                              )
+                                                      ]
+                                      }
+                      }
+      ) %>
+
+  <%= simple_form_for(@client, url: save_client_users_path(@client), method: :post, html: {class: 'form-horizontal'}) do |f| %>
+      <%= f.error_notification %>
+
+      <div class="form-inputs">
+        <%= f.association :users,
+                          :collection => User.all_the_other_users(@client.created_by.to_i).collect{|u| ["#{u.name} (#{u.email})", u.id] },
+                          :as => :check_boxes %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, "保存客户执行人员", class: 'btn btn-primary' %>
+      </div>
+  <% end %>
+
+</div>

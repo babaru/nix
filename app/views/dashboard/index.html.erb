@@ -1,1 +1,53 @@
 <%= render_cell :page_title, :show, data: {name: t('dashboard')} %>
+
+<%= render_cell :section_title, :show, data: {name: '正在执行中的项目'} %>
+
+
+<%= grid(@projects_grid, :show_filters => :when_filtered) do |g|
+
+  g.column name: t('activerecord.attributes.project.name'), attribute: 'name' do |project|
+    link_to content_tag(:strong, project.name), ''
+  end
+
+  g.column name: t('activerecord.attributes.project.started_at'), attribute: 'started_at' do |project|
+    project.started_at.strftime('%Y-%m-%d') if project.started_at
+  end
+
+  g.column name: t('activerecord.attributes.project.ended_at'), attribute: 'ended_at' do |project|
+    project.ended_at.strftime('%Y-%m-%d') if project.ended_at
+  end
+
+  g.column name: t('activerecord.attributes.project.budget') do |project|
+    content_tag(:strong, number_to_currency(project.budget, precision: 0, unit: '￥'))
+  end
+
+  g.column name: t('activerecord.attributes.project.is_started'), attribute: 'is_started' do |project|
+
+    fa_icon('ok-sign') if project.is_started?
+  end
+
+  g.column name: t('activerecord.attributes.project.is_started_at'), attribute: 'is_started_at' do |project|
+    project.is_started_at.strftime('%Y-%m-%d %H:%M:%S') if project.is_started?
+  end
+
+  g.column name: t('activerecord.attributes.project.assigned_users') do |project|
+    project.users.inject([]){|list, u| list << content_tag(:span, u.name, class: 'label label-success')}.join(' ').html_safe
+  end
+
+  g.column html: {class: ''} do |project|
+    link_to(fa_icon('rocket', text: '启动项目'), start_project_path(project), class: 'btn btn-success', method: :post) if !project.is_started? and can? :update,Project
+  end
+
+  g.column html: {class: 'btn-cell'} do |project|
+    link_to(fa_icon('user'), assign_project_user_path(id: project), rel: 'tooltip', title: '分配项目', class: 'btn') if can? :update,Project
+  end
+
+  g.column html: {class: 'btn-cell'} do |project|
+    link_to(fa_icon('edit'), edit_project_path(project), :class => 'btn', :rel => 'tooltip', :title => t('buttons.edit')) if can? :update,Project
+  end
+
+  g.column html: {class: 'btn-cell'} do |project|
+    link_to(fa_icon('trash'), project_path(project), :method => :delete, :confirm => t("confirms.delete"), :class => 'btn btn-danger', :rel => 'tooltip', :title => t('buttons.delete')) if can? :destroy,Project
+  end
+end -%>
+

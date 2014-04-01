@@ -44,7 +44,13 @@ class ClientsController < ApplicationController
 
     respond_to do |format|
       Client.transaction do
-        @client.save!
+        if @client.save
+          format.html { redirect_to clients_path, notice: 'Client was successfully created.' }
+          format.json { render json: @client, status: :created, location: @client }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @client.errors, status: :unprocessable_entity }
+        end
         # Medium.all.each do |medium|
         #   MediumPolicy.create!({
         #     medium_id: medium.id,
@@ -55,8 +61,7 @@ class ClientsController < ApplicationController
         #     company_bonus_ratio: 0
         #     }) unless MediumPolicy.exists?(client_id: @client.id, medium_id: medium.id)
         # end
-        format.html { redirect_to clients_path, notice: 'Client was successfully created.' }
-        format.json { render json: @client, status: :created, location: @client }
+
       end
       # else
         # format.html { render action: "new" }
@@ -93,11 +98,34 @@ class ClientsController < ApplicationController
   # DELETE /clients/1.json
   def destroy
     @client = Client.find(params[:id])
-    @client.destroy
+    Client.transaction do
+      FileUtils.rm Dir["#{Rails.root}/public/files/logo_files/"+@client.logo.to_s]
+      @client.destroy
 
-    respond_to do |format|
-      format.html { redirect_to clients_url }
-      format.json { head :no_content }
+      respond_to do |format|
+        format.html { redirect_to clients_url, notice: 'Client was successfully deleted.' }
+        format.json { head :no_content }
+      end
+    end
+  end
+
+  def assign_user
+    @client = Client.find(params[:id])
+    add_breadcrumb("#{@client.name} #{t('客户执行人员管理')}")
+  end
+
+  def save_client_users
+    @client = Client.find(params[:id])
+    if request.post?
+      respond_to do |format|
+        if @client.update_attributes(params[:client])
+          format.html { redirect_to client_projects_path(@client), notice: "客户执行人员保存成功！" }
+          format.json { head :no_content }
+        else
+          format.html { render action: "assigns" }
+          format.json { render json: @client.errors, status: :unprocessable_entity }
+        end
+      end
     end
   end
 end

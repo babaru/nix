@@ -14,8 +14,16 @@ $(document).ready(function() {
     var cell = $('<div />').addClass('span2');
     cell.append($(this).addClass('item').css('background', "url('" + $(this).attr('logo-url') + "') no-repeat center center"));
     var editable = $(this).attr('data-editable');
+    var item = $('<div />').addClass('edit-panel');
     if(editable == "true") {
-      cell.append('<div class="edit-panel"><a href="' + edit_url + '"><span class="edit icon-stack"><i class="icon-sign-blank icon-stack-base"></i><i class="icon-pencil icon-light" /></span></a><a href="' + remove_url + '" data-method="delete" data-confirm="确定要删除这个条目？"><span class="delete icon-stack"><i class="icon-sign-blank icon-stack-base"></i><i class="icon-trash icon-light" /></span></a></div>');
+        item.append('<a href="' + edit_url + '"><span class="edit icon-stack"><i class="icon-sign-blank icon-stack-base"></i><i class="icon-pencil icon-light" /></span></a>');
+    }
+    var removable = $(this).attr('data-removable');
+    if(removable == "true") {
+        item.append('<a href="' + remove_url + '" data-method="delete" data-confirm="确定要删除这个条目？"><span class="delete icon-stack"><i class="icon-sign-blank icon-stack-base"></i><i class="icon-trash icon-light" /></span></a>');
+    }
+    if(removable == "true" || editable == "true"){
+        cell.append(item)
     }
     $('.edit-panel', cell).hide();
     row.append(cell);

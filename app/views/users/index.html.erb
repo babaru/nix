@@ -8,19 +8,19 @@
     {
       right:
       [
-        render_cell(
+        (render_cell(
           :button,
           :show,
           data:
           {
             name: fa_icon('plus-sign', text: t('model.create', :model => User.model_name.human)),
-            url: new_supplier_path,
+            url: new_user_path,
             options:
             {
               class: 'btn btn-primary'
             }
           }
-        )
+        ) if can? :create,User)
       ]
     }
   }
@@ -36,12 +36,24 @@
     user.email
   end
 
-  g.column :html => {class: 'btn-cell'} do |user|
-      link_to(fa_icon('edit'), edit_user_path(user), :class => 'btn', :rel => 'tooltip', :title => t('buttons.edit'))
-    end
+  g.column name: t('activerecord.attributes.user.department') do |user|
+    user.department.name if user.department
+  end
 
-    g.column :html => {class: 'btn-cell'} do |user|
-      link_to(fa_icon('trash'), user_path(user), :method => :delete, :confirm => t("confirms.delete"), :class => 'btn btn-danger', :rel => 'tooltip', :title => t('buttons.delete'))
-    end
+  g.column name: t('activerecord.attributes.user.department_permission') do |user|
+    user.department.permissions.inject([]){|list, p| list << content_tag(:span, p.name, class: 'label label-success')}.join(' ').html_safe if user.department
+  end
 
+  g.column name: t('activerecord.attributes.user.user_permission') do |user|
+    user.permissions.inject([]){|list, p| list << content_tag(:span, p.name, class: 'label label-success')}.join(' ').html_safe
+  end
+
+
+      g.column :html => {class: 'btn-cell'} do |user|
+          link_to(fa_icon('edit'), edit_user_path(user), :class => 'btn', :rel => 'tooltip', :title => t('buttons.edit')) if current_user.id == user.id or can? :update,User
+      end
+
+      g.column :html => {class: 'btn-cell'} do |user|
+          link_to(fa_icon('trash'), user_path(user), :method => :delete, :confirm => '你确定要删除这个用户么？', :class => 'btn btn-danger', :rel => 'tooltip', :title => t('buttons.delete'))  if current_user.id != user.id and can? :destroy,User
+      end
 end -%>

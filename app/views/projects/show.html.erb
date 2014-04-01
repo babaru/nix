@@ -1,0 +1,207 @@
+<%= render_cell(
+            :page_title,
+            :show,
+            data:
+                    {
+                            name: "#{fa_icon('star', text:' ')} #{@project.name}",
+                            toolbar:
+                                    {
+                                            right:
+                                                    [
+                                                            (render_cell(
+                                                                    :button,
+                                                                    :show,
+                                                                    data:
+                                                                            {
+                                                                                    name: fa_icon('plus-sign', text: '指定供应商'),
+                                                                                    url: new_order_path(project_id:@project.id),
+                                                                                    options:
+                                                                                            {
+                                                                                                    class: 'btn btn-primary'
+                                                                                            }
+                                                                            }
+                                                            ) if can? :create,Order)
+                                                    ]
+                                    }
+                    }
+    ) %>
+
+<div class="padding">
+  <table class="plan-summary" id="master-plan-summary">
+    <tbody><tr>
+      <th style="width:100px;">项目预算</th>
+      <th style="width:180px;">订单总数(已完成订单/总订单)</th>
+      <th style="width:180px;">总金额(已完成金额/总金额)</th>
+      <th></th>
+    </tr>
+    <tr>
+      <td><span class="project-budget"><%= number_to_currency(@project.budget, unit: '￥', precision: 0) %></span></td>
+      <td>
+        <div class="label-group master-plan-value-group">
+          <span class="item medium">
+            <%= content_tag(
+                        :span,
+                        @order_info[:finished_order_count].to_i,
+                        class: 'medium-net-cost'
+                ) %>
+          </span>
+          <span class="item company">
+            <%= content_tag(
+                        :span,
+                        @order_info[:all_order_count].to_i,
+                        class: 'company-net-cost'
+                ) %>
+          </span>
+        </div>
+      </td>
+      <td>
+        <div class="label-group master-plan-value-group">
+          <span class="item medium">
+            <%= content_tag(
+                        :span,
+                        number_to_currency(@order_info[:finished_order_price].to_f, precision: 0, unit: '￥'),
+                        class: 'medium-net-cost'
+                ) %>
+          </span>
+          <span class="item company">
+            <%= content_tag(
+                        :span,
+                        number_to_currency(@order_info[:all_order_price].to_f, precision: 0, unit: '￥'),
+                        class: 'company-net-cost'
+                ) %>
+          </span>
+        </div>
+      </td>
+      <td></td>
+    </tr>
+    </tbody></table>
+</div>
+
+<ul class="nav nav-tabs">
+  <% @business_categories.each do |cat| %>
+      <% if cat.id == params[:selected_id].to_i %>
+          <li class="active">
+      <% else %>
+          <li>
+      <% end %>
+      <%= link_to(content_tag(:span, cat.name_cn),project_path(id: @project.id,selected_id: cat.id ))%>
+      </li>
+  <% end %>
+</ul>
+
+<div class="padding">
+  <table class="plan-summary" id="medium-master-plan-summary">
+    <tr>
+      <th style="width:10%;">订单数(已完成数/总数)</th>
+      <th style="width:10%;">订单金额(已完成金额/总金额)</th>
+      <th></th>
+    </tr>
+    <tr>
+      <td>
+        <div class="label-group master-plan-value-group">
+          <span class="item medium">
+            <%= content_tag(
+                        :span,
+                        @order_info[:select_finished_order_count].to_i,
+                        class: 'medium-net-cost'
+                ) %>
+          </span>
+          <span class="item company">
+            <%= content_tag(
+                        :span,
+                        @order_info[:select_order_count].to_i,
+                        class: 'company-net-cost'
+                ) %>
+          </span>
+        </div>
+      </td>
+      <td>
+        <div class="label-group master-plan-value-group">
+          <span class="item medium">
+            <%= content_tag(
+                        :span,
+                        number_to_currency(@order_info[:select_finished_order_price].to_f, precision: 0, unit: '￥'),
+                        class: 'medium-net-cost'
+                ) %>
+          </span>
+          <span class="item company">
+            <%= content_tag(
+                        :span,
+                        number_to_currency(@order_info[:select_order_price].to_f, precision: 0, unit: '￥'),
+                        class: 'company-net-cost'
+                ) %>
+          </span>
+        </div>
+      </td>
+      <td></td>
+    </tr>
+
+  </table>
+</div>
+
+<%= grid(@orders_grid, :show_filters => :when_filtered) do |g|
+
+
+  g.column name: t('activerecord.attributes.order.name'), attribute: 'name' do |order|
+    order.name
+  end
+
+  g.column name: t('activerecord.attributes.order.supplier_name') do |order|
+    order.supplier.name if order.supplier
+  end
+
+  g.column name: t('activerecord.attributes.supplier.contact_name') do |order|
+    link_to content_tag(:strong, order.supplier.contact_name), supplier_path(id:order.supplier,selected_id:order.business_category_id),:target => '_blank' if order.supplier
+  end
+
+  g.column name: t('activerecord.attributes.supplier.contact_way') do |order|
+    order.supplier.contact_way if order.supplier
+  end
+
+  g.column name: t('activerecord.attributes.order.price') do |order|
+    content_tag(:strong, number_to_currency(order.price, precision: 0, unit: '￥'))
+  end
+
+  g.column name: t('activerecord.attributes.order.is_finished'), attribute: 'is_finished' do |order|
+    fa_icon('ok-sign') if order.is_finished?
+  end
+
+
+
+  g.column name: t('activerecord.attributes.order.finished_at') do |order|
+    order.finished_at.strftime('%Y-%m-%d %H:%M:%S') if order.is_finished?
+  end
+
+  g.column name: t('activerecord.attributes.order.notes') do |order|
+    order.notes
+  end
+
+  g.column name: t('activerecord.attributes.order.updated_by'), attribute: 'updated_by' do |order|
+    order.updated_name
+  end
+
+  g.column name: t('activerecord.attributes.order.updated_at'), attribute: 'updated_at' do |order|
+    order.updated_at.strftime('%Y-%m-%d') if order.updated_at
+  end
+
+  g.column name: t('activerecord.attributes.order.created_by'), attribute: 'created_by' do |order|
+    order.created_name
+  end
+
+  g.column name: t('activerecord.attributes.order.created_at'), attribute: 'created_at' do |order|
+    order.created_at.strftime('%Y-%m-%d') if order.created_at
+  end
+
+  g.column html: {class: ''} do |order|
+    link_to(fa_icon('rocket', text: '完成订单'), finish_order_path(order), class: 'btn btn-success', method: :post) if !order.is_finished? and can? :update,Order
+  end
+
+  g.column :html => {class: 'btn-cell'} do |order|
+    link_to(icon('icon-edit'), edit_order_path(order), :class => 'btn', :rel => 'tooltip', :title => t('buttons.edit')) if can? :update,Order
+  end
+
+  g.column :html => {class: 'btn-cell'} do |order|
+    link_to(icon('icon-trash'), order_path(order), :method => :delete, :confirm => '确定要删除这个订单么？', :class => 'btn btn-danger', :rel => 'tooltip', :title => t('buttons.delete')) if can? :destroy,Order
+  end
+end -%>
+

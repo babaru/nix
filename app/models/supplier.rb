@@ -6,6 +6,7 @@ class Supplier < ActiveRecord::Base
   TITLE_ITEMS=[]
   validates :contact_name, presence:{message:'联系人不能为空'}
   validates :contact_way, presence:{message:'联系方式不能为空'}
+  has_many :orders
 
 
   def category_ids
@@ -58,6 +59,30 @@ class Supplier < ActiveRecord::Base
     File.delete(new_file) if File.exist?(new_file)
     workbook.write new_file
     new_file
+  end
+
+  def get_order_info(selected_id=0)
+    info = {}
+    _orders = self.orders
+    unless _orders.blank?
+      _orders.each do |o|
+        info[:all_order_price] = info[:all_order_price].to_f+o.price.to_f
+        info[:all_order_count] =info[:all_order_count].to_i+1
+        if o.business_category_id.to_i == selected_id
+          info[:select_order_price] = info[:select_order_price].to_f+o.price.to_f
+          info[:select_order_count] =info[:select_order_count].to_i+1
+          if o.is_finished?
+            info[:select_finished_order_price] = info[:select_finished_order_price].to_f+o.price.to_f
+            info[:select_finished_order_count] =info[:select_finished_order_count].to_i+1
+          end
+        end
+        if o.is_finished?
+          info[:finished_order_price] =info[:finished_order_price].to_f+ o.price.to_f
+          info[:finished_order_count] =info[:finished_order_count].to_i+1
+        end
+      end
+    end
+    info
   end
 
   def self.create_suppliers_by_excel(supplier_sheet=nil,user=nil)

@@ -35,6 +35,7 @@
   <div class="form-inputs">
     <%= f.input :name, required: true %>
     <%= f.input :email, required: true %>
+    <%= f.input :department_id,collection:@departments.map{|s| [s.name,s.id]},required: true%>
     <%= f.input :password, required: true %>
     <%= f.input :password_confirmation, required: true %>
   </div>

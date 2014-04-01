@@ -49,12 +49,12 @@ SimpleNavigation::Configuration.run do |navigation|
     #                            when the item should be highlighted, you can set a regexp which is matched
     #                            against the current URI.  You may also use a proc, or the symbol <tt>:subpath</tt>.
     #
-    primary.item :page_dashboard, t('dashboard'), root_url
+    primary.item(:page_dashboard, t('dashboard'), dashboard_path)
     #客户
     primary.item(
       :page_clients,
       Client.model_name.human,
-      root_url
+      nil
     )do |supplier_menu|
       supplier_menu.item(
           :page_clients,
@@ -76,33 +76,63 @@ SimpleNavigation::Configuration.run do |navigation|
           sub_menu.item(
           :page_clients,
           t('项目列表'),
-          clients_path,
+          client_projects_path(client),
           {
             link:
             {
-              icon: 'list'
+              icon: 'folder-close'
             }
           }
           )
-          sub_menu.item(
-          :page_clients,
-          t('客户执行人员管理'),
-          clients_path,
-          {
-            link:
+          if can? :update,Client
+            sub_menu.item(
+            :page_clients,
+            t('客户执行人员管理'),
+            assign_client_user_path(client),
             {
-              icon: 'male'
+              link:
+              {
+                icon: 'male'
+              }
             }
-          }
-          )
+            )
+            sub_menu.item(
+                :page_clients, nil, nil, link: {divider: true})
+            sub_menu.item(
+                :page_clients,
+                t('model.edit', model: Client.model_name.human),
+                edit_client_path(client),
+                {
+                    link:
+                        {
+                            icon: 'pencil'
+                        }
+                }
+            )
+          end
         end
+      end
+      if can? :create,Client
+        supplier_menu.item(
+            :page_clients, nil, nil, link: {divider: true})
+        supplier_menu.item(
+            :page_clients,
+            t('model.create', model: Client.model_name.human),
+            new_client_path,
+            {
+                link:
+                    {
+                        icon: 'plus-sign'
+                    }
+            }
+        )
       end
     end
     #供应商
     primary.item(
       :page_dashboard,
       Supplier.model_name.human,
-      root_url
+      nil
     )do |supplier_menu|
 
       # 供应商列表
@@ -119,24 +149,26 @@ SimpleNavigation::Configuration.run do |navigation|
           }
         }
       )
-      supplier_menu.item(
-          :page_suppliers, nil, nil, link: {divider: true})
-      supplier_menu.item(
-          :page_suppliers,
-          t('model.create', model: Supplier.model_name.human),
-          new_supplier_path,
-          link:
-          {
-            icon: 'plus-sign'
-          }
-        )
+      if can? :create,Supplier
+        supplier_menu.item(
+            :page_suppliers, nil, nil, link: {divider: true})
+        supplier_menu.item(
+            :page_suppliers,
+            t('model.create', model: Supplier.model_name.human),
+            new_supplier_path,
+            link:
+            {
+              icon: 'plus-sign'
+            }
+          )
+      end
     end
 
     #业务类别
     primary.item(
       :page_business_categories,
       BusinessCategory.model_name.human,
-      root_url
+      nil
     )do |supplier_menu|
 
       # 1级分类列表
@@ -185,24 +217,24 @@ SimpleNavigation::Configuration.run do |navigation|
                     icon: 'folder-close'
                   }
                 })
-                th_menu.item(
-                :page_suppliers, nil, nil, link: {divider: true})
-                th_menu.item(
-                :page_suppliers,
-                t('model.edit', model: BusinessCategory.model_name.human),
-                edit_business_category_path(cfc),
-                link:
-                {
-                  icon: 'pencil'
-                })
+                if can? :update,BusinessCategory
+                  th_menu.item(
+                  :page_suppliers, nil, nil, link: {divider: true})
+                  th_menu.item(
+                  :page_suppliers,
+                  t('model.edit', model: BusinessCategory.model_name.human),
+                  edit_business_category_path(cfc),
+                  link:
+                  {
+                    icon: 'pencil'
+                  })
+                end
               end
             end
-            sub_menu.item(
-            :page_suppliers, nil, nil, link: {divider: true})
-            if can? :manage, Supplier
-             
-            end
-             sub_menu.item(
+            if can? :update,BusinessCategory
+              sub_menu.item(
+              :page_suppliers, nil, nil, link: {divider: true})
+              sub_menu.item(
               :page_suppliers,
               t('model.edit', model: BusinessCategory.model_name.human),
               edit_business_category_path(fc),
@@ -210,34 +242,29 @@ SimpleNavigation::Configuration.run do |navigation|
               {
                 icon: 'pencil'
               })
-            sub_menu.item(
-            :page_suppliers,
-            t('model.edit', model: BusinessCategory.model_name.human),
-            edit_business_category_path(fc),
-            link:
-            {
-              icon: 'pencil'
-            })
+            end
           end
       end
-      supplier_menu.item(
-          :page_business_categories, nil, nil, link: {divider: true})
-      supplier_menu.item(
-          :page_business_categories,
-          t('model.create', model: BusinessCategory.model_name.human),
-          new_business_category_path,
-          link:
-          {
-            icon: 'plus-sign'
-          }
+      if can? :create,BusinessCategory
+        supplier_menu.item(
+            :page_business_categories, nil, nil, link: {divider: true})
+        supplier_menu.item(
+            :page_business_categories,
+            t('model.create', model: BusinessCategory.model_name.human),
+            new_business_category_path,
+            link:
+                {
+                    icon: 'plus-sign'
+                }
         )
+      end
     end
 
     #用户
     primary.item(
       :page_dashboard,
       User.model_name.human,
-      root_url
+      nil
     )do |supplier_menu|
 
 
@@ -252,17 +279,54 @@ SimpleNavigation::Configuration.run do |navigation|
           }
         }
       )
-      supplier_menu.item(
-          :page_users, nil, nil, link: {divider: true})
+
+      if can? :create,User
+        supplier_menu.item(
+            :page_users, nil, nil, link: {divider: true})
+        supplier_menu.item(
+            :page_users,
+            t('model.create', model: User.model_name.human),
+            new_user_path,
+            link:
+                {
+                    icon: 'plus-sign'
+                }
+        )
+      end
+    end
+
+    #部门
+    primary.item(
+        :page_dashboard,
+        Department.model_name.human,
+        nil
+    )do |supplier_menu|
+
+
       supplier_menu.item(
           :page_users,
-          t('model.create', model: User.model_name.human),
-          new_user_path,
-          link:
+          t('model.list', model: Department.model_name.human),
+          departments_path,
           {
-            icon: 'plus-sign'
+              link:
+                  {
+                      icon: 'list'
+                  }
           }
+      )
+      if can? :create,Department
+        supplier_menu.item(
+            :page_users, nil, nil, link: {divider: true})
+        supplier_menu.item(
+            :page_departments,
+            t('model.create', model: Department.model_name.human),
+            new_department_path,
+            link:
+                {
+                    icon: 'plus-sign'
+                }
         )
+      end
     end
 
     # Add an item which has a sub navigation (same params, but with block)

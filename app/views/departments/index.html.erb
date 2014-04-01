@@ -1,0 +1,48 @@
+<%= render_cell(
+            :page_title,
+            :show,
+            data:
+                    {
+                            name: "#{t('model.list', model: Department.model_name.human)}",
+                            toolbar:
+                                    {
+                                            right:
+                                                    [
+                                                            (render_cell(
+                                                                    :button,
+                                                                    :show,
+                                                                    data:
+                                                                            {
+                                                                                    name: fa_icon('plus-sign', text: t('model.create', :model => Department.model_name.human)),
+                                                                                    url: new_department_path,
+                                                                                    options:
+                                                                                            {
+                                                                                                    class: 'btn btn-primary'
+                                                                                            }
+                                                                            }
+                                                            ) if can? :create,User)
+                                                    ]
+                                    }
+                    }
+    ) %>
+
+<%= grid(@departments, :show_filters => :always) do |g|
+
+  g.column name: t('activerecord.attributes.department.name') do |department|
+    department.name
+  end
+
+  g.column name: t('activerecord.attributes.department.permissions') do |department|
+    department.permissions.inject([]){|list, p| list << content_tag(:span, p.name, class: 'label label-success')}.join(' ').html_safe
+  end
+
+
+
+  g.column :html => {class: 'btn-cell'} do |department|
+    link_to(fa_icon('edit'), edit_department_path(department), :class => 'btn', :rel => 'tooltip', :title => t('buttons.edit')) if can? :update,Department
+  end
+
+  g.column :html => {class: 'btn-cell'} do |department|
+    link_to(fa_icon('trash'), department_path(department), :method => :delete, :confirm => '你确定要删除这个部门么？', :class => 'btn btn-danger', :rel => 'tooltip', :title => t('buttons.delete'))  if can? :destroy,Department
+  end
+end -%>

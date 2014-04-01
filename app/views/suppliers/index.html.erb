@@ -8,7 +8,7 @@
     {
       right:
       [
-        render_cell(
+        (render_cell(
           :button,
           :show,
           data:
@@ -20,8 +20,8 @@
               class: 'btn btn-primary'
             }
           }
-        ),
-        render_cell(
+        ) if can? :create,Supplier),
+        (render_cell(
         :button,
         :show,
         data:
@@ -30,7 +30,7 @@
           url: upload_spot_plan_path,
           options: {class: 'btn btn-success'}
         }
-      ),
+      ) if can? :create,Supplier),
         render_cell(:button, :show,
           data:
           {
@@ -125,11 +125,11 @@
      supplier.created_name
   end
 
-   g.column :html => {class: 'btn-cell'} do |supplier|
-    link_to(icon('icon-edit'), edit_supplier_path(supplier), :class => 'btn', :rel => 'tooltip', :title => t('buttons.edit'))
+  g.column :html => {class: 'btn-cell'} do |supplier|
+    link_to(icon('icon-edit'), edit_supplier_path(supplier), :class => 'btn', :rel => 'tooltip', :title => t('buttons.edit')) if can? :update,Supplier
   end
 
   g.column :html => {class: 'btn-cell'} do |supplier|
-    link_to(icon('icon-trash'), supplier_path(supplier), :method => :delete, :confirm => t("confirms.delete"), :class => 'btn btn-danger', :rel => 'tooltip', :title => t('buttons.delete'))
+    link_to(icon('icon-trash'), supplier_path(supplier), :method => :delete, :confirm => t("confirms.delete"), :class => 'btn btn-danger', :rel => 'tooltip', :title => t('buttons.delete')) if can? :destroy,Supplier
   end
 end -%>

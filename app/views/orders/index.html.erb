@@ -1,0 +1,151 @@
+<%= render_cell(
+            :page_title,
+            :show,
+            data:
+                    {
+                            name: "#{t('model.list', model: '订单')}",
+                            toolbar:
+                                    {
+                                            right:
+                                                    [
+                                                            render_cell(
+                                                                    :button,
+                                                                    :show,
+                                                                    data:
+                                                                            {
+                                                                                    name: fa_icon('plus-sign', text: t('model.create', :model => '订单')),
+                                                                                    url: new_order_path,
+                                                                                    options:
+                                                                                            {
+                                                                                                    class: 'btn btn-primary'
+                                                                                            }
+                                                                            }
+                                                            ),
+                                                            render_cell(:button, :show,
+                                                                        data:
+                                                                                {
+                                                                                        name: fa_icon('download-alt', text: "下载订单列表"),
+                                                                                        url: generate_spot_plan_path(first_selected_medium_id: params[:first_selected_medium_id], second_selected_medium_id: params[:second_selected_medium_id]),
+                                                                                        options:
+                                                                                                {
+                                                                                                        class: 'btn btn-info',
+                                                                                                        method: :post
+                                                                                                }
+                                                                                }
+                                                            )
+                                                    ]
+                                    }
+                    }
+    ) %>
+<div>
+  <table class="table picker">
+    <tbody><tr class="selected">
+      <td class="title">您已选择</td>
+      <td>
+        <ul>
+          <li><a href="/orders" class="label label-warning"><%=@f_cat.name_cn.to_s+' X' if @f_cat%></a></li>
+          <% if @s_cat%>
+              <li><a href="/orders?first_selected_medium_id=<%=@s_cat.parent_id%>" class="label label-warning"><%=@s_cat.name_cn.to_s+' X'%></a></li>
+          <%end%>
+        </ul>
+      </td>
+    </tr>
+    <tr class="selectors">
+      <td class="title">一级分类</td>
+      <td>
+        <ul class="nav nav-pills">
+          <%@first_categories.each do |fc|%>
+              <li class="<%= (@f_cat and @f_cat.id == fc.id) ? 'active' : ''%>"><a href="/orders?first_selected_medium_id=<%=fc.id%>"><%=fc.name_cn%></a></li>
+          <%end%>
+        </ul>
+      </td>
+    </tr>
+    <% if @f_cat%>
+        <tr class="selectors">
+          <td class="title">二级分类</td>
+          <td>
+            <ul class="nav nav-pills">
+              <%@second_categories.each do |sc|%>
+                  <li class="<%= (@s_cat and @s_cat.id == sc.id) ? 'active' : ''%>"><a href="/orders?first_selected_medium_id=<%=@f_cat.id%>&second_selected_medium_id=<%=sc.id%>"><%=sc.name_cn%></a></li>
+              <%end%>
+            </ul>
+          </td>
+        </tr>
+    <%end%>
+
+
+
+
+    </tbody></table>
+</div>
+
+<%= grid(@orders_grid, :show_filters => :when_filtered) do |g|
+
+  g.column name: t('activerecord.attributes.order.category_name') do |order|
+    order.business_category.name_cn if order.business_category
+  end
+
+  g.column name: t('activerecord.attributes.order.name'), attribute: 'name' do |order|
+    order.name
+  end
+
+  g.column name: t('activerecord.attributes.project.name') do |order|
+    link_to content_tag(:strong, order.project.name), project_path(order.project),:target => '_blank' if order.project
+  end
+
+  g.column name: t('activerecord.attributes.order.supplier_name') do |order|
+    order.supplier.name if order.supplier
+  end
+
+  g.column name: t('activerecord.attributes.supplier.contact_name') do |order|
+    link_to content_tag(:strong, order.supplier.contact_name), supplier_path(id:order.supplier,selected_id:order.business_category_id),:target => '_blank' if order.supplier
+  end
+
+  g.column name: t('activerecord.attributes.supplier.contact_way') do |order|
+    order.supplier.contact_way if order.supplier
+  end
+
+  g.column name: t('activerecord.attributes.order.price') do |order|
+    content_tag(:strong, number_to_currency(order.price, precision: 0, unit: '￥'))
+  end
+
+  g.column name: t('activerecord.attributes.order.is_finished'), attribute: 'is_finished' do |order|
+    fa_icon('ok-sign') if order.is_finished?
+  end
+
+  g.column name: t('activerecord.attributes.order.finished_at') do |order|
+    order.finished_at.strftime('%Y-%m-%d %H:%M:%S') if order.is_finished?
+  end
+
+  g.column name: t('activerecord.attributes.order.notes') do |order|
+    order.notes
+  end
+
+  g.column name: t('activerecord.attributes.order.updated_by'), attribute: 'updated_by' do |order|
+    order.updated_name
+  end
+
+  g.column name: t('activerecord.attributes.order.updated_at'), attribute: 'updated_at' do |order|
+    order.updated_at.strftime('%Y-%m-%d') if order.updated_at
+  end
+
+  g.column name: t('activerecord.attributes.order.created_by'), attribute: 'created_by' do |order|
+    order.created_name
+  end
+
+  g.column name: t('activerecord.attributes.order.created_at'), attribute: 'created_at' do |order|
+    order.created_at.strftime('%Y-%m-%d') if order.created_at
+  end
+
+  g.column html: {class: ''} do |order|
+    link_to(fa_icon('rocket', text: '完成订单'), finish_order_path(order), class: 'btn btn-success', method: :post) unless order.is_finished?
+  end
+
+  g.column :html => {class: 'btn-cell'} do |order|
+    link_to(icon('icon-edit'), edit_order_path(order), :class => 'btn', :rel => 'tooltip', :title => t('buttons.edit'))
+  end
+
+  g.column :html => {class: 'btn-cell'} do |order|
+    link_to(icon('icon-trash'), order_path(order), :method => :delete, :confirm => t("confirms.delete"), :class => 'btn btn-danger', :rel => 'tooltip', :title => t('buttons.delete'))
+  end
+end -%>

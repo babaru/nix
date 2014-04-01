@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
   # layout :layout_by_resource
-before_filter :set_charset
+  before_filter :set_charset
   protect_from_forgery
-  #add_breadcrumb '控制台', '/'
+  add_breadcrumb '控制台', '/'
 
 	def set_charset
 		headers["Content-Type"] = "text/html; charset=utf8"

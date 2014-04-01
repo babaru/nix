@@ -9,6 +9,14 @@ Nix::Application.routes.draw do
   post 'suppliers/generate_spot_plan' => 'suppliers#generate_spot_plan', as: :generate_spot_plan
   post 'suppliers/generate_spot_plan_template' => 'suppliers#generate_spot_plan_template', as: :generate_spot_plan_template
   get 'suppliers/upload_spot_plan' => 'suppliers#upload_spot_plan', as: :upload_spot_plan
+  get 'projects/:id/assign_user' => 'projects#assign_user', as: :assign_project_user
+  post 'projects/:id/start' => 'projects#start', as: :start_project
+  get 'projects/:id/assign_user' => 'projects#assign_user', as: :assign_project_user
+  post 'projects/:id/save_project_users' => 'projects#save_project_users', as: :save_project_users
+  get 'clients/:id/assign_user' => 'clients#assign_user', as: :assign_client_user
+  post 'clients/:id/save_client_users' => 'clients#save_client_users', as: :save_client_users
+  post 'orders/:id/finish' => 'orders#finish', as: :finish_order
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -62,9 +70,14 @@ Nix::Application.routes.draw do
   resources :business_categories do
     resources :suppliers
   end
-  resources :suppliers,:clients
+  resources :clients do
+    resources :projects do
+      resources :orders
+    end
+  end
+  resources :suppliers,:clients,:projects,:orders,:departments
   resources :business_categories
-  root :to => 'suppliers#index'
+  root to: 'dashboard#index', as: :dashboard
 
   # See how all your routes lay out with "rake routes"
 
