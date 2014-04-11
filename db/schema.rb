@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131217061701) do
+ActiveRecord::Schema.define(:version => 20140411014812) do
 
   create_table "business_categories", :force => true do |t|
     t.string   "name_cn",    :default => ""
@@ -40,6 +40,14 @@ ActiveRecord::Schema.define(:version => 20131217061701) do
   add_index "business_categories_suppliers", ["business_category_id"], :name => "index_business_categories_suppliers_on_business_category_id"
   add_index "business_categories_suppliers", ["price"], :name => "index_business_categories_suppliers_on_price"
   add_index "business_categories_suppliers", ["supplier_id"], :name => "index_business_categories_suppliers_on_supplier_id"
+
+  create_table "cities", :force => true do |t|
+    t.string  "name"
+    t.integer "province_id"
+  end
+
+  add_index "cities", ["name"], :name => "index_cities_on_name"
+  add_index "cities", ["province_id"], :name => "index_cities_on_province_id"
 
   create_table "clients", :force => true do |t|
     t.string   "name"
@@ -159,6 +167,20 @@ ActiveRecord::Schema.define(:version => 20131217061701) do
   add_index "projects_users", ["project_id"], :name => "index_projects_users_on_project_id"
   add_index "projects_users", ["user_id"], :name => "index_projects_users_on_user_id"
 
+  create_table "provinces", :force => true do |t|
+    t.string  "name"
+    t.integer "region_id"
+    t.string  "remark"
+  end
+
+  add_index "provinces", ["name"], :name => "index_provinces_on_name"
+  add_index "provinces", ["region_id"], :name => "index_provinces_on_region_id"
+  add_index "provinces", ["remark"], :name => "index_provinces_on_remark"
+
+  create_table "regions", :force => true do |t|
+    t.string "name"
+  end
+
   create_table "suppliers", :force => true do |t|
     t.string   "name",         :default => ""
     t.string   "contact_name", :default => ""
@@ -202,5 +224,49 @@ ActiveRecord::Schema.define(:version => 20131217061701) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "web_site_media_reporters", :force => true do |t|
+    t.integer  "region_id"
+    t.integer  "province_id"
+    t.integer  "city_id"
+    t.integer  "format_id"
+    t.string   "media_name"
+    t.string   "level"
+    t.string   "name"
+    t.integer  "sex",                :limit => 2
+    t.string   "department_name"
+    t.string   "job_name"
+    t.string   "telephone"
+    t.string   "mobile"
+    t.string   "email"
+    t.string   "instant_messaging"
+    t.string   "micro_blog"
+    t.string   "micro_message"
+    t.string   "office_address"
+    t.string   "working_conditions"
+    t.string   "birthday"
+    t.string   "id_number"
+    t.string   "origin_place"
+    t.boolean  "married"
+    t.string   "has_children"
+    t.string   "has_car"
+    t.string   "other_about"
+    t.string   "active_record"
+    t.string   "maintenance_record"
+    t.text     "notes"
+    t.integer  "created_by"
+    t.integer  "updated_by"
+    t.integer  "deleted",            :limit => 2, :default => 0
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
+  end
+
+  add_index "web_site_media_reporters", ["city_id"], :name => "index_web_site_media_reporters_on_city_id"
+  add_index "web_site_media_reporters", ["created_by"], :name => "index_web_site_media_reporters_on_created_by"
+  add_index "web_site_media_reporters", ["format_id"], :name => "index_web_site_media_reporters_on_format_id"
+  add_index "web_site_media_reporters", ["province_id"], :name => "index_web_site_media_reporters_on_province_id"
+  add_index "web_site_media_reporters", ["region_id"], :name => "index_web_site_media_reporters_on_region_id"
+  add_index "web_site_media_reporters", ["sex"], :name => "index_web_site_media_reporters_on_sex"
+  add_index "web_site_media_reporters", ["updated_by"], :name => "index_web_site_media_reporters_on_updated_by"
 
 end

@@ -130,4 +130,10 @@ class ProjectsController < ApplicationController
       end
     end
   end
+
+  def download_project_info
+    @project = Project.find params[:id]
+    new_file = Project.create_new_template(@project)
+    send_file new_file, :type => "application/octet-stream", :disposition => "attachment"
+  end
 end

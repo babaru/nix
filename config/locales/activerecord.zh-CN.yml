@@ -9,6 +9,7 @@ zh-CN:
       order: 订单
       permission: 权限
       department: 部门
+      web_site_media_reporter: 网络媒体-记者资源
     attributes:
       user:
         name: 用户名
@@ -69,4 +70,38 @@ zh-CN:
       department:
         name: 部门名称
         permissions: 权限
+      web_site_media_reporter:
+        region_id: 区域
+        province_id: 省份
+        city_id: 城市
+        format_id: 媒体介质
+        media_name: 媒体名称
+        level: 媒体级别
+        name: 姓名
+        sex: 性别
+        department_name: 部门名称
+        job_name: 职务名称
+        telephone: 电话
+        mobile: 手机
+        email: 邮箱
+        instant_messaging: 即时通讯
+        micro_blog:  微博
+        micro_message:  微信
+        office_address: 办公地址
+        working_conditions:  从业情况
+        birthday:  生日
+        id_number: 身份证号
+        origin_place:  籍贯
+        married: 已婚？
+        has_children: 是否有子女（性别）
+        has_car: 是否有车（品牌）
+        other_about: 其他（个人兴趣，爱好）
+        active_record: 活动记录
+        maintenance_record: 维护记录
+        notes: 备注
+        created_by: 创建人
+        updated_by: 更新人
+        created_at: 创建时间
+        updated_at: 更新时间
+
 

@@ -4,14 +4,22 @@ zh-CN:
       user: 用户
       supplier: 供应商
       business_category: 业务类别
+      client: 客户
+      project: 项目
+      order: 订单
+      permission: 权限
+      department: 部门
+      web_site_media_reporter: 网络媒体-记者资源
     attributes:
       user:
         name: 用户名
         email: 邮箱
         password: 密码
         password_confirmation: 确认密码
-        roles: 用户身份
-        spaces: 公司
+        user_permission: 个人权限
+        department: 所属部门
+        department_permission: 部门权限
+        department_id: 所属部门
       supplier:
         name: 供应商名称
         contact_name: 联系人
@@ -23,13 +31,74 @@ zh-CN:
         updated_at: 更新时间
       business_category:
         name_cn: 类别名称
-        name: 类别名称
-        business_categories: 业务类别(多选)
         created_by: 创建人
         updated_by: 更新人
         created_at: 创建时间
         updated_at: 更新时间
         parent_id: 所属类别
-        is_show: 是否在供应商列表显示
-
+        is_show: 是否在供应商列表显示？
+      client:
+        name: 名称
+        created_by: 创建人
+        updated_by: 更新人
+        created_at: 创建时间
+        updated_at: 更新时间
+        users: 执行人员列表
+      project:
+        name: 项目名称
+        started_at: 开始日期
+        ended_at: 结束日期
+        budget: 预算
+        is_started: 已启动？
+        is_started_at: 启动时间
+        assigned_users: 执行人员
+      order:
+        name: 名称
+        business_category_id: 业务类别
+        supplier_id: 供应商
+        project_id: 所属项目
+        price: 价格
+        notes: 备注
+        category_name: 类别
+        created_by: 创建人
+        updated_by: 更新人
+        created_at: 创建时间
+        updated_at: 更新时间
+        is_finished: 已完成？
+        finished_at: 完成时间
+        supplier_name: 供应商
+      department:
+        name: 部门名称
+        permissions: 权限
+      web_site_media_reporter:
+        region_id: 区域
+        province_id: 省份
+        city_id: 城市
+        format_id: 媒体介质
+        media_name: 媒体名称
+        level: 媒体级别
+        name: 姓名
+        sex: 性别
+        department_name: 部门名称
+        job_name: 职务名称
+        telephone: 电话
+        mobile: 手机
+        email: 邮箱
+        instant_messaging: 即时通讯
+        micro_blog:  微博
+        micro_message:  微信
+        office_address: 办公地址
+        working_conditions:  从业情况
+        birthday:  生日
+        id_number: 身份证号
+        origin_place:  籍贯
+        married: 已婚？
+        has_children: 是否有子女（性别）
+        has_car: 是否有车（品牌）
+        other_about: 其他（个人兴趣，爱好）
+        active_record: 活动记录
+        maintenance_record: 维护记录
+        notes: 备注
+        created_by: 创建人
+        updated_by: 更新人
 

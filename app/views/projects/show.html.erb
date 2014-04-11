@@ -20,7 +20,21 @@
                                                                                                     class: 'btn btn-primary'
                                                                                             }
                                                                             }
-                                                            ) if can? :create,Order)
+                                                            ) if can? :create,Order),
+                                                            (render_cell(
+                                                                    :button,
+                                                                    :show,
+                                                                    data:
+                                                                            {
+                                                                                    name: fa_icon('download-alt', text: '下载项目信息'),
+                                                                                    url: download_project_info_path(@project.id),
+                                                                                    options:
+                                                                                            {
+                                                                                                    class: 'btn btn-info',
+                                                                                                    method: :post
+                                                                                            }
+                                                                            }
+                                                            ))
                                                     ]
                                     }
                     }

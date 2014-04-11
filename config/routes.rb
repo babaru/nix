@@ -16,6 +16,7 @@ Nix::Application.routes.draw do
   get 'clients/:id/assign_user' => 'clients#assign_user', as: :assign_client_user
   post 'clients/:id/save_client_users' => 'clients#save_client_users', as: :save_client_users
   post 'orders/:id/finish' => 'orders#finish', as: :finish_order
+  post 'projects/download_project_info/:id' => 'projects#download_project_info', as: :download_project_info
 
 
   # The priority is based upon order of creation:
@@ -76,7 +77,7 @@ Nix::Application.routes.draw do
     end
   end
   resources :suppliers,:clients,:projects,:orders,:departments
-  resources :business_categories
+  resources :business_categories,:web_site_media_reporters
   root to: 'dashboard#index', as: :dashboard
 
   # See how all your routes lay out with "rake routes"

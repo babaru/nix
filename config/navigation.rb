@@ -260,6 +260,25 @@ SimpleNavigation::Configuration.run do |navigation|
       end
     end
 
+    #媒体资源库
+    primary.item(
+        :page_dashboard,
+        WebSiteMediaReporter.model_name.human,
+        nil
+    )do |supplier_menu|
+      supplier_menu.item(
+          :page_web_site_media_reporters,
+          t('model.list', model: '网络媒体-记者资源库'),
+          web_site_media_reporters_path,
+          {
+              link:
+                  {
+                      icon: 'list'
+                  }
+          }
+      )
+    end
+
     #用户
     primary.item(
       :page_dashboard,

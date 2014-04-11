@@ -22,15 +22,15 @@
 
 <%= grid(@projects_grid, :show_filters => :when_filtered) do |g|
 
-  g.column name: t('activerecord.attributes.project.name'), attribute: 'name' do |project|
+  g.column name: t('activerecord.attributes.project.name') do |project|
     link_to content_tag(:strong, project.name), project_path(project)
   end
 
-  g.column name: t('activerecord.attributes.project.started_at'), attribute: 'started_at' do |project|
+  g.column name: t('activerecord.attributes.project.started_at') do |project|
     project.started_at.strftime('%Y-%m-%d') if project.started_at
   end
 
-  g.column name: t('activerecord.attributes.project.ended_at'), attribute: 'ended_at' do |project|
+  g.column name: t('activerecord.attributes.project.ended_at') do |project|
     project.ended_at.strftime('%Y-%m-%d') if project.ended_at
   end
 
@@ -38,12 +38,12 @@
     content_tag(:strong, number_to_currency(project.budget, precision: 0, unit: '￥'))
   end
 
-  g.column name: t('activerecord.attributes.project.is_started'), attribute: 'is_started' do |project|
+  g.column name: t('activerecord.attributes.project.is_started') do |project|
 
     fa_icon('ok-sign') if project.is_started?
   end
 
-  g.column name: t('activerecord.attributes.project.is_started_at'), attribute: 'started_at' do |project|
+  g.column name: t('activerecord.attributes.project.is_started_at') do |project|
     project.is_started_at.strftime('%Y-%m-%d %H:%M:%S') if project.is_started?
   end
 

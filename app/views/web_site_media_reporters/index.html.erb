@@ -1,0 +1,83 @@
+<%= render_cell(:page_title, :show, data:{name: "#{t('model.list', model: WebSiteMediaReporter.model_name.human)}",
+                                          toolbar: {
+                                                  right:
+                                                          [
+                                                                  (render_cell(:button, :show, data:
+                                                                          {
+                                                                                  name: fa_icon('plus-sign', text: t('model.create', :model => WebSiteMediaReporter.model_name.human)),
+                                                                                  url: new_web_site_media_reporter_path,
+                                                                                  options: {class: 'btn btn-primary'}
+                                                                          })),
+
+                                                          ]
+                                          }
+})
+%>
+
+<div class="well">
+
+  <%= form_tag({},:method=>'get') do -%>
+      地区:
+      <%= select_tag('name',options_for_select([[1,1],[2,2]],1)) -%>
+      <%= submit_tag('查询') -%>
+  <% end -%>
+</div>
+
+<%= grid(@reporters_grid, :show_filters => :when_filtered,:class=> 'tablestyle') do |g|
+
+  g.column name: t('activerecord.attributes.web_site_media_reporter.region_id') do |reporter|
+    reporter.region_name
+  end
+  g.column name: t('activerecord.attributes.web_site_media_reporter.province_id') do |reporter|
+    reporter.province_name
+  end
+  g.column name: t('activerecord.attributes.web_site_media_reporter.city_id') do |reporter|
+    reporter.city_name
+  end
+  g.column name: t('activerecord.attributes.web_site_media_reporter.format_id') do |reporter|
+    reporter.format_id
+  end
+
+  WebSiteMediaReporter::ATTR.each do |a|
+    g.column name: t('activerecord.attributes.web_site_media_reporter.'+a.to_s) do |reporter|
+      reporter[a]
+    end
+  end
+
+  g.column name: t('activerecord.attributes.web_site_media_reporter.created_at') do |reporter|
+    reporter.created_at.strftime('%Y-%m-%d')
+  end
+
+  g.column name: t('activerecord.attributes.web_site_media_reporter.created_by') do |reporter|
+    reporter.created_name
+  end
+
+  g.column name: t('activerecord.attributes.web_site_media_reporter.updated_at') do |reporter|
+    reporter.updated_at.strftime('%Y-%m-%d')
+  end
+
+  g.column name: t('activerecord.attributes.web_site_media_reporter.created_by') do |reporter|
+    reporter.created_name
+  end
+
+  g.column html: {class: 'btn-cell'} do |p|
+    link_to(fa_icon('edit'), edit_web_site_media_reporter_path(p), :class => 'btn', :rel => 'tooltip', :title => t('buttons.edit'))
+  end
+
+  g.column html: {class: 'btn-cell'} do |p|
+    link_to(fa_icon('trash'), web_site_media_reporter_path(p), :method => :delete, :confirm => t("confirms.delete"), :class => 'btn btn-danger', :rel => 'tooltip', :title => t('buttons.delete'))
+  end
+
+end -%>
+<style type="text/css">
+   .tablestyle{
+       width: 3000px;
+   }
+
+   #grid{
+       overflow: auto;
+   }
+
+</style>
+
+

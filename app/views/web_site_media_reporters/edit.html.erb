@@ -1,0 +1,141 @@
+<div class="narrow-center-page">
+
+  <%= render_cell(
+              :page_title,
+              :show,
+              data:
+                      {
+                              name: "#{t('model.create', model: WebSiteMediaReporter.model_name.human)} <small>#{t('simple_form.required.text') }</small>",
+                              toolbar: {
+                                      left:
+                                              [
+                                                      render_cell(
+                                                              :button,
+                                                              :show,
+                                                              data:
+                                                                      {
+                                                                              name: fa_icon('level-up rotate-270'),
+                                                                              url: web_site_media_reporters_path,
+                                                                              options:
+                                                                                      {
+                                                                                              class: 'btn',
+                                                                                              rel: 'tooltip',
+                                                                                              title: "#{t('labels.back_to')}#{t('model.list', :model => WebSiteMediaReporter.model_name.human)}",
+                                                                                      }
+                                                                      }
+                                                      )
+                                              ]
+                              }
+                      }
+      )
+  %>
+
+  <%= simple_form_for(@reporter , :html => {:class => 'form-horizontal' }) do |f| %>
+      <%= f.error_notification %>
+
+
+      <div class="form-inputs">
+        <div class="control-group string required web_site_media_reporter_region_id"><label class="string required control-label" for="web_site_media_reporter_region_id"><abbr title="带*星号的为必填项">*</abbr> 地区</label><div class="controls">
+          <select class="string required" id="web_site_media_reporter_region_id" name="web_site_media_reporter[region_id]">
+            <% if @regions -%>
+                <% @regions.each do |r| -%>
+                    <option value="<%= r.id -%>" <%= @reporter.region_id==r.id ? 'selected' : '' -%>><%= r.name -%></option>
+                <% end -%>
+            <% end -%>
+          </select></div></div>
+
+        <div class="control-group string required web_site_media_reporter_province_id"><label class="string required control-label" for="web_site_media_reporter_province_id"><abbr title="带*星号的为必填项">*</abbr> 省份</label><div class="controls">
+          <select class="string required" id="web_site_media_reporter_province_id" name="web_site_media_reporter[province_id]">
+            <% if @provinces -%>
+                <% @provinces.each do |r| -%>
+                    <option value="<%= r.id -%>" <%= @reporter.province_id==r.id ? 'selected' : '' -%>><%= r.name -%></option>
+                <% end -%>
+            <% end -%>
+          </select></div></div>
+
+        <div class="control-group string required web_site_media_reporter_city_id"><label class="string required control-label" for="web_site_media_reporter_city_id"><abbr title="带*星号的为必填项">*</abbr> 城市</label><div class="controls">
+          <select class="string required" id="web_site_media_reporter_city_id" name="web_site_media_reporter[city_id]">
+            <% if @cities -%>
+                <% @cities.each do |r| -%>
+                    <option value="<%= r.id -%>" <%= @reporter.city_id==r.id ? 'selected' : '' -%>><%= r.name -%></option>
+                <% end -%>
+            <% end -%>
+          </select></div></div>
+
+        <div class="control-group string required web_site_media_reporter_format_id"><label class="string required control-label" for="web_site_media_reporter_format_id"><abbr title="带*星号的为必填项">*</abbr> 媒体介质</label><div class="controls">
+          <select class="string required" id="web_site_media_reporter_format_id" name="web_site_media_reporter[format_id]">
+            <% ['媒体介质01', '媒体介质02', '媒体介质03'].each do |m| -%>
+                <option value="<%= m -%>"><%= m -%></option>
+            <% end -%>
+          </select></div></div>
+
+
+        <%= f.input :media_name, required: false %>
+        <%= f.input :level, required: false %>
+        <%= f.input :name, required: false %>
+
+        <div class="control-group string required web_site_media_reporter_sex"><label class="string required control-label" for="web_site_media_reporter_sex"><abbr title="带*星号的为必填项">*</abbr> 性别</label><div class="controls">
+          <select class="string required" id="web_site_media_reporter_sex" name="web_site_media_reporter[sex]">
+            <option value="1">男</option>
+            <option value="0">女</option>
+          </select></div></div>
+
+
+        <%= f.input :department_name, required: false %>
+        <%= f.input :job_name, required: false %>
+        <%= f.input :telephone, required: false %>
+        <%= f.input :mobile, required: false %>
+        <%= f.input :email, required: false %>
+        <%= f.input :instant_messaging, required: false %>
+        <%= f.input :micro_blog, required: false %>
+        <%= f.input :micro_message, required: false %>
+        <%= f.input :office_address, required: false %>
+        <%= f.input :working_conditions, required: false %>
+        <%= f.input :birthday, as: :date_picker, required: false %>
+        <%= f.input :id_number, required: false %>
+        <%= f.input :origin_place, required: false %>
+        <%= f.input :has_children, required: false %>
+        <%= f.input :has_car, required: false %>
+        <%= f.input :other_about, required: false %>
+        <%= f.input :active_record, required: false,:as=>:text,input_html: { rows: 5 } %>
+        <%= f.input :maintenance_record, required: false,:as=>:text,input_html: { rows: 5 } %>
+        <%= f.input :notes, required: false,:as=>:text,input_html: { rows: 5 } %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, class: 'btn btn-primary' %>
+      </div>
+  <% end %>
+
+
+</div>
+
+<script language='javascript'>
+    $(document).ready(function(){
+        $('#web_site_media_reporter_region_id').bind('change',function(){
+            var web_site_media_reporter_region_id = $('#web_site_media_reporter_region_id').val();
+            $.ajax({
+                url: '/web_site_media_reporters/ajax_get_provinces/' + web_site_media_reporter_region_id.toString(),
+                type: 'GET',
+                data: {
+                },
+                success: function(data) {
+                    $('#web_site_media_reporter_province_id').html(data);
+                }
+            });
+        })
+
+        $('#web_site_media_reporter_province_id').bind('change',function(){
+            var web_site_media_reporter_province_id = $('#web_site_media_reporter_province_id').val();
+            $.ajax({
+                url: '/web_site_media_reporters/ajax_get_cities/' + web_site_media_reporter_province_id.toString(),
+                type: 'GET',
+                data: {
+                },
+                success: function(data) {
+                    $('#web_site_media_reporter_city_id').html(data);
+                }
+            });
+        })
+    });
+</script>
