@@ -8,6 +8,28 @@
                                                                                   url: new_web_site_media_reporter_path,
                                                                                   options: {class: 'btn btn-primary'}
                                                                           })),
+                                                                  render_cell(
+                                                                          :button,
+                                                                          :show,
+                                                                          data:
+                                                                                  {
+                                                                                          name: fa_icon('cloud-upload', text: t('model.upload', model: WebSiteMediaReporter.model_name.human)),
+                                                                                          url: upload_reporter_info_path,
+                                                                                          options: {class: 'btn btn-success'}
+                                                                                  }
+                                                                  ),
+                                                                  render_cell(:button, :show,
+                                                                              data:
+                                                                                      {
+                                                                                              name: fa_icon('download-alt', text: t('model.download',:model => WebSiteMediaReporter.model_name.human)),
+                                                                                              url: download_reporter_info_path,
+                                                                                              options:
+                                                                                                      {
+                                                                                                              class: 'btn btn-info',
+                                                                                                              method: :post
+                                                                                                      }
+                                                                                      }
+                                                                  )
 
                                                           ]
                                           }
@@ -18,7 +40,9 @@
 
   <%= form_tag({},:method=>'get') do -%>
       地区:
-      <%= select_tag('name',options_for_select([[1,1],[2,2]],1)) -%>
+      <%= select_tag('region_id',options_for_select([['全部',0]]+@regions,params[:region_id])) -%>
+      <%= select_tag('province_id',options_for_select([['全部',0]]+@provinces,params[:province_id])) -%>
+      <%= select_tag('city_id',options_for_select([['全部',0]]+@cities,params[:city_id])) -%>
       <%= submit_tag('查询') -%>
   <% end -%>
 </div>
@@ -40,7 +64,13 @@
 
   WebSiteMediaReporter::ATTR.each do |a|
     g.column name: t('activerecord.attributes.web_site_media_reporter.'+a.to_s) do |reporter|
-      reporter[a]
+     if a=='married'
+       (reporter[a].blank? or reporter[a] == false) ? '未婚' : '已婚'
+     elsif a== 'sex'
+       reporter[a].to_i ==0 ? '女' : '男'
+     else
+       reporter[a]
+     end
     end
   end
 
@@ -79,5 +109,46 @@ end -%>
    }
 
 </style>
+
+<script language='javascript'>
+    $(document).ready(function(){
+        $('#region_id').bind('change',function(){
+            var web_site_media_reporter_region_id = $('#region_id').val();
+            $.ajax({
+                url: '/web_site_media_reporters/ajax_get_provinces/' + web_site_media_reporter_region_id.toString(),
+                type: 'GET',
+                data: {
+                },
+                success: function(data) {
+                    if(web_site_media_reporter_region_id=='0'){
+                        $('#province_id').html("<option value='0'>全部</option>");
+                        $('#city_id').html("<option value='0'>全部</option>");
+                    }else{
+                        data = "<option value='0'>全部</option>"+data
+                        $('#province_id').html(data);
+                    }
+                }
+            });
+        })
+
+        $('#province_id').bind('change',function(){
+            var web_site_media_reporter_province_id = $('#province_id').val();
+            $.ajax({
+                url: '/web_site_media_reporters/ajax_get_cities/' + web_site_media_reporter_province_id.toString(),
+                type: 'GET',
+                data: {
+                },
+                success: function(data) {
+                    if(web_site_media_reporter_province_id=='0'){
+                        $('#city_id').html("<option value='0'>全部</option>");
+                    }else{
+                        data = "<option value='0'>全部</option>"+data
+                        $('#city_id').html(data);
+                    }
+                }
+            });
+        })
+    });
+</script>
 
 

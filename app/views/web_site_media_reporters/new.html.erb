@@ -70,9 +70,9 @@
           </select></div></div>
 
 
-        <%= f.input :media_name, required: false %>
-        <%= f.input :level, required: false %>
-        <%= f.input :name, required: false %>
+        <%= f.input :media_name, required: true %>
+        <%= f.input :level, required: true %>
+        <%= f.input :name, required: true %>
 
         <div class="control-group string required web_site_media_reporter_sex"><label class="string required control-label" for="web_site_media_reporter_sex"><abbr title="带*星号的为必填项">*</abbr> 性别</label><div class="controls">
           <select class="string required" id="web_site_media_reporter_sex" name="web_site_media_reporter[sex]">
@@ -81,23 +81,23 @@
           </select></div></div>
 
 
-        <%= f.input :department_name, required: false %>
-        <%= f.input :job_name, required: false %>
-        <%= f.input :telephone, required: false %>
-        <%= f.input :mobile, required: false %>
-        <%= f.input :email, required: false %>
-        <%= f.input :instant_messaging, required: false %>
-        <%= f.input :micro_blog, required: false %>
-        <%= f.input :micro_message, required: false %>
-        <%= f.input :office_address, required: false %>
+        <%= f.input :department_name, required: true %>
+        <%= f.input :job_name, required: true %>
+        <%= f.input :telephone, required: true %>
+        <%= f.input :mobile, required: true %>
+        <%= f.input :email, required: true %>
+        <%= f.input :instant_messaging, required: true %>
+        <%= f.input :micro_blog, required: true %>
+        <%= f.input :micro_message, required: true %>
+        <%= f.input :office_address, required: true %>
         <%= f.input :working_conditions, required: false %>
-        <%= f.input :birthday, as: :date_picker, required: false %>
-        <%= f.input :id_number, required: false %>
-        <%= f.input :origin_place, required: false %>
-        <%= f.input :has_children, required: false %>
-        <%= f.input :has_car, required: false %>
-        <%= f.input :other_about, required: false %>
-        <%= f.input :active_record, required: false,:as=>:text,input_html: { rows: 5 } %>
+        <%= f.input :birthday, as: :date_picker, required: true %>
+        <%= f.input :id_number, required: true %>
+        <%= f.input :origin_place, required: true %>
+        <%= f.input :has_children, required: true %>
+        <%= f.input :has_car, required: true %>
+        <%= f.input :other_about, required: true %>
+        <%= f.input :active_record, required: true,:as=>:text,input_html: { rows: 5 } %>
         <%= f.input :maintenance_record, required: false,:as=>:text,input_html: { rows: 5 } %>
         <%= f.input :notes, required: false,:as=>:text,input_html: { rows: 5 } %>
       </div>

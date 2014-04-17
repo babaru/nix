@@ -1,0 +1,124 @@
+<%= render_cell(:page_title, :show, data:{name: "#{t('model.list', model: FashionMediaInfo.model_name.human)}",
+                                          toolbar: {
+                                                  right:
+                                                          [
+                                                                  (render_cell(:button, :show, data:
+                                                                          {
+                                                                                  name: fa_icon('plus-sign', text: t('model.create', :model => FashionMediaInfo.model_name.human)),
+                                                                                  url: new_fashion_media_info_path,
+                                                                                  options: {class: 'btn btn-primary'}
+                                                                          })),
+                                                                  render_cell(
+                                                                          :button,
+                                                                          :show,
+                                                                          data:
+                                                                                  {
+                                                                                          name: fa_icon('cloud-upload', text: t('model.upload', model: FashionMediaInfo.model_name.human)),
+                                                                                          url: upload_media_info_path,
+                                                                                          options: {class: 'btn btn-success'}
+                                                                                  }
+                                                                  ),
+                                                                  render_cell(:button, :show,
+                                                                              data:
+                                                                                      {
+                                                                                              name: fa_icon('download-alt', text: t('model.download',:model => FashionMediaInfo.model_name.human)),
+                                                                                              url: download_media_info_path,
+                                                                                              options:
+                                                                                                      {
+                                                                                                              class: 'btn btn-info',
+                                                                                                              method: :post
+                                                                                                      }
+                                                                                      }
+                                                                  )
+
+                                                          ]
+                                          }
+})
+%>
+
+<div class="well">
+
+  <%= form_tag({},:method=>'get') do -%>
+      地区:
+
+      <%= submit_tag('查询') -%>
+  <% end -%>
+</div>
+
+<%= grid(@medias_grid, :show_filters => :when_filtered,:class=> 'tablestyle') do |g|
+
+  g.column name: t('activerecord.attributes.fashion_media_info.city_id') do |m|
+    m.city_name
+  end
+  g.column name: t('activerecord.attributes.fashion_media_info.web_site') do |m|
+    m.web_site
+  end
+  g.column name: t('activerecord.attributes.fashion_media_info.web_site_introduction') do |m|
+    m.web_site_introduction
+  end
+  g.column name: t('activerecord.attributes.fashion_media_info.content_name') do |m|
+    m.content_name
+  end
+  g.column name: t('activerecord.attributes.fashion_media_info.position') do |m|
+    m.position
+  end
+  g.column name: t('activerecord.attributes.fashion_media_info.mobile') do |m|
+    m.mobile
+  end
+  g.column name: t('activerecord.attributes.fashion_media_info.email') do |m|
+    m.email
+  end
+  g.column name: t('activerecord.attributes.fashion_media_info.weixin') do |m|
+    m.weixin
+  end
+  g.column name: t('activerecord.attributes.fashion_media_info.address') do |m|
+    m.address
+  end
+  g.column name: t('activerecord.attributes.fashion_media_info.coverage') do |m|
+    m.coverage
+  end
+  g.column name: t('activerecord.attributes.fashion_media_info.sex') do |m|
+    m.sex.to_i==1 ? '男' : '女'
+  end
+  g.column name: t('activerecord.attributes.fashion_media_info.notes') do |m|
+    m.notes
+  end
+
+  g.column name: t('activerecord.attributes.fashion_media_info.created_at') do |m|
+    m.created_at.strftime('%Y-%m-%d')
+  end
+
+  g.column name: t('activerecord.attributes.fashion_media_info.created_by') do |m|
+    m.created_name
+  end
+
+  g.column name: t('activerecord.attributes.fashion_media_info.updated_at') do |m|
+    m.updated_at.strftime('%Y-%m-%d')
+  end
+
+  g.column name: t('activerecord.attributes.fashion_media_info.created_by') do |m|
+    m.created_name
+  end
+
+  g.column html: {class: 'btn-cell'} do |p|
+    link_to(fa_icon('edit'), edit_fashion_media_info_path(p), :class => 'btn', :rel => 'tooltip', :title => t('buttons.edit'))
+  end
+
+  g.column html: {class: 'btn-cell'} do |p|
+    link_to(fa_icon('trash'), fashion_media_info_path(p), :method => :delete, :confirm => t("confirms.delete"), :class => 'btn btn-danger', :rel => 'tooltip', :title => t('buttons.delete'))
+  end
+
+end -%>
+<style type="text/css">
+    .tablestyle{
+        width: 3000px;
+    }
+
+    #grid{
+        overflow: auto;
+    }
+
+</style>
+
+
+

@@ -17,6 +17,10 @@ Nix::Application.routes.draw do
   post 'clients/:id/save_client_users' => 'clients#save_client_users', as: :save_client_users
   post 'orders/:id/finish' => 'orders#finish', as: :finish_order
   post 'projects/download_project_info/:id' => 'projects#download_project_info', as: :download_project_info
+  post 'web_site_media_reporters/download_reporter_info' => 'web_site_media_reporters#download_reporter_info', as: :download_reporter_info
+  get 'web_site_media_reporters/upload_reporter_info' => 'web_site_media_reporters#upload_reporter_info', as: :upload_reporter_info
+  post 'fashion_media_infos/download_media_info' => 'fashion_media_infos#download_media_info', as: :download_media_info
+  get 'fashion_media_infos/upload_media_info' => 'fashion_media_infos#upload_media_info', as: :upload_media_info
 
 
   # The priority is based upon order of creation:
@@ -77,7 +81,7 @@ Nix::Application.routes.draw do
     end
   end
   resources :suppliers,:clients,:projects,:orders,:departments
-  resources :business_categories,:web_site_media_reporters
+  resources :business_categories,:web_site_media_reporters,:fashion_media_infos
   root to: 'dashboard#index', as: :dashboard
 
   # See how all your routes lay out with "rake routes"

@@ -277,6 +277,18 @@ SimpleNavigation::Configuration.run do |navigation|
                   }
           }
       )
+
+      supplier_menu.item(
+          :fashion_media_infos,
+          t('model.list', model: '时尚媒体'),
+          fashion_media_infos_path,
+          {
+              link:
+                  {
+                      icon: 'list'
+                  }
+          }
+      )
     end
 
     #用户

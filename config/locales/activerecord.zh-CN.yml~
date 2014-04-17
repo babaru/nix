@@ -9,6 +9,7 @@ zh-CN:
       order: 订单
       permission: 权限
       department: 部门
+      fashion_media_info: 时尚媒体
       web_site_media_reporter: 网络媒体-记者资源
     attributes:
       user:
@@ -69,7 +70,24 @@ zh-CN:
         supplier_name: 供应商
       department:
         name: 部门名称
-        permissions: 权限
+        permissions: 权限 
+      fashion_media_info:
+        city_id: 所属城市
+        web_site: 网站地址
+        web_site_introduction: 网站介绍  
+        content_name: 联系人
+        position: 职位
+        mobile: 电话
+        email: 邮箱
+        weixin: 微信
+        address: 地址
+        coverage: 日均覆盖人数(万人)
+        sex: 性别
+        notes: 备注
+        created_by: 创建人
+        updated_by: 更新人
+        created_at: 创建时间
+        updated_at: 更新时间      
       web_site_media_reporter:
         region_id: 区域
         province_id: 省份
@@ -101,4 +119,7 @@ zh-CN:
         notes: 备注
         created_by: 创建人
         updated_by: 更新人
+        created_at: 创建时间
+        updated_at: 更新时间
+
 

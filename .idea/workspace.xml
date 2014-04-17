@@ -2,40 +2,44 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="699d20be-cbe3-4e87-867a-4a71c08051ce" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/web_site_media_reporters/edit.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/web_site_media_reporters/index.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/web_site_media_reporters/new.html.erb" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/temp/供应商列表-2013-12-26.xls" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/fashion_media_infos/edit.html.erb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/fashion_media_infos/index.html.erb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/fashion_media_infos/new.html.erb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/fashion_media_infos/upload_media_info.html.erb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/web_site_media_reporters/upload_reporter_info.html.erb" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/temp/长安马自达2013年6-11月CX-5上市网络广告投放.xls" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/locales/activerecord.zh-CN.yml" afterPath="$PROJECT_DIR$/config/locales/activerecord.zh-CN.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/projects/index.html.erb" afterPath="$PROJECT_DIR$/app/views/projects/index.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/web_site_media_reporters/edit.html.erb" afterPath="$PROJECT_DIR$/app/views/web_site_media_reporters/edit.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/web_site_media_reporters/index.html.erb" afterPath="$PROJECT_DIR$/app/views/web_site_media_reporters/index.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/navigation.rb" afterPath="$PROJECT_DIR$/config/navigation.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/project.rb" afterPath="$PROJECT_DIR$/app/models/project.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/projects_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/projects_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/web_site_media_reporters/new.html.erb" afterPath="$PROJECT_DIR$/app/views/web_site_media_reporters/new.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/projects/show.html.erb" afterPath="$PROJECT_DIR$/app/views/projects/show.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/web_site_media_reporter.rb" afterPath="$PROJECT_DIR$/app/models/web_site_media_reporter.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/web_site_media_reporters_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/web_site_media_reporters_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/locales/zh-CN.yml" afterPath="$PROJECT_DIR$/config/locales/zh-CN.yml" />
     </list>
     <ignored path="nix.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397189381881" ignored="false" />
+    <file path="/Dummy.txt" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397719100844" ignored="false" />
     <file path="/a.rxml" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1385605752115" ignored="false" />
     <file path="/a.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1385605756336" ignored="false" />
     <file path="/a.html" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1385605761959" ignored="false" />
     <file path="/a.feature" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1385605767949" ignored="false" />
-    <file path="/index.html.erb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397206911058" ignored="false" />
-    <file path="/a.dummy" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397205638011" ignored="false" />
+    <file path="/index.html.erb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397723099784" ignored="false" />
+    <file path="/a.dummy" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397636285803" ignored="false" />
     <file path="/application.yml" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1385611813952" ignored="false" />
     <file path="/supplier.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1386579936272" ignored="false" />
     <file path="/suppliers_controller.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1386576725712" ignored="false" />
-    <file path="/navigation.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397185273623" ignored="false" />
+    <file path="/navigation.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397633220735" ignored="false" />
     <file path="/client.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1386305390426" ignored="false" />
     <file path="/clients_controller.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1389249876229" ignored="false" />
     <file path="/20131206022510_create_projects.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1386646206317" ignored="false" />
     <file path="/project.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397106494909" ignored="false" />
     <file path="/activerecord.zh-CN.yml" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397185046602" ignored="false" />
     <file path="/projects_controller.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397095429060" ignored="false" />
-    <file path="/new.html.erb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397201346597" ignored="false" />
+    <file path="/new.html.erb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397719912543" ignored="false" />
     <file path="$PROJECT_DIR$/../metis/config/routes.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1386306884911" ignored="false" />
     <file path="$PROJECT_DIR$/../metis/app/models/user.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1386306884911" ignored="false" />
     <file path="$PROJECT_DIR$/../metis/config/navigation.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1386306884911" ignored="false" />
@@ -51,7 +55,7 @@
     <file path="$PROJECT_DIR$/../metis/app/controllers/clients_controller.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1386306884911" ignored="false" />
     <file path="/20131206052817_create_projects_users.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1386307747428" ignored="false" />
     <file path="/20131206053037_create_clients_users.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1386307878728" ignored="false" />
-    <file path="/routes.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397183037975" ignored="false" />
+    <file path="/routes.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397723136073" ignored="false" />
     <file path="/assign_user.html.erb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1386309905548" ignored="false" />
     <file path="/user.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1387261112588" ignored="false" />
     <file path="/20131206071608_create_orders.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1386568853362" ignored="false" />
@@ -71,13 +75,13 @@
     <file path="/20131211012220_create_permissions.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1386733397052" ignored="false" />
     <file path="/permissions_controller.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1386816321219" ignored="false" />
     <file path="/permission.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1386820023199" ignored="false" />
-    <file path="/zh-CN.yml" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1386818475397" ignored="false" />
+    <file path="/zh-CN.yml" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397447923350" ignored="false" />
     <file path="/departments_controller.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1387418521008" ignored="false" />
-    <file path="/edit.html.erb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397205056631" ignored="false" />
+    <file path="/edit.html.erb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397722709341" ignored="false" />
     <file path="/20131217061701_add_department_id_to_users.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1387261041149" ignored="false" />
     <file path="/users_controller.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1387261226892" ignored="false" />
     <file path="$PROJECT_DIR$/../bbs_demo/app/controllers/users_controller.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1389249769799" ignored="false" />
-    <file path="/Ruby Console" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397201949873" ignored="false" />
+    <file path="/Ruby Console" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397722414671" ignored="false" />
     <file path="/20140410084746_create_provinces.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397121771370" ignored="false" />
     <file path="/province.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397122944803" ignored="false" />
     <file path="/city.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397121304418" ignored="false" />
@@ -85,8 +89,15 @@
     <file path="/region.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397122552475" ignored="false" />
     <file path="/20140410091903_create_regions.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397121624438" ignored="false" />
     <file path="/20140411014812_create_web_site_media_reporters.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397195898649" ignored="false" />
-    <file path="/web_site_media_reporters_controller.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397205524077" ignored="false" />
-    <file path="/web_site_media_reporter.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397205848010" ignored="false" />
+    <file path="/web_site_media_reporters_controller.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397631109184" ignored="false" />
+    <file path="/web_site_media_reporter.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397723396653" ignored="false" />
+    <file path="/upload_reporter_info.html.erb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397723954354" ignored="false" />
+    <file path="/20140416071232_create_fashion_media.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397637438529" ignored="false" />
+    <file path="/fashion_medias_controller.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397636894931" ignored="false" />
+    <file path="/fashion_media.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397637323006" ignored="false" />
+    <file path="/fashion_media_infos_controller.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397723227007" ignored="false" />
+    <file path="/fashion_media_info.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397724690374" ignored="false" />
+    <file path="/20140416083836_create_fashion_media_infos.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1397721721493" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,38 +111,72 @@
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
   </component>
+  <component name="DatabaseView">
+    <flatten value="false" />
+    <groupTables value="false" />
+    <sortChildren value="false" />
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="nix" />
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="web_site_media_reporter.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/web_site_media_reporter.rb">
+      <file leaf-file-name="fashion_media_infos_controller.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controllers/fashion_media_infos_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="37" selection-start="1196" selection-end="1196" vertical-scroll-proportion="0.0">
+            <state line="106" column="30" selection-start="3439" selection-end="3439" vertical-scroll-proportion="0.5481728">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html.erb" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views/web_site_media_reporters/index.html.erb">
+      <file leaf-file-name="upload_media_info.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/fashion_media_infos/upload_media_info.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="68" selection-start="1605" selection-end="1605" vertical-scroll-proportion="0.6099537">
+            <state line="48" column="68" selection-start="2987" selection-end="2987" vertical-scroll-proportion="-11.884615">
               <folding>
-                <element signature="e#1375#1437#0" expanded="true" />
-                <element signature="e#1500#1564#0" expanded="true" />
-                <element signature="e#1629#1689#0" expanded="true" />
-                <element signature="e#1750#1812#0" expanded="true" />
-                <element signature="e#2042#2105#0" expanded="true" />
-                <element signature="e#2189#2252#0" expanded="true" />
-                <element signature="e#2317#2380#0" expanded="true" />
-                <element signature="e#2464#2527#0" expanded="true" />
-                <element signature="e#2732#2749#0" expanded="true" />
-                <element signature="e#2897#2917#0" expanded="true" />
-                <element signature="e#2976#2995#0" expanded="true" />
+                <element signature="e#205#264#1" expanded="true" />
+                <element signature="e#1621#1640#1" expanded="true" />
+                <element signature="e#1643#1703#1" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="upload_reporter_info.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/web_site_media_reporters/upload_reporter_info.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="53" selection-start="0" selection-end="4070" vertical-scroll-proportion="-3.2692308">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routes.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/routes.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="28" column="69" selection-start="1754" selection-end="1754" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fashion_media_info.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/fashion_media_info.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="93" column="45" selection-start="3417" selection-end="3417" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/fashion_media_infos/index.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="99" column="49" selection-start="5291" selection-end="5291" vertical-scroll-proportion="-56.884617">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -139,69 +184,16 @@
       <file leaf-file-name="web_site_media_reporters_controller.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/web_site_media_reporters_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="69" column="25" selection-start="2478" selection-end="2478" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#106#172#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="edit.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/web_site_media_reporters/edit.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="59" column="70" selection-start="3880" selection-end="3880" vertical-scroll-proportion="-38.576923">
-              <folding>
-                <element signature="e#184#247#1" expanded="true" />
-                <element signature="e#1508#1527#1" expanded="true" />
-                <element signature="e#1530#1594#1" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="edit.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/projects/edit.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="78" selection-start="558" selection-end="558" vertical-scroll-proportion="-7.8461537">
+            <state line="157" column="44" selection-start="5403" selection-end="5403" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/projects/index.html.erb">
+      <file leaf-file-name="web_site_media_reporter.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/web_site_media_reporter.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="22" selection-start="1712" selection-end="1733" vertical-scroll-proportion="-18.961538">
-              <folding>
-                <element signature="e#84#132#1" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="projects_controller.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/projects_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="94" column="18" selection-start="3191" selection-end="3191" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="project.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/project.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="6" selection-start="6" selection-end="6" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="business_category.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/business_category.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="0" selection-start="1656" selection-end="1820" vertical-scroll-proportion="0.0">
+            <state line="107" column="0" selection-start="4188" selection-end="4188" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -228,22 +220,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/models/city.rb" />
-        <option value="$PROJECT_DIR$/db/migrate/20140410091903_create_regions.rb" />
-        <option value="$PROJECT_DIR$/db/migrate/20140410084746_create_provinces.rb" />
-        <option value="$PROJECT_DIR$/app/models/region.rb" />
-        <option value="$PROJECT_DIR$/app/models/province.rb" />
-        <option value="$PROJECT_DIR$/config/routes.rb" />
-        <option value="$PROJECT_DIR$/config/locales/activerecord.zh-CN.yml" />
+        <option value="$PROJECT_DIR$/app/views/fashion_media/new.html.erb" />
+        <option value="$PROJECT_DIR$/app/controllers/fashion_medias_controller.rb" />
+        <option value="$PROJECT_DIR$/app/models/fashion_media.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20140416071232_create_fashion_media.rb" />
         <option value="$PROJECT_DIR$/config/navigation.rb" />
-        <option value="$PROJECT_DIR$/app/views/projects/index.html.erb" />
-        <option value="$PROJECT_DIR$/db/migrate/20140411014812_create_web_site_media_reporters.rb" />
-        <option value="$PROJECT_DIR$/app/views/business_categories/new.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/web_site_media_reporters/new.html.erb" />
+        <option value="$PROJECT_DIR$/db/migrate/20140416083836_create_fashion_media_infos.rb" />
         <option value="$PROJECT_DIR$/app/views/web_site_media_reporters/edit.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/web_site_media_reporters_controller.rb" />
+        <option value="$PROJECT_DIR$/app/views/fashion_media_infos/new.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/fashion_media_infos/edit.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/fashion_media_infos/index.html.erb" />
+        <option value="$PROJECT_DIR$/config/routes.rb" />
+        <option value="$PROJECT_DIR$/app/views/fashion_media_infos/upload_reporter_info.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/fashion_media_infos/upload_media_info.html.erb" />
+        <option value="$PROJECT_DIR$/app/controllers/fashion_media_infos_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/web_site_media_reporter.rb" />
-        <option value="$PROJECT_DIR$/app/views/web_site_media_reporters/index.html.erb" />
+        <option value="$PROJECT_DIR$/app/models/fashion_media_info.rb" />
       </list>
     </option>
   </component>
@@ -302,7 +294,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -469,6 +460,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="fashion_media_infos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nix" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nix" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="clients" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -557,24 +570,28 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.General" />
+    <property name="recentsLimit" value="5" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../bbs_demo" />
     <property name="RakeTaksPopup.undocumentedIncluded" value="false" />
     <property name="RailsGeneratorsPopup.hiddenIncluded" value="false" />
-    <property name="GoToClass.includeJavaFiles" value="false" />
-    <property name="Ruby.ViewRefParam.DefaultExtension" value="html.erb" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="Ruby.ViewRefParam.DefaultExtension" value="html.erb" />
+    <property name="GoToClass.includeJavaFiles" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/views/fashion_media_infos" />
     </key>
   </component>
   <component name="RunManager" selected="IRB console.Rails console: nix">
@@ -901,7 +918,7 @@
         <item index="0" class="java.lang.String" itemvalue="IRB console.Rails console: nix" />
         <item index="1" class="java.lang.String" itemvalue="IRB console.Rails console: nix" />
         <item index="2" class="java.lang.String" itemvalue="IRB console.Rails console: nix" />
-        <item index="3" class="java.lang.String" itemvalue="Rake.db:migrate" />
+        <item index="3" class="java.lang.String" itemvalue="IRB console.Rails console: nix" />
         <item index="4" class="java.lang.String" itemvalue="IRB console.Rails console: nix" />
       </list>
     </recent_temporary>
@@ -938,18 +955,18 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32845187" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294893" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2553542" sideWeight="0.6715481" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26523888" sideWeight="0.64748955" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35460252" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35251045" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32845187" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1033,135 +1050,117 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.0.0-p247/gems/simple_form-2.1.0/lib/simple_form/form_builder.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="329" column="8" selection-start="12825" selection-end="12825" vertical-scroll-proportion="0.3321234">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/projects/new.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="7" selection-start="2168" selection-end="2229" vertical-scroll-proportion="0.8113879">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.0.0-p247/gems/wice_grid-3.3.1/lib/wice/grid_renderer.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="272" column="8" selection-start="14482" selection-end="14482" vertical-scroll-proportion="0.3321739">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.0.0-p247/gems/wice_grid-3.3.1/lib/wice/helpers/wice_grid_view_helpers.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="8" selection-start="4538" selection-end="4538" vertical-scroll-proportion="0.07312925">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/web_site_media_reporters/new.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="61" selection-start="0" selection-end="7430" vertical-scroll-proportion="-14.384615">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/web_site_media_reporters/edit.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="70" selection-start="3880" selection-end="3880" vertical-scroll-proportion="-38.576923">
-          <folding>
-            <element signature="e#184#247#1" expanded="true" />
-            <element signature="e#1508#1527#1" expanded="true" />
-            <element signature="e#1530#1594#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/web_site_media_reporters_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="25" selection-start="2478" selection-end="2478" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#106#172#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/project.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="6" selection-start="6" selection-end="6" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/business_category.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="0" selection-start="1656" selection-end="1820" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/web_site_media_reporter.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="37" selection-start="1196" selection-end="1196" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/projects/index.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="22" selection-start="1712" selection-end="1733" vertical-scroll-proportion="-18.961538">
-          <folding>
-            <element signature="e#84#132#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/routes.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.03543743">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/projects/edit.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="78" selection-start="558" selection-end="558" vertical-scroll-proportion="-7.8461537">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/navigation.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="271" column="39" selection-start="9334" selection-end="9363" vertical-scroll-proportion="0.35769656">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/projects_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="94" column="18" selection-start="3191" selection-end="3191" vertical-scroll-proportion="0.0">
+        <state line="62" column="46" selection-start="3271" selection-end="3844" vertical-scroll-proportion="-19.615385">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/web_site_media_reporters/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="68" selection-start="1605" selection-end="1605" vertical-scroll-proportion="0.6099537">
+        <state line="98" column="49" selection-start="4736" selection-end="5711" vertical-scroll-proportion="0.21643518">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20140411014812_create_web_site_media_reporters.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="5" selection-start="1060" selection-end="1117" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20140416083836_create_fashion_media_infos.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="28" selection-start="613" selection-end="613" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/fashion_media_infos/edit.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="72" selection-start="2840" selection-end="2840" vertical-scroll-proportion="0.9189189">
           <folding>
-            <element signature="e#1375#1437#0" expanded="true" />
-            <element signature="e#1500#1564#0" expanded="true" />
-            <element signature="e#1629#1689#0" expanded="true" />
-            <element signature="e#1750#1812#0" expanded="true" />
-            <element signature="e#2042#2105#0" expanded="true" />
-            <element signature="e#2189#2252#0" expanded="true" />
-            <element signature="e#2317#2380#0" expanded="true" />
-            <element signature="e#2464#2527#0" expanded="true" />
-            <element signature="e#2732#2749#0" expanded="true" />
-            <element signature="e#2897#2917#0" expanded="true" />
-            <element signature="e#2976#2995#0" expanded="true" />
+            <element signature="e#184#243#1" expanded="true" />
+            <element signature="e#1499#1518#1" expanded="true" />
+            <element signature="e#1521#1581#1" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/fashion_media_infos/new.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="59" column="45" selection-start="3383" selection-end="3452" vertical-scroll-proportion="0.7083333">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/web_site_media_reporters/edit.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="79" column="92" selection-start="5047" selection-end="5204" vertical-scroll-proportion="0.5934685">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/web_site_media_reporters/upload_reporter_info.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="53" selection-start="0" selection-end="4070" vertical-scroll-proportion="-3.2692308">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/fashion_media_infos/index.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="99" column="49" selection-start="5291" selection-end="5291" vertical-scroll-proportion="-56.884617">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/routes.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="69" selection-start="1754" selection-end="1754" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/fashion_media_infos/upload_media_info.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="68" selection-start="2987" selection-end="2987" vertical-scroll-proportion="-11.884615">
+          <folding>
+            <element signature="e#205#264#1" expanded="true" />
+            <element signature="e#1621#1640#1" expanded="true" />
+            <element signature="e#1643#1703#1" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/web_site_media_reporters_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="157" column="44" selection-start="5403" selection-end="5403" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/web_site_media_reporter.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="107" column="0" selection-start="4188" selection-end="4188" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/fashion_media_info.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="93" column="45" selection-start="3417" selection-end="3417" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/fashion_media_infos_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="106" column="30" selection-start="3439" selection-end="3439" vertical-scroll-proportion="0.5481728">
+          <folding />
         </state>
       </provider>
     </entry>

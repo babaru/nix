@@ -1,0 +1,2 @@
+module FashionMediasHelper
+end

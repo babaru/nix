@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140411014812) do
+ActiveRecord::Schema.define(:version => 20140416083836) do
 
   create_table "business_categories", :force => true do |t|
     t.string   "name_cn",    :default => ""
@@ -103,6 +103,34 @@ ActiveRecord::Schema.define(:version => 20140411014812) do
   add_index "departments", ["city_id"], :name => "index_departments_on_city_id"
   add_index "departments", ["province_id"], :name => "index_departments_on_province_id"
   add_index "departments", ["space_id"], :name => "index_departments_on_space_id"
+
+  create_table "fashion_media_infos", :force => true do |t|
+    t.integer  "city_id"
+    t.string   "web_site"
+    t.string   "web_site_introduction"
+    t.string   "content_name"
+    t.string   "position"
+    t.string   "mobile"
+    t.string   "email"
+    t.string   "weixin"
+    t.string   "address"
+    t.float    "coverage"
+    t.integer  "sex",                   :limit => 2
+    t.text     "notes"
+    t.integer  "updated_by"
+    t.integer  "created_by"
+    t.integer  "deleted",               :limit => 2, :default => 0
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
+  end
+
+  add_index "fashion_media_infos", ["city_id"], :name => "index_fashion_media_infos_on_city_id"
+  add_index "fashion_media_infos", ["coverage"], :name => "index_fashion_media_infos_on_coverage"
+  add_index "fashion_media_infos", ["created_by"], :name => "index_fashion_media_infos_on_created_by"
+  add_index "fashion_media_infos", ["deleted"], :name => "index_fashion_media_infos_on_deleted"
+  add_index "fashion_media_infos", ["sex"], :name => "index_fashion_media_infos_on_sex"
+  add_index "fashion_media_infos", ["updated_by"], :name => "index_fashion_media_infos_on_updated_by"
+  add_index "fashion_media_infos", ["web_site"], :name => "index_fashion_media_infos_on_web_site"
 
   create_table "orders", :force => true do |t|
     t.string   "name"

@@ -10,7 +10,6 @@ zh-CN:
     report: 生成报告
   wice_grid:
     next_label: 下一页
-    previous_label: 上一页
   model:
     show: "%{model}详细信息"
     create: "创建%{model}"
