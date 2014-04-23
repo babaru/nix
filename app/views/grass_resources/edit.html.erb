@@ -1,0 +1,67 @@
+<div class="narrow-center-page">
+
+  <%= render_cell(
+              :page_title,
+              :show,
+              data:
+                      {
+                              name: "#{t('model.edit', model: GrassResource.model_name.human)} <small>#{t('simple_form.required.text') }</small>",
+                              toolbar: {
+                                      left:
+                                              [
+                                                      render_cell(
+                                                              :button,
+                                                              :show,
+                                                              data:
+                                                                      {
+                                                                              name: fa_icon('level-up rotate-270'),
+                                                                              url: grass_resources_path,
+                                                                              options:
+                                                                                      {
+                                                                                              class: 'btn',
+                                                                                              rel: 'tooltip',
+                                                                                              title: "#{t('labels.back_to')}#{t('model.list', :model => GrassResource.model_name.human)}",
+                                                                                      }
+                                                                      }
+                                                      )
+                                              ]
+                              }
+                      }
+      )
+  %>
+
+  <%= simple_form_for(@media , :html => {:class => 'form-horizontal' }) do |f| %>
+      <%= f.error_notification %>
+
+      <div class="form-inputs">
+
+        <div class="control-group string required grass_resource_type_id"><label class="string required control-label" for="grass_resource_type_id"><abbr title="带*星号的为必填项">*</abbr> 性别</label><div class="controls">
+          <select class="string required" id="grass_resource_type_id" name="grass_resource[type_id]">
+            <%GrassResource::TYPE.each do |fc|%>
+                <option value="<%= fc[1] -%>" <%= fc[1]==@media.type_id ? 'selected' : '' -%>><%= fc[0] -%></option>
+            <%end%>
+          </select></div></div>
+
+        <div class="control-group string required grass_resource_media_type_id"><label class="string required control-label" for="grass_resource_media_type_id"><abbr title="带*星号的为必填项">*</abbr> 性别</label><div class="controls">
+          <select class="string required" id="grass_resource_media_type_id" name="grass_resource[media_type_id]">
+            <%GrassResource::MEDIA_TYPE.each do |sc|%>
+                <option value="<%= sc[1] -%>" <%= sc[1]==@media.media_type_id ? 'selected' : '' -%>><%= sc[0] -%></option>
+            <%end%>
+          </select></div></div>
+
+        <%= f.input :nickname, required: true %>
+        <%= f.input :media_url, required: true %>
+        <%= f.input :fans_number, required: true %>
+        <%= f.input :category, required: false %>
+        <%= f.input :regional, required: false %>
+        <%= f.input :content_location, required: false ,:as=>:text,input_html: { rows: 5 }%>
+
+      </div>
+      <div class="form-actions">
+        <%= f.button :submit, class: 'btn btn-primary' %>
+      </div>
+  <% end %>
+
+
+</div>
+

@@ -90,7 +90,7 @@ class WebSiteMediaReporter < ActiveRecord::Base
             attr << d[a]
           end
         end
-        attr = attr + [d.created_at.strftime('%Y-%m-%d'),d.created_name,d.updated_at.strftime('%Y-%m-%d'),d.created_name]
+        attr = attr + [d.created_at.strftime('%Y-%m-%d'),d.created_name,d.updated_at.strftime('%Y-%m-%d'),d.updated_name]
         sheet1.row(i+1).replace attr
       end
     end

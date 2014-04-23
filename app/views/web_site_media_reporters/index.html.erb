@@ -74,20 +74,20 @@
     end
   end
 
-  g.column name: t('activerecord.attributes.web_site_media_reporter.created_at') do |reporter|
-    reporter.created_at.strftime('%Y-%m-%d')
+  g.column name: t('activerecord.attributes.traveling_photography_media_info.created_at') do |m|
+    m.created_at.strftime('%Y-%m-%d')
   end
 
-  g.column name: t('activerecord.attributes.web_site_media_reporter.created_by') do |reporter|
-    reporter.created_name
+  g.column name: t('activerecord.attributes.traveling_photography_media_info.created_by') do |m|
+    m.created_name
   end
 
-  g.column name: t('activerecord.attributes.web_site_media_reporter.updated_at') do |reporter|
-    reporter.updated_at.strftime('%Y-%m-%d')
+  g.column name: t('activerecord.attributes.traveling_photography_media_info.updated_at') do |m|
+    m.updated_at.strftime('%Y-%m-%d')
   end
 
-  g.column name: t('activerecord.attributes.web_site_media_reporter.created_by') do |reporter|
-    reporter.created_name
+  g.column name: t('activerecord.attributes.traveling_photography_media_info.updated_by') do |m|
+    m.updated_name
   end
 
   g.column html: {class: 'btn-cell'} do |p|

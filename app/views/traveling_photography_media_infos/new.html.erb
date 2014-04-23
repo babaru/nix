@@ -5,7 +5,7 @@
               :show,
               data:
                       {
-                              name: "#{t('model.edit', model: FashionMediaInfo.model_name.human)} <small>#{t('simple_form.required.text') }</small>",
+                              name: "#{t('model.create', model: TravelingPhotographyMediaInfo.model_name.human)} <small>#{t('simple_form.required.text') }</small>",
                               toolbar: {
                                       left:
                                               [
@@ -15,12 +15,12 @@
                                                               data:
                                                                       {
                                                                               name: fa_icon('level-up rotate-270'),
-                                                                              url: fashion_media_infos_path,
+                                                                              url: traveling_photography_media_infos_path,
                                                                               options:
                                                                                       {
                                                                                               class: 'btn',
                                                                                               rel: 'tooltip',
-                                                                                              title: "#{t('labels.back_to')}#{t('model.list', :model => FashionMediaInfo.model_name.human)}",
+                                                                                              title: "#{t('labels.back_to')}#{t('model.list', :model => TravelingPhotographyMediaInfo.model_name.human)}",
                                                                                       }
                                                                       }
                                                       )
@@ -35,14 +35,6 @@
 
       <div class="form-inputs">
 
-        <div class="control-group string required fashion_media_info_city_id"><label class="string required control-label" for="fashion_media_info_city_id"><abbr title="带*星号的为必填项">*</abbr> 城市</label><div class="controls">
-          <select class="string required" id="fashion_media_info_city_id" name="fashion_media_info[city_id]">
-            <% if @cities -%>
-                <% @cities.each do |r| -%>
-                    <option value="<%= r.id -%>" <%= @media.city_id==r.id ? 'selected' : '' -%>><%= r.name -%></option>
-                <% end -%>
-            <% end -%>
-          </select></div></div>
 
         <%= f.input :web_site, required: true %>
         <%= f.input :web_site_introduction, required: true %>
@@ -50,14 +42,13 @@
         <%= f.input :position, required: true %>
         <%= f.input :mobile, required: true %>
         <%= f.input :email, required: true %>
-        <%= f.input :weixin, required: true %>
         <%= f.input :address, required: true %>
         <%= f.input :coverage, required: true %>
 
-        <div class="control-group string required fashion_media_info_sex"><label class="string required control-label" for="fashion_media_info_sex"><abbr title="带*星号的为必填项">*</abbr> 性别</label><div class="controls">
-          <select class="string required" id="fashion_media_info_sex" name="fashion_media_info[sex]">
-            <option value="1" <%= @media.sex==1 ? 'selected' : '' -%>>男</option>
-            <option value="0" <%= @media.sex==0 ? 'selected' : '' -%>>女</option>
+        <div class="control-group string required traveling_photography_media_info_sex"><label class="string required control-label" for="traveling_photography_media_info_sex"><abbr title="带*星号的为必填项">*</abbr> 性别</label><div class="controls">
+          <select class="string required" id="traveling_photography_media_info_sex" name="traveling_photography_media_info[sex]">
+            <option value="1">男</option>
+            <option value="0">女</option>
           </select></div></div>
 
 

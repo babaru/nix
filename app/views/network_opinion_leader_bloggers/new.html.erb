@@ -5,7 +5,7 @@
               :show,
               data:
                       {
-                              name: "#{t('model.edit', model: FashionMediaInfo.model_name.human)} <small>#{t('simple_form.required.text') }</small>",
+                              name: "#{t('model.create', model: NetworkOpinionLeaderBlogger.model_name.human)} <small>#{t('simple_form.required.text') }</small>",
                               toolbar: {
                                       left:
                                               [
@@ -15,12 +15,12 @@
                                                               data:
                                                                       {
                                                                               name: fa_icon('level-up rotate-270'),
-                                                                              url: fashion_media_infos_path,
+                                                                              url: network_opinion_leader_bloggers_path,
                                                                               options:
                                                                                       {
                                                                                               class: 'btn',
                                                                                               rel: 'tooltip',
-                                                                                              title: "#{t('labels.back_to')}#{t('model.list', :model => FashionMediaInfo.model_name.human)}",
+                                                                                              title: "#{t('labels.back_to')}#{t('model.list', :model => NetworkOpinionLeaderBlogger.model_name.human)}",
                                                                                       }
                                                                       }
                                                       )
@@ -35,30 +35,41 @@
 
       <div class="form-inputs">
 
-        <div class="control-group string required fashion_media_info_city_id"><label class="string required control-label" for="fashion_media_info_city_id"><abbr title="带*星号的为必填项">*</abbr> 城市</label><div class="controls">
-          <select class="string required" id="fashion_media_info_city_id" name="fashion_media_info[city_id]">
+        <div class="control-group string required network_opinion_leader_blogger_city_id"><label class="string required control-label" for="network_opinion_leader_blogger_city_id"><abbr title="带*星号的为必填项">*</abbr> 城市</label><div class="controls">
+          <select class="string required" id="network_opinion_leader_blogger_city_id" name="network_opinion_leader_blogger[city_id]">
             <% if @cities -%>
                 <% @cities.each do |r| -%>
-                    <option value="<%= r.id -%>" <%= @media.city_id==r.id ? 'selected' : '' -%>><%= r.name -%></option>
+                    <option value="<%= r.id -%>"><%= r.name -%></option>
                 <% end -%>
             <% end -%>
           </select></div></div>
 
-        <%= f.input :web_site, required: true %>
-        <%= f.input :web_site_introduction, required: true %>
-        <%= f.input :content_name, required: true %>
+
+        <%= f.input :nickname, required: true %>
+        <%= f.input :name, required: true %>
+
+        <div class="control-group string required network_opinion_leader_blogger_sex"><label class="string required control-label" for="network_opinion_leader_blogger_sex"><abbr title="带*星号的为必填项">*</abbr> 性别</label><div class="controls">
+          <select class="string required" id="network_opinion_leader_blogger_sex" name="network_opinion_leader_blogger[sex]">
+            <option value="1">男</option>
+            <option value="0">女</option>
+          </select></div></div>
+
+
+        <%= f.input :media_name, required: true %>
         <%= f.input :position, required: true %>
         <%= f.input :mobile, required: true %>
         <%= f.input :email, required: true %>
+        <%= f.input :id_number, required: true %>
+        <%= f.input :birthday, as: :date_picker, required: true %>
+        <%= f.input :working_conditions, required: true %>
+        <%= f.input :blog_traffic, required: true %>
+        <%= f.input :blog_address, required: true %>
         <%= f.input :weixin, required: true %>
-        <%= f.input :address, required: true %>
-        <%= f.input :coverage, required: true %>
-
-        <div class="control-group string required fashion_media_info_sex"><label class="string required control-label" for="fashion_media_info_sex"><abbr title="带*星号的为必填项">*</abbr> 性别</label><div class="controls">
-          <select class="string required" id="fashion_media_info_sex" name="fashion_media_info[sex]">
-            <option value="1" <%= @media.sex==1 ? 'selected' : '' -%>>男</option>
-            <option value="0" <%= @media.sex==0 ? 'selected' : '' -%>>女</option>
-          </select></div></div>
+        <%= f.input :active_record, required: false %>
+        <%= f.input :maintenance_record, required: false %>
+        <%= f.input :blog_style, required: true %>
+        <%= f.input :friendly_brand, required: false %>
+        <%= f.input :estranged_brand, required: false %>
 
 
         <%= f.input :notes, required: false ,:as=>:text,input_html: { rows: 5 }%>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140416083836) do
+ActiveRecord::Schema.define(:version => 20140423025352) do
 
   create_table "business_categories", :force => true do |t|
     t.string   "name_cn",    :default => ""
@@ -132,6 +132,88 @@ ActiveRecord::Schema.define(:version => 20140416083836) do
   add_index "fashion_media_infos", ["updated_by"], :name => "index_fashion_media_infos_on_updated_by"
   add_index "fashion_media_infos", ["web_site"], :name => "index_fashion_media_infos_on_web_site"
 
+  create_table "grass_resources", :force => true do |t|
+    t.string   "nickname"
+    t.string   "media_url"
+    t.integer  "fans_number"
+    t.string   "category"
+    t.string   "regional"
+    t.integer  "type_id"
+    t.text     "content_location"
+    t.integer  "media_type_id"
+    t.integer  "created_by"
+    t.integer  "updated_by"
+    t.integer  "deleted",          :limit => 2
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  create_table "moderators", :force => true do |t|
+    t.string   "media_name"
+    t.string   "brand_name"
+    t.string   "product_name"
+    t.string   "name"
+    t.integer  "sex",                :limit => 2
+    t.string   "position"
+    t.integer  "age",                :limit => 3
+    t.string   "mobile"
+    t.string   "email"
+    t.string   "weixin"
+    t.string   "office_address"
+    t.string   "id_number"
+    t.datetime "birthday"
+    t.string   "working_conditions"
+    t.string   "active_record"
+    t.string   "maintenance_record"
+    t.string   "topic_of_concern"
+    t.boolean  "married"
+    t.string   "has_children"
+    t.string   "has_car"
+    t.string   "other_about"
+    t.text     "notes"
+    t.integer  "deleted",            :limit => 2, :default => 0
+    t.integer  "created_by"
+    t.integer  "updated_by"
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
+  end
+
+  create_table "network_opinion_leader_bloggers", :force => true do |t|
+    t.integer  "city_id"
+    t.string   "nickname"
+    t.string   "name"
+    t.integer  "sex",                :limit => 2
+    t.string   "media_name"
+    t.string   "position"
+    t.string   "mobile"
+    t.string   "email"
+    t.string   "id_number"
+    t.datetime "birthday"
+    t.string   "working_conditions"
+    t.integer  "blog_traffic",       :limit => 8
+    t.string   "blog_address"
+    t.string   "weixin"
+    t.string   "active_record"
+    t.string   "maintenance_record"
+    t.string   "blog_style"
+    t.string   "friendly_brand"
+    t.string   "estranged_brand"
+    t.text     "notes"
+    t.integer  "updated_by"
+    t.integer  "created_by"
+    t.integer  "deleted",            :limit => 2, :default => 0
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
+  end
+
+  add_index "network_opinion_leader_bloggers", ["blog_style"], :name => "index_network_opinion_leader_bloggers_on_blog_style"
+  add_index "network_opinion_leader_bloggers", ["city_id"], :name => "index_network_opinion_leader_bloggers_on_city_id"
+  add_index "network_opinion_leader_bloggers", ["created_by"], :name => "index_network_opinion_leader_bloggers_on_created_by"
+  add_index "network_opinion_leader_bloggers", ["deleted"], :name => "index_network_opinion_leader_bloggers_on_deleted"
+  add_index "network_opinion_leader_bloggers", ["name"], :name => "index_network_opinion_leader_bloggers_on_name"
+  add_index "network_opinion_leader_bloggers", ["updated_by"], :name => "index_network_opinion_leader_bloggers_on_updated_by"
+  add_index "network_opinion_leader_bloggers", ["weixin"], :name => "index_network_opinion_leader_bloggers_on_weixin"
+
   create_table "orders", :force => true do |t|
     t.string   "name"
     t.integer  "project_id"
@@ -222,6 +304,31 @@ ActiveRecord::Schema.define(:version => 20140416083836) do
   add_index "suppliers", ["contact_name"], :name => "index_suppliers_on_contact_name"
   add_index "suppliers", ["contact_way"], :name => "index_suppliers_on_contact_way"
   add_index "suppliers", ["name"], :name => "index_suppliers_on_name"
+
+  create_table "traveling_photography_media_infos", :force => true do |t|
+    t.string   "web_site"
+    t.string   "web_site_introduction"
+    t.string   "content_name"
+    t.string   "position"
+    t.string   "mobile"
+    t.string   "email"
+    t.string   "address"
+    t.float    "coverage"
+    t.integer  "sex",                   :limit => 2
+    t.text     "notes"
+    t.integer  "updated_by"
+    t.integer  "created_by"
+    t.integer  "deleted",               :limit => 2, :default => 0
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
+  end
+
+  add_index "traveling_photography_media_infos", ["coverage"], :name => "index_traveling_photography_media_infos_on_coverage"
+  add_index "traveling_photography_media_infos", ["created_by"], :name => "index_traveling_photography_media_infos_on_created_by"
+  add_index "traveling_photography_media_infos", ["deleted"], :name => "index_traveling_photography_media_infos_on_deleted"
+  add_index "traveling_photography_media_infos", ["sex"], :name => "index_traveling_photography_media_infos_on_sex"
+  add_index "traveling_photography_media_infos", ["updated_by"], :name => "index_traveling_photography_media_infos_on_updated_by"
+  add_index "traveling_photography_media_infos", ["web_site"], :name => "index_traveling_photography_media_infos_on_web_site"
 
   create_table "user_permissions", :force => true do |t|
     t.integer  "user_id"

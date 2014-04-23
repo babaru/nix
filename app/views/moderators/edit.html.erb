@@ -1,0 +1,110 @@
+<div class="narrow-center-page">
+
+  <%= render_cell(
+              :page_title,
+              :show,
+              data:
+                      {
+                              name: "#{t('model.edit', model: Moderator.model_name.human)} <small>#{t('simple_form.required.text') }</small>",
+                              toolbar: {
+                                      left:
+                                              [
+                                                      render_cell(
+                                                              :button,
+                                                              :show,
+                                                              data:
+                                                                      {
+                                                                              name: fa_icon('level-up rotate-270'),
+                                                                              url: moderators_path,
+                                                                              options:
+                                                                                      {
+                                                                                              class: 'btn',
+                                                                                              rel: 'tooltip',
+                                                                                              title: "#{t('labels.back_to')}#{t('model.list', :model => Moderator.model_name.human)}",
+                                                                                      }
+                                                                      }
+                                                      )
+                                              ]
+                              }
+                      }
+      )
+  %>
+
+  <%= simple_form_for(@media , :html => {:class => 'form-horizontal' }) do |f| %>
+      <%= f.error_notification %>
+
+
+      <div class="form-inputs">
+
+        <%= f.input :media_name, required: true %>
+        <%= f.input :brand_name, required: true %>
+        <%= f.input :product_name, required: true %>
+        <%= f.input :name, required: true %>
+
+        <div class="control-group string required moderator_sex"><label class="string required control-label" for="moderator_sex"><abbr title="带*星号的为必填项">*</abbr> 性别</label><div class="controls">
+          <select class="string required" id="moderator_sex" name="moderator[sex]">
+            <option value="1" <%= @media.sex==1 ? 'selected' : '' -%>>男</option>
+            <option value="0" <%= @media.sex==0 ? 'selected' : '' -%>>女</option>
+          </select></div></div>
+
+
+        <%= f.input :position, required: true %>
+        <%= f.input :age, required: true %>
+        <%= f.input :mobile, required: true %>
+        <%= f.input :email, required: true %>
+        <%= f.input :weixin, required: true %>
+        <%= f.input :office_address, required: true %>
+        <%= f.input :id_number, required: false %>
+        <%= f.input :birthday, as: :date_picker, required: true %>
+        <%= f.input :working_conditions, required: true %>
+        <%= f.input :active_record, required: false,:as=>:text,input_html: { rows: 5 } %>
+        <%= f.input :maintenance_record, required: false,:as=>:text,input_html: { rows: 5 } %>
+        <%= f.input :topic_of_concern, required: true %>
+        <div class="control-group string required moderator_married"><label class="string required control-label" for="moderator_married"><abbr title="带*星号的为必填项">*</abbr> 性别</label><div class="controls">
+          <select class="string required" id="moderator_married" name="moderator[married]">
+            <option value="true"  <%= @media.married==true ? 'selected' : '' -%>>已婚</option>
+            <option value="false" <%= @media.married==false ? 'selected' : '' -%>>未婚</option>
+          </select></div></div>
+        <%= f.input :has_children, required: true %>
+        <%= f.input :has_car, required: true %>
+        <%= f.input :other_about, required: true %>
+        <%= f.input :notes, required: false,:as=>:text,input_html: { rows: 5 } %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, class: 'btn btn-primary' %>
+      </div>
+  <% end %>
+
+
+</div>
+
+<script language='javascript'>
+    $(document).ready(function(){
+        $('#web_site_media_reporter_region_id').bind('change',function(){
+            var web_site_media_reporter_region_id = $('#web_site_media_reporter_region_id').val();
+            $.ajax({
+                url: '/web_site_media_reporters/ajax_get_provinces/' + web_site_media_reporter_region_id.toString(),
+                type: 'GET',
+                data: {
+                },
+                success: function(data) {
+                    $('#web_site_media_reporter_province_id').html(data);
+                }
+            });
+        })
+
+        $('#web_site_media_reporter_province_id').bind('change',function(){
+            var web_site_media_reporter_province_id = $('#web_site_media_reporter_province_id').val();
+            $.ajax({
+                url: '/web_site_media_reporters/ajax_get_cities/' + web_site_media_reporter_province_id.toString(),
+                type: 'GET',
+                data: {
+                },
+                success: function(data) {
+                    $('#web_site_media_reporter_city_id').html(data);
+                }
+            });
+        })
+    });
+</script>

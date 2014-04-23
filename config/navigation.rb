@@ -268,7 +268,7 @@ SimpleNavigation::Configuration.run do |navigation|
     )do |supplier_menu|
       supplier_menu.item(
           :page_web_site_media_reporters,
-          t('model.list', model: '网络媒体-记者资源库'),
+          t('model.list', model: '网络媒体-记者资源'),
           web_site_media_reporters_path,
           {
               link:
@@ -289,6 +289,56 @@ SimpleNavigation::Configuration.run do |navigation|
                   }
           }
       )
+
+      supplier_menu.item(
+          :traveling_photography_media_infos,
+          t('model.list', model: '旅游、摄影媒体'),
+          traveling_photography_media_infos_path,
+          {
+              link:
+                  {
+                      icon: 'list'
+                  }
+          }
+      )
+
+      supplier_menu.item(
+          :network_opinion_leader_bloggers,
+          t('model.list', model: '网络意见领袖、博主信息'),
+          network_opinion_leader_bloggers_path,
+          {
+              link:
+                  {
+                      icon: 'list'
+                  }
+          }
+      )
+
+      supplier_menu.item(
+          :moderators,
+          t('model.list', model: '版主信息'),
+          moderators_path,
+          {
+              link:
+                  {
+                      icon: 'list'
+                  }
+          }
+      )
+
+      supplier_menu.item(
+          :grass_resources,
+          t('model.list', model: '草根资源'),
+          grass_resources_path,
+          {
+              link:
+                  {
+                      icon: 'list'
+                  }
+          }
+      )
+
+
     end
 
     #用户

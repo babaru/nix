@@ -10,7 +10,11 @@ zh-CN:
       permission: 权限
       department: 部门
       fashion_media_info: 时尚媒体
+      traveling_photography_media_info: 旅游、摄影媒体
+      network_opinion_leader_blogger: 网络意见领袖、博主信息
       web_site_media_reporter: 网络媒体-记者资源
+      moderator: 版主信息
+      grass_resource: 草根资源
     attributes:
       user:
         name: 用户名
@@ -87,7 +91,106 @@ zh-CN:
         created_by: 创建人
         updated_by: 更新人
         created_at: 创建时间
-        updated_at: 更新时间      
+        updated_at: 更新时间     
+      traveling_photography_media_info:
+        city_id: 所属城市
+        web_site: 网站地址
+        web_site_introduction: 网站介绍  
+        content_name: 联系人
+        position: 职位
+        mobile: 电话
+        email: 邮箱
+        weixin: 微信
+        address: 地址
+        coverage: 日均覆盖人数(万人)
+        sex: 性别
+        notes: 备注
+        created_by: 创建人
+        updated_by: 更新人
+        created_at: 创建时间
+        updated_at: 更新时间   
+      network_opinion_leader_blogger:
+        city_id: 所属城市
+        nickname: 昵称
+        name: 姓名
+        media_name: 媒体
+        web_site: 网站地址
+        web_site_introduction: 网站介绍  
+        content_name: 联系人
+        position: 职位
+        mobile: 电话
+        email: 邮箱
+        weixin: 微信
+        address: 地址
+        coverage: 日均覆盖人数(万人)
+        sex: 性别
+        notes: 备注
+        created_by: 创建人
+        updated_by: 更新人
+        created_at: 创建时间
+        updated_at: 更新时间 
+        birthday:  生日
+        id_number: 身份证号
+        working_conditions:  从业情况
+        blog_traffic: 博客访问量
+        blog_address: 博客地址
+        active_record: 活动记录
+        maintenance_record: 维护记录
+        blog_style: 文风
+        friendly_brand: 友好品牌
+        estranged_brand: 疏远品牌
+      moderator:
+        position: 职位
+        topic_of_concern: 关注话题
+        product_name: 产品
+        brand_name: 品牌
+        age: 年龄
+        weixin: 微信
+        region_id: 区域
+        province_id: 省份
+        city_id: 城市
+        format_id: 媒体介质
+        media_name: 媒体名称
+        level: 媒体级别
+        name: 姓名
+        sex: 性别
+        department_name: 部门名称
+        job_name: 职务名称
+        telephone: 电话
+        mobile: 手机
+        email: 邮箱
+        instant_messaging: 即时通讯
+        micro_blog:  微博
+        micro_message:  微信
+        office_address: 办公地址
+        working_conditions:  从业情况
+        birthday:  生日
+        id_number: 身份证号
+        origin_place:  籍贯
+        married: 已婚？
+        has_children: 是否有子女（性别）
+        has_car: 是否有车（品牌）
+        other_about: 其他（个人兴趣，爱好）
+        active_record: 活动记录
+        maintenance_record: 维护记录
+        notes: 备注
+        created_by: 创建人
+        updated_by: 更新人
+        created_at: 创建时间
+        updated_at: 更新时间
+      grass_resource:
+        nickname: 昵称
+        media_url: 地址
+        fans_number: 粉丝数
+        category: 类别
+        regional: 区域
+        type_id: 资源类别
+        content_location: 内容定位
+        media_type_id: 媒体类别
+        created_by: 创建人
+        updated_by: 更新人
+        created_at: 创建时间
+        updated_at: 更新时间
       web_site_media_reporter:
         region_id: 区域
         province_id: 省份

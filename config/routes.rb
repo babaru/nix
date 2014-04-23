@@ -21,6 +21,15 @@ Nix::Application.routes.draw do
   get 'web_site_media_reporters/upload_reporter_info' => 'web_site_media_reporters#upload_reporter_info', as: :upload_reporter_info
   post 'fashion_media_infos/download_media_info' => 'fashion_media_infos#download_media_info', as: :download_media_info
   get 'fashion_media_infos/upload_media_info' => 'fashion_media_infos#upload_media_info', as: :upload_media_info
+  post 'traveling_photography_media_infos/download_traveling_photography_media_info' => 'traveling_photography_media_infos#download_traveling_photography_media_info', as: :download_traveling_photography_media_info
+  get 'traveling_photography_media_infos/upload_traveling_photography_media_info' => 'traveling_photography_media_infos#upload_traveling_photography_media_info', as: :upload_traveling_photography_media_info
+  post 'network_opinion_leader_bloggers/download_network_opinion_leader_blogger' => 'network_opinion_leader_bloggers#download_network_opinion_leader_blogger', as: :download_network_opinion_leader_blogger
+  get 'network_opinion_leader_bloggers/upload_network_opinion_leader_blogger' => 'network_opinion_leader_bloggers#upload_network_opinion_leader_blogger', as: :upload_network_opinion_leader_blogger
+  post 'grass_resources/download_grass_resource' => 'grass_resources#download_grass_resource', as: :download_grass_resource
+  get 'grass_resources/upload_grass_resource' => 'grass_resources#upload_grass_resource', as: :upload_grass_resource
+  post 'grass_resources/download_grass_resource_template' => 'grass_resources#download_grass_resource_template', as: :download_grass_resource_template
+  post 'moderators/download_moderator' => 'moderators#download_moderator', as: :download_moderator
+  get 'moderators/upload_moderator' => 'moderators#upload_moderator', as: :upload_moderator
 
 
   # The priority is based upon order of creation:
@@ -80,8 +89,8 @@ Nix::Application.routes.draw do
       resources :orders
     end
   end
-  resources :suppliers,:clients,:projects,:orders,:departments
-  resources :business_categories,:web_site_media_reporters,:fashion_media_infos
+  resources :suppliers,:clients,:projects,:orders,:departments,:network_opinion_leader_bloggers,:moderators,:grass_resources
+  resources :business_categories,:web_site_media_reporters,:fashion_media_infos,:traveling_photography_media_infos
   root to: 'dashboard#index', as: :dashboard
 
   # See how all your routes lay out with "rake routes"

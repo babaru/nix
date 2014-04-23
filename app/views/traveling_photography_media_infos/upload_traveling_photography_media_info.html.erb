@@ -1,0 +1,78 @@
+<div class="narrow-center-page">
+
+  <%= render_cell(
+              :page_title,
+              :show,
+              data:
+                      {
+                              name: "<strong>#{}</strong> #{t('model.upload', model: TravelingPhotographyMediaInfo.model_name.human)} ",
+                              toolbar:
+                                      {
+                                              left:
+                                                      [
+                                                              render_cell(
+                                                                      :button,
+                                                                      :show,
+                                                                      data:
+                                                                              {
+                                                                                      name: fa_icon('level-up rotate-270'),
+                                                                                      url: traveling_photography_media_infos_path,
+                                                                                      options:
+                                                                                              {
+                                                                                                      class: 'btn',
+                                                                                                      rel: 'tooltip',
+                                                                                                      title: "#{t('labels.back_to')}#{t('model.list', :model => TravelingPhotographyMediaInfo.model_name.human)}",
+                                                                                              }
+                                                                              }
+                                                              )
+                                                      ],
+                                              right:
+                                                      [
+
+                                                      ]
+                                      }
+                      }
+      ) %>
+  <%= form_tag({:controller => :traveling_photography_media_infos, :action => "upload_traveling_photography_media_info"}, :multipart => true, :class => "simple_form form-horizontal upload-spot-plan-excel-file-form", :id=> "new_spot_plan_excel_file", :method=>"post",:novalidate=>"novalidate") do -%>
+      <div class="form-inputs">
+        <div class="control-group file optional spot_plan_excel_file_data_file"><label class="file optional control-label" for="spot_plan_excel_file_data_file">上传文件</label><div class="controls"><input class="file optional" id="excel_file" name="excel_file" type="file"></div></div>
+      </div>
+      <div class="form-actions">
+        <input class="btn btn btn-primary" name="commit" type="submit" value="确定">
+      </div>
+  <% end%>
+
+
+
+
+</div>
+
+<% content_for :js do %>
+    <script language='javascript'>
+        $(document).ready(function(){
+            $('form.upload-spot-plan-excel-file-form').on('ajax:beforeSend', function(xhr, settings) {
+                $('#upload-spot-plan-excel-file-modal-window').modal({
+                    backdrop: 'static',
+                    keyboard: false
+                });
+            });
+
+            $('form.upload-spot-plan-excel-file-form').on('ajax:complete', function(xhr, status) {
+                $('#upload-spot-plan-excel-file-modal-window').modal('hide');
+            });
+        });
+    </script>
+<% end %>
+
+<% content_for :anything_else do %>
+    <div class="modal hide fade" id="upload-spot-plan-excel-file-modal-window">
+      <div class="modal-header">
+        <h4>正在上传...</h4>
+      </div>
+      <div class="modal-body">
+        <div class="progress progress-striped active">
+          <div class="bar" style="width: 100%;" id="modal-progress-bar"><span id="model-progress-value">请等待...</span></div>
+        </div>
+      </div>
+    </div>
+<% end %>

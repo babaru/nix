@@ -5,7 +5,7 @@
               :show,
               data:
                       {
-                              name: "#{t('model.create', model: WebSiteMediaReporter.model_name.human)} <small>#{t('simple_form.required.text') }</small>",
+                              name: "#{t('model.edit', model: WebSiteMediaReporter.model_name.human)} <small>#{t('simple_form.required.text') }</small>",
                               toolbar: {
                                       left:
                                               [
@@ -94,6 +94,12 @@
         <%= f.input :birthday, as: :date_picker, required: true %>
         <%= f.input :id_number, required: true %>
         <%= f.input :origin_place, required: true %>
+
+        <div class="control-group string required web_site_media_reporter_married"><label class="string required control-label" for="web_site_media_reporter_married"><abbr title="带*星号的为必填项">*</abbr> 性别</label><div class="controls">
+          <select class="string required" id="web_site_media_reporter_married" name="web_site_media_reporter[married]">
+            <option value="true" <%= @reporter.married==true ? 'selected' : '' -%>>已婚</option>
+            <option value="false" <%= @reporter.married==false ? 'selected' : '' -%>>未婚</option>
+          </select></div></div>
         <%= f.input :has_children, required: true %>
         <%= f.input :has_car, required: true %>
         <%= f.input :other_about, required: true %>
