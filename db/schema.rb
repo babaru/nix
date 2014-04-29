@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140423025352) do
+ActiveRecord::Schema.define(:version => 20140424083921) do
 
   create_table "business_categories", :force => true do |t|
     t.string   "name_cn",    :default => ""
@@ -132,6 +132,23 @@ ActiveRecord::Schema.define(:version => 20140423025352) do
   add_index "fashion_media_infos", ["updated_by"], :name => "index_fashion_media_infos_on_updated_by"
   add_index "fashion_media_infos", ["web_site"], :name => "index_fashion_media_infos_on_web_site"
 
+  create_table "file_categories", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "parent_id",                  :default => 0
+    t.string   "category_name"
+    t.integer  "deleted",       :limit => 2, :default => 0
+    t.integer  "created_by"
+    t.integer  "updated_by"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+  end
+
+  add_index "file_categories", ["created_by"], :name => "index_file_categories_on_created_by"
+  add_index "file_categories", ["deleted"], :name => "index_file_categories_on_deleted"
+  add_index "file_categories", ["parent_id"], :name => "index_file_categories_on_parent_id"
+  add_index "file_categories", ["project_id"], :name => "index_file_categories_on_project_id"
+  add_index "file_categories", ["updated_by"], :name => "index_file_categories_on_updated_by"
+
   create_table "grass_resources", :force => true do |t|
     t.string   "nickname"
     t.string   "media_url"
@@ -246,6 +263,24 @@ ActiveRecord::Schema.define(:version => 20140423025352) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
+
+  create_table "project_files", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "file_category_id"
+    t.string   "file_name"
+    t.string   "save_name"
+    t.integer  "deleted",          :limit => 2, :default => 0
+    t.integer  "created_by"
+    t.integer  "updated_by"
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+  end
+
+  add_index "project_files", ["created_by"], :name => "index_project_files_on_created_by"
+  add_index "project_files", ["deleted"], :name => "index_project_files_on_deleted"
+  add_index "project_files", ["file_category_id"], :name => "index_project_files_on_file_category_id"
+  add_index "project_files", ["project_id"], :name => "index_project_files_on_project_id"
+  add_index "project_files", ["updated_by"], :name => "index_project_files_on_updated_by"
 
   create_table "projects", :force => true do |t|
     t.string   "name"

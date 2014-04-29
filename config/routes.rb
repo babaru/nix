@@ -30,7 +30,7 @@ Nix::Application.routes.draw do
   post 'grass_resources/download_grass_resource_template' => 'grass_resources#download_grass_resource_template', as: :download_grass_resource_template
   post 'moderators/download_moderator' => 'moderators#download_moderator', as: :download_moderator
   get 'moderators/upload_moderator' => 'moderators#upload_moderator', as: :upload_moderator
-
+  get 'file_categories/upload_file_category' => 'file_categories#upload_file_category', as: :upload_file_category
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -89,12 +89,14 @@ Nix::Application.routes.draw do
       resources :orders
     end
   end
+  resources :projects do
+    resources :file_categories
+  end
   resources :suppliers,:clients,:projects,:orders,:departments,:network_opinion_leader_bloggers,:moderators,:grass_resources
   resources :business_categories,:web_site_media_reporters,:fashion_media_infos,:traveling_photography_media_infos
   root to: 'dashboard#index', as: :dashboard
 
   # See how all your routes lay out with "rake routes"
-
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   match ':controller(/:action(/:id))(.:format)'

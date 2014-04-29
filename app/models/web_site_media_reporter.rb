@@ -1,5 +1,5 @@
 class WebSiteMediaReporter < ActiveRecord::Base
-  attr_accessible     :region_id, :province_id, :city_id, :format_id, :media_name, :level, :name, :sex, :department_name, :job_name, :telephone, :mobile, :email, :instant_messaging, :micro_blog, :micro_message, :office_address, :working_conditions, :birthday, :id_number, :origin_place, :has_children, :has_car, :other_about, :active_record, :maintenance_record, :notes
+  attr_accessible     :region_id, :province_id, :city_id,:married, :format_id, :media_name, :level, :name, :sex, :department_name, :job_name, :telephone, :mobile, :email, :instant_messaging, :micro_blog, :micro_message, :office_address, :working_conditions, :birthday, :id_number, :origin_place, :has_children, :has_car, :other_about, :active_record, :maintenance_record, :notes
   belongs_to :province
   belongs_to :city
   belongs_to :region

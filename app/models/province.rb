@@ -41,10 +41,8 @@ class Province < ActiveRecord::Base
             ['香港特别行政区','7','特别行政区']]
     attr.each do |p|
       #Province.create!({:name=>p[0],:remark=>p[2]})
-      if Province.find_by_name(p[0].to_s).blank?
-        Province.create!({:name=>p[0],:remark=>p[2],:region_id=>p[1].to_i})
-      end
 
+Province.create!({:name=>p[0],:remark=>p[2],:region_id=>p[1].to_i})
     end
     puts 'create end....'
   end

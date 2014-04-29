@@ -23,7 +23,7 @@
 <%= grid(@projects_grid, :show_filters => :when_filtered) do |g|
 
   g.column name: t('activerecord.attributes.project.name') do |project|
-    link_to content_tag(:strong, project.name), project_path(project)
+    (link_to content_tag(:strong, project.name), project_path(project))+"————["+(link_to '查看文件',project_file_categories_path(project))+"]"
   end
 
   g.column name: t('activerecord.attributes.project.started_at') do |project|
@@ -54,6 +54,7 @@
   g.column html: {class: ''} do |project|
     link_to(fa_icon('rocket', text: '启动项目'), start_project_path(project), class: 'btn btn-success', method: :post) if !project.is_started? and can? :update,Project
   end
+
 
   g.column html: {class: 'btn-cell'} do |project|
     link_to(fa_icon('user'), assign_project_user_path(id: project), rel: 'tooltip', title: '分配项目', class: 'btn') if can? :update,Project

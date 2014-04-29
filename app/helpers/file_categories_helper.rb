@@ -1,0 +1,2 @@
+module FileCategoriesHelper
+end

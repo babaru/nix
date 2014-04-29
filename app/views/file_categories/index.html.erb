@@ -1,0 +1,109 @@
+<%= render_cell(:page_title, :show, data:{name: "<strong>#{@project.name}</strong> 媒体文件列表",
+                                          toolbar: {
+                                                  right:
+                                                          [
+                                                         
+
+                                                          ]
+                                          }
+})
+%>
+
+<div class="well" id="category_info" style="display: none;">
+   类别名称：
+  <%= text_field_tag 'category_name' -%>
+  <%= button_to_function '确定',"add_category(#{@project.id})" -%>
+  <%= button_to_function '取消',"cancel_add_category()" -%>
+  <%= hidden_field_tag 'hid_category_id', 0 -%>
+</div>
+
+<div id="upload_form" style="display: none">
+  <%= form_tag({:controller => :file_categories, :action => "upload_file_category"}, :multipart => true, :class => "simple_form form-horizontal upload-spot-plan-excel-file-form", :id=> "new_spot_plan_excel_file", :method=>"post",:novalidate=>"novalidate") do -%>
+      <div class="form-inputs">
+        <div class="control-group file optional spot_plan_excel_file_data_file"><div class="controls"><input class="file optional" id="excel_file" name="excel_file" type="file"><input class="btn btn btn-primary" name="commit" type="submit" value="确定"></div></div>
+      </div>
+      <%= hidden_field_tag 'hid_project_id', @project.id -%>
+      <%= hidden_field_tag 'hid_upload_category_id', 0 -%>
+  <% end%>
+</div>
+
+<div class="well">
+  <%= link_to_function '添加文件一级类别', "show_add_category(0)" -%>
+  <% unless @categories.blank? -%>
+        <ul>
+          <% @categories.each do |cat| -%>
+          <li id="cat_<%= cat.id -%>"><%=link_to_function cat.category_name, "show_item(#{cat.id},#{@project.id})" -%>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <%= link_to_function '添加子类', "show_add_category(#{cat.id})" -%>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <%= link_to_function '上传文件', "show_upload(#{cat.id},this)" -%>
+            <div></div>
+          </li>
+          <% end -%>
+        </ul>
+  <% end -%>
+</div>
+<script>
+  function show_add_category(c_id){
+//      if($('#category_info').is(':hidden')){
+//          $('#category_info').show();
+//          $('#hid_category_id').val(c_id);
+//      }else{
+//          $('#category_info').hide();
+//          $('#hid_category_id').val(0);
+//      }
+      $('#category_info').show();
+      $('#hid_category_id').val(c_id);
+  }
+  function show_upload(c_id,obj){
+
+      if($(obj).parent().find('form')[0]==undefined){
+          $(obj).parent().find('div').append($('#upload_form').html());
+          $(obj).parent().find('#hid_upload_category_id').val(c_id);
+
+
+      }else{
+          $(obj).parent().find('form').remove();
+      }
+
+  }
+  function show_item(c_id,p_id){
+      var cat = $('#cat_'+c_id.toString());
+      if(cat.find('ul')[0]==undefined){
+          $.ajax({
+              url: '/file_categories/ajax_show_item/' + c_id.toString()+'?project_id='+p_id.toString(),
+              type: 'GET',
+              data: {
+              },
+              success: function(data) {
+                  cat.append(data)
+              }
+          });
+      }else{
+          cat.find('ul').remove();
+      }
+
+  }
+  function cancel_add_category(){
+      $('#category_info').hide();
+      $('#category_name').val('');
+      $('#hid_category_id').val(0);
+  }
+  function add_category(p_id){
+      if($('#category_name').val()==''){
+          alert('请输入类别名称');
+          return;
+      }
+      var c_id= $('#hid_category_id').val();
+      $.ajax({
+          url: '/file_categories/ajax_add_category/' + c_id.toString()+'?project_id='+p_id.toString(),
+          type: 'GET',
+          data: {category_name:$('#category_name').val()
+          },
+          success: function(data) {
+              alert(data);
+              location.reload();
+          }
+      });
+  }
+</script>

@@ -36,10 +36,14 @@ class GrassResource < ActiveRecord::Base
     FileUtils.rm Dir[temp_folder_name.to_s+'*.xls']
     require "spreadsheet"
     workbook = Spreadsheet::Workbook.new
-    format = Spreadsheet::Format.new(:pattern => 1,:color => :white, :weight => :bold, :size => 11,:horizontal_align => :center)
+    format = Spreadsheet::Format.new(:color => :black,:horizontal_align => :center,:pattern_fg_color=>'silver',:pattern=>1, :size => 10,:border_color=>:black,:border=>:thin)
     if data==nil
       sheet1 = workbook.create_worksheet(:name => '草根资源上传模板')
-      sheet1.row(0).default_format = format
+      (0..7).each do |i|
+        sheet1.row(0).set_format(i,format)
+      end
+
+      #sheet1.row(0).default_format = format
       sheet1.row(0).replace ['资源类别','媒体类别','昵称','地址','粉丝','类别','地区','内容定位']
       sheet1.row(1).set_format(8,Spreadsheet::Format.new(:color => :red))
       sheet1.row(1)[8]='由于excel与系统中表格结构有所不同，因此填写数据时请按照提示进行填写，资源类别与媒体类别请从下方粘贴'
@@ -48,21 +52,37 @@ class GrassResource < ActiveRecord::Base
       new_file = temp_folder_name + "媒体资源库-草根资源上传模板.xls"
     else
       GrassResource::TYPE.each do |t|
-        sheet1 = workbook.create_worksheet(:name => t[0]+'-草根资源列表')
-        _index=0
+        sheet1 = workbook.create_worksheet(:name => t[0]+'-草根资源表')
+        _t = data.select{|x|x.type_id.to_i==t[1]}
+        _t_count = _t.blank? ? 0 : _t.count
+        item_info = '注:共'+_t_count.to_s+'人,其中'
+        _index=2
+        sheet1.row(0).set_format(0,Spreadsheet::Format.new(:color => :black,:horizontal_align => :center,:pattern_fg_color=>'silver',:pattern=>0, :size => 24,:border_color=>:black,:border=>:thin))
+        sheet1.row(0).replace ['Iforce-网络媒体-草根资源']
+        sheet1.row(0).height = 35
+        sheet1.merge_cells(0, 0, 0, 5)
         GrassResource::MEDIA_TYPE.each do |m|
-          sheet1.row(_index).default_format = format
+          #sheet1.row(_index).default_format = format
+          sheet1.row(_index).set_format(0,Spreadsheet::Format.new(:color => :black,:horizontal_align => :center,:pattern_fg_color=>'silver',:pattern=>1, :size => 12,:border_color=>:black,:border=>:thin,:right_color=>:black,:left_color=>:black))
           sheet1.row(_index).replace [m[0]]
-          sheet1.row(_index).height = 18
-          sheet1.merge_cells(_index, 0, _index, 6)
-          sheet1.row(_index+1).default_format = format
+          #sheet1.row(_index).height = 18
+          sheet1.merge_cells(_index, 0, _index, 5)
+          #sheet1.row(_index+1).default_format = format
+          (0..5).each do |i|
+            sheet1.row(_index+1).set_format(i,Spreadsheet::Format.new(:color => :black,:horizontal_align => :center,:pattern_fg_color=>'silver',:pattern=>0, :size => 10,:border_color=>:black,:border=>:thin))
+          end
           sheet1.row(_index+1).replace ['昵称','地址','粉丝','类别','地区','内容定位']
-          sheet1.row(_index+1).height = 18
+          #sheet1.row(_index+1).height = 18
           _index = _index+2
           _item = data.select{|x|x.type_id.to_i==t[1] and x.media_type_id==m[1]}
+          _item_count =  _item.blank? ? 0 : _item.count
+          item_info +=m[0].to_s+'类'+_item_count.to_s+'人;'
           unless _item.blank?
             _item.each_with_index do |d,i|
-
+              (0..4).each do |j|
+                sheet1.row(_index+i).set_format(j,Spreadsheet::Format.new(:color => :black,:horizontal_align => :center,:pattern_fg_color=>'silver',:pattern=>0, :size => 10,:right_color=>:black,:left_color=>:black,:border=>:thin))
+              end
+              sheet1.row(_index+i).set_format(5,Spreadsheet::Format.new(:color => :black,:horizontal_align => :left,:pattern_fg_color=>'silver',:pattern=>0, :size => 10,:right_color=>:black,:left_color=>:black,:border=>:thin))
               sheet1.row(i+_index).replace [d.nickname,
                                             d.media_url,
                                             d.fans_number,
@@ -73,6 +93,9 @@ class GrassResource < ActiveRecord::Base
             end
           end
         end
+        sheet1.row(1).set_format(0,Spreadsheet::Format.new(:color => :black,:horizontal_align => :center,:pattern_fg_color=>'silver',:pattern=>1, :size => 10,:border_color=>:black,:border=>:thin))
+        sheet1.row(1).replace [item_info]
+        sheet1.merge_cells(1, 0, 1, 5)
       end
 
       new_file = temp_folder_name + "媒体资源库-草根资源.xls"
