@@ -9,7 +9,8 @@ class CreateTravelingPhotographyMediaInfos < ActiveRecord::Migration
       t.string :email
       t.string :address
       t.float :coverage
-      t.integer :sex,:limit=>2
+      t.integer :man
+      t.integer :woman
       t.text :notes
       t.integer :updated_by
       t.integer :created_by
@@ -18,7 +19,6 @@ class CreateTravelingPhotographyMediaInfos < ActiveRecord::Migration
     end
     add_index :traveling_photography_media_infos,:updated_by
     add_index :traveling_photography_media_infos,:created_by
-    add_index :traveling_photography_media_infos,:sex
     add_index :traveling_photography_media_infos,:web_site
     add_index :traveling_photography_media_infos,:coverage
     add_index :traveling_photography_media_infos,:deleted

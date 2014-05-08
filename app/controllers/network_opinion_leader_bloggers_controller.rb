@@ -91,7 +91,7 @@ class NetworkOpinionLeaderBloggersController < ApplicationController
             workbook = Spreadsheet.open("#{Rails.root}/public/files/temp/"+new_file_name)
 
             _sheet = workbook.worksheet(0)
-            msg = NetworkOpinionLeaderBlogger.create_by_excel(_sheet,current_user)
+            NetworkOpinionLeaderBlogger.create_by_excel(_sheet,current_user)
             FileUtils.rm Dir["#{Rails.root}/public/files/temp/*.xls"]
             respond_to do |format|
               format.html { redirect_to network_opinion_leader_bloggers_path, notice: '上传成功.' }

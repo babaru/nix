@@ -60,18 +60,17 @@ class GrassResource < ActiveRecord::Base
         sheet1.row(0).set_format(0,Spreadsheet::Format.new(:color => :black,:horizontal_align => :center,:pattern_fg_color=>'silver',:pattern=>0, :size => 24,:border_color=>:black,:border=>:thin))
         sheet1.row(0).replace ['Iforce-网络媒体-草根资源']
         sheet1.row(0).height = 35
-        sheet1.merge_cells(0, 0, 0, 5)
+        sheet1.merge_cells(0, 0, 0, 6)
         GrassResource::MEDIA_TYPE.each do |m|
           #sheet1.row(_index).default_format = format
           sheet1.row(_index).set_format(0,Spreadsheet::Format.new(:color => :black,:horizontal_align => :center,:pattern_fg_color=>'silver',:pattern=>1, :size => 12,:border_color=>:black,:border=>:thin,:right_color=>:black,:left_color=>:black))
           sheet1.row(_index).replace [m[0]]
-          #sheet1.row(_index).height = 18
-          sheet1.merge_cells(_index, 0, _index, 5)
+          sheet1.merge_cells(_index, 0, _index, 6)
           #sheet1.row(_index+1).default_format = format
-          (0..5).each do |i|
+          (0..6).each do |i|
             sheet1.row(_index+1).set_format(i,Spreadsheet::Format.new(:color => :black,:horizontal_align => :center,:pattern_fg_color=>'silver',:pattern=>0, :size => 10,:border_color=>:black,:border=>:thin))
           end
-          sheet1.row(_index+1).replace ['昵称','地址','粉丝','类别','地区','内容定位']
+          sheet1.row(_index+1).replace ['序号','昵称','地址','粉丝','类别','地区','内容定位']
           #sheet1.row(_index+1).height = 18
           _index = _index+2
           _item = data.select{|x|x.type_id.to_i==t[1] and x.media_type_id==m[1]}
@@ -83,19 +82,23 @@ class GrassResource < ActiveRecord::Base
                 sheet1.row(_index+i).set_format(j,Spreadsheet::Format.new(:color => :black,:horizontal_align => :center,:pattern_fg_color=>'silver',:pattern=>0, :size => 10,:right_color=>:black,:left_color=>:black,:border=>:thin))
               end
               sheet1.row(_index+i).set_format(5,Spreadsheet::Format.new(:color => :black,:horizontal_align => :left,:pattern_fg_color=>'silver',:pattern=>0, :size => 10,:right_color=>:black,:left_color=>:black,:border=>:thin))
-              sheet1.row(i+_index).replace [d.nickname,
+              sheet1.row(_index+i).set_format(6,Spreadsheet::Format.new(:italic=>false, :text_wrap=>true,:color => :black,:horizontal_align => :left,:pattern_fg_color=>'silver',:pattern=>0, :size => 10,:right_color=>:black,:left_color=>:black,:border=>:thin))
+
+              sheet1.row(i+_index).replace [i+1,
+                                            d.nickname,
                                             d.media_url,
                                             d.fans_number,
                                             d.category,
                                             d.regional,
                                             d.content_location]
-              _index = _index+1
+
             end
+            _index = _index+_item.count
           end
         end
         sheet1.row(1).set_format(0,Spreadsheet::Format.new(:color => :black,:horizontal_align => :center,:pattern_fg_color=>'silver',:pattern=>1, :size => 10,:border_color=>:black,:border=>:thin))
         sheet1.row(1).replace [item_info]
-        sheet1.merge_cells(1, 0, 1, 5)
+        sheet1.merge_cells(1, 0, 1, 6)
       end
 
       new_file = temp_folder_name + "媒体资源库-草根资源.xls"
@@ -108,30 +111,34 @@ class GrassResource < ActiveRecord::Base
 
   def self.create_by_excel(_sheet=nil,user=nil)
     return false if _sheet.nil? or user.nil?
-    msg = false
+    error_numbers = []
     ActiveRecord::Base.transaction do
       _sheet.each_with_index do |row,index|
         next if index==0
+        break if row[0].to_s.strip.blank?
         _data = GrassResource.new()
-        _type_name = row[0].strip
+        _type_name = row[0].to_s.strip
         _type= GrassResource::TYPE.find{|x| x[0]==_type_name}
         if _type.blank?
-          raise ActiveRecord::Rollback
-          break
+          error_numbers << (index+1).to_s
+          next
         end
         _data.type_id = _type[1]
 
-        _media_type_name = row[1].strip
+        _media_type_name = row[1].to_s.strip
         _media_type= GrassResource::MEDIA_TYPE.find{|x| x[0]==_media_type_name}
         if _media_type.blank?
-          raise ActiveRecord::Rollback
-          break
+          error_numbers << (index+1).to_s
+          next
         end
         _data.media_type_id = _media_type[1]
 
         _data.nickname = row[2]
         _data.media_url = row[3]
-        _data.fans_number = row[4]
+        unless row[4].to_s.to_i==0
+          _data.fans_number = row[4].to_s.to_i
+        end
+
         _data.category = row[5]
         _data.regional = row[6]
         _data.content_location = row[7]
@@ -142,9 +149,12 @@ class GrassResource < ActiveRecord::Base
         _data.created_by=user.id
         _data.updated_by=user.id
         _data.deleted=0
-        msg =  _data.save
+        _data.save
+      end
+      if error_numbers.count > 0
+        raise ActiveRecord::Rollback
       end
     end
-    return msg
+    error_numbers
   end
 end

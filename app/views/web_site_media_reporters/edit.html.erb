@@ -64,8 +64,8 @@
 
         <div class="control-group string required web_site_media_reporter_format_id"><label class="string required control-label" for="web_site_media_reporter_format_id"><abbr title="带*星号的为必填项">*</abbr> 媒体介质</label><div class="controls">
           <select class="string required" id="web_site_media_reporter_format_id" name="web_site_media_reporter[format_id]">
-            <% ['媒体介质01', '媒体介质02', '媒体介质03'].each do |m| -%>
-                <option value="<%= m -%>"><%= m -%></option>
+            <% WebSiteMediaReporter::FORMATS.each do |m| -%>
+                <option value="<%= m[1] -%>" <%= @reporter.format_id==m[1] ? 'selected' : '' -%>><%= m[0] -%></option>
             <% end -%>
           </select></div></div>
 

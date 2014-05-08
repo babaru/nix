@@ -3,15 +3,14 @@ class FashionMediaInfo < ActiveRecord::Base
   belongs_to :city
   belongs_to :created_man, :class_name => "User", :foreign_key => "created_by"
   belongs_to :updated_man, :class_name => "User", :foreign_key => "updated_by"
-  validates :web_site, presence: true
-  validates :web_site_introduction, presence: true
-  validates :content_name, presence: true
-  validates :position, presence: true
-  validates :mobile, presence: true
-  validates :email, presence: true
-  validates :weixin, presence: true
-  validates :address, presence: true
-  validates :coverage, presence: true
+  # validates :web_site, presence: true
+  # validates :web_site_introduction, presence: true
+  # validates :content_name, presence: true
+  # validates :position, presence: true
+  # validates :mobile, presence: true
+  # validates :email, presence: true
+  # validates :address, presence: true
+  # validates :coverage, presence: true
 
   def other_valid?
     errors.size == 0
@@ -43,24 +42,24 @@ class FashionMediaInfo < ActiveRecord::Base
     workbook = Spreadsheet::Workbook.new
 
     sheet1 = workbook.create_worksheet(:name => '时尚媒体信息')
-    format = Spreadsheet::Format.new(:pattern => 1,:color => :white, :weight => :bold, :size => 11)
+    format = Spreadsheet::Format.new(:color => :black,:horizontal_align => :center,:pattern_fg_color=>'silver',:pattern=>1, :size => 10,:border_color=>:black,:border=>:thin)
     sheet1.row(0).default_format = format
-    sheet1.row(0).replace ['所属城市 ','网站地址 ','网站介绍 ','联系人 ','职位 ','电话 ','邮箱 ','微信 ','地址 ','日均覆盖人数(万人) ','性别 ','备注 ','创建时间 ','创建人 ','更新时间 ','创建人']
-    sheet1.row(0).height = 18
+    sheet1.row(0).replace ['序号','所属城市 ','网站地址 ','网站介绍 ','联系人 ','职位 ','电话 ','邮箱 ','地址 ','日均覆盖人数(万人) ','男','女','备注 ','创建时间 ','创建人 ','更新时间 ','创建人']
     unless data.blank?
       data.each_with_index do |d,i|
 
-        sheet1.row(i+1).replace [d.city_name,
+        sheet1.row(i+1).replace [i+1,
+                                 d.city_name,
                                  d.web_site,
                                  d.web_site_introduction,
                                  d.content_name,
                                  d.position,
                                  d.mobile,
                                  d.email,
-                                 d.weixin,
                                  d.address,
                                  d.coverage,
-                                 (d.sex.to_i==0 ? '女' : '男'),
+                                 d.man,
+                                 d.woman,
                                  d.notes,
                                  d.created_at.strftime('%Y-%m-%d'),
                                  d.created_name,
@@ -77,38 +76,42 @@ class FashionMediaInfo < ActiveRecord::Base
 
   def self.create_by_excel(_sheet=nil,user=nil)
     return false if _sheet.nil? or user.nil?
-    msg = false
+    error_numbers = []
+    _city = nil
     ActiveRecord::Base.transaction do
       _sheet.each_with_index do |row,index|
         next if index==0
         _data = FashionMediaInfo.new()
-        _city_name = row[0].strip
 
-        _city = City.where("name like ?","%#{_city_name}%").first
+        _city = City.where("name like ?","%#{row[1].to_s.strip}%").first unless row[1].to_s.strip.blank?
         if _city.blank?
-          raise ActiveRecord::Rollback
-          break
+          error_numbers << row[0].to_s
+          next
         end
         _data.city_id=_city.id
-        _data.web_site= row[1]
-        _data.web_site_introduction= row[2]
-        _data.content_name=row[3]
-        _data.position=row[4]
-        _data.mobile= row[5]
-        _data.email= row[6]
-        _data.weixin= row[7]
+
+        _data.web_site= row[2]
+        _data.web_site_introduction= row[3]
+        _data.content_name=row[4]
+        _data.position=row[5]
+        _data.mobile= row[6]
+        _data.email= row[7]
         _data.address=row[8]
         _data.coverage= row[9]
-        _data.sex= (row[10].strip=='男' ? 1 : 0)
-        _data.notes=row[11]
+        _data.man = row[10]
+        _data.woman = row[11]
+        _data.notes=row[12]
 
         _data.created_at=Time.now
         _data.updated_at=Time.now
         _data.created_by=user.id
         _data.updated_by=user.id
-        msg =  _data.save
+        _data.save
+      end
+      if error_numbers.count > 0
+        raise ActiveRecord::Rollback
       end
     end
-    return msg
+    error_numbers
   end
 end

@@ -86,7 +86,8 @@ zh-CN:
         weixin: 微信
         address: 地址
         coverage: 日均覆盖人数(万人)
-        sex: 性别
+        man: 男
+        woman: 女
         notes: 备注
         created_by: 创建人
         updated_by: 更新人
@@ -103,7 +104,8 @@ zh-CN:
         weixin: 微信
         address: 地址
         coverage: 日均覆盖人数(万人)
-        sex: 性别
+        man: 男
+        woman: 女
         notes: 备注
         created_by: 创建人
         updated_by: 更新人
@@ -121,6 +123,7 @@ zh-CN:
         mobile: 电话
         email: 邮箱
         weixin: 微信
+        web_url: 网站地址
         address: 地址
         coverage: 日均覆盖人数(万人)
         sex: 性别
@@ -180,13 +183,13 @@ zh-CN:
         updated_at: 更新时间
       grass_resource:
         nickname: 昵称
-        media_url: 昵称
-        fans_number: 昵称
-        category: 昵称
-        regional: 昵称
-        type_id: 昵称
-        content_location: 昵称
-        media_type_id: 昵称
+        media_url: 地址
+        fans_number: 粉丝数
+        category: 类别
+        regional: 区域
+        type_id: 资源类别
+        content_location: 内容定位
+        media_type_id: 媒体类别
         created_by: 创建人
         updated_by: 更新人
         created_at: 创建时间

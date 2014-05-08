@@ -50,15 +50,12 @@
       <%= f.input :position, required: true %>
       <%= f.input :mobile, required: true %>
       <%= f.input :email, required: true %>
-      <%= f.input :weixin, required: true %>
       <%= f.input :address, required: true %>
       <%= f.input :coverage, required: true %>
+        <%= f.input :man, required: false %>
+        <%= f.input :woman, required: false %>
 
-      <div class="control-group string required fashion_media_info_sex"><label class="string required control-label" for="fashion_media_info_sex"><abbr title="带*星号的为必填项">*</abbr> 性别</label><div class="controls">
-        <select class="string required" id="fashion_media_info_sex" name="fashion_media_info[sex]">
-          <option value="1">男</option>
-          <option value="0">女</option>
-        </select></div></div>
+
 
 
       <%= f.input :notes, required: false ,:as=>:text,input_html: { rows: 5 }%>

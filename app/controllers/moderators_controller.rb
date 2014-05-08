@@ -87,7 +87,8 @@ class ModeratorsController < ApplicationController
             workbook = Spreadsheet.open("#{Rails.root}/public/files/temp/"+new_file_name)
 
             _sheet = workbook.worksheet(0)
-            msg = Moderator.create_by_excel(_sheet,current_user)
+            Moderator.create_by_excel(_sheet,current_user)
+
             FileUtils.rm Dir["#{Rails.root}/public/files/temp/*.xls"]
             respond_to do |format|
               format.html { redirect_to moderators_path, notice: '上传成功.' }

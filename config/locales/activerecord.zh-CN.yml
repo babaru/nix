@@ -86,7 +86,8 @@ zh-CN:
         weixin: 微信
         address: 地址
         coverage: 日均覆盖人数(万人)
-        sex: 性别
+        man: 男
+        woman: 女
         notes: 备注
         created_by: 创建人
         updated_by: 更新人
@@ -103,7 +104,8 @@ zh-CN:
         weixin: 微信
         address: 地址
         coverage: 日均覆盖人数(万人)
-        sex: 性别
+        man: 男
+        woman: 女
         notes: 备注
         created_by: 创建人
         updated_by: 更新人
@@ -121,6 +123,7 @@ zh-CN:
         mobile: 电话
         email: 邮箱
         weixin: 微信
+        web_url: 网站地址
         address: 地址
         coverage: 日均覆盖人数(万人)
         sex: 性别
@@ -140,6 +143,7 @@ zh-CN:
         friendly_brand: 友好品牌
         estranged_brand: 疏远品牌
       moderator:
+        nickname: 昵称
         position: 职位
         topic_of_concern: 关注话题
         product_name: 产品

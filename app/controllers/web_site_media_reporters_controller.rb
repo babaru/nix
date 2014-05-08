@@ -155,12 +155,20 @@ class WebSiteMediaReportersController < ApplicationController
             workbook = Spreadsheet.open("#{Rails.root}/public/files/temp/"+new_file_name)
 
             _sheet = workbook.worksheet(0)
-            msg = WebSiteMediaReporter.create_by_excel(_sheet,current_user)
+            error_numbers = WebSiteMediaReporter.create_by_excel(_sheet,current_user)
             FileUtils.rm Dir["#{Rails.root}/public/files/temp/*.xls"]
-            respond_to do |format|
-              format.html { redirect_to web_site_media_reporters_path, notice: '上传成功.' }
-              format.json { render json: {}, status: :created, location: {} }
+            if error_numbers.count>0
+              respond_to do |format|
+                format.html { redirect_to web_site_media_reporters_path, alert: "上传失败，失败编号为#{error_numbers.join(",")}。请检查城市是否填写正确！！！" }
+                format.json { render json: {}, status: :created, location: {} }
+              end
+            else
+              respond_to do |format|
+                format.html { redirect_to web_site_media_reporters_path, notice: "上传完成，共上传数据#{(_sheet.count)-1}条！！！" }
+                format.json { render json: {}, status: :created, location: {} }
+              end
             end
+
           rescue Exception => e
             ActiveRecord::Rollback
             render :text => "<script>alert('#{e.to_s}');history.go(-1);</script>"

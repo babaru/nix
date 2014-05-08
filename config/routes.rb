@@ -31,6 +31,7 @@ Nix::Application.routes.draw do
   post 'moderators/download_moderator' => 'moderators#download_moderator', as: :download_moderator
   get 'moderators/upload_moderator' => 'moderators#upload_moderator', as: :upload_moderator
   get 'file_categories/upload_file_category' => 'file_categories#upload_file_category', as: :upload_file_category
+  post 'file_categories/download_file/:id' => 'file_categories#download_file', as: :download_file
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

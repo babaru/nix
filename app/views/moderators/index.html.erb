@@ -59,6 +59,9 @@
   g.column name: t('activerecord.attributes.moderator.name') do |m|
     m.name
   end
+  g.column name: t('activerecord.attributes.moderator.nickname') do |m|
+    m.nickname
+  end
   g.column name: t('activerecord.attributes.moderator.sex') do |m|
     m.sex.to_i==1 ? '男' : '女'
   end
@@ -76,9 +79,6 @@
     m.email
   end
 
-  g.column name: t('activerecord.attributes.moderator.weixin') do |m|
-    m.weixin
-  end
   g.column name: t('activerecord.attributes.moderator.office_address') do |m|
     m.office_address
   end
@@ -107,7 +107,9 @@
   end
 
   g.column name: t('activerecord.attributes.moderator.married') do |m|
-    m.married==true ? '已婚' : '未婚'
+    unless m.married == nil
+        m.married==true ? '已婚' : '未婚'
+    end
   end
 
   g.column name: t('activerecord.attributes.moderator.has_children') do |m|

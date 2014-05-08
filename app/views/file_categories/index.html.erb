@@ -37,12 +37,17 @@
             <%= link_to_function '添加子类', "show_add_category(#{cat.id})" -%>
             &nbsp;&nbsp;&nbsp;&nbsp;
             <%= link_to_function '上传文件', "show_upload(#{cat.id},this)" -%>
-            <div></div>
+            <div id ="div_<%= cat.id -%>"></div>
           </li>
           <% end -%>
         </ul>
   <% end -%>
 </div>
+<style>
+  ul li {
+      margin: 10px;
+  }
+</style>
 <script>
   function show_add_category(c_id){
 //      if($('#category_info').is(':hidden')){
@@ -58,7 +63,7 @@
   function show_upload(c_id,obj){
 
       if($(obj).parent().find('form')[0]==undefined){
-          $(obj).parent().find('div').append($('#upload_form').html());
+          $(obj).parent().find('#div_'+c_id.toString()).append($('#upload_form').html());
           $(obj).parent().find('#hid_upload_category_id').val(c_id);
 
 

@@ -45,11 +45,8 @@
         <%= f.input :address, required: true %>
         <%= f.input :coverage, required: true %>
 
-        <div class="control-group string required traveling_photography_media_info_sex"><label class="string required control-label" for="traveling_photography_media_info_sex"><abbr title="带*星号的为必填项">*</abbr> 性别</label><div class="controls">
-          <select class="string required" id="traveling_photography_media_info_sex" name="traveling_photography_media_info[sex]">
-            <option value="1">男</option>
-            <option value="0">女</option>
-          </select></div></div>
+        <%= f.input :man, required: false %>
+        <%= f.input :woman, required: false %>
 
 
         <%= f.input :notes, required: false ,:as=>:text,input_html: { rows: 5 }%>

@@ -98,7 +98,13 @@
   end
 
   g.column name: t('activerecord.attributes.grass_resource.media_url') do |m|
-    m.media_url
+    if [2,3].include?(m.media_type_id)
+      link_to m.media_url,m.media_url,:target=>'_blank'
+    else
+      m.media_url
+    end
+
+
   end
   g.column name: t('activerecord.attributes.grass_resource.fans_number') do |m|
     m.fans_number

@@ -14,6 +14,7 @@ class CreateNetworkOpinionLeaderBloggers < ActiveRecord::Migration
       t.string :working_conditions
       t.integer :blog_traffic,:limit=>6
       t.string :blog_address
+      t.string :web_url
       t.string :weixin
       t.string :active_record #活动记录
       t.string :maintenance_record #维护记录

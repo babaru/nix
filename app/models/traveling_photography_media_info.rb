@@ -2,14 +2,14 @@ class TravelingPhotographyMediaInfo < ActiveRecord::Base
   attr_accessible :web_site,  :web_site_introduction,  :content_name,  :position,  :mobile,  :email,  :address,  :coverage,:notes,:sex
   belongs_to :created_man, :class_name => "User", :foreign_key => "created_by"
   belongs_to :updated_man, :class_name => "User", :foreign_key => "updated_by"
-  validates :web_site, presence: true
-  validates :web_site_introduction, presence: true
-  validates :content_name, presence: true
-  validates :position, presence: true
-  validates :mobile, presence: true
-  validates :email, presence: true
-  validates :address, presence: true
-  validates :coverage, presence: true
+  # validates :web_site, presence: true
+  # validates :web_site_introduction, presence: true
+  # validates :content_name, presence: true
+  # validates :position, presence: true
+  # validates :mobile, presence: true
+  # validates :email, presence: true
+  # validates :address, presence: true
+  # validates :coverage, presence: true
 
   def other_valid?
     errors.size == 0
@@ -32,14 +32,14 @@ class TravelingPhotographyMediaInfo < ActiveRecord::Base
     workbook = Spreadsheet::Workbook.new
 
     sheet1 = workbook.create_worksheet(:name => '旅游/摄影媒体信息')
-    format = Spreadsheet::Format.new(:pattern => 1,:color => :white, :weight => :bold, :size => 11)
+    format = Spreadsheet::Format.new(:color => :black,:horizontal_align => :center,:pattern_fg_color=>'silver',:pattern=>1, :size => 10,:border_color=>:black,:border=>:thin)
     sheet1.row(0).default_format = format
-    sheet1.row(0).replace ['网站地址 ','网站介绍 ','联系人 ','职位 ','电话 ','邮箱 ','地址 ','日均覆盖人数(万人) ','性别 ','备注 ','创建时间 ','创建人 ','更新时间 ','创建人']
-    sheet1.row(0).height = 18
+    sheet1.row(0).replace ['序号','网站地址 ','网站介绍 ','联系人 ','职位 ','电话 ','邮箱 ','地址 ','日均覆盖人数(万人) ','男','女','备注 ','创建时间 ','创建人 ','更新时间 ','创建人']
     unless data.blank?
       data.each_with_index do |d,i|
 
-        sheet1.row(i+1).replace [d.web_site,
+        sheet1.row(i+1).replace [i+1,
+                                 d.web_site,
                                  d.web_site_introduction,
                                  d.content_name,
                                  d.position,
@@ -47,7 +47,8 @@ class TravelingPhotographyMediaInfo < ActiveRecord::Base
                                  d.email,
                                  d.address,
                                  d.coverage,
-                                 (d.sex.to_i==0 ? '女' : '男'),
+                                 d.man,
+                                 d.woman,
                                  d.notes,
                                  d.created_at.strftime('%Y-%m-%d'),
                                  d.created_name,
@@ -64,32 +65,31 @@ class TravelingPhotographyMediaInfo < ActiveRecord::Base
 
   def self.create_by_excel(_sheet=nil,user=nil)
     return false if _sheet.nil? or user.nil?
-    msg = false
+    error_numbers = []
     ActiveRecord::Base.transaction do
       _sheet.each_with_index do |row,index|
         next if index==0
         _data = TravelingPhotographyMediaInfo.new()
-        _data.web_site= row[0]
-        _data.web_site_introduction= row[1]
-        _data.content_name=row[2]
-        _data.position=row[3]
-        _data.mobile= row[4]
-        _data.email= row[5]
-        _data.address=row[6]
-        _data.coverage= row[7]
-        _data.sex= (row[8].strip=='男' ? 1 : 0)
-        _data.notes=row[9]
+        _data.web_site= row[1]
+        _data.web_site_introduction= row[2]
+        _data.content_name=row[3]
+        _data.position=row[4]
+        _data.mobile= row[5]
+        _data.email= row[6]
+        _data.address=row[7]
+        _data.coverage= row[8]
+        _data.man= (row[9].to_s=='' ? '' : row[9])
+        _data.woman= (row[10].to_s.blank? ? '' : row[10])
+        _data.notes=row[11]
 
         _data.created_at=Time.now
         _data.updated_at=Time.now
         _data.created_by=user.id
         _data.updated_by=user.id
         _data.deleted=0
-        msg =  _data.save
-        pp "-------------"
-        pp msg
+        _data.save
       end
     end
-    return msg
+    error_numbers
   end
 end

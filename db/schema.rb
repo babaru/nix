@@ -115,7 +115,8 @@ ActiveRecord::Schema.define(:version => 20140424083921) do
     t.string   "weixin"
     t.string   "address"
     t.float    "coverage"
-    t.integer  "sex",                   :limit => 2
+    t.integer  "man"
+    t.integer  "woman"
     t.text     "notes"
     t.integer  "updated_by"
     t.integer  "created_by"
@@ -128,7 +129,6 @@ ActiveRecord::Schema.define(:version => 20140424083921) do
   add_index "fashion_media_infos", ["coverage"], :name => "index_fashion_media_infos_on_coverage"
   add_index "fashion_media_infos", ["created_by"], :name => "index_fashion_media_infos_on_created_by"
   add_index "fashion_media_infos", ["deleted"], :name => "index_fashion_media_infos_on_deleted"
-  add_index "fashion_media_infos", ["sex"], :name => "index_fashion_media_infos_on_sex"
   add_index "fashion_media_infos", ["updated_by"], :name => "index_fashion_media_infos_on_updated_by"
   add_index "fashion_media_infos", ["web_site"], :name => "index_fashion_media_infos_on_web_site"
 
@@ -170,6 +170,7 @@ ActiveRecord::Schema.define(:version => 20140424083921) do
     t.string   "brand_name"
     t.string   "product_name"
     t.string   "name"
+    t.string   "nickname"
     t.integer  "sex",                :limit => 2
     t.string   "position"
     t.integer  "age",                :limit => 3
@@ -209,6 +210,7 @@ ActiveRecord::Schema.define(:version => 20140424083921) do
     t.string   "working_conditions"
     t.integer  "blog_traffic",       :limit => 8
     t.string   "blog_address"
+    t.string   "web_url"
     t.string   "weixin"
     t.string   "active_record"
     t.string   "maintenance_record"
@@ -349,7 +351,8 @@ ActiveRecord::Schema.define(:version => 20140424083921) do
     t.string   "email"
     t.string   "address"
     t.float    "coverage"
-    t.integer  "sex",                   :limit => 2
+    t.integer  "man"
+    t.integer  "woman"
     t.text     "notes"
     t.integer  "updated_by"
     t.integer  "created_by"
@@ -361,7 +364,6 @@ ActiveRecord::Schema.define(:version => 20140424083921) do
   add_index "traveling_photography_media_infos", ["coverage"], :name => "index_traveling_photography_media_infos_on_coverage"
   add_index "traveling_photography_media_infos", ["created_by"], :name => "index_traveling_photography_media_infos_on_created_by"
   add_index "traveling_photography_media_infos", ["deleted"], :name => "index_traveling_photography_media_infos_on_deleted"
-  add_index "traveling_photography_media_infos", ["sex"], :name => "index_traveling_photography_media_infos_on_sex"
   add_index "traveling_photography_media_infos", ["updated_by"], :name => "index_traveling_photography_media_infos_on_updated_by"
   add_index "traveling_photography_media_infos", ["web_site"], :name => "index_traveling_photography_media_infos_on_web_site"
 

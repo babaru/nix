@@ -80,16 +80,19 @@
     m.birthday.strftime('%Y-%m-%d') unless m.birthday.blank?
   end
 
-  g.column name: t('activerecord.attributes.network_opinion_leader_blogger.working_conditions') do |m|
+  g.column name: t('activerecord.attributes.network_opinion_leader_blogger.working_conditions'),:class=>'td_style' do |m|
     m.working_conditions
   end
 
   g.column name: t('activerecord.attributes.network_opinion_leader_blogger.blog_traffic') do |m|
-    m.blog_traffic
+    m.blog_traffic.to_s+'万' unless m.blog_traffic.blank?
   end
 
   g.column name: t('activerecord.attributes.network_opinion_leader_blogger.blog_address') do |m|
-    m.blog_address
+    link_to m.blog_address,m.blog_address,:target=>'_blank'
+  end
+  g.column name: t('activerecord.attributes.network_opinion_leader_blogger.web_url') do |m|
+  link_to m.web_url,m.web_url,:target=>'_blank'
   end
 
   g.column name: t('activerecord.attributes.network_opinion_leader_blogger.weixin') do |m|
@@ -153,6 +156,9 @@ end -%>
     #grid{
         overflow: auto;
     }
+        .td_style{
+         width: 350px;
+        }
 
 </style>
 

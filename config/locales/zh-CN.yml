@@ -11,6 +11,7 @@ zh-CN:
   wice_grid:
     next_label: 下一页
     previous_label: 上一页
+    show_all_records_label: 显示全部
   model:
     show: "%{model}详细信息"
     create: "创建%{model}"

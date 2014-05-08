@@ -72,8 +72,11 @@
   g.column name: t('activerecord.attributes.traveling_photography_media_info.coverage') do |m|
     m.coverage
   end
-  g.column name: t('activerecord.attributes.traveling_photography_media_info.sex') do |m|
-    m.sex.to_i==1 ? '男' : '女'
+  g.column name: t('activerecord.attributes.traveling_photography_media_info.man') do |m|
+    m.man
+  end
+  g.column name: t('activerecord.attributes.traveling_photography_media_info.woman') do |m|
+    m.woman
   end
   g.column name: t('activerecord.attributes.traveling_photography_media_info.notes') do |m|
     m.notes

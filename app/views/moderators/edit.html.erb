@@ -60,7 +60,7 @@
         <%= f.input :active_record, required: false,:as=>:text,input_html: { rows: 5 } %>
         <%= f.input :maintenance_record, required: false,:as=>:text,input_html: { rows: 5 } %>
         <%= f.input :topic_of_concern, required: true %>
-        <div class="control-group string required moderator_married"><label class="string required control-label" for="moderator_married"><abbr title="带*星号的为必填项">*</abbr> 性别</label><div class="controls">
+        <div class="control-group string required moderator_married"><label class="string required control-label" for="moderator_married"><abbr title="带*星号的为必填项">*</abbr> 已婚？</label><div class="controls">
           <select class="string required" id="moderator_married" name="moderator[married]">
             <option value="true"  <%= @media.married==true ? 'selected' : '' -%>>已婚</option>
             <option value="false" <%= @media.married==false ? 'selected' : '' -%>>未婚</option>

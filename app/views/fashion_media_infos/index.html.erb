@@ -53,7 +53,7 @@
   g.column name: t('activerecord.attributes.fashion_media_info.web_site') do |m|
     m.web_site
   end
-  g.column name: t('activerecord.attributes.fashion_media_info.web_site_introduction') do |m|
+  g.column name: t('activerecord.attributes.fashion_media_info.web_site_introduction'),:class=>'td_style' do |m|
     m.web_site_introduction
   end
   g.column name: t('activerecord.attributes.fashion_media_info.content_name') do |m|
@@ -68,17 +68,17 @@
   g.column name: t('activerecord.attributes.fashion_media_info.email') do |m|
     m.email
   end
-  g.column name: t('activerecord.attributes.fashion_media_info.weixin') do |m|
-    m.weixin
-  end
   g.column name: t('activerecord.attributes.fashion_media_info.address') do |m|
     m.address
   end
   g.column name: t('activerecord.attributes.fashion_media_info.coverage') do |m|
     m.coverage
   end
-  g.column name: t('activerecord.attributes.fashion_media_info.sex') do |m|
-    m.sex.to_i==1 ? '男' : '女'
+  g.column name: t('activerecord.attributes.fashion_media_info.man') do |m|
+    m.man
+  end
+  g.column name: t('activerecord.attributes.fashion_media_info.woman') do |m|
+    m.woman
   end
   g.column name: t('activerecord.attributes.fashion_media_info.notes') do |m|
     m.notes
@@ -116,6 +116,9 @@ end -%>
 
     #grid{
         overflow: auto;
+    }
+    .td_style{
+        width: 750px;
     }
 
 </style>

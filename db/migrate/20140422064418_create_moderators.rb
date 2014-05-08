@@ -5,6 +5,7 @@ class CreateModerators < ActiveRecord::Migration
       t.string :brand_name
       t.string :product_name
       t.string :name
+      t.string :nickname
       t.integer :sex,:limit=>2
       t.string :position
       t.integer :age,:limit=>3

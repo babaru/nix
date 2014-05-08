@@ -11,7 +11,8 @@ class CreateFashionMediaInfos < ActiveRecord::Migration
       t.string :weixin
       t.string :address
       t.float :coverage
-      t.integer :sex,:limit=>2
+      t.integer :man
+      t.integer :woman
       t.text :notes
       t.integer :updated_by
       t.integer :created_by
@@ -21,7 +22,6 @@ class CreateFashionMediaInfos < ActiveRecord::Migration
     add_index :fashion_media_infos,:city_id
     add_index :fashion_media_infos,:updated_by
     add_index :fashion_media_infos,:created_by
-    add_index :fashion_media_infos,:sex
     add_index :fashion_media_infos,:web_site
     add_index :fashion_media_infos,:coverage
     add_index :fashion_media_infos,:deleted

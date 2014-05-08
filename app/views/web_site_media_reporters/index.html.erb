@@ -59,15 +59,21 @@
     reporter.city_name
   end
   g.column name: t('activerecord.attributes.web_site_media_reporter.format_id') do |reporter|
-    reporter.format_id
+    reporter.format_type
   end
 
   WebSiteMediaReporter::ATTR.each do |a|
     g.column name: t('activerecord.attributes.web_site_media_reporter.'+a.to_s) do |reporter|
      if a=='married'
-       (reporter[a].blank? or reporter[a] == false) ? '未婚' : '已婚'
+       if reporter[a].blank?
+          ''
+       else
+         reporter[a] == false ? '未婚' : '已婚'
+       end
      elsif a== 'sex'
        reporter[a].to_i ==0 ? '女' : '男'
+     elsif a== 'birthday'
+       reporter[a].to_s.gsub('年','-').gsub('月','-').gsub('日','')
      else
        reporter[a]
      end
@@ -101,7 +107,7 @@
 end -%>
 <style type="text/css">
    .tablestyle{
-       width: 3000px;
+       width: 4000px;
    }
 
    #grid{
