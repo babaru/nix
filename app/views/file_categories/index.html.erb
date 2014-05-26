@@ -9,7 +9,7 @@
 })
 %>
 
-<div class="well" id="category_info" style="display: none;">
+<div id="category_info" style="display: none;">
    类别名称：
   <%= text_field_tag 'category_name' -%>
   <%= button_to_function '确定',"add_category(#{@project.id})" -%>
@@ -44,7 +44,7 @@
   <% end -%>
 </div>
 <style>
-  ul li {
+  .well ul li {
       margin: 10px;
   }
 </style>

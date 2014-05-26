@@ -1,5 +1,5 @@
 class WebSiteMediaReporter < ActiveRecord::Base
-  attr_accessible     :region_id, :province_id, :city_id,:married, :format_id, :media_name, :level, :name, :sex, :department_name, :job_name, :telephone, :mobile, :email, :instant_messaging, :micro_blog, :micro_message, :office_address, :working_conditions, :birthday, :id_number, :origin_place, :has_children, :has_car, :other_about, :active_record, :maintenance_record, :notes
+  attr_accessible     :region_id, :is_substation,:province_id, :city_id,:married, :format_id, :media_name, :level, :name, :sex, :department_name, :job_name, :telephone, :mobile, :email, :instant_messaging, :micro_blog, :micro_message, :office_address, :working_conditions, :birthday, :id_number, :origin_place, :has_children, :has_car, :other_about, :active_record, :maintenance_record, :notes
   belongs_to :province
   belongs_to :city
   belongs_to :region
@@ -32,7 +32,7 @@ class WebSiteMediaReporter < ActiveRecord::Base
   # validates :active_record, presence: true
   ATTR=['media_name','level','name','sex','department_name','job_name','telephone','mobile','email','instant_messaging','micro_blog','office_address','working_conditions','birthday','id_number','origin_place','married','has_children','has_car','other_about','active_record','maintenance_record','notes']
   FORMATS=[['财经门户',1],['党政门户',2],['核心垂直',3],['核心门户',4],['论坛',5],['论坛分站',6],['论坛媒体',7],['门户分站',8],['汽车垂直',9],['汽车垂直分站',10],['区域垂直',11],['区域分站',12],['区域论坛',13],['区域媒体',14],['区域门户',15],['社区门户',16],['视频',17],['视频分站',18],['综合门户',19]]
-
+  LEVELS = [['A','A'],['B','B'],['C','C'],['D','D'],['E','E'],['F','F'],['G','G'],['H','H'],['I','I']]
   def other_valid?
     if self.region_id.to_i==0
       errors.add(:region_id,"请选择地区")
@@ -58,7 +58,12 @@ class WebSiteMediaReporter < ActiveRecord::Base
     self.province.blank? ? '' : self.province.name
   end
   def region_name
-    self.region.blank? ? '' : self.region.name
+    if self.is_substation==1
+      '分站'
+    else
+      self.region.blank? ? '' : self.region.name
+    end
+
   end
   def city_name
     self.city.blank? ? '' : self.city.name
@@ -85,7 +90,7 @@ class WebSiteMediaReporter < ActiveRecord::Base
     sheet1.row(0).replace ['编号','区域','省份','城市','媒体介质','媒体名称','媒体级别','姓名','性别','部门名称','职务名称','电话','手机','邮箱','即时通讯','微博','办公地址','从业情况','生日','身份证号','籍贯','已婚？','是否有子女（性别）','是否有车（品牌）','其他（个人兴趣，爱好）','活动记录','维护记录','备注','创建时间','创建人','更新时间','更新人']
     unless data.blank?
       data.each_with_index do |d,i|
-        attr = [(i+1).to_s,d.region_name,d.province_name,d.city_name,d.format_id]
+        attr = [(i+1).to_s,d.region_name,d.province_name,d.city_name,d.format_type]
         WebSiteMediaReporter::ATTR.each do |a|
           if a=='married'
             if d[a].blank?
@@ -138,18 +143,25 @@ class WebSiteMediaReporter < ActiveRecord::Base
         # _reporter.region_id=_city.province.region_id
 
         #_city_name = row[2].to_s.strip
+        if row[1].to_s.strip=='分站'
+          _reporter.is_substation = 1
+        end
         _city = City.where("name like ?","%#{row[3].to_s.strip}%").first unless row[3].to_s.strip.blank?
         # if _city.blank?
         #   raise ActiveRecord::Rollback
         #   break
         # end
-        if _city.blank?
-          error_numbers << row[0]
-          next
+        if !_city.blank?
+          _reporter.city_id=_city.id
+          _reporter.province_id=_city.province_id
+          _reporter.region_id=_city.province.region_id
+        else
+          _province = Province.where("name like ?","%#{row[2].to_s.strip}%").first unless row[3].to_s.strip.blank?
+          if !_province.blank?
+            _reporter.province_id=_province.id
+            _reporter.region_id=_province.region_id
+          end
         end
-        _reporter.city_id=_city.id
-        _reporter.province_id=_city.province_id
-        _reporter.region_id=_city.province.region_id
 
         _format = WebSiteMediaReporter::FORMATS.find{|x|x[0]==row[4].to_s.strip()}
         _reporter.format_id=_format[1] if _format

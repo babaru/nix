@@ -426,6 +426,7 @@ ActiveRecord::Schema.define(:version => 20140424083921) do
     t.string   "active_record"
     t.string   "maintenance_record"
     t.text     "notes"
+    t.integer  "is_substation",      :limit => 2, :default => 0
     t.integer  "created_by"
     t.integer  "updated_by"
     t.integer  "deleted",            :limit => 2, :default => 0
@@ -436,6 +437,7 @@ ActiveRecord::Schema.define(:version => 20140424083921) do
   add_index "web_site_media_reporters", ["city_id"], :name => "index_web_site_media_reporters_on_city_id"
   add_index "web_site_media_reporters", ["created_by"], :name => "index_web_site_media_reporters_on_created_by"
   add_index "web_site_media_reporters", ["format_id"], :name => "index_web_site_media_reporters_on_format_id"
+  add_index "web_site_media_reporters", ["is_substation"], :name => "index_web_site_media_reporters_on_is_substation"
   add_index "web_site_media_reporters", ["province_id"], :name => "index_web_site_media_reporters_on_province_id"
   add_index "web_site_media_reporters", ["region_id"], :name => "index_web_site_media_reporters_on_region_id"
   add_index "web_site_media_reporters", ["sex"], :name => "index_web_site_media_reporters_on_sex"

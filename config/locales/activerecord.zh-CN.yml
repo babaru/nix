@@ -77,7 +77,7 @@ zh-CN:
         permissions: 权限 
       fashion_media_info:
         city_id: 所属城市
-        web_site: 网站地址
+        web_site: 网站
         web_site_introduction: 网站介绍  
         content_name: 联系人
         position: 职位
@@ -95,7 +95,7 @@ zh-CN:
         updated_at: 更新时间     
       traveling_photography_media_info:
         city_id: 所属城市
-        web_site: 网站地址
+        web_site: 网站
         web_site_introduction: 网站介绍  
         content_name: 联系人
         position: 职位
@@ -116,7 +116,7 @@ zh-CN:
         nickname: 昵称
         name: 姓名
         media_name: 媒体
-        web_site: 网站地址
+        web_site: 网站
         web_site_introduction: 网站介绍  
         content_name: 联系人
         position: 职位

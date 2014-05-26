@@ -3,9 +3,45 @@ class FashionMediaInfosController < ApplicationController
   before_filter :has_login
   add_breadcrumb(I18n.t('model.list', model: FashionMediaInfo.model_name.human), :fashion_media_infos_path, except: :index)
   def index
+    sql,sql_attr=' deleted=0',[]
+
+    unless params[:web_site].blank?
+      sql += " and web_site like ? "
+      sql_attr << "%"+params[:web_site]+"%"
+    end
+
+    unless params[:content_name].blank?
+      sql += " and content_name like ? "
+      sql_attr << "%"+params[:content_name]+"%"
+    end
+
+    unless params[:position].blank?
+      sql += " and position like ? "
+      sql_attr << "%"+params[:position]+"%"
+    end
+
+    unless params[:mobile].blank?
+      sql += " and mobile like ? "
+      sql_attr << "%"+params[:mobile]+"%"
+    end
+
+    unless params[:email].blank?
+      sql += " and email like ? "
+      sql_attr << "%"+params[:email]+"%"
+    end
+
+    unless params[:coverage].blank?
+      sql += " and coverage >= ? "
+      sql_attr << params[:coverage].to_f
+    end
+
+    unless params[:coverage1].blank?
+      sql += " and coverage <= ? "
+      sql_attr << params[:coverage1].to_f
+    end
 
 
-    @medias_grid = initialize_grid(FashionMediaInfo.where(:deleted => 0))
+    @medias_grid = initialize_grid(FashionMediaInfo.where([sql]+sql_attr))
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @medias_grid }
@@ -74,20 +110,41 @@ class FashionMediaInfosController < ApplicationController
   end
 
   def download_media_info
-    sql,sql_attr=' deleted=0 ',[]
-    unless params[:region_id].to_i==0
-      sql += " and region_id = ? "
-      sql_attr << params[:region_id]
+    sql,sql_attr=' deleted=0',[]
+
+    unless params[:web_site].blank?
+      sql += " and web_site like ? "
+      sql_attr << "%"+params[:web_site]+"%"
     end
 
-    unless params[:province_id].to_i==0
-      sql += " and province_id = ? "
-      sql_attr << params[:province_id]
+    unless params[:content_name].blank?
+      sql += " and content_name like ? "
+      sql_attr << "%"+params[:content_name]+"%"
     end
 
-    unless params[:city_id].to_i==0
-      sql += " and city_id = ? "
-      sql_attr << params[:city_id]
+    unless params[:position].blank?
+      sql += " and position like ? "
+      sql_attr << "%"+params[:position]+"%"
+    end
+
+    unless params[:mobile].blank?
+      sql += " and mobile like ? "
+      sql_attr << "%"+params[:mobile]+"%"
+    end
+
+    unless params[:email].blank?
+      sql += " and email like ? "
+      sql_attr << "%"+params[:email]+"%"
+    end
+
+    unless params[:coverage].blank?
+      sql += " and coverage >= ? "
+      sql_attr << params[:coverage].to_f
+    end
+
+    unless params[:coverage1].blank?
+      sql += " and coverage <= ? "
+      sql_attr << params[:coverage1].to_f
     end
 
     data = FashionMediaInfo.where([sql]+sql_attr)

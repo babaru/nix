@@ -3,7 +3,44 @@ class TravelingPhotographyMediaInfosController < ApplicationController
   before_filter :has_login
   add_breadcrumb(I18n.t('model.list', model: TravelingPhotographyMediaInfo.model_name.human), :traveling_photography_media_infos_path, except: :index)
   def index
-    @medias_grid = initialize_grid(TravelingPhotographyMediaInfo.where(:deleted => 0))
+    sql,sql_attr=' deleted=0',[]
+
+    unless params[:web_site].blank?
+      sql += " and web_site like ? "
+      sql_attr << "%"+params[:web_site]+"%"
+    end
+
+    unless params[:content_name].blank?
+      sql += " and content_name like ? "
+      sql_attr << "%"+params[:content_name]+"%"
+    end
+
+    unless params[:position].blank?
+      sql += " and position like ? "
+      sql_attr << "%"+params[:position]+"%"
+    end
+
+    unless params[:mobile].blank?
+      sql += " and mobile like ? "
+      sql_attr << "%"+params[:mobile]+"%"
+    end
+
+    unless params[:email].blank?
+      sql += " and email like ? "
+      sql_attr << "%"+params[:email]+"%"
+    end
+
+    unless params[:coverage].blank?
+      sql += " and coverage >= ? "
+      sql_attr << params[:coverage].to_f
+    end
+
+    unless params[:coverage1].blank?
+      sql += " and coverage <= ? "
+      sql_attr << params[:coverage1].to_f
+    end
+
+    @medias_grid = initialize_grid(TravelingPhotographyMediaInfo.where([sql]+sql_attr))
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @medias_grid }
@@ -71,7 +108,43 @@ class TravelingPhotographyMediaInfosController < ApplicationController
   end
 
   def download_traveling_photography_media_info
-    sql,sql_attr=' deleted=0 ',[]
+    sql,sql_attr=' deleted=0',[]
+
+    unless params[:web_site].blank?
+      sql += " and web_site like ? "
+      sql_attr << "%"+params[:web_site]+"%"
+    end
+
+    unless params[:content_name].blank?
+      sql += " and content_name like ? "
+      sql_attr << "%"+params[:content_name]+"%"
+    end
+
+    unless params[:position].blank?
+      sql += " and position like ? "
+      sql_attr << "%"+params[:position]+"%"
+    end
+
+    unless params[:mobile].blank?
+      sql += " and mobile like ? "
+      sql_attr << "%"+params[:mobile]+"%"
+    end
+
+    unless params[:email].blank?
+      sql += " and email like ? "
+      sql_attr << "%"+params[:email]+"%"
+    end
+
+    unless params[:coverage].blank?
+      sql += " and coverage >= ? "
+      sql_attr << params[:coverage].to_f
+    end
+
+    unless params[:coverage1].blank?
+      sql += " and coverage <= ? "
+      sql_attr << params[:coverage1].to_f
+    end
+
 
     data = TravelingPhotographyMediaInfo.where([sql]+sql_attr)
     new_file = TravelingPhotographyMediaInfo.create_new_template(data)

@@ -1,29 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1117331347">
-    <data-source source="LOCAL" name="Rails nix: development" uuid="ba214ba0-c7ae-4210-af92-9c0f8be1f23d">
-      <driver-ref>mysql</driver-ref>
+  <component name="DataSourceManagerImpl" format="xml" hash="1478581658">
+    <data-source source="LOCAL" name="Rails nix: development" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="2f64091d-af6d-414b-b52c-e1bb8768306b">
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://127.0.0.1/nix</jdbc-url>
       <user-name>root</user-name>
       <user-password>dfcbdfcedfc7dfc3dfc4</user-password>
-      <libraries />
+      <libraries>
+        <library>
+          <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/mysql-connector-license.txt</url>
+        </library>
+        <library>
+          <url>jar://$USER_HOME$/.RubyMine50/config/jdbc-drivers/mysql-connector-java-5.1.22-bin.jar!/</url>
+        </library>
+      </libraries>
     </data-source>
-    <data-source source="LOCAL" name="Rails nix: test" uuid="c8ae946f-422c-451e-a3d2-d178beedd8b5">
-      <driver-ref>mysql</driver-ref>
+    <data-source source="LOCAL" name="Rails nix: test" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="41969d61-31d3-4c1c-8595-17bd593da40c">
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://127.0.0.1/nix</jdbc-url>
       <user-name>root</user-name>
       <user-password>dfcbdfcedfc7dfc3dfc4</user-password>
-      <libraries />
+      <libraries>
+        <library>
+          <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/mysql-connector-license.txt</url>
+        </library>
+        <library>
+          <url>jar://$USER_HOME$/.RubyMine50/config/jdbc-drivers/mysql-connector-java-5.1.22-bin.jar!/</url>
+        </library>
+      </libraries>
     </data-source>
-    <data-source source="LOCAL" name="Rails nix: production" uuid="0827cdb7-1464-4b69-ad5e-45a46115a1ec">
-      <driver-ref>mysql</driver-ref>
+    <data-source source="LOCAL" name="Rails nix: production" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="05882514-8ad5-4e1d-aaf7-db72c640e2f8">
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://127.0.0.1/nix</jdbc-url>
       <user-name>root</user-name>
       <user-password>dfcbdfcedfc7dfc3dfc4</user-password>
-      <libraries />
+      <libraries>
+        <library>
+          <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/mysql-connector-license.txt</url>
+        </library>
+        <library>
+          <url>jar://$USER_HOME$/.RubyMine50/config/jdbc-drivers/mysql-connector-java-5.1.22-bin.jar!/</url>
+        </library>
+      </libraries>
     </data-source>
   </component>
 </project>

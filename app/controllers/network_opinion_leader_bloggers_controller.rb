@@ -3,7 +3,64 @@ class NetworkOpinionLeaderBloggersController < ApplicationController
   before_filter :has_login
   add_breadcrumb(I18n.t('model.list', model: NetworkOpinionLeaderBlogger.model_name.human), :network_opinion_leader_bloggers_path, except: :index)
   def index
-    @medias_grid = initialize_grid(NetworkOpinionLeaderBlogger.where(:deleted => 0))
+    sql,sql_attr=' deleted=0',[]
+
+    unless params[:nickname].blank?
+      sql += " and nickname like ? "
+      sql_attr << "%"+params[:nickname]+"%"
+    end
+
+    unless params[:name].blank?
+      sql += " and name like ? "
+      sql_attr << "%"+params[:name]+"%"
+    end
+
+    unless params[:sex].blank?
+      sql += " and sex = ? "
+      sql_attr << params[:sex].to_i
+    end
+
+    unless params[:media_name].blank?
+      sql += " and media_name like ? "
+      sql_attr << "%"+params[:media_name]+"%"
+    end
+
+    unless params[:position].blank?
+      sql += " and position like ? "
+      sql_attr << "%"+params[:position]+"%"
+    end
+
+    unless params[:mobile].blank?
+      sql += " and mobile like ? "
+      sql_attr << "%"+params[:mobile]+"%"
+    end
+
+    unless params[:email].blank?
+      sql += " and email like ? "
+      sql_attr << "%"+params[:email]+"%"
+    end
+
+    unless params[:birthday_start].blank?
+      sql += " and birthday >= ?"
+      sql_attr << params[:birthday_start]
+    end
+
+    unless params[:birthday_end].blank?
+      sql += " and birthday <= ?"
+      sql_attr << params[:birthday_end]
+    end
+
+    unless params[:blog_traffic].blank?
+      sql += " and blog_traffic >= ? "
+      sql_attr << params[:blog_traffic].to_f
+    end
+
+    unless params[:blog_traffic1].blank?
+      sql += " and blog_traffic <= ? "
+      sql_attr << params[:blog_traffic1].to_f
+    end
+
+    @medias_grid = initialize_grid(NetworkOpinionLeaderBlogger.where([sql]+sql_attr))
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @medias_grid }
@@ -73,7 +130,63 @@ class NetworkOpinionLeaderBloggersController < ApplicationController
   end
 
   def download_network_opinion_leader_blogger
-    sql,sql_attr=' deleted=0 ',[]
+    sql,sql_attr=' deleted=0',[]
+
+    unless params[:nickname].blank?
+      sql += " and nickname like ? "
+      sql_attr << "%"+params[:nickname]+"%"
+    end
+
+    unless params[:name].blank?
+      sql += " and name like ? "
+      sql_attr << "%"+params[:name]+"%"
+    end
+
+    unless params[:sex].blank?
+      sql += " and sex = ? "
+      sql_attr << params[:sex].to_i
+    end
+
+    unless params[:media_name].blank?
+      sql += " and media_name like ? "
+      sql_attr << "%"+params[:media_name]+"%"
+    end
+
+    unless params[:position].blank?
+      sql += " and position like ? "
+      sql_attr << "%"+params[:position]+"%"
+    end
+
+    unless params[:mobile].blank?
+      sql += " and mobile like ? "
+      sql_attr << "%"+params[:mobile]+"%"
+    end
+
+    unless params[:email].blank?
+      sql += " and email like ? "
+      sql_attr << "%"+params[:email]+"%"
+    end
+
+    unless params[:birthday_start].blank?
+      sql += " and birthday >= ?"
+      sql_attr << params[:birthday_start]
+    end
+
+    unless params[:birthday_end].blank?
+      sql += " and birthday <= ?"
+      sql_attr << params[:birthday_end]
+    end
+
+    unless params[:blog_traffic].blank?
+      sql += " and blog_traffic >= ? "
+      sql_attr << params[:blog_traffic].to_f
+    end
+
+    unless params[:blog_traffic1].blank?
+      sql += " and blog_traffic <= ? "
+      sql_attr << params[:blog_traffic1].to_f
+    end
+
 
     data = NetworkOpinionLeaderBlogger.where([sql]+sql_attr)
     new_file = NetworkOpinionLeaderBlogger.create_new_template(data)

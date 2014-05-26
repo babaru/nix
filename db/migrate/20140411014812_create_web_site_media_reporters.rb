@@ -30,6 +30,7 @@ class CreateWebSiteMediaReporters < ActiveRecord::Migration
      t.string :active_record #活动记录
      t.string :maintenance_record #维护记录
      t.text :notes
+     t.integer :is_substation,:limit=>2,:default=>0 #是否是分站0不是1是
      t.integer :created_by
      t.integer :updated_by
      t.integer :deleted,:limit=>2,:default=>0 #是否已经删除1已经删除0未删除
@@ -42,5 +43,6 @@ class CreateWebSiteMediaReporters < ActiveRecord::Migration
     add_index :web_site_media_reporters,:sex
     add_index :web_site_media_reporters,:created_by
     add_index :web_site_media_reporters,:updated_by
+    add_index :web_site_media_reporters,:is_substation
   end
 end

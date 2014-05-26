@@ -143,6 +143,7 @@ zh-CN:
         friendly_brand: 友好品牌
         estranged_brand: 疏远品牌
       moderator:
+        nickname: 昵称
         position: 职位
         topic_of_concern: 关注话题
         product_name: 产品

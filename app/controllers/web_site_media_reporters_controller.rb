@@ -20,6 +20,50 @@ class WebSiteMediaReportersController < ApplicationController
       sql_attr << params[:city_id]
     end
 
+    unless params[:format_id].to_i==0
+      sql += " and format_id = ?"
+      sql_attr << params[:format_id].to_i
+    end
+
+    unless params[:media_name].blank?
+      sql += " and media_name like ?"
+      sql_attr << "%"+params[:media_name].to_s+"%"
+    end
+
+    unless params[:level].blank?
+      sql += " and level = ?"
+      sql_attr << params[:level]
+    end
+
+    unless params[:name].blank?
+      sql += " and name like ?"
+      sql_attr << "%"+params[:name].to_s+"%"
+    end
+
+    unless params[:sex].blank?
+      sql += " and sex = ?"
+      sql_attr << params[:sex].to_i
+    end
+
+    unless params[:department_name].blank?
+      sql += " and department_name like ?"
+      sql_attr << "%"+params[:department_name].to_s+"%"
+    end
+
+    unless params[:birthday_start].blank?
+      sql += " and birthday >= ?"
+      sql_attr << params[:birthday_start]
+    end
+
+    unless params[:birthday_end].blank?
+      sql += " and birthday <= ?"
+      sql_attr << params[:birthday_end]
+    end
+
+    if params[:is_substation]=='1'
+      sql += " and is_substation = 1"
+    end
+
     @reporters_grid = initialize_grid(WebSiteMediaReporter.where([sql]+sql_attr))
     @provinces ,@cities = [],[]
     @regions=Region.all().map{|o| [o.name,o.id]} || []
@@ -137,6 +181,49 @@ class WebSiteMediaReportersController < ApplicationController
     unless params[:city_id].to_i==0
       sql += " and city_id = ? "
       sql_attr << params[:city_id]
+    end
+
+    unless params[:format_id].to_i==0
+      sql += " and format_id = ?"
+      sql_attr << params[:format_id].to_i
+    end
+
+    unless params[:media_name].blank?
+      sql += " and media_name like ?"
+      sql_attr << "%"+params[:media_name].to_s+"%"
+    end
+
+    unless params[:level].blank?
+      sql += " and level = ?"
+      sql_attr << params[:level]
+    end
+
+    unless params[:name].blank?
+      sql += " and name like ?"
+      sql_attr << "%"+params[:name].to_s+"%"
+    end
+
+    unless params[:sex].blank?
+      sql += " and sex = ?"
+      sql_attr << params[:sex].to_i
+    end
+
+    unless params[:department_name].blank?
+      sql += " and department_name like ?"
+      sql_attr << "%"+params[:department_name].to_s+"%"
+    end
+
+    unless params[:birthday_start].blank?
+      sql += " and birthday >= ?"
+      sql_attr << params[:birthday_start]
+    end
+
+    unless params[:birthday_end].blank?
+      sql += " and birthday <= ?"
+      sql_attr << params[:birthday_end]
+    end
+    if params[:is_substation]=='1'
+      sql += " and is_substation = 1"
     end
 
     data = WebSiteMediaReporter.where([sql]+sql_attr)

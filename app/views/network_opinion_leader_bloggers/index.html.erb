@@ -1,3 +1,4 @@
+<%= form_tag({},:method=>'get') do -%>
 <%= render_cell(:page_title, :show, data:{name: "#{t('model.list', model: NetworkOpinionLeaderBlogger.model_name.human)}",
                                           toolbar: {
                                                   right:
@@ -22,7 +23,7 @@
                                                                               data:
                                                                                       {
                                                                                               name: fa_icon('download-alt', text: t('model.download',:model => NetworkOpinionLeaderBlogger.model_name.human)),
-                                                                                              url: download_network_opinion_leader_blogger_path,
+                                                                                              url: download_network_opinion_leader_blogger_path(params),
                                                                                               options:
                                                                                                       {
                                                                                                               class: 'btn btn-info',
@@ -38,13 +39,32 @@
 
 <div class="well">
 
-  <%= form_tag({},:method=>'get') do -%>
-      地区:
 
+      昵称：
+      <%= text_field_tag 'nickname',params[:nickname],:style=>"width:100px"-%>
+      姓名:
+      <%= text_field_tag 'name',params[:name],:style=>"width:60px"-%>
+  性别:
+  <%= select_tag('sex',options_for_select([['全部',nil],['男','1'],['女','0']],params[:sex]),:style=>"width:60px") -%>
+  媒体名称:
+  <%= text_field_tag 'media_name',params[:media_name],:style=>"width:100px"-%>
+      职位:
+      <%= text_field_tag 'position',params[:position],:style=>"width:100px"-%>
+      电话:
+      <%= text_field_tag 'mobile',params[:mobile],:style=>"width:100px"-%>
+      邮箱:
+      <%= text_field_tag 'email',params[:email],:style=>"width:100px"-%>
+  生日:
+  <%= date_selector({:name=>'birthday_start',:id=>'birthday_start',:value=>params[:birthday_start]}) -%>
+  到
+  <%= date_selector({:name=>'birthday_end',:id=>'birthday_end',:value=>params[:birthday_end]}) -%>
+      博客访问量:
+      <%= text_field_tag 'blog_traffic',params[:blog_traffic],:style=>"width:50px"-%>万 到
+      <%= text_field_tag 'blog_traffic1',params[:blog_traffic1],:style=>"width:50px"-%>万
       <%= submit_tag('查询') -%>
-  <% end -%>
-</div>
 
+</div>
+            <% end -%>
 <%= grid(@medias_grid, :show_filters => :when_filtered,:class=> 'tablestyle') do |g|
 
   g.column name: t('activerecord.attributes.network_opinion_leader_blogger.city_id') do |m|
@@ -161,6 +181,9 @@ end -%>
         }
 
 </style>
+        <script>
+            $('#grid').attr('style','height:750px');
+        </script>
 
 
 

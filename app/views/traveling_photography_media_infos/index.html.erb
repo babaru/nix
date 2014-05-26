@@ -1,3 +1,4 @@
+<%= form_tag({},:method=>'get') do -%>
 <%= render_cell(:page_title, :show, data:{name: "#{t('model.list', model: TravelingPhotographyMediaInfo.model_name.human)}",
                                           toolbar: {
                                                   right:
@@ -22,7 +23,7 @@
                                                                               data:
                                                                                       {
                                                                                               name: fa_icon('download-alt', text: t('model.download',:model => TravelingPhotographyMediaInfo.model_name.human)),
-                                                                                              url: download_traveling_photography_media_info_path,
+                                                                                              url: download_traveling_photography_media_info_path(params),
                                                                                               options:
                                                                                                       {
                                                                                                               class: 'btn btn-info',
@@ -38,12 +39,24 @@
 
 <div class="well">
 
-  <%= form_tag({},:method=>'get') do -%>
-      地区:
 
+      网站：
+      <%= text_field_tag 'web_site',params[:web_site],:style=>"width:100px"-%>
+      联系人:
+      <%= text_field_tag 'content_name',params[:content_name],:style=>"width:60px"-%>
+      职位:
+      <%= text_field_tag 'position',params[:position],:style=>"width:100px"-%>
+      电话:
+      <%= text_field_tag 'mobile',params[:mobile],:style=>"width:100px"-%>
+      邮箱:
+      <%= text_field_tag 'email',params[:email],:style=>"width:100px"-%>
+      日均覆盖人数:
+      <%= text_field_tag 'coverage',params[:coverage],:style=>"width:50px"-%>万人 到
+      <%= text_field_tag 'coverage1',params[:coverage1],:style=>"width:50px"-%>万人
       <%= submit_tag('查询') -%>
-  <% end -%>
+
 </div>
+            <% end -%>
 
 <%= grid(@medias_grid, :show_filters => :when_filtered,:class=> 'tablestyle') do |g|
 
@@ -117,6 +130,9 @@ end -%>
     }
 
 </style>
+            <script>
+                $('#grid').attr('style','height:750px');
+            </script>
 
 
 
