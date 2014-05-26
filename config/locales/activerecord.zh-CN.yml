@@ -191,6 +191,7 @@ zh-CN:
         type_id: 资源类别
         content_location: 内容定位
         media_type_id: 媒体类别
+        price: 报价
         created_by: 创建人
         updated_by: 更新人
         created_at: 创建时间

@@ -142,7 +142,7 @@ class GrassResource < ActiveRecord::Base
         _data.category = row[5]
         _data.regional = row[6]
         _data.content_location = row[7]
-
+        _data.price = row[8] unless row[8].to_s.blank?
 
         _data.created_at=Time.now
         _data.updated_at=Time.now

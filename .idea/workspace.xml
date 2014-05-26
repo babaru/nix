@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="699d20be-cbe3-4e87-867a-4a71c08051ce" name="Default" comment="" />
+    <list default="true" id="699d20be-cbe3-4e87-867a-4a71c08051ce" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20140423025352_create_grass_resources.rb" afterPath="$PROJECT_DIR$/db/migrate/20140423025352_create_grass_resources.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/grass_resource.rb" afterPath="$PROJECT_DIR$/app/models/grass_resource.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/grass_resources/index.html.erb" afterPath="$PROJECT_DIR$/app/views/grass_resources/index.html.erb" />
+    </list>
     <ignored path="nix.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1401091521483" ignored="false" />
@@ -37,20 +41,64 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="init.rb" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/init.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="8" selection-start="77" selection-end="83" vertical-scroll-proportion="0.036677454">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="province.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/province.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state line="14" column="29" selection-start="396" selection-end="396" vertical-scroll-proportion="0.0">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="grass_resource.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/grass_resource.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="88" column="13" selection-start="4700" selection-end="4700" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html.erb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/grass_resources/index.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="120" column="60" selection-start="7055" selection-end="7069" vertical-scroll-proportion="0.8040541">
+              <folding>
+                <element signature="e#51#72#0" expanded="true" />
+                <marker date="1401096894457" expanded="true" signature="4120:8072" placeholder=" ... end" />
+                <marker date="1401096894457" expanded="true" signature="4902:5067" placeholder="if ... end" />
+                <marker date="1401096894457" expanded="true" signature="5266:5443" placeholder="do ... end" />
+                <marker date="1401096894457" expanded="true" signature="5497:5974" placeholder="if ... end" />
+                <marker date="1401096894457" expanded="true" signature="5690:5906" placeholder="do ... end" />
+                <marker date="1401096894457" expanded="true" signature="6066:7008" placeholder="do ... end" />
+                <marker date="1401096894457" expanded="false" signature="6091:6148" placeholder="&quot;媒体类别&quot;" />
+                <marker date="1401096894457" expanded="true" signature="6149:6259" placeholder="do ... end" />
+                <marker date="1401096894457" expanded="false" signature="6278:6330" placeholder="&quot;昵称&quot;" />
+                <marker date="1401096894457" expanded="true" signature="6331:6358" placeholder="do ... end" />
+                <marker date="1401096894457" expanded="false" signature="6377:6430" placeholder="&quot;地址&quot;" />
+                <marker date="1401096894457" expanded="true" signature="6431:6575" placeholder="do ... end" />
+                <marker date="1401096894457" expanded="true" signature="6442:6567" placeholder="if ... end" />
+                <marker date="1401096894457" expanded="false" signature="6593:6648" placeholder="&quot;粉丝数&quot;" />
+                <marker date="1401096894457" expanded="true" signature="6649:6679" placeholder="do ... end" />
+                <marker date="1401096894457" expanded="false" signature="6697:6749" placeholder="&quot;类别&quot;" />
+                <marker date="1401096894457" expanded="true" signature="6750:6777" placeholder="do ... end" />
+                <marker date="1401096894457" expanded="false" signature="6795:6847" placeholder="&quot;区域&quot;" />
+                <marker date="1401096894457" expanded="true" signature="6848:6875" placeholder="do ... end" />
+                <marker date="1401096894457" expanded="false" signature="6893:6953" placeholder="&quot;内容定位&quot;" />
+                <marker date="1401096894457" expanded="false" signature="7143:7215" placeholder="&quot;创建时间&quot;" />
+                <marker date="1401096894457" expanded="true" signature="7216:7266" placeholder="do ... end" />
+                <marker date="1401096894457" expanded="false" signature="7285:7357" placeholder="&quot;创建人&quot;" />
+                <marker date="1401096894457" expanded="true" signature="7358:7389" placeholder="do ... end" />
+                <marker date="1401096894457" expanded="false" signature="7408:7480" placeholder="&quot;更新时间   &quot;" />
+                <marker date="1401096894457" expanded="true" signature="7481:7531" placeholder="do ... end" />
+                <marker date="1401096894457" expanded="false" signature="7550:7622" placeholder="&quot;更新人&quot;" />
+                <marker date="1401096894457" expanded="true" signature="7623:7654" placeholder="do ... end" />
+                <marker date="1401096894457" expanded="true" signature="7681:7830" placeholder=" ... end" />
+                <marker date="1401096894457" expanded="false" signature="7806:7823" placeholder="&quot;编辑&quot;" />
+                <marker date="1401096894457" expanded="true" signature="7855:8067" placeholder=" ... end" />
+                <marker date="1401096894457" expanded="false" signature="7962:7982" placeholder="&quot;你确定要删除这个项目吗?&quot;" />
+                <marker date="1401096894457" expanded="false" signature="8041:8060" placeholder="&quot;删除&quot;" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -79,9 +127,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/controllers/traveling_photography_media_infos_controller.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/network_opinion_leader_bloggers_controller.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/moderators_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/moderators/index.html.erb" />
         <option value="$PROJECT_DIR$/app/views/file_categories/index.html.erb" />
         <option value="$PROJECT_DIR$/config/navigation.rb" />
@@ -95,6 +140,9 @@
         <option value="$PROJECT_DIR$/app/controllers/web_site_media_reporters_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/web_site_media_reporter.rb" />
         <option value="$PROJECT_DIR$/public/init.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20140423025352_create_grass_resources.rb" />
+        <option value="$PROJECT_DIR$/app/models/grass_resource.rb" />
+        <option value="$PROJECT_DIR$/app/views/grass_resources/index.html.erb" />
       </list>
     </option>
   </component>
@@ -219,6 +267,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="db" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="migrate" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nix" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nix" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="config" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -234,6 +300,32 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nix" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nix" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grass_resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -252,6 +344,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nix" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nix" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -760,83 +866,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/shared/components/_notification.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="398" selection-end="398" vertical-scroll-proportion="0.38636363">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="802" selection-end="802" vertical-scroll-proportion="-15.038462">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/web_site_media_reporters/index.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="39" selection-start="1239" selection-end="1239" vertical-scroll-proportion="-2.6153846">
-          <folding>
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder="do ... end" />
-            <marker date="1400725481375" expanded="false" signature="-1:-1" placeholder="&quot;%{model}列表&quot;" />
-            <marker date="1400725481375" expanded="false" signature="-1:-1" placeholder="&quot;创建%{model}&quot;" />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder=" ... end" />
-            <marker date="1400725481375" expanded="false" signature="-1:-1" placeholder="&quot;上传%{model}&quot;" />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder=" ... end" />
-            <marker date="1400725481375" expanded="false" signature="-1:-1" placeholder="&quot;下载%{model}&quot;" />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder=" ... end" />
-            <marker date="1400725481375" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder="do ... end" />
-            <marker date="1400725481375" expanded="false" signature="-1:-1" placeholder="&quot;区域&quot;" />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder="do ... end" />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder="if ... end" />
-            <marker date="1400725481375" expanded="false" signature="-1:-1" placeholder="&quot;省份&quot;" />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder="do ... end" />
-            <marker date="1400725481375" expanded="false" signature="-1:-1" placeholder="&quot;城市&quot;" />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder="do ... end" />
-            <marker date="1400725481375" expanded="false" signature="-1:-1" placeholder="&quot;媒体介质&quot;" />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder="do ... end" />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder="do ... end" />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder="do ... end" />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder="if ... end" />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder="if ... end" />
-            <marker date="1400725481375" expanded="false" signature="-1:-1" placeholder="&quot;创建时间&quot;" />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder="do ... end" />
-            <marker date="1400725481375" expanded="false" signature="-1:-1" placeholder="&quot;创建人&quot;" />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder="do ... end" />
-            <marker date="1400725481375" expanded="false" signature="-1:-1" placeholder="&quot;更新时间   &quot;" />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder="do ... end" />
-            <marker date="1400725481375" expanded="false" signature="-1:-1" placeholder="&quot;更新人&quot;" />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder="do ... end" />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder=" ... end" />
-            <marker date="1400725481375" expanded="false" signature="-1:-1" placeholder="&quot;编辑&quot;" />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder=" ... end" />
-            <marker date="1400725481375" expanded="false" signature="-1:-1" placeholder="&quot;你确定要删除这个项目吗?&quot;" />
-            <marker date="1400725481375" expanded="false" signature="-1:-1" placeholder="&quot;删除&quot;" />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder="{&quot;type&quot;: 'GET'...}" />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder="{&quot;type&quot;: 'GET'...}" />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1400725481375" expanded="true" signature="-1:-1" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/network_opinion_leader_bloggers/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="56" column="5" selection-start="4171" selection-end="4171" vertical-scroll-proportion="-18.76923">
@@ -914,6 +943,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/init.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="8" selection-start="77" selection-end="83" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20140423025352_create_grass_resources.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="23" selection-start="387" selection-end="387" vertical-scroll-proportion="0.201726">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/province.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="29" selection-start="396" selection-end="396" vertical-scroll-proportion="0.0">
@@ -921,10 +964,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/init.rb">
+    <entry file="file://$PROJECT_DIR$/app/models/grass_resource.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="8" selection-start="77" selection-end="83" vertical-scroll-proportion="0.036677454">
+        <state line="88" column="13" selection-start="4700" selection-end="4700" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/grass_resources/index.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="120" column="60" selection-start="7055" selection-end="7069" vertical-scroll-proportion="0.8040541">
+          <folding>
+            <element signature="e#51#72#0" expanded="true" />
+            <marker date="1401096894457" expanded="true" signature="4120:8072" placeholder=" ... end" />
+            <marker date="1401096894457" expanded="true" signature="4902:5067" placeholder="if ... end" />
+            <marker date="1401096894457" expanded="true" signature="5266:5443" placeholder="do ... end" />
+            <marker date="1401096894457" expanded="true" signature="5497:5974" placeholder="if ... end" />
+            <marker date="1401096894457" expanded="true" signature="5690:5906" placeholder="do ... end" />
+            <marker date="1401096894457" expanded="true" signature="6066:7008" placeholder="do ... end" />
+            <marker date="1401096894457" expanded="false" signature="6091:6148" placeholder="&quot;媒体类别&quot;" />
+            <marker date="1401096894457" expanded="true" signature="6149:6259" placeholder="do ... end" />
+            <marker date="1401096894457" expanded="false" signature="6278:6330" placeholder="&quot;昵称&quot;" />
+            <marker date="1401096894457" expanded="true" signature="6331:6358" placeholder="do ... end" />
+            <marker date="1401096894457" expanded="false" signature="6377:6430" placeholder="&quot;地址&quot;" />
+            <marker date="1401096894457" expanded="true" signature="6431:6575" placeholder="do ... end" />
+            <marker date="1401096894457" expanded="true" signature="6442:6567" placeholder="if ... end" />
+            <marker date="1401096894457" expanded="false" signature="6593:6648" placeholder="&quot;粉丝数&quot;" />
+            <marker date="1401096894457" expanded="true" signature="6649:6679" placeholder="do ... end" />
+            <marker date="1401096894457" expanded="false" signature="6697:6749" placeholder="&quot;类别&quot;" />
+            <marker date="1401096894457" expanded="true" signature="6750:6777" placeholder="do ... end" />
+            <marker date="1401096894457" expanded="false" signature="6795:6847" placeholder="&quot;区域&quot;" />
+            <marker date="1401096894457" expanded="true" signature="6848:6875" placeholder="do ... end" />
+            <marker date="1401096894457" expanded="false" signature="6893:6953" placeholder="&quot;内容定位&quot;" />
+            <marker date="1401096894457" expanded="false" signature="7143:7215" placeholder="&quot;创建时间&quot;" />
+            <marker date="1401096894457" expanded="true" signature="7216:7266" placeholder="do ... end" />
+            <marker date="1401096894457" expanded="false" signature="7285:7357" placeholder="&quot;创建人&quot;" />
+            <marker date="1401096894457" expanded="true" signature="7358:7389" placeholder="do ... end" />
+            <marker date="1401096894457" expanded="false" signature="7408:7480" placeholder="&quot;更新时间   &quot;" />
+            <marker date="1401096894457" expanded="true" signature="7481:7531" placeholder="do ... end" />
+            <marker date="1401096894457" expanded="false" signature="7550:7622" placeholder="&quot;更新人&quot;" />
+            <marker date="1401096894457" expanded="true" signature="7623:7654" placeholder="do ... end" />
+            <marker date="1401096894457" expanded="true" signature="7681:7830" placeholder=" ... end" />
+            <marker date="1401096894457" expanded="false" signature="7806:7823" placeholder="&quot;编辑&quot;" />
+            <marker date="1401096894457" expanded="true" signature="7855:8067" placeholder=" ... end" />
+            <marker date="1401096894457" expanded="false" signature="7962:7982" placeholder="&quot;你确定要删除这个项目吗?&quot;" />
+            <marker date="1401096894457" expanded="false" signature="8041:8060" placeholder="&quot;删除&quot;" />
+          </folding>
         </state>
       </provider>
     </entry>

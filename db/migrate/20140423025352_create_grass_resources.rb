@@ -9,6 +9,7 @@ class CreateGrassResources < ActiveRecord::Migration
       t.integer :type_id #资源类别
       t.text :content_location #内容定位
       t.integer :media_type_id #媒体类别
+      t.integer :price #报价
       t.integer :created_by
       t.integer :updated_by
       t.integer :deleted,:limit=>2
