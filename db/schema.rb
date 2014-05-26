@@ -158,6 +158,7 @@ ActiveRecord::Schema.define(:version => 20140526072843) do
     t.integer  "type_id"
     t.text     "content_location"
     t.integer  "media_type_id"
+    t.integer  "price"
     t.integer  "created_by"
     t.integer  "updated_by"
     t.integer  "deleted",          :limit => 2

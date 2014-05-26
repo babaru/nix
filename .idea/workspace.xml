@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="699d20be-cbe3-4e87-867a-4a71c08051ce" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20140423025352_create_grass_resources.rb" afterPath="$PROJECT_DIR$/db/migrate/20140423025352_create_grass_resources.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/grass_resource.rb" afterPath="$PROJECT_DIR$/app/models/grass_resource.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/grass_resources/index.html.erb" afterPath="$PROJECT_DIR$/app/views/grass_resources/index.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
     </list>
     <ignored path="nix.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -13,6 +13,7 @@
     <file path="/index.html.erb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1401090925173" ignored="false" />
     <file path="/a.dummy" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1401091297079" ignored="false" />
     <file path="$PROJECT_DIR$/../price/vendor/plugins/exception_notification/lib/exception_notification.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1401081286084" ignored="false" />
+    <file path="$PROJECT_DIR$/config/locales/activerecord.zh-CN.yml" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1401097091093" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,54 +51,54 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="grass_resource.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="grass_resource.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/grass_resource.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="88" column="13" selection-start="4700" selection-end="4700" vertical-scroll-proportion="0.0">
+            <state line="137" column="34" selection-start="6410" selection-end="6410" vertical-scroll-proportion="0.51641136">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html.erb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/grass_resources/index.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="120" column="60" selection-start="7055" selection-end="7069" vertical-scroll-proportion="0.8040541">
+            <state line="116" column="5" selection-start="6875" selection-end="6875" vertical-scroll-proportion="-17.0">
               <folding>
                 <element signature="e#51#72#0" expanded="true" />
-                <marker date="1401096894457" expanded="true" signature="4120:8072" placeholder=" ... end" />
-                <marker date="1401096894457" expanded="true" signature="4902:5067" placeholder="if ... end" />
-                <marker date="1401096894457" expanded="true" signature="5266:5443" placeholder="do ... end" />
-                <marker date="1401096894457" expanded="true" signature="5497:5974" placeholder="if ... end" />
-                <marker date="1401096894457" expanded="true" signature="5690:5906" placeholder="do ... end" />
-                <marker date="1401096894457" expanded="true" signature="6066:7008" placeholder="do ... end" />
-                <marker date="1401096894457" expanded="false" signature="6091:6148" placeholder="&quot;媒体类别&quot;" />
-                <marker date="1401096894457" expanded="true" signature="6149:6259" placeholder="do ... end" />
-                <marker date="1401096894457" expanded="false" signature="6278:6330" placeholder="&quot;昵称&quot;" />
-                <marker date="1401096894457" expanded="true" signature="6331:6358" placeholder="do ... end" />
-                <marker date="1401096894457" expanded="false" signature="6377:6430" placeholder="&quot;地址&quot;" />
-                <marker date="1401096894457" expanded="true" signature="6431:6575" placeholder="do ... end" />
-                <marker date="1401096894457" expanded="true" signature="6442:6567" placeholder="if ... end" />
-                <marker date="1401096894457" expanded="false" signature="6593:6648" placeholder="&quot;粉丝数&quot;" />
-                <marker date="1401096894457" expanded="true" signature="6649:6679" placeholder="do ... end" />
-                <marker date="1401096894457" expanded="false" signature="6697:6749" placeholder="&quot;类别&quot;" />
-                <marker date="1401096894457" expanded="true" signature="6750:6777" placeholder="do ... end" />
-                <marker date="1401096894457" expanded="false" signature="6795:6847" placeholder="&quot;区域&quot;" />
-                <marker date="1401096894457" expanded="true" signature="6848:6875" placeholder="do ... end" />
-                <marker date="1401096894457" expanded="false" signature="6893:6953" placeholder="&quot;内容定位&quot;" />
-                <marker date="1401096894457" expanded="false" signature="7143:7215" placeholder="&quot;创建时间&quot;" />
-                <marker date="1401096894457" expanded="true" signature="7216:7266" placeholder="do ... end" />
-                <marker date="1401096894457" expanded="false" signature="7285:7357" placeholder="&quot;创建人&quot;" />
-                <marker date="1401096894457" expanded="true" signature="7358:7389" placeholder="do ... end" />
-                <marker date="1401096894457" expanded="false" signature="7408:7480" placeholder="&quot;更新时间   &quot;" />
-                <marker date="1401096894457" expanded="true" signature="7481:7531" placeholder="do ... end" />
-                <marker date="1401096894457" expanded="false" signature="7550:7622" placeholder="&quot;更新人&quot;" />
-                <marker date="1401096894457" expanded="true" signature="7623:7654" placeholder="do ... end" />
-                <marker date="1401096894457" expanded="true" signature="7681:7830" placeholder=" ... end" />
-                <marker date="1401096894457" expanded="false" signature="7806:7823" placeholder="&quot;编辑&quot;" />
-                <marker date="1401096894457" expanded="true" signature="7855:8067" placeholder=" ... end" />
-                <marker date="1401096894457" expanded="false" signature="7962:7982" placeholder="&quot;你确定要删除这个项目吗?&quot;" />
-                <marker date="1401096894457" expanded="false" signature="8041:8060" placeholder="&quot;删除&quot;" />
+                <marker date="1401097278285" expanded="true" signature="4120:8053" placeholder=" ... end" />
+                <marker date="1401097278285" expanded="true" signature="4902:5067" placeholder="if ... end" />
+                <marker date="1401097278285" expanded="true" signature="5266:5443" placeholder="do ... end" />
+                <marker date="1401097278285" expanded="true" signature="5497:5974" placeholder="if ... end" />
+                <marker date="1401097278285" expanded="true" signature="5690:5906" placeholder="do ... end" />
+                <marker date="1401097278285" expanded="true" signature="6066:7008" placeholder="do ... end" />
+                <marker date="1401097278285" expanded="false" signature="6091:6148" placeholder="&quot;媒体类别&quot;" />
+                <marker date="1401097278285" expanded="true" signature="6149:6259" placeholder="do ... end" />
+                <marker date="1401097278285" expanded="false" signature="6278:6330" placeholder="&quot;昵称&quot;" />
+                <marker date="1401097278285" expanded="true" signature="6331:6358" placeholder="do ... end" />
+                <marker date="1401097278285" expanded="false" signature="6377:6430" placeholder="&quot;地址&quot;" />
+                <marker date="1401097278285" expanded="true" signature="6431:6575" placeholder="do ... end" />
+                <marker date="1401097278285" expanded="true" signature="6442:6567" placeholder="if ... end" />
+                <marker date="1401097278285" expanded="false" signature="6593:6648" placeholder="&quot;粉丝数&quot;" />
+                <marker date="1401097278285" expanded="true" signature="6649:6679" placeholder="do ... end" />
+                <marker date="1401097278285" expanded="false" signature="6697:6749" placeholder="&quot;类别&quot;" />
+                <marker date="1401097278285" expanded="true" signature="6750:6777" placeholder="do ... end" />
+                <marker date="1401097278285" expanded="false" signature="6795:6847" placeholder="&quot;区域&quot;" />
+                <marker date="1401097278285" expanded="true" signature="6848:6875" placeholder="do ... end" />
+                <marker date="1401097278285" expanded="false" signature="6893:6953" placeholder="&quot;内容定位&quot;" />
+                <marker date="1401097278285" expanded="false" signature="7124:7196" placeholder="&quot;创建时间&quot;" />
+                <marker date="1401097278285" expanded="true" signature="7197:7247" placeholder="do ... end" />
+                <marker date="1401097278285" expanded="false" signature="7266:7338" placeholder="&quot;创建人&quot;" />
+                <marker date="1401097278285" expanded="true" signature="7339:7370" placeholder="do ... end" />
+                <marker date="1401097278285" expanded="false" signature="7389:7461" placeholder="&quot;更新时间   &quot;" />
+                <marker date="1401097278285" expanded="true" signature="7462:7512" placeholder="do ... end" />
+                <marker date="1401097278285" expanded="false" signature="7531:7603" placeholder="&quot;更新人&quot;" />
+                <marker date="1401097278285" expanded="true" signature="7604:7635" placeholder="do ... end" />
+                <marker date="1401097278285" expanded="true" signature="7662:7811" placeholder=" ... end" />
+                <marker date="1401097278285" expanded="false" signature="7787:7804" placeholder="&quot;编辑&quot;" />
+                <marker date="1401097278285" expanded="true" signature="7836:8048" placeholder=" ... end" />
+                <marker date="1401097278285" expanded="false" signature="7943:7963" placeholder="&quot;你确定要删除这个项目吗?&quot;" />
+                <marker date="1401097278285" expanded="false" signature="8022:8041" placeholder="&quot;删除&quot;" />
               </folding>
             </state>
           </provider>
@@ -141,8 +142,8 @@
         <option value="$PROJECT_DIR$/app/models/web_site_media_reporter.rb" />
         <option value="$PROJECT_DIR$/public/init.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20140423025352_create_grass_resources.rb" />
-        <option value="$PROJECT_DIR$/app/models/grass_resource.rb" />
         <option value="$PROJECT_DIR$/app/views/grass_resources/index.html.erb" />
+        <option value="$PROJECT_DIR$/app/models/grass_resource.rb" />
       </list>
     </option>
   </component>
@@ -950,13 +951,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20140423025352_create_grass_resources.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="23" selection-start="387" selection-end="387" vertical-scroll-proportion="0.201726">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/province.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="29" selection-start="396" selection-end="396" vertical-scroll-proportion="0.0">
@@ -964,52 +958,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/grass_resource.rb">
+    <entry file="file://$PROJECT_DIR$/db/migrate/20140423025352_create_grass_resources.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="88" column="13" selection-start="4700" selection-end="4700" vertical-scroll-proportion="0.0">
+        <state line="11" column="23" selection-start="387" selection-end="387" vertical-scroll-proportion="0.201726">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/grass_resources/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="120" column="60" selection-start="7055" selection-end="7069" vertical-scroll-proportion="0.8040541">
+        <state line="116" column="5" selection-start="6875" selection-end="6875" vertical-scroll-proportion="-17.0">
           <folding>
             <element signature="e#51#72#0" expanded="true" />
-            <marker date="1401096894457" expanded="true" signature="4120:8072" placeholder=" ... end" />
-            <marker date="1401096894457" expanded="true" signature="4902:5067" placeholder="if ... end" />
-            <marker date="1401096894457" expanded="true" signature="5266:5443" placeholder="do ... end" />
-            <marker date="1401096894457" expanded="true" signature="5497:5974" placeholder="if ... end" />
-            <marker date="1401096894457" expanded="true" signature="5690:5906" placeholder="do ... end" />
-            <marker date="1401096894457" expanded="true" signature="6066:7008" placeholder="do ... end" />
-            <marker date="1401096894457" expanded="false" signature="6091:6148" placeholder="&quot;媒体类别&quot;" />
-            <marker date="1401096894457" expanded="true" signature="6149:6259" placeholder="do ... end" />
-            <marker date="1401096894457" expanded="false" signature="6278:6330" placeholder="&quot;昵称&quot;" />
-            <marker date="1401096894457" expanded="true" signature="6331:6358" placeholder="do ... end" />
-            <marker date="1401096894457" expanded="false" signature="6377:6430" placeholder="&quot;地址&quot;" />
-            <marker date="1401096894457" expanded="true" signature="6431:6575" placeholder="do ... end" />
-            <marker date="1401096894457" expanded="true" signature="6442:6567" placeholder="if ... end" />
-            <marker date="1401096894457" expanded="false" signature="6593:6648" placeholder="&quot;粉丝数&quot;" />
-            <marker date="1401096894457" expanded="true" signature="6649:6679" placeholder="do ... end" />
-            <marker date="1401096894457" expanded="false" signature="6697:6749" placeholder="&quot;类别&quot;" />
-            <marker date="1401096894457" expanded="true" signature="6750:6777" placeholder="do ... end" />
-            <marker date="1401096894457" expanded="false" signature="6795:6847" placeholder="&quot;区域&quot;" />
-            <marker date="1401096894457" expanded="true" signature="6848:6875" placeholder="do ... end" />
-            <marker date="1401096894457" expanded="false" signature="6893:6953" placeholder="&quot;内容定位&quot;" />
-            <marker date="1401096894457" expanded="false" signature="7143:7215" placeholder="&quot;创建时间&quot;" />
-            <marker date="1401096894457" expanded="true" signature="7216:7266" placeholder="do ... end" />
-            <marker date="1401096894457" expanded="false" signature="7285:7357" placeholder="&quot;创建人&quot;" />
-            <marker date="1401096894457" expanded="true" signature="7358:7389" placeholder="do ... end" />
-            <marker date="1401096894457" expanded="false" signature="7408:7480" placeholder="&quot;更新时间   &quot;" />
-            <marker date="1401096894457" expanded="true" signature="7481:7531" placeholder="do ... end" />
-            <marker date="1401096894457" expanded="false" signature="7550:7622" placeholder="&quot;更新人&quot;" />
-            <marker date="1401096894457" expanded="true" signature="7623:7654" placeholder="do ... end" />
-            <marker date="1401096894457" expanded="true" signature="7681:7830" placeholder=" ... end" />
-            <marker date="1401096894457" expanded="false" signature="7806:7823" placeholder="&quot;编辑&quot;" />
-            <marker date="1401096894457" expanded="true" signature="7855:8067" placeholder=" ... end" />
-            <marker date="1401096894457" expanded="false" signature="7962:7982" placeholder="&quot;你确定要删除这个项目吗?&quot;" />
-            <marker date="1401096894457" expanded="false" signature="8041:8060" placeholder="&quot;删除&quot;" />
+            <marker date="1401097278285" expanded="true" signature="4120:8053" placeholder=" ... end" />
+            <marker date="1401097278285" expanded="true" signature="4902:5067" placeholder="if ... end" />
+            <marker date="1401097278285" expanded="true" signature="5266:5443" placeholder="do ... end" />
+            <marker date="1401097278285" expanded="true" signature="5497:5974" placeholder="if ... end" />
+            <marker date="1401097278285" expanded="true" signature="5690:5906" placeholder="do ... end" />
+            <marker date="1401097278285" expanded="true" signature="6066:7008" placeholder="do ... end" />
+            <marker date="1401097278285" expanded="false" signature="6091:6148" placeholder="&quot;媒体类别&quot;" />
+            <marker date="1401097278285" expanded="true" signature="6149:6259" placeholder="do ... end" />
+            <marker date="1401097278285" expanded="false" signature="6278:6330" placeholder="&quot;昵称&quot;" />
+            <marker date="1401097278285" expanded="true" signature="6331:6358" placeholder="do ... end" />
+            <marker date="1401097278285" expanded="false" signature="6377:6430" placeholder="&quot;地址&quot;" />
+            <marker date="1401097278285" expanded="true" signature="6431:6575" placeholder="do ... end" />
+            <marker date="1401097278285" expanded="true" signature="6442:6567" placeholder="if ... end" />
+            <marker date="1401097278285" expanded="false" signature="6593:6648" placeholder="&quot;粉丝数&quot;" />
+            <marker date="1401097278285" expanded="true" signature="6649:6679" placeholder="do ... end" />
+            <marker date="1401097278285" expanded="false" signature="6697:6749" placeholder="&quot;类别&quot;" />
+            <marker date="1401097278285" expanded="true" signature="6750:6777" placeholder="do ... end" />
+            <marker date="1401097278285" expanded="false" signature="6795:6847" placeholder="&quot;区域&quot;" />
+            <marker date="1401097278285" expanded="true" signature="6848:6875" placeholder="do ... end" />
+            <marker date="1401097278285" expanded="false" signature="6893:6953" placeholder="&quot;内容定位&quot;" />
+            <marker date="1401097278285" expanded="false" signature="7124:7196" placeholder="&quot;创建时间&quot;" />
+            <marker date="1401097278285" expanded="true" signature="7197:7247" placeholder="do ... end" />
+            <marker date="1401097278285" expanded="false" signature="7266:7338" placeholder="&quot;创建人&quot;" />
+            <marker date="1401097278285" expanded="true" signature="7339:7370" placeholder="do ... end" />
+            <marker date="1401097278285" expanded="false" signature="7389:7461" placeholder="&quot;更新时间   &quot;" />
+            <marker date="1401097278285" expanded="true" signature="7462:7512" placeholder="do ... end" />
+            <marker date="1401097278285" expanded="false" signature="7531:7603" placeholder="&quot;更新人&quot;" />
+            <marker date="1401097278285" expanded="true" signature="7604:7635" placeholder="do ... end" />
+            <marker date="1401097278285" expanded="true" signature="7662:7811" placeholder=" ... end" />
+            <marker date="1401097278285" expanded="false" signature="7787:7804" placeholder="&quot;编辑&quot;" />
+            <marker date="1401097278285" expanded="true" signature="7836:8048" placeholder=" ... end" />
+            <marker date="1401097278285" expanded="false" signature="7943:7963" placeholder="&quot;你确定要删除这个项目吗?&quot;" />
+            <marker date="1401097278285" expanded="false" signature="8022:8041" placeholder="&quot;删除&quot;" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/grass_resource.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="137" column="34" selection-start="6410" selection-end="6410" vertical-scroll-proportion="0.51641136">
+          <folding />
         </state>
       </provider>
     </entry>
