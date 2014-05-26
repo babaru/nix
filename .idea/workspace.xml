@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="699d20be-cbe3-4e87-867a-4a71c08051ce" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/temp/供应商列表-2014-05-23.xls" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/grass_resource.rb" afterPath="$PROJECT_DIR$/app/models/grass_resource.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/grass_resources/index.html.erb" afterPath="$PROJECT_DIR$/app/views/grass_resources/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
     </list>
     <ignored path="nix.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -54,7 +53,16 @@
       <file leaf-file-name="grass_resource.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/grass_resource.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="137" column="34" selection-start="6410" selection-end="6410" vertical-scroll-proportion="0.51641136">
+            <state line="85" column="47" selection-start="4638" selection-end="4638" vertical-scroll-proportion="0.51641136">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="20140423025352_create_grass_resources.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/migrate/20140423025352_create_grass_resources.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="30" selection-start="304" selection-end="320" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -958,13 +966,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20140423025352_create_grass_resources.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="23" selection-start="387" selection-end="387" vertical-scroll-proportion="0.201726">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/grass_resources/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="116" column="5" selection-start="6875" selection-end="6875" vertical-scroll-proportion="-17.0">
@@ -1007,9 +1008,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20140423025352_create_grass_resources.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="30" selection-start="304" selection-end="320" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/grass_resource.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="137" column="34" selection-start="6410" selection-end="6410" vertical-scroll-proportion="0.51641136">
+        <state line="85" column="47" selection-start="4638" selection-end="4638" vertical-scroll-proportion="0.51641136">
           <folding />
         </state>
       </provider>

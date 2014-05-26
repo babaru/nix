@@ -39,16 +39,16 @@ class GrassResource < ActiveRecord::Base
     format = Spreadsheet::Format.new(:color => :black,:horizontal_align => :center,:pattern_fg_color=>'silver',:pattern=>1, :size => 10,:border_color=>:black,:border=>:thin)
     if data==nil
       sheet1 = workbook.create_worksheet(:name => '草根资源上传模板')
-      (0..7).each do |i|
+      (0..8).each do |i|
         sheet1.row(0).set_format(i,format)
       end
 
       #sheet1.row(0).default_format = format
-      sheet1.row(0).replace ['资源类别','媒体类别','昵称','地址','粉丝','类别','地区','内容定位']
-      sheet1.row(1).set_format(8,Spreadsheet::Format.new(:color => :red))
-      sheet1.row(1)[8]='由于excel与系统中表格结构有所不同，因此填写数据时请按照提示进行填写，资源类别与媒体类别请从下方粘贴'
-      sheet1.row(2)[8]='资源类别包括：   '+ GrassResource::TYPE.map{|x|x[0]}.join('、')
-      sheet1.row(3)[8]='媒体类别包括：   '+ GrassResource::MEDIA_TYPE.map{|x|x[0]}.join('、')
+      sheet1.row(0).replace ['资源类别','媒体类别','昵称','地址','粉丝','类别','地区','内容定位','报价']
+      sheet1.row(1).set_format(9,Spreadsheet::Format.new(:color => :red))
+      sheet1.row(1)[9]='由于excel与系统中表格结构有所不同，因此填写数据时请按照提示进行填写，资源类别与媒体类别请从下方粘贴'
+      sheet1.row(2)[9]='资源类别包括：   '+ GrassResource::TYPE.map{|x|x[0]}.join('、')
+      sheet1.row(3)[9]='媒体类别包括：   '+ GrassResource::MEDIA_TYPE.map{|x|x[0]}.join('、')
       new_file = temp_folder_name + "媒体资源库-草根资源上传模板.xls"
     else
       GrassResource::TYPE.each do |t|
@@ -60,17 +60,17 @@ class GrassResource < ActiveRecord::Base
         sheet1.row(0).set_format(0,Spreadsheet::Format.new(:color => :black,:horizontal_align => :center,:pattern_fg_color=>'silver',:pattern=>0, :size => 24,:border_color=>:black,:border=>:thin))
         sheet1.row(0).replace ['Iforce-网络媒体-草根资源']
         sheet1.row(0).height = 35
-        sheet1.merge_cells(0, 0, 0, 6)
+        sheet1.merge_cells(0, 0, 0, 7)
         GrassResource::MEDIA_TYPE.each do |m|
           #sheet1.row(_index).default_format = format
           sheet1.row(_index).set_format(0,Spreadsheet::Format.new(:color => :black,:horizontal_align => :center,:pattern_fg_color=>'silver',:pattern=>1, :size => 12,:border_color=>:black,:border=>:thin,:right_color=>:black,:left_color=>:black))
           sheet1.row(_index).replace [m[0]]
-          sheet1.merge_cells(_index, 0, _index, 6)
+          sheet1.merge_cells(_index, 0, _index, 7)
           #sheet1.row(_index+1).default_format = format
-          (0..6).each do |i|
+          (0..7).each do |i|
             sheet1.row(_index+1).set_format(i,Spreadsheet::Format.new(:color => :black,:horizontal_align => :center,:pattern_fg_color=>'silver',:pattern=>0, :size => 10,:border_color=>:black,:border=>:thin))
           end
-          sheet1.row(_index+1).replace ['序号','昵称','地址','粉丝','类别','地区','内容定位']
+          sheet1.row(_index+1).replace ['序号','昵称','地址','粉丝','类别','地区','内容定位','报价']
           #sheet1.row(_index+1).height = 18
           _index = _index+2
           _item = data.select{|x|x.type_id.to_i==t[1] and x.media_type_id==m[1]}
@@ -83,6 +83,7 @@ class GrassResource < ActiveRecord::Base
               end
               sheet1.row(_index+i).set_format(5,Spreadsheet::Format.new(:color => :black,:horizontal_align => :left,:pattern_fg_color=>'silver',:pattern=>0, :size => 10,:right_color=>:black,:left_color=>:black,:border=>:thin))
               sheet1.row(_index+i).set_format(6,Spreadsheet::Format.new(:italic=>false, :text_wrap=>true,:color => :black,:horizontal_align => :left,:pattern_fg_color=>'silver',:pattern=>0, :size => 10,:right_color=>:black,:left_color=>:black,:border=>:thin))
+              sheet1.row(_index+i).set_format(7,Spreadsheet::Format.new(:italic=>false, :text_wrap=>true,:color => :black,:horizontal_align => :left,:pattern_fg_color=>'silver',:pattern=>0, :size => 10,:right_color=>:black,:left_color=>:black,:border=>:thin))
 
               sheet1.row(i+_index).replace [i+1,
                                             d.nickname,
@@ -90,7 +91,8 @@ class GrassResource < ActiveRecord::Base
                                             d.fans_number,
                                             d.category,
                                             d.regional,
-                                            d.content_location]
+                                            d.content_location,
+                                            d.price.to_s]
 
             end
             _index = _index+_item.count
@@ -98,7 +100,7 @@ class GrassResource < ActiveRecord::Base
         end
         sheet1.row(1).set_format(0,Spreadsheet::Format.new(:color => :black,:horizontal_align => :center,:pattern_fg_color=>'silver',:pattern=>1, :size => 10,:border_color=>:black,:border=>:thin))
         sheet1.row(1).replace [item_info]
-        sheet1.merge_cells(1, 0, 1, 6)
+        sheet1.merge_cells(1, 0, 1, 7)
       end
 
       new_file = temp_folder_name + "媒体资源库-草根资源.xls"
