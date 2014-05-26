@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="699d20be-cbe3-4e87-867a-4a71c08051ce" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/web_site_media_reporter.rb" afterPath="$PROJECT_DIR$/app/models/web_site_media_reporter.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/web_site_media_reporters_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/web_site_media_reporters_controller.rb" />
     </list>
     <ignored path="nix.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -180,7 +179,7 @@
       <file leaf-file-name="web_site_media_reporter.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/web_site_media_reporter.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="123" column="37" selection-start="4992" selection-end="4992" vertical-scroll-proportion="-1.2698706">
+            <state line="189" column="12" selection-start="7196" selection-end="7196" vertical-scroll-proportion="0.80406654">
               <folding />
             </state>
           </provider>
@@ -1043,7 +1042,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/web_site_media_reporter.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="123" column="37" selection-start="4992" selection-end="4992" vertical-scroll-proportion="-1.2698706">
+        <state line="189" column="12" selection-start="7196" selection-end="7196" vertical-scroll-proportion="0.80406654">
           <folding />
         </state>
       </provider>
