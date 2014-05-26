@@ -2,16 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="699d20be-cbe3-4e87-867a-4a71c08051ce" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/fashion_media_info.rb" afterPath="$PROJECT_DIR$/app/models/fashion_media_info.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/web_site_media_reporter.rb" afterPath="$PROJECT_DIR$/app/models/web_site_media_reporter.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/environment.rb" afterPath="$PROJECT_DIR$/config/environment.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/initializers/session_store.rb" afterPath="$PROJECT_DIR$/config/initializers/session_store.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/web_site_media_reporters_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/web_site_media_reporters_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="nix.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1401089192935" ignored="false" />
+    <file path="/Dummy.txt" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1401091521483" ignored="false" />
     <file path="/_date_picker.erb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1400222187622" ignored="false" />
-    <file path="/index.html.erb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1400724137951" ignored="false" />
-    <file path="/a.dummy" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1400837471317" ignored="false" />
+    <file path="/index.html.erb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1401090925173" ignored="false" />
+    <file path="/a.dummy" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1401091297079" ignored="false" />
     <file path="$PROJECT_DIR$/../price/vendor/plugins/exception_notification/lib/exception_notification.rb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1401081286084" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,33 +45,127 @@
       <file leaf-file-name="web_site_media_reporters_controller.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/web_site_media_reporters_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="244" column="12" selection-start="7508" selection-end="7508" vertical-scroll-proportion="0.5588235">
+            <state line="242" column="0" selection-start="7453" selection-end="7453" vertical-scroll-proportion="0.36823106">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="23" column="0" selection-start="802" selection-end="802" vertical-scroll-proportion="-15.038462">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="session_store.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/initializers/session_store.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="0" selection-start="400" selection-end="400" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/web_site_media_reporters/index.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="39" selection-start="1239" selection-end="1239" vertical-scroll-proportion="-2.6153846">
               <folding>
-                <marker date="1401090409852" expanded="true" signature="7649:8215" placeholder="if ... end" />
-                <marker date="1401090409852" expanded="true" signature="7700:7948" placeholder="do ... end" />
-                <marker date="1401090409852" expanded="true" signature="7741:7848" placeholder="{ ... }" />
-                <marker date="1401090409852" expanded="true" signature="7878:7929" placeholder="{ ... }" />
-                <marker date="1401090409852" expanded="true" signature="7993:8198" placeholder="do ... end" />
-                <marker date="1401090409852" expanded="true" signature="8034:8098" placeholder="{ ... }" />
-                <marker date="1401090409852" expanded="true" signature="8128:8179" placeholder="{ ... }" />
+                <marker date="1400725481375" expanded="true" signature="66:8966" placeholder="do ... end" />
+                <marker date="1400725481375" expanded="false" signature="124:145" placeholder="&quot;%{model}列表&quot;" />
+                <marker date="1400725481375" expanded="false" signature="651:717" placeholder="&quot;创建%{model}&quot;" />
+                <marker date="1400725481375" expanded="true" signature="938:8966" placeholder=" ... end" />
+                <marker date="1400725481375" expanded="false" signature="1571:1594" placeholder="&quot;上传%{model}&quot;" />
+                <marker date="1400725481375" expanded="true" signature="1864:8966" placeholder=" ... end" />
+                <marker date="1400725481375" expanded="false" signature="2434:2501" placeholder="&quot;下载%{model}&quot;" />
+                <marker date="1400725481375" expanded="true" signature="2962:4986" placeholder=" ... end" />
+                <marker date="1400725481375" expanded="false" signature="3501:3524" placeholder="..." />
+                <marker date="1400725481375" expanded="true" signature="3525:4978" placeholder="..." />
+                <marker date="1400725481375" expanded="true" signature="5073:7106" placeholder="do ... end" />
+                <marker date="1400725481375" expanded="false" signature="5098:5160" placeholder="&quot;区域&quot;" />
+                <marker date="1400725481375" expanded="true" signature="5161:5297" placeholder="do ... end" />
+                <marker date="1400725481375" expanded="true" signature="5180:5291" placeholder="if ... end" />
+                <marker date="1400725481375" expanded="false" signature="5315:5379" placeholder="&quot;省份&quot;" />
+                <marker date="1400725481375" expanded="true" signature="5380:5426" placeholder="do ... end" />
+                <marker date="1400725481375" expanded="false" signature="5444:5504" placeholder="&quot;城市&quot;" />
+                <marker date="1400725481375" expanded="true" signature="5505:5547" placeholder="do ... end" />
+                <marker date="1400725481375" expanded="false" signature="5565:5627" placeholder="&quot;媒体介质&quot;" />
+                <marker date="1400725481375" expanded="true" signature="5628:5672" placeholder="do ... end" />
+                <marker date="1400725481375" expanded="true" signature="5708:6142" placeholder="do ... end" />
+                <marker date="1400725481375" expanded="true" signature="5795:6136" placeholder="do ... end" />
+                <marker date="1400725481375" expanded="true" signature="5814:6128" placeholder="if ... end" />
+                <marker date="1400725481375" expanded="true" signature="5837:5938" placeholder="if ... end" />
+                <marker date="1400725481375" expanded="false" signature="6161:6233" placeholder="&quot;创建时间&quot;" />
+                <marker date="1400725481375" expanded="true" signature="6234:6284" placeholder="do ... end" />
+                <marker date="1400725481375" expanded="false" signature="6303:6375" placeholder="&quot;创建人&quot;" />
+                <marker date="1400725481375" expanded="true" signature="6376:6407" placeholder="do ... end" />
+                <marker date="1400725481375" expanded="false" signature="6426:6498" placeholder="&quot;更新时间   &quot;" />
+                <marker date="1400725481375" expanded="true" signature="6499:6549" placeholder="do ... end" />
+                <marker date="1400725481375" expanded="false" signature="6568:6640" placeholder="&quot;更新人&quot;" />
+                <marker date="1400725481375" expanded="true" signature="6641:6672" placeholder="do ... end" />
+                <marker date="1400725481375" expanded="true" signature="6697:6855" placeholder=" ... end" />
+                <marker date="1400725481375" expanded="false" signature="6831:6848" placeholder="&quot;编辑&quot;" />
+                <marker date="1400725481375" expanded="true" signature="6880:7101" placeholder=" ... end" />
+                <marker date="1400725481375" expanded="false" signature="6996:7016" placeholder="&quot;你确定要删除这个项目吗?&quot;" />
+                <marker date="1400725481375" expanded="false" signature="7075:7094" placeholder="&quot;删除&quot;" />
+                <marker date="1400725481375" expanded="true" signature="7133:7225" placeholder="..." />
+                <marker date="1400725481375" expanded="true" signature="7149:7177" placeholder="{...}" />
+                <marker date="1400725481375" expanded="true" signature="7187:7216" placeholder="{...}" />
+                <marker date="1400725481375" expanded="true" signature="7246:7325" placeholder="..." />
+                <marker date="1400725481375" expanded="true" signature="7357:8962" placeholder="..." />
+                <marker date="1400725481375" expanded="true" signature="7391:8951" placeholder="{...}" />
+                <marker date="1400725481375" expanded="true" signature="7441:8206" placeholder="{...}" />
+                <marker date="1400725481375" expanded="true" signature="7537:8194" placeholder="{&quot;type&quot;: 'GET'...}" />
+                <marker date="1400725481375" expanded="true" signature="7707:7726" placeholder="{...}" />
+                <marker date="1400725481375" expanded="true" signature="7768:8180" placeholder="{...}" />
+                <marker date="1400725481375" expanded="true" signature="7832:8013" placeholder="{...}" />
+                <marker date="1400725481375" expanded="true" signature="8017:8162" placeholder="{...}" />
+                <marker date="1400725481375" expanded="true" signature="8259:8944" placeholder="{...}" />
+                <marker date="1400725481375" expanded="true" signature="8359:8932" placeholder="{&quot;type&quot;: 'GET'...}" />
+                <marker date="1400725481375" expanded="true" signature="8528:8547" placeholder="{...}" />
+                <marker date="1400725481375" expanded="true" signature="8589:8918" placeholder="{...}" />
+                <marker date="1400725481375" expanded="true" signature="8655:8755" placeholder="{...}" />
+                <marker date="1400725481375" expanded="true" signature="8759:8900" placeholder="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fashion_media_infos_controller.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/fashion_media_infos_controller.rb">
+      <file leaf-file-name="index.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/network_opinion_leader_bloggers/index.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="165" column="54" selection-start="4884" selection-end="4884" vertical-scroll-proportion="0.0">
-              <folding>
-                <marker date="1401087441779" expanded="true" signature="4995:5551" placeholder="if ... end" />
-                <marker date="1401087441779" expanded="true" signature="5046:5289" placeholder="do ... end" />
-                <marker date="1401087441779" expanded="true" signature="5087:5189" placeholder="{ ... }" />
-                <marker date="1401087441779" expanded="true" signature="5219:5270" placeholder="{ ... }" />
-                <marker date="1401087441779" expanded="true" signature="5334:5534" placeholder="do ... end" />
-                <marker date="1401087441779" expanded="true" signature="5375:5434" placeholder="{ ... }" />
-                <marker date="1401087441779" expanded="true" signature="5464:5515" placeholder="{ ... }" />
-              </folding>
+            <state line="56" column="5" selection-start="4171" selection-end="4171" vertical-scroll-proportion="-18.76923">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="environment.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/environment.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="0" selection-start="168" selection-end="168" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routes.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/routes.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application_helper.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/helpers/application_helper.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="0" selection-start="267" selection-end="267" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -84,19 +179,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="traveling_photography_media_infos_controller.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/traveling_photography_media_infos_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="152" column="0" selection-start="4563" selection-end="4563" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="web_site_media_reporter.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/web_site_media_reporter.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="117" column="5" selection-start="4774" selection-end="4774" vertical-scroll-proportion="0.0">
+            <state line="122" column="4" selection-start="4921" selection-end="4921" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -126,7 +212,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/views/network_opinion_leader_bloggers/index.html.erb" />
         <option value="$PROJECT_DIR$/app/views/traveling_photography_media_infos/index.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/traveling_photography_media_infos_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/network_opinion_leader_bloggers_controller.rb" />
@@ -134,13 +219,14 @@
         <option value="$PROJECT_DIR$/app/views/moderators/index.html.erb" />
         <option value="$PROJECT_DIR$/app/views/file_categories/index.html.erb" />
         <option value="$PROJECT_DIR$/config/navigation.rb" />
-        <option value="$PROJECT_DIR$/config/environment.rb" />
         <option value="$PROJECT_DIR$/app/views/layouts/single.html.erb" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/fashion_media_infos_controller.rb" />
-        <option value="$PROJECT_DIR$/config/initializers/session_store.rb" />
         <option value="$PROJECT_DIR$/app/models/fashion_media_info.rb" />
         <option value="$PROJECT_DIR$/app/models/web_site_media_reporter.rb" />
+        <option value="$PROJECT_DIR$/config/environment.rb" />
+        <option value="$PROJECT_DIR$/app/views/network_opinion_leader_bloggers/index.html.erb" />
+        <option value="$PROJECT_DIR$/config/initializers/session_store.rb" />
         <option value="$PROJECT_DIR$/app/controllers/web_site_media_reporters_controller.rb" />
       </list>
     </option>
@@ -792,43 +878,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/controllers/network_opinion_leader_bloggers_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="39" selection-start="520" selection-end="520" vertical-scroll-proportion="0.018338727" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/fashion_media_infos/index.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/network_opinion_leader_bloggers/index.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="119" column="5" selection-start="6640" selection-end="6640" vertical-scroll-proportion="-0.65384614" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/plugins/exception_notification/lib/exception_notification.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="321" selection-end="321" vertical-scroll-proportion="0.20623916" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/environment.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="16" selection-start="435" selection-end="435" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/settings.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="106" selection-end="106" vertical-scroll-proportion="0.09169363" />
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.0.0-p451/gems/actionpack-3.2.15/lib/sprockets/helpers/rails_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="45" selection-start="1342" selection-end="1342" vertical-scroll-proportion="0.24247788" />
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.0.0-p451/gems/actionpack-3.2.15/lib/action_view/helpers/asset_tag_helpers/stylesheet_tag_helpers.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="11" selection-start="309" selection-end="309" vertical-scroll-proportion="0.33097345" />
@@ -839,21 +888,9 @@
         <state line="5" column="58" selection-start="188" selection-end="188" vertical-scroll-proportion="-3.2692308" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="500" selection-end="500" vertical-scroll-proportion="0.28301886" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/traveling_photography_media_infos_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="152" column="0" selection-start="4563" selection-end="4563" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/initializers/session_store.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="399" selection-end="399" vertical-scroll-proportion="0.23529412">
           <folding />
         </state>
       </provider>
@@ -862,14 +899,140 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="165" column="54" selection-start="4884" selection-end="4884" vertical-scroll-proportion="0.0">
           <folding>
-            <marker date="1401087441779" expanded="true" signature="4995:5551" placeholder="if ... end" />
-            <marker date="1401087441779" expanded="true" signature="5046:5289" placeholder="do ... end" />
-            <marker date="1401087441779" expanded="true" signature="5087:5189" placeholder="{ ... }" />
-            <marker date="1401087441779" expanded="true" signature="5219:5270" placeholder="{ ... }" />
-            <marker date="1401087441779" expanded="true" signature="5334:5534" placeholder="do ... end" />
-            <marker date="1401087441779" expanded="true" signature="5375:5434" placeholder="{ ... }" />
-            <marker date="1401087441779" expanded="true" signature="5464:5515" placeholder="{ ... }" />
+            <marker date="1401087441779" expanded="true" signature="-1:-1" placeholder="if ... end" />
+            <marker date="1401087441779" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1401087441779" expanded="true" signature="-1:-1" placeholder="{ ... }" />
+            <marker date="1401087441779" expanded="true" signature="-1:-1" placeholder="{ ... }" />
+            <marker date="1401087441779" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1401087441779" expanded="true" signature="-1:-1" placeholder="{ ... }" />
+            <marker date="1401087441779" expanded="true" signature="-1:-1" placeholder="{ ... }" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.0.0-p451/gems/railties-3.2.15/lib/rails/application.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="128" column="0" selection-start="4867" selection-end="4867" vertical-scroll-proportion="0.1851211">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/routes.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/shared/components/_notification.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="0" selection-start="398" selection-end="398" vertical-scroll-proportion="0.38636363">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="0" selection-start="802" selection-end="802" vertical-scroll-proportion="-15.038462">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/web_site_media_reporters/index.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="39" selection-start="1239" selection-end="1239" vertical-scroll-proportion="-2.6153846">
+          <folding>
+            <marker date="1400725481375" expanded="true" signature="66:8966" placeholder="do ... end" />
+            <marker date="1400725481375" expanded="false" signature="124:145" placeholder="&quot;%{model}列表&quot;" />
+            <marker date="1400725481375" expanded="false" signature="651:717" placeholder="&quot;创建%{model}&quot;" />
+            <marker date="1400725481375" expanded="true" signature="938:8966" placeholder=" ... end" />
+            <marker date="1400725481375" expanded="false" signature="1571:1594" placeholder="&quot;上传%{model}&quot;" />
+            <marker date="1400725481375" expanded="true" signature="1864:8966" placeholder=" ... end" />
+            <marker date="1400725481375" expanded="false" signature="2434:2501" placeholder="&quot;下载%{model}&quot;" />
+            <marker date="1400725481375" expanded="true" signature="2962:4986" placeholder=" ... end" />
+            <marker date="1400725481375" expanded="false" signature="3501:3524" placeholder="..." />
+            <marker date="1400725481375" expanded="true" signature="3525:4978" placeholder="..." />
+            <marker date="1400725481375" expanded="true" signature="5073:7106" placeholder="do ... end" />
+            <marker date="1400725481375" expanded="false" signature="5098:5160" placeholder="&quot;区域&quot;" />
+            <marker date="1400725481375" expanded="true" signature="5161:5297" placeholder="do ... end" />
+            <marker date="1400725481375" expanded="true" signature="5180:5291" placeholder="if ... end" />
+            <marker date="1400725481375" expanded="false" signature="5315:5379" placeholder="&quot;省份&quot;" />
+            <marker date="1400725481375" expanded="true" signature="5380:5426" placeholder="do ... end" />
+            <marker date="1400725481375" expanded="false" signature="5444:5504" placeholder="&quot;城市&quot;" />
+            <marker date="1400725481375" expanded="true" signature="5505:5547" placeholder="do ... end" />
+            <marker date="1400725481375" expanded="false" signature="5565:5627" placeholder="&quot;媒体介质&quot;" />
+            <marker date="1400725481375" expanded="true" signature="5628:5672" placeholder="do ... end" />
+            <marker date="1400725481375" expanded="true" signature="5708:6142" placeholder="do ... end" />
+            <marker date="1400725481375" expanded="true" signature="5795:6136" placeholder="do ... end" />
+            <marker date="1400725481375" expanded="true" signature="5814:6128" placeholder="if ... end" />
+            <marker date="1400725481375" expanded="true" signature="5837:5938" placeholder="if ... end" />
+            <marker date="1400725481375" expanded="false" signature="6161:6233" placeholder="&quot;创建时间&quot;" />
+            <marker date="1400725481375" expanded="true" signature="6234:6284" placeholder="do ... end" />
+            <marker date="1400725481375" expanded="false" signature="6303:6375" placeholder="&quot;创建人&quot;" />
+            <marker date="1400725481375" expanded="true" signature="6376:6407" placeholder="do ... end" />
+            <marker date="1400725481375" expanded="false" signature="6426:6498" placeholder="&quot;更新时间   &quot;" />
+            <marker date="1400725481375" expanded="true" signature="6499:6549" placeholder="do ... end" />
+            <marker date="1400725481375" expanded="false" signature="6568:6640" placeholder="&quot;更新人&quot;" />
+            <marker date="1400725481375" expanded="true" signature="6641:6672" placeholder="do ... end" />
+            <marker date="1400725481375" expanded="true" signature="6697:6855" placeholder=" ... end" />
+            <marker date="1400725481375" expanded="false" signature="6831:6848" placeholder="&quot;编辑&quot;" />
+            <marker date="1400725481375" expanded="true" signature="6880:7101" placeholder=" ... end" />
+            <marker date="1400725481375" expanded="false" signature="6996:7016" placeholder="&quot;你确定要删除这个项目吗?&quot;" />
+            <marker date="1400725481375" expanded="false" signature="7075:7094" placeholder="&quot;删除&quot;" />
+            <marker date="1400725481375" expanded="true" signature="7133:7225" placeholder="..." />
+            <marker date="1400725481375" expanded="true" signature="7149:7177" placeholder="{...}" />
+            <marker date="1400725481375" expanded="true" signature="7187:7216" placeholder="{...}" />
+            <marker date="1400725481375" expanded="true" signature="7246:7325" placeholder="..." />
+            <marker date="1400725481375" expanded="true" signature="7357:8962" placeholder="..." />
+            <marker date="1400725481375" expanded="true" signature="7391:8951" placeholder="{...}" />
+            <marker date="1400725481375" expanded="true" signature="7441:8206" placeholder="{...}" />
+            <marker date="1400725481375" expanded="true" signature="7537:8194" placeholder="{&quot;type&quot;: 'GET'...}" />
+            <marker date="1400725481375" expanded="true" signature="7707:7726" placeholder="{...}" />
+            <marker date="1400725481375" expanded="true" signature="7768:8180" placeholder="{...}" />
+            <marker date="1400725481375" expanded="true" signature="7832:8013" placeholder="{...}" />
+            <marker date="1400725481375" expanded="true" signature="8017:8162" placeholder="{...}" />
+            <marker date="1400725481375" expanded="true" signature="8259:8944" placeholder="{...}" />
+            <marker date="1400725481375" expanded="true" signature="8359:8932" placeholder="{&quot;type&quot;: 'GET'...}" />
+            <marker date="1400725481375" expanded="true" signature="8528:8547" placeholder="{...}" />
+            <marker date="1400725481375" expanded="true" signature="8589:8918" placeholder="{...}" />
+            <marker date="1400725481375" expanded="true" signature="8655:8755" placeholder="{...}" />
+            <marker date="1400725481375" expanded="true" signature="8759:8900" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/network_opinion_leader_bloggers/index.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="56" column="5" selection-start="4171" selection-end="4171" vertical-scroll-proportion="-18.76923">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/environment.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="0" selection-start="168" selection-end="168" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/helpers/application_helper.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="0" selection-start="267" selection-end="267" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/initializers/session_store.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="0" selection-start="400" selection-end="400" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/web_site_media_reporter.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="122" column="4" selection-start="4921" selection-end="4921" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
@@ -880,25 +1043,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/web_site_media_reporter.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="117" column="5" selection-start="4774" selection-end="4774" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/web_site_media_reporters_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="244" column="12" selection-start="7508" selection-end="7508" vertical-scroll-proportion="0.5588235">
-          <folding>
-            <marker date="1401090409852" expanded="true" signature="7649:8215" placeholder="if ... end" />
-            <marker date="1401090409852" expanded="true" signature="7700:7948" placeholder="do ... end" />
-            <marker date="1401090409852" expanded="true" signature="7741:7848" placeholder="{ ... }" />
-            <marker date="1401090409852" expanded="true" signature="7878:7929" placeholder="{ ... }" />
-            <marker date="1401090409852" expanded="true" signature="7993:8198" placeholder="do ... end" />
-            <marker date="1401090409852" expanded="true" signature="8034:8098" placeholder="{ ... }" />
-            <marker date="1401090409852" expanded="true" signature="8128:8179" placeholder="{ ... }" />
-          </folding>
+        <state line="242" column="0" selection-start="7453" selection-end="7453" vertical-scroll-proportion="0.36823106">
+          <folding />
         </state>
       </provider>
     </entry>
