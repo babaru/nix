@@ -2,29 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="699d20be-cbe3-4e87-867a-4a71c08051ce" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/plugins/exception_notification/README" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/plugins/exception_notification/views/exception_notifier/_backtrace.rhtml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/plugins/exception_notification/views/exception_notifier/_environment.rhtml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/plugins/exception_notification/views/exception_notifier/_inspect_model.rhtml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/plugins/exception_notification/views/exception_notifier/_request.rhtml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/plugins/exception_notification/views/exception_notifier/_session.rhtml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/plugins/exception_notification/views/exception_notifier/_title.rhtml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/plugins/exception_notification/lib/exception_notification/consider_local.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/plugins/exception_notification/exception_notification.gemspec" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/plugins/exception_notification/lib/exception_notification.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/plugins/exception_notification/views/exception_notifier/exception_notification.rhtml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/plugins/exception_notification/test/exception_notifier_helper_test.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/plugins/exception_notification/init.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/plugins/exception_notification/lib/exception_notification/notifiable.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/plugins/exception_notification/lib/exception_notification/notifier.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/plugins/exception_notification/lib/exception_notification/notifier_helper.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/plugins/exception_notification/test/test_helper.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/environment.rb" afterPath="$PROJECT_DIR$/config/environment.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/runConfigurations/Production__nix.xml" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Production__nix.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/web_site_media_reporter.rb" afterPath="$PROJECT_DIR$/app/models/web_site_media_reporter.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/web_site_media_reporters_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/web_site_media_reporters_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="nix.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1401080994127" ignored="false" />
+    <file path="/Dummy.txt" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1401084411037" ignored="false" />
     <file path="/_date_picker.erb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1400222187622" ignored="false" />
     <file path="/index.html.erb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1400724137951" ignored="false" />
     <file path="/a.dummy" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1400837471317" ignored="false" />
@@ -57,91 +42,27 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html.erb" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views/network_opinion_leader_bloggers/index.html.erb">
+      <file leaf-file-name="web_site_media_reporters_controller.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/web_site_media_reporters_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="30" selection-start="4601" selection-end="4601" vertical-scroll-proportion="-1.6115241">
-              <folding />
+            <state line="244" column="57" selection-start="7553" selection-end="7553" vertical-scroll-proportion="0.0">
+              <folding>
+                <marker date="1401086856431" expanded="true" signature="7665:8231" placeholder="if ... end" />
+                <marker date="1401086856431" expanded="true" signature="7716:7964" placeholder="do ... end" />
+                <marker date="1401086856431" expanded="true" signature="7757:7864" placeholder="{ ... }" />
+                <marker date="1401086856431" expanded="true" signature="7894:7945" placeholder="{ ... }" />
+                <marker date="1401086856431" expanded="true" signature="8009:8214" placeholder="do ... end" />
+                <marker date="1401086856431" expanded="true" signature="8050:8114" placeholder="{ ... }" />
+                <marker date="1401086856431" expanded="true" signature="8144:8195" placeholder="{ ... }" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/fashion_media_infos/index.html.erb">
+      <file leaf-file-name="web_site_media_reporter.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/models/web_site_media_reporter.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="75.42308">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="file_categories_controller.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/file_categories_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="5" selection-start="490" selection-end="490" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/file_categories/index.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="75" column="43" selection-start="2920" selection-end="2920" vertical-scroll-proportion="8.076923">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="navigation.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/navigation.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="48" selection-start="2638" selection-end="2638" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="environment.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/environment.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="30" selection-start="496" selection-end="496" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="network_opinion_leader_bloggers_controller.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/network_opinion_leader_bloggers_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="39" selection-start="520" selection-end="520" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="notifier.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/plugins/exception_notification/lib/exception_notification/notifier.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="naming.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.0.0-p451/gems/activemodel-3.2.15/lib/active_model/naming.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="88" column="8" selection-start="3475" selection-end="3475" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="i18n.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.0.0-p451/gems/i18n-0.6.5/lib/i18n.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="149" column="66" selection-start="6172" selection-end="6172" vertical-scroll-proportion="0.0">
+            <state line="139" column="17" selection-start="5568" selection-end="5568" vertical-scroll-proportion="0.5447339">
               <folding />
             </state>
           </provider>
@@ -171,10 +92,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/models/web_site_media_reporter.rb" />
-        <option value="$PROJECT_DIR$/app/views/web_site_media_reporters/new.html.erb" />
-        <option value="$PROJECT_DIR$/config/application.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/fashion_media_infos_controller.rb" />
         <option value="$PROJECT_DIR$/lib/class_ext.rb" />
         <option value="$PROJECT_DIR$/app/views/fashion_media_infos/index.html.erb" />
         <option value="$PROJECT_DIR$/app/views/web_site_media_reporters/index.html.erb" />
@@ -187,6 +104,10 @@
         <option value="$PROJECT_DIR$/app/views/file_categories/index.html.erb" />
         <option value="$PROJECT_DIR$/config/navigation.rb" />
         <option value="$PROJECT_DIR$/config/environment.rb" />
+        <option value="$PROJECT_DIR$/app/views/layouts/single.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
+        <option value="$PROJECT_DIR$/app/models/web_site_media_reporter.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/web_site_media_reporters_controller.rb" />
       </list>
     </option>
   </component>
@@ -198,10 +119,10 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="55" />
-    <option name="y" value="24" />
-    <option name="width" value="1865" />
-    <option name="height" value="1056" />
+    <option name="x" value="52" />
+    <option name="y" value="-9" />
+    <option name="width" value="1871" />
+    <option name="height" value="1095" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -245,6 +166,16 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="RailsProjectView">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nix" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -338,6 +269,24 @@
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nix" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nix" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -359,16 +308,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="RailsProjectView">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nix" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="Scope" />
     </panes>
   </component>
@@ -383,9 +322,9 @@
     <property name="restartRequiresConfirmation" value="true" />
     <property name="FullScreen" value="false" />
     <property name="RailsGeneratorsPopup.hiddenIncluded" value="false" />
+    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="Ruby.ViewRefParam.DefaultExtension" value="html.erb" />
-    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -627,13 +566,6 @@
       <RUBY_REMOTE_DEBUG_CONFIG NAME="LOCAL_ROOT" VALUE="" />
       <method />
     </configuration>
-    <configuration default="true" type="JavascriptDebugSession" factoryName="Remote" singleton="true">
-      <JSRemoteDebuggerConfigurationSettings>
-        <option name="engineId" value="embedded" />
-        <option name="fileUrl" />
-      </JSRemoteDebuggerConfigurationSettings>
-      <method />
-    </configuration>
     <configuration default="true" type="CucumberRunConfigurationType" factoryName="Cucumber">
       <predefined_log_file id="RUBY_CUCUMBER" enabled="true" />
       <module name="nix" />
@@ -667,6 +599,13 @@
       <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="CUCUMBER_RUNNER_PATH" VALUE="" />
       <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_RUNNER" VALUE="false" />
       <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="SETTINGS_VERSION" VALUE="2" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugSession" factoryName="Remote" singleton="true">
+      <JSRemoteDebuggerConfigurationSettings>
+        <option name="engineId" value="embedded" />
+        <option name="fileUrl" />
+      </JSRemoteDebuggerConfigurationSettings>
       <method />
     </configuration>
     <configuration default="true" type="SporkRunConfigurationType" factoryName="Spork DRb">
@@ -734,18 +673,18 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="55" y="24" width="1865" height="1056" extended-state="6" />
+    <frame x="52" y="-9" width="1871" height="1095" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294893" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24958678" sideWeight="0.6537657" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27658403" sideWeight="0.6589958" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27988982" sideWeight="0.66004187" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35247526" sideWeight="0.5002681" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3410042" sideWeight="0.4997319" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33995816" sideWeight="0.4997319" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -853,54 +792,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/controllers/traveling_photography_media_infos_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="145" column="7" selection-start="3430" selection-end="4330" vertical-scroll-proportion="0.99499166" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/fashion_media_infos_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="131" column="41" selection-start="3763" selection-end="3763" vertical-scroll-proportion="0.45217392" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/moderators/index.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="35" selection-start="4337" selection-end="4337" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.0.0-p451/gems/breadcrumbs_on_rails-2.3.0/lib/breadcrumbs_on_rails/action_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="10" selection-start="1493" selection-end="1493" vertical-scroll-proportion="0.33222038" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/moderators_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="2" selection-start="80" selection-end="185" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/file_categories_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="5" selection-start="490" selection-end="490" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.0.0-p451/gems/i18n-0.6.5/lib/i18n.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="149" column="66" selection-start="6172" selection-end="6172" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/initializers/simple_form.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="8" selection-start="689" selection-end="689" vertical-scroll-proportion="0.37457627" />
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.0.0-p451/gems/activemodel-3.2.15/lib/active_model/naming.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="88" column="8" selection-start="3475" selection-end="3475" vertical-scroll-proportion="0.0">
@@ -910,7 +801,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/file_categories/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="75" column="43" selection-start="2920" selection-end="2920" vertical-scroll-proportion="8.076923">
+        <state line="75" column="43" selection-start="2920" selection-end="2920" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -929,30 +820,92 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/environment.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="30" selection-start="496" selection-end="496" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/network_opinion_leader_bloggers_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="39" selection-start="520" selection-end="520" vertical-scroll-proportion="0.0">
+        <state line="14" column="39" selection-start="520" selection-end="520" vertical-scroll-proportion="0.018338727">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/fashion_media_infos/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="75.42308">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/network_opinion_leader_bloggers/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="30" selection-start="4601" selection-end="4601" vertical-scroll-proportion="-1.6115241">
+        <state line="119" column="5" selection-start="6640" selection-end="6640" vertical-scroll-proportion="-0.65384614">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/plugins/exception_notification/lib/exception_notification.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="0" selection-start="321" selection-end="321" vertical-scroll-proportion="0.20623916" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/environment.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="16" selection-start="435" selection-end="435" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/settings.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="0" selection-start="106" selection-end="106" vertical-scroll-proportion="0.09169363">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.0.0-p451/gems/actionpack-3.2.15/lib/sprockets/helpers/rails_helper.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="45" selection-start="1342" selection-end="1342" vertical-scroll-proportion="0.24247788">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.0.0-p451/gems/actionpack-3.2.15/lib/action_view/helpers/asset_tag_helpers/stylesheet_tag_helpers.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="11" selection-start="309" selection-end="309" vertical-scroll-proportion="0.33097345">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/single.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="58" selection-start="188" selection-end="188" vertical-scroll-proportion="-3.2692308">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="0" selection-start="500" selection-end="500" vertical-scroll-proportion="0.28301886">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/web_site_media_reporters_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="244" column="57" selection-start="7553" selection-end="7553" vertical-scroll-proportion="0.0">
+          <folding>
+            <marker date="1401086856431" expanded="true" signature="7665:8231" placeholder="if ... end" />
+            <marker date="1401086856431" expanded="true" signature="7716:7964" placeholder="do ... end" />
+            <marker date="1401086856431" expanded="true" signature="7757:7864" placeholder="{ ... }" />
+            <marker date="1401086856431" expanded="true" signature="7894:7945" placeholder="{ ... }" />
+            <marker date="1401086856431" expanded="true" signature="8009:8214" placeholder="do ... end" />
+            <marker date="1401086856431" expanded="true" signature="8050:8114" placeholder="{ ... }" />
+            <marker date="1401086856431" expanded="true" signature="8144:8195" placeholder="{ ... }" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/web_site_media_reporter.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="139" column="17" selection-start="5568" selection-end="5568" vertical-scroll-proportion="0.5447339">
           <folding />
         </state>
       </provider>

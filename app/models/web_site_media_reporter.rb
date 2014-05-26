@@ -208,7 +208,6 @@ class WebSiteMediaReporter < ActiveRecord::Base
         _reporter.created_by=user.id
         _reporter.updated_by=user.id
         _reporter.save
-        pp "------------------------"+index.to_s
       end
       if error_numbers.count > 0
         raise ActiveRecord::Rollback
