@@ -2,42 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="699d20be-cbe3-4e87-867a-4a71c08051ce" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/layouts/_date_picker.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/class_ext.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/yy.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/temp/媒体资源库-网络意见领袖、博主信息.xls" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.generators" afterPath="$PROJECT_DIR$/.idea/.generators" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20140411014812_create_web_site_media_reporters.rb" afterPath="$PROJECT_DIR$/db/migrate/20140411014812_create_web_site_media_reporters.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/runConfigurations/Development__nix.xml" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Development__nix.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/runConfigurations/Production__nix.xml" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Production__nix.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/locales/activerecord.zh-CN.yml" afterPath="$PROJECT_DIR$/config/locales/activerecord.zh-CN.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/helpers/application_helper.rb" afterPath="$PROJECT_DIR$/app/helpers/application_helper.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/environment.rb" afterPath="$PROJECT_DIR$/config/environment.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/fashion_media_infos_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/fashion_media_infos_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/fashion_media_infos/index.html.erb" afterPath="$PROJECT_DIR$/app/views/fashion_media_infos/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/file_categories/index.html.erb" afterPath="$PROJECT_DIR$/app/views/file_categories/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/moderators/index.html.erb" afterPath="$PROJECT_DIR$/app/views/moderators/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/network_opinion_leader_bloggers/index.html.erb" afterPath="$PROJECT_DIR$/app/views/network_opinion_leader_bloggers/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/traveling_photography_media_infos/index.html.erb" afterPath="$PROJECT_DIR$/app/views/traveling_photography_media_infos/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/web_site_media_reporters/index.html.erb" afterPath="$PROJECT_DIR$/app/views/web_site_media_reporters/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/moderators_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/moderators_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/network_opinion_leader_bloggers_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/network_opinion_leader_bloggers_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/web_site_media_reporters/new.html.erb" afterPath="$PROJECT_DIR$/app/views/web_site_media_reporters/new.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/nix.iml" afterPath="$PROJECT_DIR$/.idea/nix.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/runConfigurations/spec.xml" afterPath="$PROJECT_DIR$/.idea/runConfigurations/spec.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/runConfigurations/test.xml" afterPath="$PROJECT_DIR$/.idea/runConfigurations/test.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/traveling_photography_media_infos_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/traveling_photography_media_infos_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/web_site_media_reporter.rb" afterPath="$PROJECT_DIR$/app/models/web_site_media_reporter.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/web_site_media_reporters_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/web_site_media_reporters_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="nix.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1400807681453" ignored="false" />
+    <file path="/Dummy.txt" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1401079265260" ignored="false" />
     <file path="/_date_picker.erb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1400222187622" ignored="false" />
     <file path="/index.html.erb" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1400724137951" ignored="false" />
     <file path="/a.dummy" changelist="699d20be-cbe3-4e87-867a-4a71c08051ce" time="1400837471317" ignored="false" />
@@ -72,7 +41,7 @@
       <file leaf-file-name="index.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/network_opinion_leader_bloggers/index.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="49" column="46" selection-start="3876" selection-end="3876" vertical-scroll-proportion="-8.5">
+            <state line="49" column="46" selection-start="3876" selection-end="3876" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -81,81 +50,8 @@
       <file leaf-file-name="index.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/moderators/index.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="35" selection-start="4337" selection-end="4337" vertical-scroll-proportion="-41.192307">
-              <folding>
-                <marker date="1400812594644" expanded="true" signature="32:7967" placeholder="do ... end" />
-                <marker date="1400812594644" expanded="true" signature="90:111" placeholder="&quot;%{model}列表&quot;" />
-                <marker date="1400812594644" expanded="false" signature="606:661" placeholder="&quot;创建%{model}&quot;" />
-                <marker date="1400812594644" expanded="true" signature="868:7967" placeholder=" ... end" />
-                <marker date="1400812594644" expanded="false" signature="1501:1524" placeholder="&quot;上传%{model}&quot;" />
-                <marker date="1400812594644" expanded="true" signature="1779:7967" placeholder=" ... end" />
-                <marker date="1400812594644" expanded="false" signature="2349:2405" placeholder="&quot;下载%{model}&quot;" />
-                <marker date="1400812594644" expanded="true" signature="2854:4564" placeholder=" ... end" />
-                <marker date="1400812594644" expanded="true" signature="3385:4544" placeholder="..." />
-                <marker date="1400812594644" expanded="true" signature="4295:4538" placeholder="do ... end" />
-                <marker date="1400812594644" expanded="true" signature="4648:7837" placeholder="do ... end" />
-                <marker date="1400812594644" expanded="false" signature="4673:4722" placeholder="&quot;媒体名称&quot;" />
-                <marker date="1400812594644" expanded="true" signature="4723:4752" placeholder="do ... end" />
-                <marker date="1400812594644" expanded="false" signature="4770:4819" placeholder="&quot;品牌&quot;" />
-                <marker date="1400812594644" expanded="true" signature="4820:4849" placeholder="do ... end" />
-                <marker date="1400812594644" expanded="false" signature="4867:4918" placeholder="&quot;产品&quot;" />
-                <marker date="1400812594644" expanded="true" signature="4919:4950" placeholder="do ... end" />
-                <marker date="1400812594644" expanded="false" signature="4968:5011" placeholder="&quot;姓名&quot;" />
-                <marker date="1400812594644" expanded="true" signature="5012:5035" placeholder="do ... end" />
-                <marker date="1400812594644" expanded="false" signature="5053:5100" placeholder="&quot;昵称&quot;" />
-                <marker date="1400812594644" expanded="true" signature="5101:5128" placeholder="do ... end" />
-                <marker date="1400812594644" expanded="false" signature="5146:5188" placeholder="&quot;性别&quot;" />
-                <marker date="1400812594644" expanded="true" signature="5189:5231" placeholder="do ... end" />
-                <marker date="1400812594644" expanded="false" signature="5249:5296" placeholder="&quot;职位&quot;" />
-                <marker date="1400812594644" expanded="true" signature="5297:5324" placeholder="do ... end" />
-                <marker date="1400812594644" expanded="false" signature="5342:5384" placeholder="&quot;年龄&quot;" />
-                <marker date="1400812594644" expanded="true" signature="5385:5407" placeholder="do ... end" />
-                <marker date="1400812594644" expanded="false" signature="5426:5471" placeholder="&quot;手机&quot;" />
-                <marker date="1400812594644" expanded="true" signature="5472:5497" placeholder="do ... end" />
-                <marker date="1400812594644" expanded="false" signature="5515:5559" placeholder="&quot;邮箱&quot;" />
-                <marker date="1400812594644" expanded="true" signature="5560:5584" placeholder="do ... end" />
-                <marker date="1400812594644" expanded="false" signature="5603:5656" placeholder="&quot;办公地址&quot;" />
-                <marker date="1400812594644" expanded="true" signature="5657:5690" placeholder="do ... end" />
-                <marker date="1400812594644" expanded="false" signature="5708:5756" placeholder="&quot;身份证号&quot;" />
-                <marker date="1400812594644" expanded="true" signature="5757:5785" placeholder="do ... end" />
-                <marker date="1400812594644" expanded="false" signature="5804:5851" placeholder="&quot;生日&quot;" />
-                <marker date="1400812594644" expanded="true" signature="5852:5925" placeholder="do ... end" />
-                <marker date="1400812594644" expanded="false" signature="5944:6001" placeholder="&quot;从业情况&quot;" />
-                <marker date="1400812594644" expanded="true" signature="6002:6039" placeholder="do ... end" />
-                <marker date="1400812594644" expanded="false" signature="6058:6110" placeholder="&quot;活动记录&quot;" />
-                <marker date="1400812594644" expanded="true" signature="6111:6143" placeholder="do ... end" />
-                <marker date="1400812594644" expanded="false" signature="6162:6219" placeholder="&quot;维护记录&quot;" />
-                <marker date="1400812594644" expanded="true" signature="6220:6257" placeholder="do ... end" />
-                <marker date="1400812594644" expanded="false" signature="6276:6331" placeholder="&quot;关注话题&quot;" />
-                <marker date="1400812594644" expanded="true" signature="6332:6367" placeholder="do ... end" />
-                <marker date="1400812594644" expanded="false" signature="6386:6432" placeholder="&quot;已婚？&quot;" />
-                <marker date="1400812594644" expanded="true" signature="6433:6519" placeholder="do ... end" />
-                <marker date="1400812594644" expanded="true" signature="6444:6513" placeholder="unless ... end" />
-                <marker date="1400812594644" expanded="false" signature="6538:6589" placeholder="&quot;是否有子女（性别）&quot;" />
-                <marker date="1400812594644" expanded="true" signature="6590:6621" placeholder="do ... end" />
-                <marker date="1400812594644" expanded="false" signature="6640:6686" placeholder="&quot;是否有车（品牌）&quot;" />
-                <marker date="1400812594644" expanded="true" signature="6687:6713" placeholder="do ... end" />
-                <marker date="1400812594644" expanded="false" signature="6732:6782" placeholder="&quot;其他（个人兴趣，爱好）&quot;" />
-                <marker date="1400812594644" expanded="true" signature="6783:6813" placeholder="do ... end" />
-                <marker date="1400812594644" expanded="false" signature="6832:6876" placeholder="&quot;备注&quot;" />
-                <marker date="1400812594644" expanded="true" signature="6877:6901" placeholder="do ... end" />
-                <marker date="1400812594644" expanded="false" signature="6920:6992" placeholder="&quot;创建时间&quot;" />
-                <marker date="1400812594644" expanded="true" signature="6993:7043" placeholder="do ... end" />
-                <marker date="1400812594644" expanded="false" signature="7062:7134" placeholder="&quot;创建人&quot;" />
-                <marker date="1400812594644" expanded="true" signature="7135:7166" placeholder="do ... end" />
-                <marker date="1400812594644" expanded="false" signature="7185:7257" placeholder="&quot;更新时间   &quot;" />
-                <marker date="1400812594644" expanded="true" signature="7258:7308" placeholder="do ... end" />
-                <marker date="1400812594644" expanded="false" signature="7327:7399" placeholder="&quot;更新人&quot;" />
-                <marker date="1400812594644" expanded="true" signature="7400:7431" placeholder="do ... end" />
-                <marker date="1400812594644" expanded="true" signature="7456:7600" placeholder=" ... end" />
-                <marker date="1400812594644" expanded="false" signature="7576:7593" placeholder="&quot;编辑&quot;" />
-                <marker date="1400812594644" expanded="true" signature="7625:7832" placeholder=" ... end" />
-                <marker date="1400812594644" expanded="false" signature="7727:7747" placeholder="&quot;你确定要删除这个项目吗?&quot;" />
-                <marker date="1400812594644" expanded="false" signature="7806:7825" placeholder="&quot;删除&quot;" />
-                <marker date="1400812594644" expanded="true" signature="7864:7962" placeholder="..." />
-                <marker date="1400812594644" expanded="true" signature="7881:7911" placeholder="{...}" />
-                <marker date="1400812594644" expanded="true" signature="7922:7953" placeholder="{...}" />
-              </folding>
+            <state line="63" column="35" selection-start="4337" selection-end="4337" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -173,9 +69,7 @@
         <entry file="file://$PROJECT_DIR$/app/controllers/file_categories_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state line="11" column="5" selection-start="490" selection-end="490" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#100#126#1" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -183,7 +77,7 @@
       <file leaf-file-name="index.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/file_categories/index.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="59" column="33" selection-start="2475" selection-end="2475" vertical-scroll-proportion="-15.038462">
+            <state line="59" column="33" selection-start="2475" selection-end="2475" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -192,29 +86,9 @@
       <file leaf-file-name="navigation.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config/navigation.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="388" column="60" selection-start="11781" selection-end="11798" vertical-scroll-proportion="0.3118644">
+            <state line="402" column="12" selection-start="12146" selection-end="12146" vertical-scroll-proportion="11.864583">
               <folding>
-                <element signature="e#3274#3288#0" expanded="false" />
-                <element signature="e#3479#3500#0" expanded="false" />
-                <element signature="e#4498#4519#0" expanded="false" />
-                <element signature="e#4980#5003#0" expanded="false" />
-                <element signature="e#5497#5518#0" expanded="false" />
-                <element signature="e#5855#5878#0" expanded="false" />
-                <element signature="e#6351#6372#0" expanded="false" />
-                <element signature="e#6839#6860#0" expanded="false" />
-                <element signature="e#7388#7409#0" expanded="false" />
-                <element signature="e#7924#7945#0" expanded="false" />
-                <element signature="e#8401#8422#0" expanded="false" />
-                <element signature="e#8849#8872#0" expanded="false" />
-                <element signature="e#9286#9307#0" expanded="false" />
-                <element signature="e#9560#9581#0" expanded="false" />
-                <element signature="e#9838#9859#0" expanded="false" />
-                <element signature="e#10131#10152#0" expanded="false" />
-                <element signature="e#10405#10426#0" expanded="false" />
-                <element signature="e#10656#10677#0" expanded="false" />
-                <element signature="e#11027#11048#0" expanded="false" />
-                <element signature="e#11366#11389#0" expanded="false" />
-                <element signature="e#12146#12169#0" expanded="false" />
+                <element signature="e#12146#12169#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -337,6 +211,16 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="RailsProjectView">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nix" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -451,14 +335,22 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-        </subPane>
-      </pane>
-      <pane id="RailsProjectView">
-        <subPane>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="nix" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nix" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -476,9 +368,9 @@
     <property name="restartRequiresConfirmation" value="true" />
     <property name="FullScreen" value="false" />
     <property name="RailsGeneratorsPopup.hiddenIncluded" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="Ruby.ViewRefParam.DefaultExtension" value="html.erb" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -827,23 +719,23 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="52" y="-9" width="1871" height="1095" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32740587" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294893" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24958678" sideWeight="0.6537657" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26666668" sideWeight="0.67259413" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27327824" sideWeight="0.6579498" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35247526" sideWeight="0.5002681" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34309623" sideWeight="0.4997319" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3420502" sideWeight="0.4997319" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32740587" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -959,7 +851,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/network_opinion_leader_bloggers/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="46" selection-start="3876" selection-end="3876" vertical-scroll-proportion="-8.5">
+        <state line="49" column="46" selection-start="3876" selection-end="3876" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -973,110 +865,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/traveling_photography_media_infos_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="145" column="7" selection-start="3430" selection-end="4330" vertical-scroll-proportion="0.99499166">
-          <folding />
-        </state>
+        <state line="145" column="7" selection-start="3430" selection-end="4330" vertical-scroll-proportion="0.99499166" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/fashion_media_infos_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="131" column="41" selection-start="3763" selection-end="3763" vertical-scroll-proportion="0.45217392">
-          <folding />
-        </state>
+        <state line="131" column="41" selection-start="3763" selection-end="3763" vertical-scroll-proportion="0.45217392" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/network_opinion_leader_bloggers_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="167" column="7" selection-start="4023" selection-end="4858" vertical-scroll-proportion="0.28380635">
-          <folding />
-        </state>
+        <state line="167" column="7" selection-start="4023" selection-end="4858" vertical-scroll-proportion="0.28380635" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/moderators/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="35" selection-start="4337" selection-end="4337" vertical-scroll-proportion="-41.192307">
-          <folding>
-            <marker date="1400812594644" expanded="true" signature="32:7967" placeholder="do ... end" />
-            <marker date="1400812594644" expanded="true" signature="90:111" placeholder="&quot;%{model}列表&quot;" />
-            <marker date="1400812594644" expanded="false" signature="606:661" placeholder="&quot;创建%{model}&quot;" />
-            <marker date="1400812594644" expanded="true" signature="868:7967" placeholder=" ... end" />
-            <marker date="1400812594644" expanded="false" signature="1501:1524" placeholder="&quot;上传%{model}&quot;" />
-            <marker date="1400812594644" expanded="true" signature="1779:7967" placeholder=" ... end" />
-            <marker date="1400812594644" expanded="false" signature="2349:2405" placeholder="&quot;下载%{model}&quot;" />
-            <marker date="1400812594644" expanded="true" signature="2854:4564" placeholder=" ... end" />
-            <marker date="1400812594644" expanded="true" signature="3385:4544" placeholder="..." />
-            <marker date="1400812594644" expanded="true" signature="4295:4538" placeholder="do ... end" />
-            <marker date="1400812594644" expanded="true" signature="4648:7837" placeholder="do ... end" />
-            <marker date="1400812594644" expanded="false" signature="4673:4722" placeholder="&quot;媒体名称&quot;" />
-            <marker date="1400812594644" expanded="true" signature="4723:4752" placeholder="do ... end" />
-            <marker date="1400812594644" expanded="false" signature="4770:4819" placeholder="&quot;品牌&quot;" />
-            <marker date="1400812594644" expanded="true" signature="4820:4849" placeholder="do ... end" />
-            <marker date="1400812594644" expanded="false" signature="4867:4918" placeholder="&quot;产品&quot;" />
-            <marker date="1400812594644" expanded="true" signature="4919:4950" placeholder="do ... end" />
-            <marker date="1400812594644" expanded="false" signature="4968:5011" placeholder="&quot;姓名&quot;" />
-            <marker date="1400812594644" expanded="true" signature="5012:5035" placeholder="do ... end" />
-            <marker date="1400812594644" expanded="false" signature="5053:5100" placeholder="&quot;昵称&quot;" />
-            <marker date="1400812594644" expanded="true" signature="5101:5128" placeholder="do ... end" />
-            <marker date="1400812594644" expanded="false" signature="5146:5188" placeholder="&quot;性别&quot;" />
-            <marker date="1400812594644" expanded="true" signature="5189:5231" placeholder="do ... end" />
-            <marker date="1400812594644" expanded="false" signature="5249:5296" placeholder="&quot;职位&quot;" />
-            <marker date="1400812594644" expanded="true" signature="5297:5324" placeholder="do ... end" />
-            <marker date="1400812594644" expanded="false" signature="5342:5384" placeholder="&quot;年龄&quot;" />
-            <marker date="1400812594644" expanded="true" signature="5385:5407" placeholder="do ... end" />
-            <marker date="1400812594644" expanded="false" signature="5426:5471" placeholder="&quot;手机&quot;" />
-            <marker date="1400812594644" expanded="true" signature="5472:5497" placeholder="do ... end" />
-            <marker date="1400812594644" expanded="false" signature="5515:5559" placeholder="&quot;邮箱&quot;" />
-            <marker date="1400812594644" expanded="true" signature="5560:5584" placeholder="do ... end" />
-            <marker date="1400812594644" expanded="false" signature="5603:5656" placeholder="&quot;办公地址&quot;" />
-            <marker date="1400812594644" expanded="true" signature="5657:5690" placeholder="do ... end" />
-            <marker date="1400812594644" expanded="false" signature="5708:5756" placeholder="&quot;身份证号&quot;" />
-            <marker date="1400812594644" expanded="true" signature="5757:5785" placeholder="do ... end" />
-            <marker date="1400812594644" expanded="false" signature="5804:5851" placeholder="&quot;生日&quot;" />
-            <marker date="1400812594644" expanded="true" signature="5852:5925" placeholder="do ... end" />
-            <marker date="1400812594644" expanded="false" signature="5944:6001" placeholder="&quot;从业情况&quot;" />
-            <marker date="1400812594644" expanded="true" signature="6002:6039" placeholder="do ... end" />
-            <marker date="1400812594644" expanded="false" signature="6058:6110" placeholder="&quot;活动记录&quot;" />
-            <marker date="1400812594644" expanded="true" signature="6111:6143" placeholder="do ... end" />
-            <marker date="1400812594644" expanded="false" signature="6162:6219" placeholder="&quot;维护记录&quot;" />
-            <marker date="1400812594644" expanded="true" signature="6220:6257" placeholder="do ... end" />
-            <marker date="1400812594644" expanded="false" signature="6276:6331" placeholder="&quot;关注话题&quot;" />
-            <marker date="1400812594644" expanded="true" signature="6332:6367" placeholder="do ... end" />
-            <marker date="1400812594644" expanded="false" signature="6386:6432" placeholder="&quot;已婚？&quot;" />
-            <marker date="1400812594644" expanded="true" signature="6433:6519" placeholder="do ... end" />
-            <marker date="1400812594644" expanded="true" signature="6444:6513" placeholder="unless ... end" />
-            <marker date="1400812594644" expanded="false" signature="6538:6589" placeholder="&quot;是否有子女（性别）&quot;" />
-            <marker date="1400812594644" expanded="true" signature="6590:6621" placeholder="do ... end" />
-            <marker date="1400812594644" expanded="false" signature="6640:6686" placeholder="&quot;是否有车（品牌）&quot;" />
-            <marker date="1400812594644" expanded="true" signature="6687:6713" placeholder="do ... end" />
-            <marker date="1400812594644" expanded="false" signature="6732:6782" placeholder="&quot;其他（个人兴趣，爱好）&quot;" />
-            <marker date="1400812594644" expanded="true" signature="6783:6813" placeholder="do ... end" />
-            <marker date="1400812594644" expanded="false" signature="6832:6876" placeholder="&quot;备注&quot;" />
-            <marker date="1400812594644" expanded="true" signature="6877:6901" placeholder="do ... end" />
-            <marker date="1400812594644" expanded="false" signature="6920:6992" placeholder="&quot;创建时间&quot;" />
-            <marker date="1400812594644" expanded="true" signature="6993:7043" placeholder="do ... end" />
-            <marker date="1400812594644" expanded="false" signature="7062:7134" placeholder="&quot;创建人&quot;" />
-            <marker date="1400812594644" expanded="true" signature="7135:7166" placeholder="do ... end" />
-            <marker date="1400812594644" expanded="false" signature="7185:7257" placeholder="&quot;更新时间   &quot;" />
-            <marker date="1400812594644" expanded="true" signature="7258:7308" placeholder="do ... end" />
-            <marker date="1400812594644" expanded="false" signature="7327:7399" placeholder="&quot;更新人&quot;" />
-            <marker date="1400812594644" expanded="true" signature="7400:7431" placeholder="do ... end" />
-            <marker date="1400812594644" expanded="true" signature="7456:7600" placeholder=" ... end" />
-            <marker date="1400812594644" expanded="false" signature="7576:7593" placeholder="&quot;编辑&quot;" />
-            <marker date="1400812594644" expanded="true" signature="7625:7832" placeholder=" ... end" />
-            <marker date="1400812594644" expanded="false" signature="7727:7747" placeholder="&quot;你确定要删除这个项目吗?&quot;" />
-            <marker date="1400812594644" expanded="false" signature="7806:7825" placeholder="&quot;删除&quot;" />
-            <marker date="1400812594644" expanded="true" signature="7864:7962" placeholder="..." />
-            <marker date="1400812594644" expanded="true" signature="7881:7911" placeholder="{...}" />
-            <marker date="1400812594644" expanded="true" signature="7922:7953" placeholder="{...}" />
-          </folding>
+        <state line="63" column="35" selection-start="4337" selection-end="4337" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.0.0-p451/gems/breadcrumbs_on_rails-2.3.0/lib/breadcrumbs_on_rails/action_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="10" selection-start="1493" selection-end="1493" vertical-scroll-proportion="0.33222038">
-          <folding />
-        </state>
+        <state line="62" column="10" selection-start="1493" selection-end="1493" vertical-scroll-proportion="0.33222038" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/moderators_controller.rb">
@@ -1089,15 +900,13 @@
     <entry file="file://$PROJECT_DIR$/app/controllers/file_categories_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="5" selection-start="490" selection-end="490" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#100#126#1" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/file_categories/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="33" selection-start="2475" selection-end="2475" vertical-scroll-proportion="-15.038462">
+        <state line="59" column="33" selection-start="2475" selection-end="2475" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1111,9 +920,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/initializers/simple_form.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="8" selection-start="689" selection-end="689" vertical-scroll-proportion="0.37457627">
-          <folding />
-        </state>
+        <state line="13" column="8" selection-start="689" selection-end="689" vertical-scroll-proportion="0.37457627" />
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.0.0-p451/gems/activemodel-3.2.15/lib/active_model/naming.rb">
@@ -1125,29 +932,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/navigation.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="388" column="60" selection-start="11781" selection-end="11798" vertical-scroll-proportion="0.3118644">
+        <state line="402" column="12" selection-start="12146" selection-end="12146" vertical-scroll-proportion="11.864583">
           <folding>
-            <element signature="e#3274#3288#0" expanded="false" />
-            <element signature="e#3479#3500#0" expanded="false" />
-            <element signature="e#4498#4519#0" expanded="false" />
-            <element signature="e#4980#5003#0" expanded="false" />
-            <element signature="e#5497#5518#0" expanded="false" />
-            <element signature="e#5855#5878#0" expanded="false" />
-            <element signature="e#6351#6372#0" expanded="false" />
-            <element signature="e#6839#6860#0" expanded="false" />
-            <element signature="e#7388#7409#0" expanded="false" />
-            <element signature="e#7924#7945#0" expanded="false" />
-            <element signature="e#8401#8422#0" expanded="false" />
-            <element signature="e#8849#8872#0" expanded="false" />
-            <element signature="e#9286#9307#0" expanded="false" />
-            <element signature="e#9560#9581#0" expanded="false" />
-            <element signature="e#9838#9859#0" expanded="false" />
-            <element signature="e#10131#10152#0" expanded="false" />
-            <element signature="e#10405#10426#0" expanded="false" />
-            <element signature="e#10656#10677#0" expanded="false" />
-            <element signature="e#11027#11048#0" expanded="false" />
-            <element signature="e#11366#11389#0" expanded="false" />
-            <element signature="e#12146#12169#0" expanded="false" />
+            <element signature="e#12146#12169#0" expanded="true" />
           </folding>
         </state>
       </provider>
