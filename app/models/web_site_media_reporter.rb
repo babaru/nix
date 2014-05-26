@@ -118,39 +118,18 @@ class WebSiteMediaReporter < ActiveRecord::Base
   end
 
   def self.create_by_excel(_sheet=nil,user=nil)
-    return false if _sheet.nil? or user.nil?
+    return nil if _sheet.nil? or user.nil?
     _media_name1,_office_address1,_city='',"",nil
-    error_numbers = []
     ActiveRecord::Base.transaction do
       _sheet.each_with_index do |row,index|
         next if index==0
         _reporter = WebSiteMediaReporter.new()
-        # _region_name = row[0].to_s.strip
-        # _region = Region.where("name like ?","%#{_region_name}%").first
-        # if _region.blank?
-        #   raise ActiveRecord::Rollback
-        #   break
-        # end
-        #_reporter.region_id=_region.id
 
-        # _province_name = row[1].to_s.strip
-        # _province = Province.where("name like ?","%#{_province_name}%").first
-        # if _province.blank?
-        #   raise ActiveRecord::Rollback
-        #   break
-        # end
-        # _reporter.province_id=_province.id
-        # _reporter.region_id=_city.province.region_id
-
-        #_city_name = row[2].to_s.strip
         if row[1].to_s.strip=='分站'
           _reporter.is_substation = 1
         end
         _city = City.where("name like ?","%#{row[3].to_s.strip}%").first unless row[3].to_s.strip.blank?
-        # if _city.blank?
-        #   raise ActiveRecord::Rollback
-        #   break
-        # end
+
         if !_city.blank?
           _reporter.city_id=_city.id
           _reporter.province_id=_city.province_id
@@ -209,11 +188,7 @@ class WebSiteMediaReporter < ActiveRecord::Base
         _reporter.updated_by=user.id
         _reporter.save
       end
-      if error_numbers.count > 0
-        raise ActiveRecord::Rollback
-      end
     end
-    error_numbers
   end
 
 

@@ -108,10 +108,6 @@ class FashionMediaInfo < ActiveRecord::Base
         _data.updated_by=user.id
         _data.save
       end
-      if error_numbers.count > 0
-        raise ActiveRecord::Rollback
-      end
     end
-    error_numbers
   end
 end

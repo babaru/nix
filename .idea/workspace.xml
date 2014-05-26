@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="699d20be-cbe3-4e87-867a-4a71c08051ce" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/fashion_media_infos_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/fashion_media_infos_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/initializers/session_store.rb" afterPath="$PROJECT_DIR$/config/initializers/session_store.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/fashion_media_info.rb" afterPath="$PROJECT_DIR$/app/models/fashion_media_info.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/web_site_media_reporter.rb" afterPath="$PROJECT_DIR$/app/models/web_site_media_reporter.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/web_site_media_reporters_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/web_site_media_reporters_controller.rb" />
     </list>
     <ignored path="nix.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,18 +41,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="web_site_media_reporters_controller.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="web_site_media_reporters_controller.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/web_site_media_reporters_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="238" column="19" selection-start="7194" selection-end="7194" vertical-scroll-proportion="0.0">
+            <state line="244" column="12" selection-start="7508" selection-end="7508" vertical-scroll-proportion="0.5588235">
               <folding>
-                <marker date="1401086856431" expanded="true" signature="7665:8231" placeholder="if ... end" />
-                <marker date="1401086856431" expanded="true" signature="7716:7964" placeholder="do ... end" />
-                <marker date="1401086856431" expanded="true" signature="7757:7864" placeholder="{ ... }" />
-                <marker date="1401086856431" expanded="true" signature="7894:7945" placeholder="{ ... }" />
-                <marker date="1401086856431" expanded="true" signature="8009:8214" placeholder="do ... end" />
-                <marker date="1401086856431" expanded="true" signature="8050:8114" placeholder="{ ... }" />
-                <marker date="1401086856431" expanded="true" signature="8144:8195" placeholder="{ ... }" />
+                <marker date="1401090409852" expanded="true" signature="7649:8215" placeholder="if ... end" />
+                <marker date="1401090409852" expanded="true" signature="7700:7948" placeholder="do ... end" />
+                <marker date="1401090409852" expanded="true" signature="7741:7848" placeholder="{ ... }" />
+                <marker date="1401090409852" expanded="true" signature="7878:7929" placeholder="{ ... }" />
+                <marker date="1401090409852" expanded="true" signature="7993:8198" placeholder="do ... end" />
+                <marker date="1401090409852" expanded="true" signature="8034:8098" placeholder="{ ... }" />
+                <marker date="1401090409852" expanded="true" signature="8128:8179" placeholder="{ ... }" />
               </folding>
             </state>
           </provider>
@@ -61,7 +61,7 @@
       <file leaf-file-name="fashion_media_infos_controller.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/fashion_media_infos_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="181" column="15" selection-start="5766" selection-end="5766" vertical-scroll-proportion="0.0">
+            <state line="165" column="54" selection-start="4884" selection-end="4884" vertical-scroll-proportion="0.0">
               <folding>
                 <marker date="1401087441779" expanded="true" signature="4995:5551" placeholder="if ... end" />
                 <marker date="1401087441779" expanded="true" signature="5046:5289" placeholder="do ... end" />
@@ -75,10 +75,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="session_store.rb" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/config/initializers/session_store.rb">
+      <file leaf-file-name="fashion_media_info.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/fashion_media_info.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="0" selection-start="399" selection-end="399" vertical-scroll-proportion="0.23529412">
+            <state line="69" column="0" selection-start="2752" selection-end="2752" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -96,7 +96,7 @@
       <file leaf-file-name="web_site_media_reporter.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/web_site_media_reporter.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="128" column="35" selection-start="5174" selection-end="5174" vertical-scroll-proportion="0.0">
+            <state line="117" column="5" selection-start="4774" selection-end="4774" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -126,7 +126,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/views/web_site_media_reporters/index.html.erb" />
         <option value="$PROJECT_DIR$/app/views/network_opinion_leader_bloggers/index.html.erb" />
         <option value="$PROJECT_DIR$/app/views/traveling_photography_media_infos/index.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/traveling_photography_media_infos_controller.rb" />
@@ -138,10 +137,11 @@
         <option value="$PROJECT_DIR$/config/environment.rb" />
         <option value="$PROJECT_DIR$/app/views/layouts/single.html.erb" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-        <option value="$PROJECT_DIR$/app/models/web_site_media_reporter.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/web_site_media_reporters_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/fashion_media_infos_controller.rb" />
         <option value="$PROJECT_DIR$/config/initializers/session_store.rb" />
+        <option value="$PROJECT_DIR$/app/models/fashion_media_info.rb" />
+        <option value="$PROJECT_DIR$/app/models/web_site_media_reporter.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/web_site_media_reporters_controller.rb" />
       </list>
     </option>
   </component>
@@ -225,6 +225,38 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="nix" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nix" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nix" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="db" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nix" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nix" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="db" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="migrate" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -760,11 +792,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vendor/plugins/exception_notification/lib/exception_notification/notifier.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/network_opinion_leader_bloggers_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="39" selection-start="520" selection-end="520" vertical-scroll-proportion="0.018338727" />
@@ -787,7 +814,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/environment.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="16" selection-start="435" selection-end="435" vertical-scroll-proportion="0.0" />
+        <state line="13" column="16" selection-start="435" selection-end="435" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/settings.rb">
@@ -815,28 +844,6 @@
         <state line="15" column="0" selection-start="500" selection-end="500" vertical-scroll-proportion="0.28301886" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/web_site_media_reporter.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="128" column="35" selection-start="5174" selection-end="5174" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/web_site_media_reporters_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="238" column="19" selection-start="7194" selection-end="7194" vertical-scroll-proportion="0.0">
-          <folding>
-            <marker date="1401086856431" expanded="true" signature="7665:8231" placeholder="if ... end" />
-            <marker date="1401086856431" expanded="true" signature="7716:7964" placeholder="do ... end" />
-            <marker date="1401086856431" expanded="true" signature="7757:7864" placeholder="{ ... }" />
-            <marker date="1401086856431" expanded="true" signature="7894:7945" placeholder="{ ... }" />
-            <marker date="1401086856431" expanded="true" signature="8009:8214" placeholder="do ... end" />
-            <marker date="1401086856431" expanded="true" signature="8050:8114" placeholder="{ ... }" />
-            <marker date="1401086856431" expanded="true" signature="8144:8195" placeholder="{ ... }" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/traveling_photography_media_infos_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="152" column="0" selection-start="4563" selection-end="4563" vertical-scroll-proportion="0.0">
@@ -844,9 +851,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/config/initializers/session_store.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="0" selection-start="399" selection-end="399" vertical-scroll-proportion="0.23529412">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/fashion_media_infos_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="181" column="15" selection-start="5766" selection-end="5766" vertical-scroll-proportion="0.0">
+        <state line="165" column="54" selection-start="4884" selection-end="4884" vertical-scroll-proportion="0.0">
           <folding>
             <marker date="1401087441779" expanded="true" signature="4995:5551" placeholder="if ... end" />
             <marker date="1401087441779" expanded="true" signature="5046:5289" placeholder="do ... end" />
@@ -859,10 +873,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/initializers/session_store.rb">
+    <entry file="file://$PROJECT_DIR$/app/models/fashion_media_info.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="399" selection-end="399" vertical-scroll-proportion="0.23529412">
+        <state line="69" column="0" selection-start="2752" selection-end="2752" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/web_site_media_reporter.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="117" column="5" selection-start="4774" selection-end="4774" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/web_site_media_reporters_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="244" column="12" selection-start="7508" selection-end="7508" vertical-scroll-proportion="0.5588235">
+          <folding>
+            <marker date="1401090409852" expanded="true" signature="7649:8215" placeholder="if ... end" />
+            <marker date="1401090409852" expanded="true" signature="7700:7948" placeholder="do ... end" />
+            <marker date="1401090409852" expanded="true" signature="7741:7848" placeholder="{ ... }" />
+            <marker date="1401090409852" expanded="true" signature="7878:7929" placeholder="{ ... }" />
+            <marker date="1401090409852" expanded="true" signature="7993:8198" placeholder="do ... end" />
+            <marker date="1401090409852" expanded="true" signature="8034:8098" placeholder="{ ... }" />
+            <marker date="1401090409852" expanded="true" signature="8128:8179" placeholder="{ ... }" />
+          </folding>
         </state>
       </provider>
     </entry>

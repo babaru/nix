@@ -242,7 +242,7 @@ class WebSiteMediaReportersController < ApplicationController
             workbook = Spreadsheet.open("#{Rails.root}/public/files/temp/"+new_file_name)
 
             _sheet = workbook.worksheet(0)
-            error_numbers = WebSiteMediaReporter.create_by_excel(_sheet,current_user)
+            WebSiteMediaReporter.create_by_excel(_sheet,current_user)
             FileUtils.rm Dir["#{Rails.root}/public/files/temp/*.xls"]
             #if error_numbers.count>0
             #  respond_to do |format|
