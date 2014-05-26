@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="699d20be-cbe3-4e87-867a-4a71c08051ce" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/environment.rb" afterPath="$PROJECT_DIR$/config/environment.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/initializers/session_store.rb" afterPath="$PROJECT_DIR$/config/initializers/session_store.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/web_site_media_reporter.rb" afterPath="$PROJECT_DIR$/app/models/web_site_media_reporter.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/web_site_media_reporters_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/web_site_media_reporters_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="nix.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -42,10 +40,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="web_site_media_reporters_controller.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="web_site_media_reporters_controller.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/web_site_media_reporters_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="242" column="0" selection-start="7453" selection-end="7453" vertical-scroll-proportion="0.36823106">
+            <state line="244" column="44" selection-start="7541" selection-end="7541" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -179,10 +177,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="web_site_media_reporter.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="web_site_media_reporter.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/web_site_media_reporter.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="122" column="4" selection-start="4921" selection-end="4921" vertical-scroll-proportion="0.0">
+            <state line="123" column="37" selection-start="4992" selection-end="4992" vertical-scroll-proportion="-1.2698706">
               <folding />
             </state>
           </provider>
@@ -223,11 +221,11 @@
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/fashion_media_infos_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/fashion_media_info.rb" />
-        <option value="$PROJECT_DIR$/app/models/web_site_media_reporter.rb" />
         <option value="$PROJECT_DIR$/config/environment.rb" />
         <option value="$PROJECT_DIR$/app/views/network_opinion_leader_bloggers/index.html.erb" />
         <option value="$PROJECT_DIR$/config/initializers/session_store.rb" />
         <option value="$PROJECT_DIR$/app/controllers/web_site_media_reporters_controller.rb" />
+        <option value="$PROJECT_DIR$/app/models/web_site_media_reporter.rb" />
       </list>
     </option>
   </component>
@@ -1029,13 +1027,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/web_site_media_reporter.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="122" column="4" selection-start="4921" selection-end="4921" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/fashion_media_info.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="69" column="0" selection-start="2752" selection-end="2752" vertical-scroll-proportion="0.0">
@@ -1045,7 +1036,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/web_site_media_reporters_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="242" column="0" selection-start="7453" selection-end="7453" vertical-scroll-proportion="0.36823106">
+        <state line="244" column="44" selection-start="7541" selection-end="7541" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/web_site_media_reporter.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="123" column="37" selection-start="4992" selection-end="4992" vertical-scroll-proportion="-1.2698706">
           <folding />
         </state>
       </provider>
