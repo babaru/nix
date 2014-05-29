@@ -64,8 +64,7 @@ class WebSiteMediaReportersController < ApplicationController
       sql += " and is_substation = 1"
     end
 
-    pp "----------------------------"
-    pp  params[:format_select_ids]
+
     unless params[:city_select_ids].blank?
       sql += " and city_id in (?)"
       sql_attr << params[:city_select_ids].split(',')
