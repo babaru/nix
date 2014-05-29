@@ -64,11 +64,39 @@ class WebSiteMediaReportersController < ApplicationController
       sql += " and is_substation = 1"
     end
 
-    @reporters_grid = initialize_grid(WebSiteMediaReporter.where([sql]+sql_attr))
+    pp "----------------------------"
+    pp  params[:format_select_ids]
+    unless params[:city_select_ids].blank?
+      sql += " and city_id in (?)"
+      sql_attr << params[:city_select_ids].split(',')
+      _city = City.where(["id in (?)",params[:city_select_ids].split(',')])
+      @city_select_name = _city.map{|x| x.name}.join('/') unless _city.blank?
+    end
+
+    @formats = WebSiteMediaReporter::FORMATS
+    unless params[:format_select_ids].blank?
+      sql += " and format_id in (?)"
+      sql_attr << params[:format_select_ids].split(',')
+      _format = @formats.select{|x| params[:format_select_ids].split(',').include?(x[1].to_s)}
+      @format_select_name = _format.map{|x| x[0]}.join('/') unless _format.blank?
+    end
+
+    @levels = WebSiteMediaReporter::LEVELS
+    unless params[:level_select_ids].blank?
+      sql += " and level in (?)"
+      sql_attr << params[:level_select_ids].split(',')
+      _level = @levels.select{|x| params[:level_select_ids].split(',').include?(x[1].to_s)}
+      @level_select_name = _level.map{|x| x[0]}.join('/') unless _level.blank?
+    end
+
+
+
+    @reporters_grid = initialize_grid(WebSiteMediaReporter.where([sql]+sql_attr),:per_page=>50)
     @provinces ,@cities = [],[]
     @regions=Region.all().map{|o| [o.name,o.id]} || []
     @provinces = Province.where(:region_id => params[:region_id].to_i).map{|o| [o.name,o.id]} unless params[:region_id].blank?
-    @cities = City.where(:province_id => params[:province_id].to_i).map{|o| [o.name,o.id]} unless params[:province_id].blank?
+
+    @cities = City.all()
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @reporters_grid }

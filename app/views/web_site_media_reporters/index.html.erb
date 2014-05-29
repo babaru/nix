@@ -38,18 +38,102 @@
 %>
 
 <div class="well" style="vertical-align: middle;">
+  <%= hidden_field_tag 'city_select_ids',params[:city_select_ids] -%>
+  <%= hidden_field_tag 'format_select_ids',params[:format_select_ids] -%>
+  <%= hidden_field_tag 'level_select_ids',params[:level_select_ids] -%>
+
+  <table style="width:100%">
+    <tr><td style="width:60px">查询条件：</td><td>
+      <ul style="list-style-type:none;margin: 0;">
+      <% unless @city_select_name.blank? -%>
+          <li style="display: inline;padding-right: 10px;"><a href="#" onclick="$('#city_select_ids').val('');$('form').submit();" class="label label-warning" title="城市:<%= @city_select_name -%>">城市:<%=truncate_u(@city_select_name,6,'...')+'  X'%></a></li>
+      <% end -%>
+
+        <% unless @format_select_name.blank? -%>
+            <li style="display: inline;padding-right: 10px;"><a href="#" onclick="$('#format_select_ids').val('');$('form').submit();" class="label label-warning" title="媒体介质:<%= @format_select_name -%>">媒体介质:<%=truncate_u(@format_select_name,6,'...')+'  X'%></a></li>
+        <% end -%>
+
+        <% unless @level_select_name.blank? -%>
+            <li style="display: inline;padding-right: 10px;"><a href="#" onclick="$('#level_select_ids').val('');$('form').submit();" class="label label-warning" title="媒体级别:<%= @level_select_name -%>">媒体级别:<%=truncate_u(@level_select_name,6,'...')+'  X'%></a></li>
+        <% end -%>
+      </ul>
+    </td></tr>
+    <% if params[:city_select_ids].blank? -%>
+    <tr>
+      <td style="vertical-align: top;">城市：</td>
+      <td style="vertical-align: top;">
+        <ul class="nav nav-pills" style="margin:0;float:left" id="city_select">
+          <% (0..10).each do |i| -%>
+              <li ><a style="padding: 0 10px;" href="#" onclick="$('#city_select_ids').val('<%= @cities[i].id -%>');$('form').submit();"><%= @cities[i].name -%></a></li>
+          <% end -%>
+        </ul>
+        <span style="float:right;color:#666;border:1px solid #666;cursor: pointer" id="btn_change_select" onclick="change_select()">&nbsp;+ 多选&nbsp;</span>
+        <div id="city_select_item" style="display:none">
+          <ul class="nav nav-pills" style="margin:0">
+          <%@cities.each do |c| -%>
+                <li style="padding: 2px 10px;"><label> <%= check_box_tag 'city_id',c.id-%><%= c.name -%></label></li>
+          <% end -%>
+          </ul>
+          <div style="text-align: center;">
+            <%= button_to_function '确定',"change_city_select_ids()" -%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <%= button_to_function '取消',"clear_city_select_ids()" -%></div>
+        </div>
+      </td>
+    </tr>
+   <% end -%>
+
+    <% if params[:format_select_ids].blank? -%>
+        <tr>
+          <td style="vertical-align: top;">媒体介质：</td>
+          <td style="vertical-align: top;">
+            <ul class="nav nav-pills" style="margin:0;float:left" id="format_select">
+              <% (0..10).each do |i| -%>
+                  <li ><a style="padding: 0 10px;" href="#" onclick="$('#format_select_ids').val('<%= @formats[i][1] -%>');$('form').submit();"><%= @formats[i][0] -%></a></li>
+              <% end -%>
+            </ul>
+            <span style="float:right;color:#666;border:1px solid #666;cursor: pointer" id="btn_change_select_format" onclick="change_select_format()">&nbsp;+ 多选&nbsp;</span>
+            <div id="format_select_item" style="display:none">
+              <ul class="nav nav-pills" style="margin:0">
+                <%@formats.each do |c| -%>
+                    <li style="padding: 2px 10px;"><label> <%= check_box_tag 'format_id',c[1]-%><%= c[0] -%></label></li>
+                <% end -%>
+              </ul>
+              <div style="text-align: center;">
+                <%= button_to_function '确定',"change_format_select_ids()" -%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <%= button_to_function '取消',"clear_format_select_ids()" -%></div>
+            </div>
+          </td>
+        </tr>
+    <% end -%>
+
+    <% if params[:level_select_ids].blank? -%>
+        <tr>
+          <td style="vertical-align: top;">媒体级别：</td>
+          <td style="vertical-align: top;">
+            <ul class="nav nav-pills" style="margin:0;float:left" id="level_select">
+              <% (0..6).each do |i| -%>
+                  <li ><a style="padding: 0 10px;" href="#" onclick="$('#level_select_ids').val('<%= @levels[i][1] -%>');$('form').submit();"><%= @levels[i][0] -%></a></li>
+              <% end -%>
+            </ul>
+            <span style="float:right;color:#666;border:1px solid #666;cursor: pointer" id="btn_change_select_level" onclick="change_select_level()">&nbsp;+ 多选&nbsp;</span>
+            <div id="level_select_item" style="display:none">
+              <ul class="nav nav-pills" style="margin:0">
+                <%@levels.each do |c| -%>
+                    <li style="padding: 2px 10px;"><label> <%= check_box_tag 'level_id',c[1]-%><%= c[0] -%></label></li>
+                <% end -%>
+              </ul>
+              <div style="text-align: center;">
+                <%= button_to_function '确定',"change_level_select_ids()" -%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <%= button_to_function '取消',"clear_level_select_ids()" -%></div>
+            </div>
+          </td>
+        </tr>
+    <% end -%>
+  </table>
 
 
-      地区:
-      <%= select_tag('region_id',options_for_select([['全部',0]]+@regions,params[:region_id]),:style=>"width:100px") -%>
-      <%= select_tag('province_id',options_for_select([['全部',0]]+@provinces,params[:province_id]),:style=>"width:120px") -%>
-      <%= select_tag('city_id',options_for_select([['全部',0]]+@cities,params[:city_id]),:style=>"width:100px") -%>
-      媒体介质:
-      <%= select_tag('format_id',options_for_select([['全部',0]]+WebSiteMediaReporter::FORMATS,params[:format_id]),:style=>"width:100px") -%>
-      媒体名称:
+          媒体名称:
       <%= text_field_tag 'media_name',params[:media_name],:style=>"width:100px"-%>
-      媒体级别:
-      <%= select_tag('level',options_for_select([['全部',nil]]+WebSiteMediaReporter::LEVELS,params[:level]),:style=>"width:60px") -%>
       姓名:
       <%= text_field_tag 'name',params[:name],:style=>"width:60px"-%>
       性别:
@@ -141,11 +225,93 @@ end -%>
 
 </style>
             <script>
-                $('#grid').attr('style','height:750px');
+                $('#grid').attr('style','max-height:720px');
             </script>
 
 <script language='javascript'>
+  function change_level_select_ids(){
+      data = $("input[name='level_id']:checked");
+      if(data.length==0){
+          alert('请选择媒体级别！');
+          return;
+      }
+      var item=[];
+      data.each(function(){
+          item.push($(this).val())
+      })
+
+      $('#level_select_ids').val(item);
+      $('form').submit();
+  }
+  function clear_level_select_ids(){
+      $('#level_select').show();
+      $('#btn_change_select_level').show();
+      $('#level_select_item').hide();
+      $("input[name='level_id']:checked").attr('checked',false);
+  }
+  function change_select_level(){
+      $('#level_select').hide();
+      $('#btn_change_select_level').hide();
+      $('#level_select_item').show();
+  }
+    function change_format_select_ids(){
+        data = $("input[name='format_id']:checked");
+        if(data.length==0){
+            alert('请选择媒体介质！');
+            return;
+        }
+        var item=[];
+        data.each(function(){
+            item.push($(this).val())
+        })
+
+        $('#format_select_ids').val(item);
+        $('form').submit();
+    }
+  function clear_format_select_ids(){
+      $('#format_select').show();
+      $('#btn_change_select_format').show();
+      $('#format_select_item').hide();
+      $("input[name='format_id']:checked").attr('checked',false);
+  }
+  function change_select_format(){
+      $('#format_select').hide();
+      $('#btn_change_select_format').hide();
+      $('#format_select_item').show();
+  }
+  function clear_city_select_ids(){
+      $('#city_select').show();
+      $('#btn_change_select').show();
+      $('#city_select_item').hide();
+      $("input[name='city_id']:checked").attr('checked',false);
+  }
+  function change_select(){
+      $('#city_select').hide();
+      $('#btn_change_select').hide();
+      $('#city_select_item').show();
+  }
+    function change_city_select_ids(){
+        data = $("input[name='city_id']:checked");
+        if(data.length==0){
+            alert('请选择城市！');
+            return;
+        }
+        var item=[];
+        data.each(function(){
+            item.push($(this).val())
+        })
+
+        $('#city_select_ids').val(item);
+        $('form').submit();
+    }
     $(document).ready(function(){
+
+//        $('.nav-pills li a').bind('click',function(){
+//            var item=[];
+//            item.push($(this).attr('id'))
+//            $('#city_select_ids').val(item);
+//            $('form').submit();
+//        })
         $('#region_id').bind('change',function(){
             var web_site_media_reporter_region_id = $('#region_id').val();
             $.ajax({
