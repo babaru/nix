@@ -15,7 +15,10 @@ zh-CN:
       web_site_media_reporter: 网络媒体-记者资源
       moderator: 版主信息
       grass_resource: 草根资源
+      specification: 类别规格
     attributes:
+      specification:
+        name: 名称
       user:
         name: 用户名
         email: 邮箱

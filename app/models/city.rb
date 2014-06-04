@@ -2,6 +2,7 @@ class City < ActiveRecord::Base
   attr_accessible :name, :province_id
   belongs_to :province
 
+  PLACES = [['北京市',1],['上海市',3],['广州市',190],['深圳市',200],['华北地区',10001],['东北地区',10002],['华东地区',10003],['西南地区',10004],['中南地区',10005],['西北地区',10006]]
   def self.init_cities
     attr = [['北京市','1','1'],
             ['天津市','2','2'],
@@ -379,5 +380,23 @@ class City < ActiveRecord::Base
       City.create!({:name=>c[0],:province_id=>c[1].to_i})
     end
     puts 'create end....'
+  end
+
+  def self.get_city_ids(ids)
+    return [0] if ids.blank?
+    _city_ids = []
+    ids.each do |_id|
+      _city_ids << _id.to_i if _id.to_i<10000
+      if _id.to_i >10000
+        r = Region.find(_id.to_i-10000)
+        ps = r.provinces
+        ps.each do |p|
+          cs = []
+          cs = p.cities.map{|x| x.id} unless p.cities.blank?
+          _city_ids = _city_ids + cs  unless cs.blank?
+        end
+      end
+    end
+    _city_ids
   end
 end

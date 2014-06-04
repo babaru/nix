@@ -1,3 +1,4 @@
+<%= form_tag({},:method=>'get',:style=>"vertical-align: middle;") do -%>
 <%= render_cell(
   :page_title,
   :show,
@@ -59,44 +60,74 @@
     }
   }
 ) %>
-<div>
-  <table class="table picker">
-    <tbody><tr class="selected">
-  <td class="title">您已选择</td>
-  <td>
-    <ul>
-      <li><a href="/suppliers" class="label label-warning"><%=@f_cat.name_cn.to_s+' X' if @f_cat%></a></li>  
-      <% if @s_cat%>
-        <li><a href="/suppliers?first_selected_medium_id=<%=@s_cat.parent_id%>" class="label label-warning"><%=@s_cat.name_cn.to_s+' X'%></a></li> 
-      <%end%>   
-    </ul>
-  </td>
-</tr>
-<tr class="selectors">
-  <td class="title">一级分类</td>
-  <td>
-    <ul class="nav nav-pills">
-      <%@first_categories.each do |fc|%>
-        <li class="<%= (@f_cat and @f_cat.id == fc.id) ? 'active' : ''%>"><a href="/suppliers?first_selected_medium_id=<%=fc.id%>"><%=fc.name_cn%></a></li>
-      <%end%>
-    </ul>
-  </td>
-</tr>
-<% if @f_cat%>
-  <tr class="selectors">
-    <td class="title">二级分类</td>
-    <td>
-      <ul class="nav nav-pills">
-        <%@second_categories.each do |sc|%>
-          <li class="<%= (@s_cat and @s_cat.id == sc.id) ? 'active' : ''%>"><a href="/suppliers?first_selected_medium_id=<%=@f_cat.id%>&second_selected_medium_id=<%=sc.id%>"><%=sc.name_cn%></a></li>
-        <%end%>
-      </ul>
-    </td>
-  </tr>
-<%end%>
-  </tbody></table>
-</div>
+<div class="well" style="vertical-align: middle;">
+  <%= hidden_field_tag 'fir_category_select_ids',params[:fir_category_select_ids] -%>
+  <%= hidden_field_tag 'sec_category_select_ids',params[:sec_category_select_ids] -%>
 
+  <table style="width:100%">
+    <tr><td style="width:60px">查询条件：</td><td>
+      <ul style="list-style-type:none;margin: 0;">
+        <% unless @fir_category_select_name.blank? -%>
+            <li style="display: inline;padding-right: 10px;"><a href="#" onclick="$('#fir_category_select_ids').val('');$('form').submit();" class="label label-warning" title="一级分类:<%= @fir_category_select_name -%>">一级分类:<%=truncate_u(@fir_category_select_name,6,'...')+'  X'%></a></li>
+        <% end -%>
+
+        <% unless @sec_category_select_name.blank? -%>
+            <li style="display: inline;padding-right: 10px;"><a href="#" onclick="$('#sec_category_select_ids').val('');$('form').submit();" class="label label-warning" title="二级分类:<%= @sec_category_select_name -%>">二级分类:<%=truncate_u(@sec_category_select_name,6,'...')+'  X'%></a></li>
+        <% end -%>
+      </ul>
+    </td></tr>
+    <% if params[:fir_category_select_ids].blank? -%>
+        <tr>
+          <td style="vertical-align: top;">一级分类：</td>
+          <td style="vertical-align: top;">
+            <ul class="nav nav-pills" style="margin:0;float:left" id="fir_category_select">
+              <%@first_categories.each do |f| -%>
+                  <li ><a style="padding: 0 10px;" href="#" onclick="$('#fir_category_select_ids').val('<%= f.id -%>');$('form').submit();"><%= f.name_cn -%></a></li>
+              <% end -%>
+            </ul>
+            <span style="float:right;color:#666;border:1px solid #666;cursor: pointer" id="btn_change_select_fir_category" onclick="change_select_fir_category()">&nbsp;+ 多选&nbsp;</span>
+            <div id="fir_category_select_item" style="display:none">
+              <ul class="nav nav-pills" style="margin:0">
+                <%@first_categories.each do |f| -%>
+                    <li style="padding: 2px 10px;"><label> <%= check_box_tag 'fir_category_id',f.id-%><%= f.name_cn -%></label></li>
+                <% end -%>
+              </ul>
+              <div style="text-align: center;">
+                <%= button_to_function '确定',"change_fir_category_select_ids()" -%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <%= button_to_function '取消',"clear_fir_category_select_ids()" -%></div>
+            </div>
+          </td>
+        </tr>
+    <% end -%>
+
+    <% if params[:sec_category_select_ids].blank? and !params[:fir_category_select_ids].blank? -%>
+        <tr>
+          <td style="vertical-align: top;">二级分类：</td>
+          <td style="vertical-align: top;">
+            <ul class="nav nav-pills" style="margin:0;float:left" id="sec_category_select">
+              <%@s_cats.each do |f| -%>
+                  <li ><a style="padding: 0 10px;" href="#" onclick="$('#sec_category_select_ids').val('<%= f[1] -%>');$('form').submit();"><%= f[0] -%></a></li>
+              <% end -%>
+            </ul>
+            <span style="float:right;color:#666;border:1px solid #666;cursor: pointer" id="btn_change_select_sec_category" onclick="change_select_sec_category()">&nbsp;+ 多选&nbsp;</span>
+            <div id="sec_category_select_item" style="display:none">
+              <ul class="nav nav-pills" style="margin:0">
+                <%@s_cats.each do |f| -%>
+                    <li style="padding: 2px 10px;"><label> <%= check_box_tag 'sec_category_id',f[1]-%><%= f[0] -%></label></li>
+                <% end -%>
+              </ul>
+              <div style="text-align: center;">
+                <%= button_to_function '确定',"change_sec_category_select_ids()" -%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <%= button_to_function '取消',"clear_sec_category_select_ids()" -%></div>
+            </div>
+          </td>
+        </tr>
+    <% end -%>
+
+  </table>
+
+</div>
+<% end -%>
 <%= grid(@suppliers, :show_filters => :when_filtered) do |g|
 
   g.column name: t('activerecord.attributes.supplier.name') do |supplier|
@@ -111,15 +142,12 @@
     supplier.contact_way
   end
 
-  BusinessCategory.show_categories.each do |b|
-    g.column name: t("#{b.name_cn}") do |supplier|
-    b.get_price(supplier.id)
+  @category_specifications.each do |b|
+    g.column name: t("#{b.name}") do |sp|
+    b.get_price(sp.id)
     end
   end
-  
-  g.column name: t('activerecord.attributes.supplier.created_by') do |supplier|
-     supplier.created_name
-  end
+
 
   g.column :html => {class: 'btn-cell'} do |supplier|
     link_to(icon('icon-edit'), edit_supplier_path(supplier), :class => 'btn', :rel => 'tooltip', :title => t('buttons.edit')) if can? :update,Supplier
@@ -129,3 +157,53 @@
     link_to(icon('icon-trash'), supplier_path(supplier), :method => :delete, :confirm => t("confirms.delete"), :class => 'btn btn-danger', :rel => 'tooltip', :title => t('buttons.delete')) if can? :destroy,Supplier
   end
 end -%>
+<script language='javascript'>
+    function change_fir_category_select_ids(){
+        data = $("input[name='fir_category_id']:checked");
+        if(data.length==0){
+            alert('请选择一级类别！');
+            return;
+        }
+        var item=[];
+        data.each(function(){
+            item.push($(this).val())
+        });
+        $('#fir_category_select_ids').val(item);
+        $('form').submit();
+    }
+    function clear_fir_category_select_ids(){
+        $('#fir_category_select').show();
+        $('#btn_change_select_fir_category').show();
+        $('#fir_category_select_item').hide();
+        $("input[name='fir_category_id']:checked").attr('checked',false);
+    }
+    function change_select_fir_category(){
+        $('#fir_category_select').hide();
+        $('#btn_change_select_fir_category').hide();
+        $('#fir_category_select_item').show();
+    }
+    function change_sec_category_select_ids(){
+        data = $("input[name='sec_category_id']:checked");
+        if(data.length==0){
+            alert('请选择一级类别！');
+            return;
+        }
+        var item=[];
+        data.each(function(){
+            item.push($(this).val())
+        });
+        $('#sec_category_select_ids').val(item);
+        $('form').submit();
+    }
+    function clear_sec_category_select_ids(){
+        $('#sec_category_select').show();
+        $('#btn_change_select_sec_category').show();
+        $('#sec_category_select_item').hide();
+        $("input[name='sec_category_id']:checked").attr('checked',false);
+    }
+    function change_select_sec_category(){
+        $('#sec_category_select').hide();
+        $('#btn_change_select_sec_category').hide();
+        $('#sec_category_select_item').show();
+    }
+</script>

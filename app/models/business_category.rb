@@ -4,6 +4,7 @@ class BusinessCategory < ActiveRecord::Base
   belongs_to :created_man, :class_name => "User", :foreign_key => "created_by"
   belongs_to :updated_man, :class_name => "User", :foreign_key => "updated_by"
   belongs_to :parent_category, :class_name => "BusinessCategory", :foreign_key => "parent_id"
+  has_many :specifications
   validates :name_cn, presence:{message:'名称不能为空'}
   # attr_accessible :title, :body
 

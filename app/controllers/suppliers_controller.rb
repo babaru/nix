@@ -3,22 +3,58 @@ class SuppliersController < ApplicationController
 	add_breadcrumb(I18n.t('model.list', model: Supplier.model_name.human), :suppliers_path)
 
   def index
-    if params[:first_selected_medium_id].blank?
-      @suppliers = initialize_grid(Supplier)
-    else
-      _ids ,_s_ids = [0],[0]
-      params[:second_selected_medium_id]
-      @f_cat = BusinessCategory.find_by_id(params[:first_selected_medium_id].to_i)
-      @second_categories = @f_cat.children unless @f_cat.blank?
-      @s_cat = BusinessCategory.find_by_id(params[:second_selected_medium_id].to_i)
+    sql,sql_attr=' 1=1 ',[]
 
-      _ids = @f_cat.cat_ids unless @f_cat.blank?
-      _ids = @s_cat.cat_ids unless @s_cat.blank?
-      _bs = BusinessCategorySupplier.where('business_category_id in (?)',_ids)
-      _s_ids = _bs.map{|b| b.supplier_id} unless _bs.blank?
+
+    unless params[:fir_category_select_ids].blank?
+      @f_cats = BusinessCategory.where('id in (?)',params[:fir_category_select_ids].split(','))
+      @s_cats,_cat_ids = [],[0]
+      unless @f_cats.blank?
+        @f_cats.each do |fc|
+          @s_cats += fc.children.map{|x| [x.name_cn,x.id]} unless @f_cats.blank?
+          _cat_ids += fc.children.map{|x| x.id} unless @f_cats.blank?
+        end
+      end
+      if params[:sec_category_select_ids].blank?
+        _bs = BusinessCategorySupplier.where('business_category_id in (?)',_cat_ids)
+        _s_ids = _bs.map{|b| b.supplier_id} unless _bs.blank?
+      else
+        _cat_ids = params[:sec_category_select_ids].split(',')
+        @s_cats = BusinessCategory.where('id in (?)',_cat_ids)
+        _bs = BusinessCategorySupplier.where('business_category_id in (?)',params[:sec_category_select_ids].split(','))
+        _s_ids = _bs.map{|b| b.supplier_id} unless _bs.blank?
+        @sec_category_select_name = @s_cats.map{|x|x.name_cn}.join('/') unless @s_cats.blank?
+      end
+      @fir_category_select_name = @f_cats.map{|x|x.name_cn}.join('/') unless @f_cats.blank?
       @suppliers = initialize_grid(Supplier.where('id in (?)',_s_ids))
+      @category_specifications = Specification.where('business_category_id in (?)',_cat_ids)
+    else
+      _bs = BusinessCategorySupplier.all()
+      params[:sec_category_select_ids] = ''
+      @suppliers = initialize_grid(Supplier)
+      @category_specifications = Specification.all()
     end
+
+
+
     @first_categories = BusinessCategory.first_categories
+
+    # if params[:first_selected_medium_id].blank?
+    #   @suppliers = initialize_grid(Supplier)
+    # else
+    #   _ids ,_s_ids = [0],[0]
+    #   params[:second_selected_medium_id]
+    #   @f_cat = BusinessCategory.find_by_id(params[:first_selected_medium_id].to_i)
+    #   @second_categories = @f_cat.children unless @f_cat.blank?
+    #   @s_cat = BusinessCategory.find_by_id(params[:second_selected_medium_id].to_i)
+    #
+    #   _ids = @f_cat.cat_ids unless @f_cat.blank?
+    #   _ids = @s_cat.cat_ids unless @s_cat.blank?
+    #   _bs = BusinessCategorySupplier.where('business_category_id in (?)',_ids)
+    #   _s_ids = _bs.map{|b| b.supplier_id} unless _bs.blank?
+    #   @suppliers = initialize_grid(Supplier.where('id in (?)',_s_ids))
+    # end
+    # @first_categories = BusinessCategory.first_categories
 
     respond_to do |format|
       format.html # index.html.erb
@@ -39,20 +75,27 @@ class SuppliersController < ApplicationController
 
   def edit
     @supplier = Supplier.find(params[:id])
-    @categories = BusinessCategory.second_categories
+    @categories = Specification.all
   end
 
   def update
 
    @supplier = Supplier.find(params[:id])
-   @categories = BusinessCategory.second_categories
+   @categories = Specification.all
    params[:supplier][:updated_by]=current_user.id
+
+
     respond_to do |format|
       if @supplier.update_attributes(params[:supplier])
         unless params[:supplier_price].blank?
           params[:supplier_price].each do |k,v|
-            BusinessCategorySupplier.update_all("price='#{v}'",['business_category_id=? and supplier_id=?',k.to_i,@supplier.id])
+              SpecificationsSupplier.update_all("price='#{v}'",[' specification_id=? and supplier_id=?',k.to_i,@supplier.id])
           end
+          unless @supplier.specifications.blank?
+            _ids = @supplier.specifications.map{|x|x.business_category_id}
+            @supplier.business_categories = BusinessCategory.where('id in (?)',_ids)
+          end
+
         end
         format.html { redirect_to suppliers_path(), notice: 'Supplier was successfully updated.' }
         format.json { head :no_content }
@@ -65,9 +108,9 @@ class SuppliersController < ApplicationController
 
   def new
     @supplier = Supplier.new
-    @categories = BusinessCategory.second_categories
+    @categories = Specification.all
     params[:supplier] ||={}
-    params[:supplier][:business_category_ids] ||= [0]
+    params[:supplier][:specification_ids] ||= [0]
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @supplier }
@@ -89,15 +132,19 @@ class SuppliersController < ApplicationController
   def create
     params[:supplier][:created_by]=current_user.id
     params[:supplier][:updated_by]=current_user.id
-    @categories = BusinessCategory.second_categories
+    @categories = Specification.all
     @supplier = Supplier.new(params[:supplier])
 
     respond_to do |format|
       if @supplier.save
         unless params[:supplier_price].blank?
           params[:supplier_price].each do |k,v|
-            BusinessCategorySupplier.update_all("price='#{v}'",['business_category_id=? and supplier_id=?',k.to_i,@supplier.id])
+            SpecificationsSupplier.update_all("price='#{v}'",[' specification_id=? and supplier_id=?',k.to_i,@supplier.id])
           end
+        end
+        unless @supplier.specifications.blank?
+          _ids = @supplier.specifications.map{|x|x.business_category_id}
+          @supplier.business_categories = BusinessCategory.where('id in (?)',_ids)
         end
         format.html { redirect_to suppliers_path(), notice: '供应商已成功创建.' }
         format.json { render json: @supplier, status: :created, location: @supplier }

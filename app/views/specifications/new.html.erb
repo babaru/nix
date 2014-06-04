@@ -1,0 +1,50 @@
+<div class="narrow-center-page">
+
+  <%= render_cell(
+              :page_title,
+              :show,
+              data: {
+                      name: "#{t('model.create', model: Specification.model_name.human)} <small>#{t('simple_form.required.text') }</small>",
+                      toolbar:
+                              {
+                                      left:
+                                              [
+                                                      render_cell(
+                                                              :button,
+                                                              :show,
+                                                              data:
+                                                                      {
+                                                                              name: fa_icon('level-up rotate-270'),
+                                                                              url: business_categories_path,
+                                                                              options:
+                                                                                      {
+                                                                                              class: 'btn',
+                                                                                              rel: 'tooltip',
+                                                                                              title: "#{t('labels.back_to')}#{t('model.list', :model => BusinessCategory.model_name.human)}",
+                                                                                      }
+                                                                      }
+                                                      )
+                                              ]
+                              }
+              }
+      ) %>
+
+
+  <%= simple_form_for(@specification , :html => {:class => 'form-horizontal' }) do |f| %>
+      <%= f.error_notification %>
+      <div class="form-inputs">
+        <%= f.input :name, required: true%>
+        <div class="control-group string required specification_business_category_id"><label class="string required control-label" for="specification_business_category_id"><abbr title="带*星号的为必填项">*</abbr> 所属类别</label><div class="controls">
+          <select class="string required" id="specification_business_category_id" name="specification[business_category_id]">
+           <% @categories.each do |c|%>
+                <option value="<%=c.id%>"><%=c.name%></option>
+           <%end%>
+          </select></div></div>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, class: 'btn btn-primary' %>
+      </div>
+  <% end %>
+
+</div>

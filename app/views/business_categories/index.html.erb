@@ -20,7 +20,20 @@
               class: 'btn btn-primary'
             }
           }
-        ) if can? :create,BusinessCategory)
+        ) if can? :create,BusinessCategory),
+        render_cell(
+                :button,
+                :show,
+                data:
+                        {
+                                name: fa_icon('plus-sign', text: t('创建类别规格')),
+                                url: new_specification_path,
+                                options:
+                                        {
+                                                class: 'btn btn-primary'
+                                        }
+                        }
+        )
       ]
     }
   }
@@ -28,16 +41,17 @@
 
 <%= grid(@business_categories, :show_filters => :when_filtered) do |g|
 
-  g.column name: t('activerecord.attributes.business_category.name_cn'),attribute:'name_cn'  do |c|
+  g.column name: t('activerecord.attributes.business_category.name_cn')  do |c|
     c.name_cn
   end
 
-  g.column name: t('activerecord.attributes.business_category.parent_id'),attribute:'parent_id' do |c|
+  g.column name: t('activerecord.attributes.business_category.parent_id') do |c|
     c.parent_name
   end
 
-  g.column name: t('activerecord.attributes.business_category.is_show'),attribute:'is_show' do |c|
-    c.is_show.to_i==0 ? '' : icon('icon-ok-sign')
+  g.column name: t('该类别规格') do |c|
+    c.specifications.inject([]){|list, u| list << content_tag(:span, u.name, class: 'label label-success')}.join(' ').html_safe
+
   end
 
 
@@ -45,7 +59,7 @@
     c.created_name
   end
 
-  g.column name: t('activerecord.attributes.business_category.created_at'),attribute:'created_at' do |c|
+  g.column name: t('activerecord.attributes.business_category.created_at') do |c|
     c.created_at.strftime('%Y-%m-%d') if c.created_at
   end
 
@@ -53,7 +67,7 @@
     c.updated_name
   end
 
-  g.column name: t('activerecord.attributes.business_category.updated_at'),attribute:'updated_at' do |c|
+  g.column name: t('activerecord.attributes.business_category.updated_at') do |c|
     c.updated_at.strftime('%Y-%m-%d') if c.updated_at
   end
 

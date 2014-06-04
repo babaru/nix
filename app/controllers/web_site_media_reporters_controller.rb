@@ -5,20 +5,7 @@ class WebSiteMediaReportersController < ApplicationController
 
   def index
     sql,sql_attr=' deleted=0 ',[]
-    unless params[:region_id].to_i==0
-      sql += " and region_id = ? "
-      sql_attr << params[:region_id]
-    end
 
-    unless params[:province_id].to_i==0
-      sql += " and province_id = ? "
-      sql_attr << params[:province_id]
-    end
-
-    unless params[:city_id].to_i==0
-      sql += " and city_id = ? "
-      sql_attr << params[:city_id]
-    end
 
     unless params[:format_id].to_i==0
       sql += " and format_id = ?"
@@ -64,12 +51,15 @@ class WebSiteMediaReportersController < ApplicationController
       sql += " and is_substation = 1"
     end
 
-
+    @cities = City::PLACES
     unless params[:city_select_ids].blank?
+      city_ids = City.get_city_ids(params[:city_select_ids].split(','))
+
       sql += " and city_id in (?)"
-      sql_attr << params[:city_select_ids].split(',')
-      _city = City.where(["id in (?)",params[:city_select_ids].split(',')])
-      @city_select_name = _city.map{|x| x.name}.join('/') unless _city.blank?
+      sql_attr << city_ids
+      _city = @cities.select{|x| params[:city_select_ids].split(',').include?(x[1].to_s)}
+
+      @city_select_name = _city.map{|x| x[0]}.join('/') unless _city.blank?
     end
 
     @formats = WebSiteMediaReporter::FORMATS
@@ -91,11 +81,10 @@ class WebSiteMediaReportersController < ApplicationController
 
 
     @reporters_grid = initialize_grid(WebSiteMediaReporter.where([sql]+sql_attr),:per_page=>50)
-    @provinces ,@cities = [],[]
+    @provinces  = []
     @regions=Region.all().map{|o| [o.name,o.id]} || []
     @provinces = Province.where(:region_id => params[:region_id].to_i).map{|o| [o.name,o.id]} unless params[:region_id].blank?
 
-    @cities = City.all()
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @reporters_grid }
@@ -195,20 +184,7 @@ class WebSiteMediaReportersController < ApplicationController
 
   def download_reporter_info
     sql,sql_attr=' deleted=0 ',[]
-    unless params[:region_id].to_i==0
-      sql += " and region_id = ? "
-      sql_attr << params[:region_id]
-    end
 
-    unless params[:province_id].to_i==0
-      sql += " and province_id = ? "
-      sql_attr << params[:province_id]
-    end
-
-    unless params[:city_id].to_i==0
-      sql += " and city_id = ? "
-      sql_attr << params[:city_id]
-    end
 
     unless params[:format_id].to_i==0
       sql += " and format_id = ?"

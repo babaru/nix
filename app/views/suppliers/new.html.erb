@@ -37,13 +37,12 @@
     <%= f.input :name, required: true %>
     <%= f.input :contact_name, required: true %>
     <%= f.input :contact_way, required: true %>
-    
     <% if @categories %>
-    <div class="control-group check_boxes required supplier_business_categories"><label class="check_boxes required control-label"><abbr title="带*星号的为必填项">*</abbr> 业务类别(多选)</label>
-      <% @categories.each do |c|%>
-         <div class="controls"><label class="checkbox"><input class="check_boxes required" id="supplier_business_category_ids_<%=c.id%>" name="supplier[business_category_ids][]" type="checkbox" value="<%=c.id%>" <%=params[:supplier][:business_category_ids].include?(c.id.to_s) ? 'checked' : ''%>><%=c.name_cn%>&nbsp;&nbsp;&nbsp;&nbsp;价格:<input name="supplier_price[<%=c.id%>]" type="text" value="<%=c.get_price1(@supplier.id)%>" style="width: 100px;"></label><input name="supplier[business_category_ids][]" type="hidden" value=""></div>
-      <%end%>
-      </div>
+        <div class="control-group check_boxes required supplier_business_categories"><label class="check_boxes required control-label"><abbr title="带*星号的为必填项">*</abbr> 业务类别(多选)</label>
+          <% @categories.each do |c|%>
+              <div class="controls"><label class="checkbox"><input class="check_boxes required" id="supplier_specification_ids_<%=c.id%>" name="supplier[specification_ids][]" type="checkbox" value="<%=c.id%>"><%=c.name%>&nbsp;&nbsp;&nbsp;&nbsp;价格:<input name="supplier_price[<%=c.id%>]" type="text" value="<%=c.get_price(@supplier.id)%>" style="width: 100px;"></label><input name="supplier[business_category_ids][]" type="hidden" value=""></div>
+          <%end%>
+        </div>
     <%end%>
   </div>
 

@@ -185,66 +185,79 @@ SimpleNavigation::Configuration.run do |navigation|
           }
         }
       )
-      BusinessCategory.first_categories.each do |fc|
-        supplier_menu.item(
-          "page_business_category_#{fc.id}".to_sym,
-          fc.name_cn,
-          nil
-          )do |sub_menu|
-            sub_menu.item(
-            "page_business_category_#{fc.id}_item_suppliers".to_sym,
-            t('model.list', model: Supplier.model_name.human),
-            '/suppliers?first_selected_medium_id='+fc.id.to_s,
-            {
-              link:
-              {
-                icon: 'folder-close'
-              }
-            })
-            fc.children.each do |cfc|
-              sub_menu.item(
-              "page_business_category_#{cfc.id}".to_sym,
-              cfc.name_cn,
-              nil
-              )do |th_menu|
-                th_menu.item(
-                "page_business_category_#{cfc.id}_item_suppliers".to_sym,
-                t('model.list', model: Supplier.model_name.human),
-                '/suppliers?first_selected_medium_id='+fc.id.to_s+'&second_selected_medium_id='+cfc.id.to_s,
-                {
-                  link:
-                  {
-                    icon: 'folder-close'
-                  }
-                })
-                if can? :update,BusinessCategory
-                  th_menu.item(
-                  :page_suppliers, nil, nil, link: {divider: true})
-                  th_menu.item(
-                  :page_suppliers,
-                  t('model.edit', model: BusinessCategory.model_name.human),
-                  edit_business_category_path(cfc),
-                  link:
-                  {
-                    icon: 'pencil'
-                  })
-                end
-              end
-            end
-            if can? :update,BusinessCategory
-              sub_menu.item(
-              :page_suppliers, nil, nil, link: {divider: true})
-              sub_menu.item(
-              :page_suppliers,
-              t('model.edit', model: BusinessCategory.model_name.human),
-              edit_business_category_path(fc),
-              link:
-              {
-                icon: 'pencil'
-              })
-            end
-          end
-      end
+      # supplier_menu.item(
+      #     :page_specifications,
+      #     t('类别规格列表'),
+      #     specifications_path,
+      #     {
+      #         link:
+      #             {
+      #                 icon: 'list'
+      #             }
+      #     }
+      # )
+      # BusinessCategory.first_categories.each do |fc|
+      #   supplier_menu.item(
+      #     "page_business_category_#{fc.id}".to_sym,
+      #     fc.name_cn,
+      #     nil
+      #     )do |sub_menu|
+      #       sub_menu.item(
+      #       "page_business_category_#{fc.id}_item_suppliers".to_sym,
+      #       t('model.list', model: Supplier.model_name.human),
+      #       '/suppliers?first_selected_medium_id='+fc.id.to_s,
+      #       {
+      #         link:
+      #         {
+      #           icon: 'folder-close'
+      #         }
+      #       })
+      #       fc.children.each do |cfc|
+      #         sub_menu.item(
+      #         "page_business_category_#{cfc.id}".to_sym,
+      #         cfc.name_cn,
+      #         nil
+      #         )do |th_menu|
+      #           th_menu.item(
+      #           "page_business_category_#{cfc.id}_item_suppliers".to_sym,
+      #           t('model.list', model: Supplier.model_name.human),
+      #           '/suppliers?first_selected_medium_id='+fc.id.to_s+'&second_selected_medium_id='+cfc.id.to_s,
+      #           {
+      #             link:
+      #             {
+      #               icon: 'folder-close'
+      #             }
+      #           })
+      #           if can? :update,BusinessCategory
+      #             th_menu.item(
+      #             :page_suppliers, nil, nil, link: {divider: true})
+      #             th_menu.item(
+      #             :page_suppliers,
+      #             t('model.edit', model: BusinessCategory.model_name.human),
+      #             edit_business_category_path(cfc),
+      #             link:
+      #             {
+      #               icon: 'pencil'
+      #             })
+      #           end
+      #         end
+      #       end
+      #       if can? :update,BusinessCategory
+      #         sub_menu.item(
+      #         :page_suppliers, nil, nil, link: {divider: true})
+      #         sub_menu.item(
+      #         :page_suppliers,
+      #         t('model.edit', model: BusinessCategory.model_name.human),
+      #         edit_business_category_path(fc),
+      #         link:
+      #         {
+      #           icon: 'pencil'
+      #         })
+      #       end
+      #     end
+      # end
+
+
       if can? :create,BusinessCategory
         supplier_menu.item(
             :page_business_categories, nil, nil, link: {divider: true})
@@ -257,6 +270,15 @@ SimpleNavigation::Configuration.run do |navigation|
                     icon: 'plus-sign'
                 }
         )
+        # supplier_menu.item(
+        #     :page_specifications,
+        #     t('创建类别规格'),
+        #     new_specification_path,
+        #     link:
+        #         {
+        #             icon: 'plus-sign'
+        #         }
+        # )
       end
     end
 

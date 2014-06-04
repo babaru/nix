@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" hash="1478581658">
-    <data-source source="LOCAL" name="Rails nix: development" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="2f64091d-af6d-414b-b52c-e1bb8768306b">
+    <data-source source="LOCAL" name="Rails nix: development" uuid="2f64091d-af6d-414b-b52c-e1bb8768306b">
+      <driver-ref>mysql</driver-ref>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://127.0.0.1/nix</jdbc-url>
       <user-name>root</user-name>
@@ -15,7 +16,8 @@
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="Rails nix: test" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="41969d61-31d3-4c1c-8595-17bd593da40c">
+    <data-source source="LOCAL" name="Rails nix: test" uuid="41969d61-31d3-4c1c-8595-17bd593da40c">
+      <driver-ref>mysql</driver-ref>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://127.0.0.1/nix</jdbc-url>
       <user-name>root</user-name>
@@ -29,7 +31,8 @@
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="Rails nix: production" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="05882514-8ad5-4e1d-aaf7-db72c640e2f8">
+    <data-source source="LOCAL" name="Rails nix: production" uuid="05882514-8ad5-4e1d-aaf7-db72c640e2f8">
+      <driver-ref>mysql</driver-ref>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://127.0.0.1/nix</jdbc-url>
       <user-name>root</user-name>

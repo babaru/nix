@@ -15,6 +15,7 @@ zh-CN:
       web_site_media_reporter: 网络媒体-记者资源
       moderator: 版主信息
       grass_resource: 草根资源
+      specification: 类别规格
     attributes:
       user:
         name: 用户名
@@ -191,6 +192,7 @@ zh-CN:
         type_id: 资源类别
         content_location: 内容定位
         media_type_id: 媒体类别
+        price: 报价
         created_by: 创建人
         updated_by: 更新人
         created_at: 创建时间

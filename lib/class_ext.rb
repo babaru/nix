@@ -8,11 +8,11 @@ class String
   end
 
   def with_color(color)
-    ["<span style='color:#{color};word-break:break-all'>", self, "</span>"].join
+    ["<span style='color:#{color};word-break:break-all'>", self, "</span>"].join('').html_safe
   end
 
   def color_block(color, bgcolor)
-    ["<span style='padding: 3px; font-size:9pt; background-color:#{bgcolor}; color:#{color};'>", self, "</span>"].join
+    ["<span style='padding: 3px; font-size:9pt; background-color:#{bgcolor}; color:#{color};'>", self, "</span>"].join('').html_safe
   end
 
   def red

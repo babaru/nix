@@ -1,6 +1,7 @@
 class Supplier < ActiveRecord::Base
-  attr_accessible :name, :contact_name, :contact_way, :business_category_ids, :created_by, :updated_by
+  attr_accessible :name, :contact_name, :contact_way, :business_category_ids,:specification_ids, :created_by, :updated_by
   has_and_belongs_to_many :business_categories
+  has_and_belongs_to_many :specifications
   belongs_to :created_man, :class_name => "User", :foreign_key => "created_by"
   belongs_to :updated_man, :class_name => "User", :foreign_key => "updated_by"
   TITLE_ITEMS=[]
@@ -13,7 +14,14 @@ class Supplier < ActiveRecord::Base
   	bs = self.business_categories
   	bs.blank? ? [] : bs.map{|b| b.id}
   end
-    def created_name
+
+  def specification_ids
+    bcs_ids = [0]
+    bcs = self.specifications
+    bcs_ids = bcs.map{|x|x.id} unless bcs.blank?
+    bcs_ids
+  end
+  def created_name
     self.created_man.blank? ? '' : self.created_man.name
   end
    def updated_name
