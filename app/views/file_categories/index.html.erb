@@ -1,4 +1,4 @@
-<%= render_cell(:page_title, :show, data:{name: "<strong>#{@project.name}</strong> 媒体文件列表",
+<%= render_cell(:page_title, :show, data:{name: "<strong>#{@project.name}</strong> 项目资料监控",
                                           toolbar: {
                                                   right:
                                                           [
@@ -15,6 +15,7 @@
   <%= button_to_function '确定',"add_category(#{@project.id})" -%>
   <%= button_to_function '取消',"cancel_add_category()" -%>
   <%= hidden_field_tag 'hid_category_id', 0 -%>
+  <%= hidden_field_tag 'hid_type', '' -%>
 </div>
 
 <div id="upload_form" style="display: none">
@@ -23,6 +24,7 @@
         <div class="control-group file optional spot_plan_excel_file_data_file"><div class="controls"><input class="file optional" id="excel_file" name="excel_file" type="file"><input class="btn btn btn-primary" name="commit" type="submit" value="确定"></div></div>
       </div>
       <%= hidden_field_tag 'hid_project_id', @project.id -%>
+
       <%= hidden_field_tag 'hid_upload_category_id', 0 -%>
   <% end%>
 </div>
@@ -37,6 +39,10 @@
             <%= link_to_function '添加子类', "show_add_category(#{cat.id})" -%>
             &nbsp;&nbsp;&nbsp;&nbsp;
             <%= link_to_function '上传文件', "show_upload(#{cat.id},this)" -%>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <%= link_to_function '编辑名称', "show_edit_category(#{cat.id},'#{cat.category_name}')" -%>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <%= link_to_function '删除', "delete_category(#{cat.id},#{@project.id})" -%>
             <div id ="div_<%= cat.id -%>"></div>
           </li>
           <% end -%>
@@ -49,6 +55,27 @@
   }
 </style>
 <script>
+  function delete_category(c_id,p_id){
+      if(!confirm('删除后其子分类以及文件也将被删除，确定删除？')){
+          return
+      }
+      $.ajax({
+          url: '/file_categories/ajax_delete_category/' + c_id.toString(),
+          type: 'GET',
+          data: {project_id:p_id.toString()
+          },
+          success: function(data) {
+              alert(data);
+              location.reload();
+          }
+      });
+  }
+  function show_edit_category(c_id,c_name){
+      $('#category_info').show();
+      $('#hid_category_id').val(c_id);
+      $('#category_name').val(c_name);
+      $('#hid_type').val('edit');
+  }
   function show_add_category(c_id){
 //      if($('#category_info').is(':hidden')){
 //          $('#category_info').show();
@@ -59,6 +86,8 @@
 //      }
       $('#category_info').show();
       $('#hid_category_id').val(c_id);
+      $('#hid_type').val('create');
+
   }
   function show_upload(c_id,obj){
 
@@ -103,7 +132,7 @@
       $.ajax({
           url: '/file_categories/ajax_add_category/' + c_id.toString()+'?project_id='+p_id.toString(),
           type: 'GET',
-          data: {category_name:$('#category_name').val()
+          data: {category_name:$('#category_name').val(),hid_type:$('#hid_type').val()
           },
           success: function(data) {
               alert(data);

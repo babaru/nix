@@ -3,7 +3,9 @@ class FileCategoriesController < ApplicationController
   before_filter :has_login
   add_breadcrumb(I18n.t('model.list', model: FileCategory.model_name.human), :file_categories_path, except: :index)
   def index
+
     @project = Project.find(params[:project_id])
+    add_breadcrumb("#{@project.client.name} #{t('model.list', model: Project.model_name.human)}",client_projects_path(@project.client))
     @categories = FileCategory.where(:project_id => params[:project_id].to_i,:deleted => 0,:parent_id => 0)
     respond_to do |format|
       format.html # index.html.erb
@@ -12,17 +14,49 @@ class FileCategoriesController < ApplicationController
   end
 
   def ajax_add_category
-    c = FileCategory.new()
-    c.updated_by = current_user.id
-    c.created_by = current_user.id
-    c.project_id = params[:project_id].to_i
-    c.parent_id = params[:id].to_i
-    c.category_name = params[:category_name]
-    if c.save
-      render :text => '添加成功！'
+
+    if params[:hid_type]=='create'
+      c = FileCategory.new()
+      c.updated_by = current_user.id
+      c.created_by = current_user.id
+      c.project_id = params[:project_id].to_i
+      c.parent_id = params[:id].to_i
+      c.category_name = params[:category_name]
     else
-      render :text => '添加失败！'
+      c = FileCategory.find_by_id(params[:id].to_i)
+      c.updated_by = current_user.id
+      c.created_by = current_user.id
+      c.category_name = params[:category_name]
     end
+
+    if c.save
+      render :text => '操作成功！'
+    else
+      render :text => '操作失败！'
+    end
+  end
+
+  def ajax_delete_category
+    c = FileCategory.find_by_id(params[:id].to_i)
+    children = c.children
+
+    unless children.blank?
+      children.each do |cl|
+        _files = ProjectFile.where(:project_id => params[:project_id].to_i,:file_category_id => cl.id.to_i)
+        unless _files.blank?
+          _files.each do |f|
+            temp_folder_name = Rails.root.to_s + "/public/files/file_categories/"
+            f_name = temp_folder_name+f.save_name.to_s+"/"+f.file_name
+             FileUtils.rm Dir[f_name]
+             FileUtils.rmdir Dir[temp_folder_name+f.save_name.to_s]
+            f.destroy
+          end
+        end
+        cl.destroy
+      end
+    end
+    c.destroy
+    render :text => '操作成功！'
   end
 
   def ajax_show_item
@@ -30,7 +64,7 @@ class FileCategoriesController < ApplicationController
     _categories = FileCategory.where(:deleted=>0,:parent_id => params[:id].to_i,:project_id => params[:project_id].to_i)
     unless _categories.blank?
       _categories.each do |c|
-        txt +="<li id='cat_"+c.id.to_s+"'><a href='#' onclick='show_item("+c.id.to_s+","+params[:project_id].to_s+"); return false;'>"+c.category_name+"</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' onclick='show_add_category("+c.id.to_s+"); return false;'>添加子类</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' onclick='show_upload("+c.id.to_s+",this); return false;'>上传文件</a><div id='div_"+c.id.to_s+"'></div></li>"
+        txt +="<li id='cat_"+c.id.to_s+"'><a href='#' onclick='show_item("+c.id.to_s+","+params[:project_id].to_s+"); return false;'>"+c.category_name+"</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' onclick='show_add_category("+c.id.to_s+"); return false;'>添加子类</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' onclick='show_upload("+c.id.to_s+",this); return false;'>上传文件</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' onclick=\"show_edit_category(#{c.id.to_s},'#{c.category_name.to_s}'); return false;\">编辑名称</a><div id='div_"+c.id.to_s+"'></div></li>"
       end
     end
     _files = ProjectFile.where(:deleted => 0,:project_id => params[:project_id].to_i,:file_category_id => params[:id].to_i)

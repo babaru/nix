@@ -246,7 +246,7 @@ class WebSiteMediaReportersController < ApplicationController
 
             _sheet = workbook.worksheet(0)
             WebSiteMediaReporter.create_by_excel(_sheet,current_user)
-            #FileUtils.rm Dir["#{Rails.root}/public/files/temp/*.xls"]
+            FileUtils.rm Dir["#{Rails.root}/public/files/temp/*.xls"]
 
             respond_to do |format|
 
