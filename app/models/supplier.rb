@@ -8,6 +8,7 @@ class Supplier < ActiveRecord::Base
   validates :contact_name, presence:{message:'联系人不能为空'}
   validates :contact_way, presence:{message:'联系方式不能为空'}
   has_many :orders
+  has_many :supplier_evaluations
 
 
   def category_ids

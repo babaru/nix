@@ -93,8 +93,12 @@ Nix::Application.routes.draw do
   resources :projects do
     resources :file_categories
   end
+
+  resources :suppliers do
+    resources :supplier_evaluations
+  end
   resources :suppliers,:clients,:projects,:orders,:departments,:network_opinion_leader_bloggers,:moderators,:grass_resources
-  resources :business_categories,:web_site_media_reporters,:fashion_media_infos,:traveling_photography_media_infos,:specifications
+  resources :business_categories,:supplier_evaluations,:web_site_media_reporters,:fashion_media_infos,:traveling_photography_media_infos,:specifications
   root to: 'dashboard#index', as: :dashboard
 
   # See how all your routes lay out with "rake routes"

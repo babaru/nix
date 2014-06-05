@@ -66,7 +66,7 @@ class SuppliersController < ApplicationController
     @supplier = Supplier.find(params[:id])
     @supplier.destroy
     @supplier.business_categories = []
-
+    @supplier.specifications = []
     respond_to do |format|
       format.html { redirect_to suppliers_path, notice: 'Supplier was successfully deleted.' }
       format.json { head :no_content }

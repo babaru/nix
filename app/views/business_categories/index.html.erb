@@ -41,35 +41,19 @@
 
 <%= grid(@business_categories, :show_filters => :when_filtered) do |g|
 
-  g.column name: t('activerecord.attributes.business_category.name_cn')  do |c|
+  g.column name: t('activerecord.attributes.business_category.name_cn'),:class=>"th_style"  do |c|
     c.name_cn
   end
 
-  g.column name: t('activerecord.attributes.business_category.parent_id') do |c|
+  g.column name: t('activerecord.attributes.business_category.parent_id'),:class=>"th_style" do |c|
     c.parent_name
   end
 
   g.column name: t('该类别规格') do |c|
-    c.specifications.inject([]){|list, u| list << content_tag(:span, u.name, class: 'label label-success')}.join(' ').html_safe
+    c.specifications.inject([]){|list, u| list << content_tag(:span, u.show_name, class: 'label label-success')}.join(' ').html_safe
 
   end
 
-
-  g.column name: t('activerecord.attributes.business_category.created_by') do |c|
-    c.created_name
-  end
-
-  g.column name: t('activerecord.attributes.business_category.created_at') do |c|
-    c.created_at.strftime('%Y-%m-%d') if c.created_at
-  end
-
-  g.column name: t('activerecord.attributes.business_category.updated_by') do |c|
-    c.updated_name
-  end
-
-  g.column name: t('activerecord.attributes.business_category.updated_at') do |c|
-    c.updated_at.strftime('%Y-%m-%d') if c.updated_at
-  end
 
   
 
@@ -81,3 +65,8 @@
     link_to(icon('icon-trash'), business_category_path(c), :method => :delete, :confirm => '你确定要删除这个类别么？', :class => 'btn btn-danger', :rel => 'tooltip', :title => t('buttons.delete')) if can? :destroy,BusinessCategory
   end
 end -%>
+<style>
+  .th_style{
+      width: 110px;
+  }
+</style>

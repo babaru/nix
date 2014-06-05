@@ -1,0 +1,36 @@
+<%= render_cell(:page_title, :show, data:{name: "<strong>#{@supplier.name}</strong> 评价列表",
+                                          toolbar: {
+                                                  right:
+                                                          [
+                                                                  (render_cell(:button, :show, data:
+                                                                          {
+                                                                                  name: fa_icon('plus-sign', text: t('model.create', :model => SupplierEvaluation.model_name.human)),
+                                                                                  url: new_supplier_evaluation_path(:id=>@supplier.id),
+                                                                                  options: {class: 'btn btn-primary'}
+                                                                          })),
+
+                                                          ]
+                                          }
+})
+%>
+<div>
+<%= grid(@supplier_evaluations, :show_filters => :when_filtered,:class=> 'tablestyle') do |g|
+  @supplier.specifications.each do |sp|
+    g.column name: t(sp.show_name) do |m|
+      SupplierEvaluationItem.show_score(m.id,sp.id)
+    end
+  end
+  g.column name: t('评价详情') do |m|
+    m.notes.to_s
+  end
+
+  g.column name: t('评价人') do |m|
+    m.created_name.to_s
+  end
+
+  g.column name: t('评价时间') do |m|
+    m.created_at.strftime('%Y-%m-%d')
+  end
+
+end -%>
+</div>

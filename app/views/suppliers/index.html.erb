@@ -143,9 +143,13 @@
   end
 
   @category_specifications.each do |b|
-    g.column name: t("#{b.name}") do |sp|
-    b.get_price(sp.id)
+    g.column name: t("#{b.show_name}") do |sp|
+    b.get_price(sp.id).to_s+b.get_avg_score(sp)
     end
+  end
+
+  g.column html: {class: 'btn-cell'} do |supplier|
+    link_to(fa_icon('user'), supplier_supplier_evaluations_path(supplier), rel: 'tooltip', title: '评价', class: 'btn')
   end
 
 
@@ -185,7 +189,7 @@ end -%>
     function change_sec_category_select_ids(){
         data = $("input[name='sec_category_id']:checked");
         if(data.length==0){
-            alert('请选择一级类别！');
+            alert('请选择二级类别！');
             return;
         }
         var item=[];

@@ -1,0 +1,32 @@
+<%= render_cell(:page_title, :show, data:{name: "添加对 <strong>#{@supplier.name}</strong> 的评价",
+                                          toolbar: {
+                                                  right:
+                                                          [
+
+                                                          ]
+                                          }
+})
+%>
+<%= form_tag({:controller=>'supplier_evaluations',:id=>@supplier.id},:method=>'post',:style=>"vertical-align: middle;") do -%>
+   <table style="text-align: left;margin: auto;">
+     <tr>
+       <th style="padding: 10px">详细规格</th><th style="padding: 10px">评分</th>
+     </tr>
+     <%@specifications.each do |s|%>
+         <tr>
+           <td style="padding: 10px"><%= s.show_name%></td>
+           <td style="padding: 10px"><%= text_field_tag "data[#{s.id}][]",params[:score],:style=>"width:50px"-%></td>
+         </tr>
+     <%end%>
+     <tr>
+       <td style="padding: 10px;" colspan="2">
+         评价:<br>
+         <%= text_area_tag "notes",params[:notes]-%>
+       </td>
+        </tr>
+     <tr>
+       <td style="padding: 10px"></td>
+       <td style="padding: 10px"> <%= submit_tag('提交',:style=>"margin-bottom: 10px;",:class=>'btn btn btn-primary') -%></td>
+     </tr>
+   </table>
+<%end%>

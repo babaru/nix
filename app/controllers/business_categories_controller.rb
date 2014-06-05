@@ -44,7 +44,7 @@ class BusinessCategoriesController < ApplicationController
   def destroy
     @business_category = BusinessCategory.find(params[:id])
     @business_category.destroy
-
+    Specification.delete_all('business_category_id=?',@business_category.id)
     respond_to do |format|
       format.html { redirect_to business_categories_path }
       format.json { head :no_content }

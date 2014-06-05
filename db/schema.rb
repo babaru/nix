@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140604083005) do
+ActiveRecord::Schema.define(:version => 20140604113245) do
 
   create_table "business_categories", :force => true do |t|
     t.string   "name_cn",    :default => ""
@@ -350,6 +350,23 @@ ActiveRecord::Schema.define(:version => 20140604083005) do
     t.integer "specification_id"
     t.integer "supplier_id"
     t.float   "price"
+  end
+
+  create_table "supplier_evaluation_items", :force => true do |t|
+    t.integer  "supplier_evaluation_id"
+    t.integer  "specification_id"
+    t.integer  "score"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+  end
+
+  create_table "supplier_evaluations", :force => true do |t|
+    t.integer  "supplier_id"
+    t.text     "notes"
+    t.integer  "created_by"
+    t.integer  "updated_by"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "suppliers", :force => true do |t|
