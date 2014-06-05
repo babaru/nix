@@ -23,7 +23,7 @@
 <%= grid(@projects_grid, :show_filters => :when_filtered) do |g|
 
   g.column name: t('activerecord.attributes.project.name') do |project|
-    (link_to content_tag(:strong, project.name), project_path(project))+"————["+(link_to '查看文件',project_file_categories_path(project))+"]"
+    (link_to content_tag(:strong, project.name), project_path(project))+"——"+(link_to '项目资料监控',project_file_categories_path(project))
   end
 
   g.column name: t('activerecord.attributes.project.started_at') do |project|
