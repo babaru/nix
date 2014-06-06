@@ -7,6 +7,10 @@ module ApplicationHelper
     render :partial => "layouts/date_picker", :locals => {:args => args}
   end
 
+  def ccc(color)
+    "<span style='color:#{color};word-break:break-all'>123123</span>".html_safe
+  end
+
   def truncate_u(text, length = 30, truncate_string = "")
     if text.nil?
       return truncate_string

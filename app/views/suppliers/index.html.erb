@@ -134,6 +134,10 @@
     supplier.name
   end
 
+  g.column name: t('公司/个人') do |supplier|
+    '个人'
+  end
+
   g.column name: t('activerecord.attributes.supplier.contact_name') do |supplier|
     link_to content_tag(:strong, supplier.contact_name), supplier_path(supplier)
   end
@@ -142,11 +146,32 @@
     supplier.contact_way
   end
 
-  @category_specifications.each do |b|
-    g.column name: t("#{b.show_name}") do |sp|
-    b.get_price(sp.id).to_s+b.get_avg_score(sp)
-    end
+  g.column name: t('规格') do |supplier|
+    supplier.all_specification_names
   end
+
+  g.column name: t('单价') do |supplier|
+    supplier.all_specification_price
+  end
+
+  g.column name: t('已服务客户') do |supplier|
+    ''
+  end
+
+  g.column name: t('平均分') do |supplier|
+    supplier.all_specification_score
+  end
+
+  g.column name: t('评价') do |supplier|
+    supplier.all_specification_notes
+  end
+
+  g.column name: t('备注') do |supplier|
+    ''
+  end
+
+
+
 
   g.column html: {class: 'btn-cell'} do |supplier|
     link_to(fa_icon('user'), supplier_supplier_evaluations_path(supplier), rel: 'tooltip', title: '评价', class: 'btn')
@@ -161,6 +186,8 @@
     link_to(icon('icon-trash'), supplier_path(supplier), :method => :delete, :confirm => t("confirms.delete"), :class => 'btn btn-danger', :rel => 'tooltip', :title => t('buttons.delete')) if can? :destroy,Supplier
   end
 end -%>
+
+
 <script language='javascript'>
     function change_fir_category_select_ids(){
         data = $("input[name='fir_category_id']:checked");

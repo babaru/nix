@@ -9,6 +9,7 @@ class Supplier < ActiveRecord::Base
   validates :contact_way, presence:{message:'联系方式不能为空'}
   has_many :orders
   has_many :supplier_evaluations
+  has_many :specifications_suppliers
 
 
   def category_ids
@@ -22,6 +23,48 @@ class Supplier < ActiveRecord::Base
     bcs_ids = bcs.map{|x|x.id} unless bcs.blank?
     bcs_ids
   end
+
+  def all_specification_names
+    item = ''.html_safe
+    self.specifications.each do |s|
+      item += s.show_name.to_s.html_safe+'<br>'.html_safe
+    end
+    item
+  end
+
+  def all_specification_price
+    item = ''.html_safe
+    self.specifications_suppliers.each do |s|
+      item += s.price.to_s.html_safe+'<br>'.html_safe
+    end
+    item
+  end
+
+  def all_specification_notes
+    item = ''.html_safe
+    self.supplier_evaluations.each do |s|
+      item += s.notes.to_s.html_safe+'<br>'.html_safe
+    end
+    item
+  end
+
+  def all_specification_score
+
+    ses = self.supplier_evaluations
+    ses_ids = ses.map{|x| x.id} unless ses.blank?
+    sps = self.specifications
+    sp_ids = sps.map{|x| x.id} unless sps.blank?
+    se_items = SupplierEvaluationItem.find_by_sql(['select avg(score) as score from supplier_evaluation_items where specification_id in (?) and supplier_evaluation_id in (?)  group by specification_id',sp_ids,ses_ids])
+    item = ''.html_safe
+    unless se_items.blank?
+      se_items.each do |sit|
+        item += sit.score.to_s.html_safe+'<br>'.html_safe
+      end
+    end
+    item
+  end
+
+
   def created_name
     self.created_man.blank? ? '' : self.created_man.name
   end

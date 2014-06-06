@@ -8,7 +8,7 @@ class String
   end
 
   def with_color(color)
-    ["<span style='color:#{color};word-break:break-all'>", self, "</span>"].join('').html_safe
+    "<span style='color:#{color};word-break:break-all'>123123</span>".html_safe
   end
 
   def color_block(color, bgcolor)
