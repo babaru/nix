@@ -16,9 +16,13 @@ zh-CN:
       moderator: 版主信息
       grass_resource: 草根资源
       specification: 类别规格
+      supplier_evaluation: 供应商评价
     attributes:
       specification:
         name: 名称
+      supplier_evaluation:
+        score: 得分
+        notes: 评价        
       user:
         name: 用户名
         email: 邮箱
@@ -31,7 +35,15 @@ zh-CN:
       supplier:
         name: 供应商名称
         contact_name: 联系人
-        contact_way: 联系方式
+        phone: 联系电话
+        qq: QQ
+        email: Email
+        spec: 规格
+        business_category_id: 规格
+        is_personal: 公司/个人
+        client_id: 服务客户
+        price: 单价
+        notes: 备注
         business_categories: 业务类别(多选)
         created_by: 创建人
         updated_by: 更新人

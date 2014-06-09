@@ -1,6 +1,6 @@
 class SpecificationsController < ApplicationController
   def new
-    @specification = Specification.new
+    @specification = BusinessCategory.new
     @categories = BusinessCategory.where('parent_id>0')
 
     respond_to do |format|
@@ -10,7 +10,14 @@ class SpecificationsController < ApplicationController
   end
 
   def create
-    @specification = Specification.new(params[:specification])
+    pp "-------------------"
+    params[:specification][:created_by] = current_user.id
+    params[:specification][:updated_by] = current_user.id
+    @specification = BusinessCategory.new(params[:specification])
+    pp "-------------------"
+    pp params[:specification]
+    pp params[:specification][:parent_id]
+    return
     respond_to do |format|
       if @specification.save
 

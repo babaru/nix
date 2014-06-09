@@ -75,31 +75,23 @@ class SuppliersController < ApplicationController
 
   def edit
     @supplier = Supplier.find(params[:id])
-    @categories = Specification.all
+    @clients = Client.all().map{|x| [x.name,x.id]}
+    @specs = BusinessCategory.specs
   end
 
   def update
-
+    params[:supplier][:created_by]=current_user.id
+    params[:supplier][:updated_by]=current_user.id
    @supplier = Supplier.find(params[:id])
-   @categories = Specification.all
-   params[:supplier][:updated_by]=current_user.id
 
 
     respond_to do |format|
-      if @supplier.update_attributes(params[:supplier])
-        unless params[:supplier_price].blank?
-          params[:supplier_price].each do |k,v|
-              SpecificationsSupplier.update_all("price='#{v}'",[' specification_id=? and supplier_id=?',k.to_i,@supplier.id])
-          end
-          unless @supplier.specifications.blank?
-            _ids = @supplier.specifications.map{|x|x.business_category_id}
-            @supplier.business_categories = BusinessCategory.where('id in (?)',_ids)
-          end
-
-        end
+      if  @supplier.other_valid? and @supplier.update_attributes(params[:supplier])
         format.html { redirect_to suppliers_path(), notice: 'Supplier was successfully updated.' }
         format.json { head :no_content }
       else
+        @clients = Client.all().map{|x| [x.name,x.id]}
+        @specs = BusinessCategory.specs
         format.html { render action: "edit" }
         format.json { render json: @supplier.errors, status: :unprocessable_entity }
       end
@@ -108,7 +100,8 @@ class SuppliersController < ApplicationController
 
   def new
     @supplier = Supplier.new
-    @categories = Specification.all
+    @clients = Client.all().map{|x| [x.name,x.id]}
+    @specs = BusinessCategory.specs
     params[:supplier] ||={}
     params[:supplier][:specification_ids] ||= [0]
     respond_to do |format|
@@ -132,23 +125,15 @@ class SuppliersController < ApplicationController
   def create
     params[:supplier][:created_by]=current_user.id
     params[:supplier][:updated_by]=current_user.id
-    @categories = Specification.all
     @supplier = Supplier.new(params[:supplier])
 
     respond_to do |format|
-      if @supplier.save
-        unless params[:supplier_price].blank?
-          params[:supplier_price].each do |k,v|
-            SpecificationsSupplier.update_all("price='#{v}'",[' specification_id=? and supplier_id=?',k.to_i,@supplier.id])
-          end
-        end
-        unless @supplier.specifications.blank?
-          _ids = @supplier.specifications.map{|x|x.business_category_id}
-          @supplier.business_categories = BusinessCategory.where('id in (?)',_ids)
-        end
+      if @supplier.other_valid? and @supplier.save
         format.html { redirect_to suppliers_path(), notice: '供应商已成功创建.' }
         format.json { render json: @supplier, status: :created, location: @supplier }
       else
+        @clients = Client.all().map{|x| [x.name,x.id]}
+        @specs = BusinessCategory.specs
         format.html { render action: "new" }
         format.json { render json: @supplier.errors, status: :unprocessable_entity }
       end

@@ -3,7 +3,10 @@ class BusinessCategoriesController < ApplicationController
 		add_breadcrumb(I18n.t('model.list', model: BusinessCategory.model_name.human), :business_categories_path)
 
   def index
-    @business_categories = initialize_grid(BusinessCategory)
+    fir_cat_ids = [0]
+    fir_cats = BusinessCategory.first_categories
+    fir_cat_ids = fir_cats.map{|x| x.id} unless fir_cats.blank?
+    @business_categories = initialize_grid(BusinessCategory.where(['parent_id in (?)',fir_cat_ids]))
 
     respond_to do |format|
       format.html # index.html.erb

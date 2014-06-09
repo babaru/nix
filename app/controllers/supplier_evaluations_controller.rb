@@ -10,21 +10,23 @@ class SupplierEvaluationsController < ApplicationController
 
   def new
     @supplier = Supplier.find(params[:id])
-    @specifications = @supplier.specifications
+    @supplier_evaluation = SupplierEvaluation.new(:supplier_id=>params[:id])
   end
 
   def create
-    @supplier = Supplier.find(params[:id])
-    unless params[:data].blank?
-      se = SupplierEvaluation.create({:supplier_id=>@supplier.id,:notes=>params[:notes],:created_by=>current_user.id,:updated_by=>current_user.id})
-      params[:data].each do |k,v|
-        SupplierEvaluationItem.create({:supplier_evaluation_id=>se.id,:specification_id=>k.to_i,:score=>v[0].to_i})
+    params[:supplier_evaluation][:updated_by]=current_user.id
+    params[:supplier_evaluation][:created_by]=current_user.id
+    @supplier_evaluation = SupplierEvaluation.new(params[:supplier_evaluation])
+    respond_to do |format|
+      if  @supplier_evaluation.save
+        format.html { redirect_to suppliers_path(), notice: 'Supplier was successfully updated.' }
+        format.json { head :no_content }
+      else
+        @supplier = Supplier.find(@supplier_evaluation.supplier_id)
+        format.html { render action: "new" }
+        format.json { render json: @supplier_evaluation.errors, status: :unprocessable_entity }
       end
     end
-    respond_to do |format|
-      format.html { redirect_to supplier_supplier_evaluations_path(@supplier), notice: '评价添加成功！！！.' }
-      format.json { head :no_content }
-    end
-     end
+  end
 
 end

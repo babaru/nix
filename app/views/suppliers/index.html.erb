@@ -135,39 +135,47 @@
   end
 
   g.column name: t('公司/个人') do |supplier|
-    '个人'
+    supplier.is_personal.to_i==1 ? '公司' : '个人'
   end
 
   g.column name: t('activerecord.attributes.supplier.contact_name') do |supplier|
-    link_to content_tag(:strong, supplier.contact_name), supplier_path(supplier)
+    supplier.contact_name
   end
 
-  g.column name: t('activerecord.attributes.supplier.contact_way') do |supplier|
-    supplier.contact_way
+  g.column name: t('activerecord.attributes.supplier.phone') do |supplier|
+    supplier.phone
   end
 
-  g.column name: t('规格') do |supplier|
-    supplier.all_specification_names
+  g.column name: t('activerecord.attributes.supplier.qq') do |supplier|
+    supplier.qq
+  end
+
+  g.column name: t('activerecord.attributes.supplier.email') do |supplier|
+    supplier.email
+  end
+
+  g.column name: t('activerecord.attributes.supplier.spec') do |supplier|
+    supplier.spec_name
   end
 
   g.column name: t('单价') do |supplier|
-    supplier.all_specification_price
+    supplier.price
   end
 
-  g.column name: t('已服务客户') do |supplier|
-    ''
+  g.column name: t('服务客户') do |supplier|
+    supplier.client_name
   end
 
   g.column name: t('平均分') do |supplier|
-    supplier.all_specification_score
+    supplier.avg_score
   end
 
   g.column name: t('评价') do |supplier|
-    supplier.all_specification_notes
+    supplier.specification_notes
   end
 
   g.column name: t('备注') do |supplier|
-    ''
+    supplier.notes
   end
 
 

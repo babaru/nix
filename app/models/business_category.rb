@@ -13,8 +13,30 @@ class BusinessCategory < ActiveRecord::Base
   	b==nil ? [] : b
   end
   def self.second_categories
-  	b = BusinessCategory.where('parent_id <> 0').order('id desc')
+    fir_cat_ids = [0]
+    fir_cats = BusinessCategory.first_categories
+    fir_cat_ids = fir_cats.map{|x| x.id} unless fir_cats.blank?
+    b = BusinessCategory.where(['parent_id in (?)',fir_cat_ids]).order('id desc')
   	b==nil ? [] : b
+  end
+
+  def self.specs
+    fir_cat_ids = [0]
+    item = []
+    fir_cats = BusinessCategory.first_categories
+    fir_cat_ids = fir_cats.map{|x| x.id} unless fir_cats.blank?
+    bs = BusinessCategory.where(['parent_id in (?)',fir_cat_ids]).order('id desc')
+    unless bs.blank?
+      bs.each do |b|
+        b_children = b.children
+        unless b_children.blank?
+          b_children.each do |bc|
+            item << [b.name_cn.to_s+"-"+bc.name_cn.to_s,bc.id]
+          end
+        end
+      end
+    end
+    item
   end
   def children
   	bs = BusinessCategory.where('parent_id=?',self.id).order('id desc')

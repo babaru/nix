@@ -1,20 +1,48 @@
 class Supplier < ActiveRecord::Base
-  attr_accessible :name, :contact_name, :contact_way, :business_category_ids,:specification_ids, :created_by, :updated_by
+  attr_accessible :name, :contact_name, :contact_way, :business_category_ids,:specification_ids, :created_by, :updated_by,:is_personal,:phone, :qq, :email, :business_category_id, :price, :client_id, :notes
   has_and_belongs_to_many :business_categories
   has_and_belongs_to_many :specifications
   belongs_to :created_man, :class_name => "User", :foreign_key => "created_by"
   belongs_to :updated_man, :class_name => "User", :foreign_key => "updated_by"
   TITLE_ITEMS=[]
   validates :contact_name, presence:{message:'联系人不能为空'}
-  validates :contact_way, presence:{message:'联系方式不能为空'}
+  validates :business_category_id, presence:{message:'规格不能为空'}
+  validates :price, presence:{message:'价格不能为空'}
+  validates :client_id, presence:{message:'服务客户不能为空，若没有请先添加客户'}
+  validates :is_personal, presence:{message:'公司/个人不能为空'}
   has_many :orders
-  has_many :supplier_evaluations
+  has_many :supplier_evaluations,:order=>'id desc'
   has_many :specifications_suppliers
+  belongs_to :business_category
+  belongs_to :client
+
+  def other_valid?
+  if self.phone.blank? and self.qq.blank? and self.email.blank?
+    errors.add(:phone,"3种联系方式不能同时为空")
+    errors.add(:qq,"3种联系方式不能同时为空")
+    errors.add(:email,"3种联系方式不能同时为空")
+  end
+  errors.size == 0
+  end
 
 
   def category_ids
   	bs = self.business_categories
   	bs.blank? ? [] : bs.map{|b| b.id}
+  end
+
+  def clients
+    Client.all.map{|x| [x.name,x.id]}
+  end
+
+  def spec_name
+    bc = self.business_category
+    bc.blank? ? '' : bc.parent_category.name_cn+'-'+bc.name_cn
+  end
+
+  def client_name
+    cl = self.client
+    cl.blank? ? '' : cl.name
   end
 
   def specification_ids
@@ -40,28 +68,27 @@ class Supplier < ActiveRecord::Base
     item
   end
 
-  def all_specification_notes
-    item = ''.html_safe
-    self.supplier_evaluations.each do |s|
-      item += s.notes.to_s.html_safe+'<br>'.html_safe
-    end
-    item
+  def specification_notes
+    ses = self.supplier_evaluations
+    ses.blank? ? '' : ses[0].notes
   end
 
-  def all_specification_score
+  def avg_score
+    se = SupplierEvaluation.find_by_sql(['select avg(score) as score from supplier_evaluations where supplier_id = ? ',self.id])
+    se.blank? ? '' : se.first().score
 
-    ses = self.supplier_evaluations
-    ses_ids = ses.map{|x| x.id} unless ses.blank?
-    sps = self.specifications
-    sp_ids = sps.map{|x| x.id} unless sps.blank?
-    se_items = SupplierEvaluationItem.find_by_sql(['select avg(score) as score from supplier_evaluation_items where specification_id in (?) and supplier_evaluation_id in (?)  group by specification_id',sp_ids,ses_ids])
-    item = ''.html_safe
-    unless se_items.blank?
-      se_items.each do |sit|
-        item += sit.score.to_s.html_safe+'<br>'.html_safe
-      end
-    end
-    item
+    #ses = self.supplier_evaluations
+    #ses_ids = ses.map{|x| x.id} unless ses.blank?
+    #sps = self.specifications
+    #sp_ids = sps.map{|x| x.id} unless sps.blank?
+    #se_items = SupplierEvaluationItem.find_by_sql(['select avg(score) as score from supplier_evaluation_items where specification_id in (?) and supplier_evaluation_id in (?)  group by specification_id',sp_ids,ses_ids])
+    #item = ''.html_safe
+    #unless se_items.blank?
+    #  se_items.each do |sit|
+    #    item += sit.score.to_s.html_safe+'<br>'.html_safe
+    #  end
+    #end
+    #item
   end
 
 

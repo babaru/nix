@@ -28,22 +28,20 @@
     }
   }
 ) %>
-
-
 <%= simple_form_for(@supplier , :html => {:class => 'form-horizontal' }) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :name, required: true %>
+    <%= f.input :name, required: false %>
+    <%= f.input :is_personal, required: true,:as=>:select,:collection=> [['公司',0],['个人',1]]%>
     <%= f.input :contact_name, required: true %>
-    <%= f.input :contact_way, required: true %>
-    <% if @categories %>
-        <div class="control-group check_boxes required supplier_business_categories"><label class="check_boxes required control-label"><abbr title="带*星号的为必填项">*</abbr> 业务类别(多选)</label>
-          <% @categories.each do |c|%>
-              <div class="controls"><label class="checkbox"><input class="check_boxes required" id="supplier_specification_ids_<%=c.id%>" name="supplier[specification_ids][]" type="checkbox" value="<%=c.id%>"><%=c.show_name%>&nbsp;&nbsp;&nbsp;&nbsp;价格:<input name="supplier_price[<%=c.id%>]" type="text" value="<%=c.get_price(@supplier.id)%>" style="width: 100px;"></label><input name="supplier[business_category_ids][]" type="hidden" value=""></div>
-          <%end%>
-        </div>
-    <%end%>
+    <%= f.input :phone, required: false %>
+    <%= f.input :qq, required: false %>
+    <%= f.input :email, required: false %>
+    <%= f.input :business_category_id, required: true,:as=>:select,:collection=> @specs%>
+    <%= f.input :price, required: true %>
+    <%= f.input :client_id, required: true,:as=>:select,:collection=> @clients%>
+    <%= f.input :notes, required: false,:as=>:text,input_html: { rows: 5 } %>
   </div>
 
   <div class="form-actions">

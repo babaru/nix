@@ -50,7 +50,7 @@
   end
 
   g.column name: t('该类别规格') do |c|
-    c.specifications.inject([]){|list, u| list << content_tag(:span, u.show_name, class: 'label label-success')}.join(' ').html_safe
+    c.children.inject([]){|list, u| list << content_tag(:span, u.name_cn, class: 'label label-success')}.join(' ').html_safe
 
   end
 

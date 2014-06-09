@@ -32,9 +32,9 @@ ActiveRecord::Schema.define(:version => 20140604113245) do
   create_table "business_categories_suppliers", :force => true do |t|
     t.integer  "supplier_id",          :default => 0
     t.integer  "business_category_id", :default => 0
-    t.float    "price",                :default => 0.0
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
+    t.string   "price",                :default => ""
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
   end
 
   add_index "business_categories_suppliers", ["business_category_id"], :name => "index_business_categories_suppliers_on_business_category_id"
@@ -362,6 +362,7 @@ ActiveRecord::Schema.define(:version => 20140604113245) do
 
   create_table "supplier_evaluations", :force => true do |t|
     t.integer  "supplier_id"
+    t.float    "score"
     t.text     "notes"
     t.integer  "created_by"
     t.integer  "updated_by"
@@ -370,18 +371,29 @@ ActiveRecord::Schema.define(:version => 20140604113245) do
   end
 
   create_table "suppliers", :force => true do |t|
-    t.string   "name",         :default => ""
-    t.string   "contact_name", :default => ""
-    t.string   "contact_way",  :default => ""
-    t.integer  "created_by",   :default => 0
-    t.integer  "updated_by",   :default => 0
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.string   "name",                              :default => ""
+    t.integer  "is_personal",          :limit => 2
+    t.string   "contact_name",                      :default => ""
+    t.string   "phone",                             :default => ""
+    t.string   "qq",                                :default => ""
+    t.string   "email",                             :default => ""
+    t.integer  "business_category_id"
+    t.float    "price"
+    t.integer  "client_id"
+    t.text     "notes"
+    t.integer  "created_by",                        :default => 0
+    t.integer  "updated_by",                        :default => 0
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
   end
 
   add_index "suppliers", ["contact_name"], :name => "index_suppliers_on_contact_name"
-  add_index "suppliers", ["contact_way"], :name => "index_suppliers_on_contact_way"
+  add_index "suppliers", ["email"], :name => "index_suppliers_on_email"
+  add_index "suppliers", ["is_personal"], :name => "index_suppliers_on_is_personal"
   add_index "suppliers", ["name"], :name => "index_suppliers_on_name"
+  add_index "suppliers", ["phone"], :name => "index_suppliers_on_phone"
+  add_index "suppliers", ["price"], :name => "index_suppliers_on_price"
+  add_index "suppliers", ["qq"], :name => "index_suppliers_on_qq"
 
   create_table "traveling_photography_media_infos", :force => true do |t|
     t.string   "web_site"
