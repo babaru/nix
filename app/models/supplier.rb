@@ -25,6 +25,10 @@ class Supplier < ActiveRecord::Base
   errors.size == 0
   end
 
+  def show_name
+    self.name.blank? ? self.contact_name : self.name
+  end
+
 
   def category_ids
   	bs = self.business_categories
@@ -109,28 +113,37 @@ class Supplier < ActiveRecord::Base
     workbook = Spreadsheet::Workbook.new
 
     sheet1 = workbook.create_worksheet(:name => '供应商列表')
-    categories = BusinessCategory.second_categories
-    excel_title = ['供应商名称','联系人','联系方式']
-    categories.each do |c|
-      excel_title << c.name_cn
-    end
-    excel_title = excel_title + ['创建人','创建时间','更新人','更新时间'] unless suppliers.blank?
-    format = Spreadsheet::Format.new(:pattern => 1,:color => :white, :weight => :bold, :size => 11)
+    excel_title = ['ID','供应商名称','公司/个人','联系人','联系电话','QQ','Email','规格','单价','服务客户','备注']
+    excel_title += ['平均分','评价'] unless suppliers.nil?
+    format = Spreadsheet::Format.new(:color => :black,:horizontal_align => :center,:pattern_fg_color=>'silver',:pattern=>1, :size => 10,:border_color=>:black,:border=>:thin)
     sheet1.row(0).default_format = format
     sheet1.row(0).replace excel_title
-    sheet1.row(0).height = 18
+    sheet2 = workbook.create_worksheet(:name => '供应商Excel说明')
+    sheet2.row(0).replace ['1.下载的供应商列表可以直接进行上传，其中如果填写ID则表示对该条已有数据进行修改，如果没有填写ID则代表是增加一条新的供应商记录。']
+    sheet2.row(1).replace ["2.某些涉及的内容要求一定要规范填写如 \"规格\",\"服务客户\"等，如果不确定请从页面复制粘贴。"]
+    sheet2.row(2).replace ["3.上传的供应商数据中不包括\"平均分\"和\"评价\"，此两项需要上传数据以后在页面进行操作。"]
+    sheet2.row(3).replace ['4.下载供应商Excel是根据你所提供的查询条件，如果想下载全部供应商则请去掉所有查询条件。']
+    sheet2.row(4).replace ['5.如有其他问题请联系 于洋(创意部) QQ:234016483 电话:18641013958']
+    sheet2.row(5).replace ["6.上传数据库请注意，\"公司/个人\",\"联系人\",\"规格\",\"单价\",\"服务客户\"等项必须填写，\"QQ\",\"Email\",\"联系电话\"三项中必须填写一项。"]
     if suppliers.nil?
-       new_file = temp_folder_name + "供应商模板.xls"
+       new_file = temp_folder_name + "供应商模板-#{Time.now.strftime('%Y-%m-%d')}.xls"
     else
       ActiveRecord::Base.transaction do
-      suppliers.each_with_index do |s,i|
-        excel_item = [s.name.to_s,s.contact_name.to_s,s.contact_way.to_s]
-        categories.each do |c|
-          excel_item << c.get_price1(s.id,'')
+        suppliers.each_with_index do |s,i|
+          sheet1.row(i+1).replace [s.id.to_s,
+                                   s.name,
+                                   (s.is_personal.to_i==1 ? '公司' : '个人'),
+                                   s.contact_name,
+                                   s.phone,
+                                   s.qq,
+                                   s.email,
+                                   s.spec_name,
+                                   s.price.to_s,
+                                   s.client_name,
+                                   s.notes,
+                                   s.avg_score,
+                                   s.specification_notes]
         end
-        excel_item = excel_item + [s.created_name,s.created_at.blank? ? '' : s.created_at.strftime('%Y-%m-%d'),s.updated_name,s.updated_at.blank? ? '' : s.updated_at.strftime('%Y-%m-%d')] unless suppliers.blank?
-        sheet1.row(i+1).replace excel_item
-      end
       end
       new_file = temp_folder_name + "供应商列表-#{Time.now.strftime('%Y-%m-%d')}.xls"
     end
@@ -164,33 +177,95 @@ class Supplier < ActiveRecord::Base
     info
   end
 
-  def self.create_suppliers_by_excel(supplier_sheet=nil,user=nil)
-    return if supplier_sheet.nil? or user.nil?
-    _categories = BusinessCategory.second_categories
-    _category_map = []
-    _category_map = _categories.map{|c| [c.name_cn.to_s,c.id]} unless _categories.blank?
-    _cat_len = _categories.to_a.size
+  def self.create_suppliers_by_excel(_sheet=nil,user=nil)
+    _error_info = ''
+    _error_info = '上传文件错误，请重新上传！' if _sheet.nil? or user.nil?
     ActiveRecord::Base.transaction do
-      supplier_sheet.each_with_index do |row,index|
+      _sheet.each_with_index do |row,index|
         next if index==0
-        _supplier = Supplier.new()
-        _supplier.name=row[0]
-        _supplier.contact_name=row[1]
-        _supplier.contact_way=row[2]
-        _supplier.created_by = user.id
-        _supplier.updated_by = user.id
-        _supplier.save
-        if _cat_len>0
-          (1.._cat_len).each do |index|
-
-            c_id = _category_map.find{|cat| cat[0]==supplier_sheet[0,(2+index)].to_s}.to_a[1].to_i
-            if c_id > 0 and row[2+index].to_s.strip != ''
-              BusinessCategorySupplier.create({:supplier_id=>_supplier.id,:business_category_id=>c_id,:price=>row[2+index].to_s})
-            end
+        if row[0].to_s.strip.blank?
+          data = Supplier.new({:created_by=>user.id})
+        else
+          data = Supplier.find_by_id(row[0].to_s.to_i)
+          if data.blank?
+            _error_info = 'ID错误，在第'+index.to_s+'行' if data.blank?
+            break
           end
         end
+        data.name = row[1].to_s
+
+        if row[2].to_s.strip.blank?
+          _error_info = '公司/个人 不能为空！，在第'+index.to_s+'行'
+          break
+        else
+          data.is_personal = (row[2].to_s.strip=='公司' ? 1 : 2)
+        end
+
+        if row[3].to_s.strip.blank?
+          _error_info = '联系人 不能为空！，在第'+index.to_s+'行'
+          break
+        else
+          data.contact_name = row[3].to_s.strip
+        end
+
+        if row[4].to_s.strip.blank? and row[5].to_s.strip.blank? and row[6].to_s.strip.blank?
+          _error_info = '电话，QQ，Email 不能同时为空！，在第'+index.to_s+'行'
+          break
+        else
+          data.phone = row[4].to_s.strip
+          data.qq = row[5].to_s.strip
+          data.email = row[6].to_s.strip
+        end
+
+        if row[7].to_s.strip.blank?
+          _error_info = '规格 不能为空！，在第'+index.to_s+'行'
+          break
+        else
+          spec_info = row[7].to_s.strip.split('-')
+          _cat = BusinessCategory.find_by_name_cn(spec_info[0].to_s)
+          if _cat.blank?
+            _error_info = '规格填写有误，请检查！，在第'+index.to_s+'行'
+            break
+          else
+            spec = BusinessCategory.where('name_cn = ? and parent_id = ?',spec_info[1],_cat.id).first()
+            if spec.blank?
+              _error_info = '规格填写有误，请检查！，在第'+index.to_s+'行'
+              break
+            else
+              data.business_category_id = spec.id
+            end
+          end
+          data.contact_name = row[3].to_s.strip
+        end
+
+        if row[8].to_s.strip.blank?
+          _error_info = '价格 不能为空！，在第'+index.to_s+'行'
+          break
+        else
+          data.price = row[8].to_s.strip.to_f
+        end
+
+        if row[9].to_s.strip.blank?
+          _error_info = '服务客户 不能为空！，在第'+index.to_s+'行'
+          break
+        else
+          _client = Client.find_by_name(row[9].to_s.strip)
+          if _client.blank?
+            _error_info = '服务客户填写有误，请检查！，在第'+index.to_s+'行'
+            break
+          else
+            data.client_id = _client.id
+          end
+        end
+        data.updated_by = user.id
+        data.notes = row[10].to_s
+        data.save
+      end
+      if _error_info != ''
+        raise ActiveRecord::Rollback
       end
     end
+    _error_info
   end
 
 

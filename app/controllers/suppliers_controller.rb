@@ -5,59 +5,79 @@ class SuppliersController < ApplicationController
   def index
     sql,sql_attr=' 1=1 ',[]
 
+    unless params[:name].blank?
+      sql += ' and name like ?'
+      sql_attr << '%'+params[:name].to_s+'%'
+    end
 
-    unless params[:fir_category_select_ids].blank?
-      @f_cats = BusinessCategory.where('id in (?)',params[:fir_category_select_ids].split(','))
-      @s_cats,_cat_ids = [],[0]
-      unless @f_cats.blank?
-        @f_cats.each do |fc|
-          @s_cats += fc.children.map{|x| [x.name_cn,x.id]} unless @f_cats.blank?
-          _cat_ids += fc.children.map{|x| x.id} unless @f_cats.blank?
-        end
+    unless params[:is_personal].blank?
+      sql += ' and is_personal = ?'
+      sql_attr << params[:is_personal].to_i
+    end
+
+    unless params[:contact_name].blank?
+      sql += ' and contact_name like ?'
+      sql_attr << '%'+params[:contact_name].to_s+'%'
+    end
+
+    unless params[:price].blank?
+      sql += ' and price >= ?'
+      sql_attr << params[:price].to_f
+    end
+
+    unless params[:price1].blank?
+      sql += ' and price <= ?'
+      sql_attr << params[:price1].to_f
+    end
+
+    if !params[:avg_score].blank? or !params[:avg_score1].blank?
+      ses = SupplierEvaluation.find_by_sql(['select avg(score) as score,supplier_id from supplier_evaluations group by supplier_id'])
+      unless params[:avg_score].blank?
+        ses = ses.select{|x| x.score.to_f >= params[:avg_score].to_f}
       end
-      if params[:sec_category_select_ids].blank?
-        _bs = BusinessCategorySupplier.where('business_category_id in (?)',_cat_ids)
-        _s_ids = _bs.map{|b| b.supplier_id} unless _bs.blank?
-      else
-        _cat_ids = params[:sec_category_select_ids].split(',')
-        @s_cats = BusinessCategory.where('id in (?)',_cat_ids)
-        _bs = BusinessCategorySupplier.where('business_category_id in (?)',params[:sec_category_select_ids].split(','))
-        _s_ids = _bs.map{|b| b.supplier_id} unless _bs.blank?
-        @sec_category_select_name = @s_cats.map{|x|x.name_cn}.join('/') unless @s_cats.blank?
+
+      unless params[:avg_score1].blank?
+        ses = ses.select{|x| x.score.to_f <= params[:avg_score1].to_f}
       end
-      @fir_category_select_name = @f_cats.map{|x|x.name_cn}.join('/') unless @f_cats.blank?
-      @suppliers = initialize_grid(Supplier.where('id in (?)',_s_ids))
-      @category_specifications = Specification.where('business_category_id in (?)',_cat_ids)
-    else
-      _bs = BusinessCategorySupplier.all()
-      params[:sec_category_select_ids] = ''
-      @suppliers = initialize_grid(Supplier)
-      @category_specifications = Specification.all()
+      su_ids = [0]
+      su_ids = ses.map{|x|x.supplier_id} unless ses.blank?
+      sql += ' and id in (?) '
+      sql_attr << su_ids
     end
 
 
 
-    @first_categories = BusinessCategory.first_categories
 
-    # if params[:first_selected_medium_id].blank?
-    #   @suppliers = initialize_grid(Supplier)
-    # else
-    #   _ids ,_s_ids = [0],[0]
-    #   params[:second_selected_medium_id]
-    #   @f_cat = BusinessCategory.find_by_id(params[:first_selected_medium_id].to_i)
-    #   @second_categories = @f_cat.children unless @f_cat.blank?
-    #   @s_cat = BusinessCategory.find_by_id(params[:second_selected_medium_id].to_i)
-    #
-    #   _ids = @f_cat.cat_ids unless @f_cat.blank?
-    #   _ids = @s_cat.cat_ids unless @s_cat.blank?
-    #   _bs = BusinessCategorySupplier.where('business_category_id in (?)',_ids)
-    #   _s_ids = _bs.map{|b| b.supplier_id} unless _bs.blank?
-    #   @suppliers = initialize_grid(Supplier.where('id in (?)',_s_ids))
-    # end
-    # @first_categories = BusinessCategory.first_categories
-
+    if params[:fir_category_select_ids].blank?
+      @first_categories = BusinessCategory.first_categories
+      params[:sec_category_select_ids]=''
+    else
+      @f_cats = BusinessCategory.where('id in (?)',params[:fir_category_select_ids].split(','))
+      @fir_category_select_name = @f_cats.map{|x| x.name_cn}.join('/')
+      if params[:sec_category_select_ids].blank?
+        @s_cats = BusinessCategory.where('parent_id in (?)',params[:fir_category_select_ids].split(','))
+        _s_cat_ids = [0]
+        _s_cat_ids = @s_cats.map{|x| x.id} unless @s_cats.blank?
+        @specs = BusinessCategory.where('parent_id in (?)',_s_cat_ids)
+        _spce_ids = [0]
+        _spce_ids = @specs.map{|x| x.id} unless @specs.blank?
+        sql += ' and business_category_id in (?)'
+        sql_attr << _spce_ids
+        #@suppliers = initialize_grid(Supplier.where(['business_category_id in (?)',_spce_ids]))
+      else
+        @s_cats = BusinessCategory.where('id in (?)',params[:sec_category_select_ids].split(','))
+        @sec_category_select_name = @s_cats.map{|x| x.name_cn}.join('/')
+        @specs = BusinessCategory.where('parent_id in (?)',params[:sec_category_select_ids].split(','))
+        _spce_ids = [0]
+        _spce_ids = @specs.map{|x| x.id} unless @specs.blank?
+        sql += ' and business_category_id in (?)'
+        sql_attr << _spce_ids
+        #@suppliers = initialize_grid(Supplier.where(['business_category_id in (?)',_spce_ids]))
+      end
+    end
+    @suppliers = initialize_grid(Supplier.where([sql]+sql_attr))
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @suppliers }
     end
   end
@@ -146,22 +166,28 @@ class SuppliersController < ApplicationController
         render :text => "<script>alert('请选择上传的文件!');history.go(-1);</script>"
       else
         if %w(xls).include?(params[:supplier_excel_file].original_filename.to_s.split('.')[-1])
-          begin
+          #begin
             new_file_name = upload_file(params[:supplier_excel_file], "/public/files/temp/")
             workbook = Spreadsheet.open("#{Rails.root}/public/files/temp/"+new_file_name)
 
             supplier_sheet = workbook.worksheet(0)
-            Supplier.create_suppliers_by_excel(supplier_sheet,current_user)
+            _error_info = Supplier.create_suppliers_by_excel(supplier_sheet,current_user)
             FileUtils.rm Dir["#{Rails.root}/public/files/temp/*.xls"]
             respond_to do |format|
-              format.html { redirect_to suppliers_path(), notice: '供应商上传成功.' }
-              format.json { render json: {}, status: :created, location: {} }
+              if _error_info == ''
+                format.html { redirect_to suppliers_path(), notice: '供应商上传成功.' }
+                format.json { render json: {}, status: :created, location: {} }
+              else
+                format.html { redirect_to suppliers_path(), alert: _error_info }
+                format.json { render json: {}, status: :created, location: {} }
+              end
+
             end
-          rescue Exception => e
-            ActiveRecord::Rollback
-            render :text => "<script>alert('#{e.to_s}');history.go(-1);</script>"
-            return
-          end
+          # rescue Exception => e
+          #   ActiveRecord::Rollback
+          #   render :text => "<script>alert('#{e.to_s}');history.go(-1);</script>"
+          #   return
+          # end
         else
           render :text => "<script>alert('格式错误!');history.go(-1);</script>"
         end
@@ -175,21 +201,79 @@ class SuppliersController < ApplicationController
   end
 
   def generate_spot_plan
-    if params[:first_selected_medium_id].blank?
-      @suppliers = Supplier.all()
-    else
-      _ids ,_s_ids = [0],[0]
-      params[:second_selected_medium_id]
-      @f_cat = BusinessCategory.find_by_id(params[:first_selected_medium_id].to_i)
-      @second_categories = @f_cat.children unless @f_cat.blank?
-      @s_cat = BusinessCategory.find_by_id(params[:second_selected_medium_id].to_i)
+    sql,sql_attr=' 1=1 ',[]
 
-      _ids = @f_cat.cat_ids unless @f_cat.blank?
-      _ids = @s_cat.cat_ids unless @s_cat.blank?
-      _bs = BusinessCategorySupplier.where('business_category_id in (?)',_ids)
-      _s_ids = _bs.map{|b| b.supplier_id} unless _bs.blank?
-      @suppliers = Supplier.where('id in (?)',_s_ids)
+    unless params[:name].blank?
+      sql += ' and name like ?'
+      sql_attr << '%'+params[:name].to_s+'%'
     end
+
+    unless params[:is_personal].blank?
+      sql += ' and is_personal = ?'
+      sql_attr << params[:is_personal].to_i
+    end
+
+    unless params[:contact_name].blank?
+      sql += ' and contact_name like ?'
+      sql_attr << '%'+params[:contact_name].to_s+'%'
+    end
+
+    unless params[:price].blank?
+      sql += ' and price >= ?'
+      sql_attr << params[:price].to_f
+    end
+
+    unless params[:price1].blank?
+      sql += ' and price <= ?'
+      sql_attr << params[:price1].to_f
+    end
+
+    if !params[:avg_score].blank? or !params[:avg_score1].blank?
+      ses = SupplierEvaluation.find_by_sql(['select avg(score) as score,supplier_id from supplier_evaluations group by supplier_id'])
+      unless params[:avg_score].blank?
+        ses = ses.select{|x| x.score.to_f >= params[:avg_score].to_f}
+      end
+
+      unless params[:avg_score1].blank?
+        ses = ses.select{|x| x.score.to_f <= params[:avg_score1].to_f}
+      end
+      su_ids = [0]
+      su_ids = ses.map{|x|x.supplier_id} unless ses.blank?
+      sql += ' and id in (?) '
+      sql_attr << su_ids
+    end
+
+
+
+
+    if params[:fir_category_select_ids].blank?
+      @first_categories = BusinessCategory.first_categories
+      params[:sec_category_select_ids]=''
+    else
+      @f_cats = BusinessCategory.where('id in (?)',params[:fir_category_select_ids].split(','))
+      @fir_category_select_name = @f_cats.map{|x| x.name_cn}.join('/')
+      if params[:sec_category_select_ids].blank?
+        @s_cats = BusinessCategory.where('parent_id in (?)',params[:fir_category_select_ids].split(','))
+        _s_cat_ids = [0]
+        _s_cat_ids = @s_cats.map{|x| x.id} unless @s_cats.blank?
+        @specs = BusinessCategory.where('parent_id in (?)',_s_cat_ids)
+        _spce_ids = [0]
+        _spce_ids = @specs.map{|x| x.id} unless @specs.blank?
+        sql += ' and business_category_id in (?)'
+        sql_attr << _spce_ids
+        #@suppliers = initialize_grid(Supplier.where(['business_category_id in (?)',_spce_ids]))
+      else
+        @s_cats = BusinessCategory.where('id in (?)',params[:sec_category_select_ids].split(','))
+        @sec_category_select_name = @s_cats.map{|x| x.name_cn}.join('/')
+        @specs = BusinessCategory.where('parent_id in (?)',params[:sec_category_select_ids].split(','))
+        _spce_ids = [0]
+        _spce_ids = @specs.map{|x| x.id} unless @specs.blank?
+        sql += ' and business_category_id in (?)'
+        sql_attr << _spce_ids
+        #@suppliers = initialize_grid(Supplier.where(['business_category_id in (?)',_spce_ids]))
+      end
+    end
+    @suppliers = Supplier.where([sql]+sql_attr)
     new_file = Supplier.create_new_template(@suppliers)
     send_file new_file, :type => "application/octet-stream", :disposition => "attachment"
   end

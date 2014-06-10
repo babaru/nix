@@ -36,7 +36,7 @@
           data:
           {
             name: fa_icon('download-alt', text: "下载供应商列表"),
-            url: generate_spot_plan_path(first_selected_medium_id: params[:first_selected_medium_id], second_selected_medium_id: params[:second_selected_medium_id]),
+            url: generate_spot_plan_path(params),
             options:
             {
               class: 'btn btn-info',
@@ -63,8 +63,9 @@
 <div class="well" style="vertical-align: middle;">
   <%= hidden_field_tag 'fir_category_select_ids',params[:fir_category_select_ids] -%>
   <%= hidden_field_tag 'sec_category_select_ids',params[:sec_category_select_ids] -%>
+  <%= hidden_field_tag 'spec_select_ids',params[:spec_select_ids] -%>
 
-  <table style="width:100%">
+  <table style="width:100%;margin-bottom: 5px;">
     <tr><td style="width:60px">查询条件：</td><td>
       <ul style="list-style-type:none;margin: 0;">
         <% unless @fir_category_select_name.blank? -%>
@@ -106,14 +107,14 @@
           <td style="vertical-align: top;">
             <ul class="nav nav-pills" style="margin:0;float:left" id="sec_category_select">
               <%@s_cats.each do |f| -%>
-                  <li ><a style="padding: 0 10px;" href="#" onclick="$('#sec_category_select_ids').val('<%= f[1] -%>');$('form').submit();"><%= f[0] -%></a></li>
+                  <li ><a style="padding: 0 10px;" href="#" onclick="$('#sec_category_select_ids').val('<%= f.id -%>');$('form').submit();"><%= f.name_cn -%></a></li>
               <% end -%>
             </ul>
             <span style="float:right;color:#666;border:1px solid #666;cursor: pointer" id="btn_change_select_sec_category" onclick="change_select_sec_category()">&nbsp;+ 多选&nbsp;</span>
             <div id="sec_category_select_item" style="display:none">
               <ul class="nav nav-pills" style="margin:0">
                 <%@s_cats.each do |f| -%>
-                    <li style="padding: 2px 10px;"><label> <%= check_box_tag 'sec_category_id',f[1]-%><%= f[0] -%></label></li>
+                    <li style="padding: 2px 10px;"><label> <%= check_box_tag 'sec_category_id',f.id-%><%= f.name_cn -%></label></li>
                 <% end -%>
               </ul>
               <div style="text-align: center;">
@@ -123,9 +124,22 @@
           </td>
         </tr>
     <% end -%>
-
   </table>
-
+  供应商名称:
+  <%= text_field_tag 'name',params[:name],:style=>"width:100px"-%>
+  公司/个人:
+  <%= select_tag('is_personal',options_for_select([['全部',nil],['公司','1'],['个人','2']],params[:is_personal]),:style=>"width:60px") -%>
+  联系人:
+  <%= text_field_tag 'contact_name',params[:contact_name],:style=>"width:100px"-%>
+  价格:
+  <%= text_field_tag 'price',params[:price],:style=>"width:40px"-%>
+  到
+  <%= text_field_tag 'price1',params[:price1],:style=>"width:40px"-%>
+  平均分:
+  <%= text_field_tag 'avg_score',params[:avg_score],:style=>"width:40px"-%>
+  到
+  <%= text_field_tag 'avg_score1',params[:avg_score1],:style=>"width:40px"-%>
+  <%= submit_tag('查询',:style=>"margin-bottom: 10px;") -%>
 </div>
 <% end -%>
 <%= grid(@suppliers, :show_filters => :when_filtered) do |g|
@@ -159,11 +173,15 @@
   end
 
   g.column name: t('单价') do |supplier|
-    supplier.price
+    content_tag(:strong, number_to_currency(supplier.price, precision: 0, unit: '￥'))
   end
 
   g.column name: t('服务客户') do |supplier|
     supplier.client_name
+  end
+
+  g.column name: t('备注') do |supplier|
+    supplier.notes
   end
 
   g.column name: t('平均分') do |supplier|
@@ -174,9 +192,7 @@
     supplier.specification_notes
   end
 
-  g.column name: t('备注') do |supplier|
-    supplier.notes
-  end
+
 
 
 

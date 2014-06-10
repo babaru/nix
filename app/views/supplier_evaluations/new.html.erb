@@ -1,5 +1,5 @@
 <div class="narrow-center-page">
-  <%= render_cell(:page_title, :show, data:{name: "对服务于<strong>#{@supplier.client_name}</strong>的<strong>#{@supplier.name}</strong>的<strong>#{@supplier.spec_name}</strong>业务进行评价",
+  <%= render_cell(:page_title, :show, data:{name: "对服务于<strong>#{@supplier.client_name}</strong>的<strong>#{@supplier.show_name}</strong>的<strong>#{@supplier.spec_name}</strong>业务进行评价",
       toolbar: {:right=>[ ]}})
   %>
   <%= simple_form_for(@supplier_evaluation, :html => {:class => 'form-horizontal'}) do |f| %>

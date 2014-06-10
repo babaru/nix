@@ -5,7 +5,7 @@ class SupplierEvaluationsController < ApplicationController
   def index
     add_breadcrumb(I18n.t('model.list', model: SupplierEvaluation.model_name.human))
     @supplier = Supplier.find(params[:supplier_id])
-    @supplier_evaluations = initialize_grid(SupplierEvaluation)
+    @supplier_evaluations = initialize_grid(SupplierEvaluation.where('supplier_id = ?',@supplier.id))
   end
 
   def new
