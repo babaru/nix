@@ -94,6 +94,7 @@ class SuppliersController < ApplicationController
   end
 
   def edit
+    add_breadcrumb(I18n.t('model.edit', model: Supplier.model_name.human))
     @supplier = Supplier.find(params[:id])
     @clients = Client.all().map{|x| [x.name,x.id]}
     @specs = BusinessCategory.specs
@@ -119,6 +120,7 @@ class SuppliersController < ApplicationController
   end
 
   def new
+    add_breadcrumb(I18n.t('model.create', model: Supplier.model_name.human))
     @supplier = Supplier.new
     @clients = Client.all().map{|x| [x.name,x.id]}
     @specs = BusinessCategory.specs

@@ -4,10 +4,10 @@
                                                           [
                                                                   (render_cell(:button, :show, data:
                                                                           {
-                                                                                  name: fa_icon('plus-sign', text: t('model.create', :model => SupplierEvaluation.model_name.human)),
+                                                                                  name: fa_icon('plus-sign', text: t('model.add', :model => SupplierEvaluation.model_name.human)),
                                                                                   url: new_supplier_evaluation_path(:id=>@supplier.id),
                                                                                   options: {class: 'btn btn-primary'}
-                                                                          }))
+                                                                          }) if can? :create,SupplierEvaluation)
 
                                                           ]
                                           }

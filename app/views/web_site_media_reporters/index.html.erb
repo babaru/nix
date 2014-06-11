@@ -8,8 +8,8 @@
                                                                                   name: fa_icon('plus-sign', text: t('model.create', :model => WebSiteMediaReporter.model_name.human)),
                                                                                   url: new_web_site_media_reporter_path,
                                                                                   options: {class: 'btn btn-primary'}
-                                                                          })),
-                                                                  render_cell(
+                                                                          })if can? :create,WebSiteMediaReporter),
+                                                                  (render_cell(
                                                                           :button,
                                                                           :show,
                                                                           data:
@@ -18,7 +18,7 @@
                                                                                           url: upload_reporter_info_path,
                                                                                           options: {class: 'btn btn-success'}
                                                                                   }
-                                                                  ),
+                                                                  )if can? :create,WebSiteMediaReporter),
                                                                   render_cell(:button, :show,
                                                                               data:
                                                                                       {
@@ -205,13 +205,20 @@
     m.updated_name
   end
 
-  g.column html: {class: 'btn-cell'} do |p|
-    link_to(fa_icon('edit'), edit_web_site_media_reporter_path(p), :class => 'btn', :rel => 'tooltip', :title => t('buttons.edit'))
+  if can? :update,WebSiteMediaReporter
+    g.column html: {class: 'btn-cell'} do |p|
+      link_to(fa_icon('edit'), edit_web_site_media_reporter_path(p), :class => 'btn', :rel => 'tooltip', :title => t('buttons.edit'))
+    end
   end
 
-  g.column html: {class: 'btn-cell'} do |p|
-    link_to(fa_icon('trash'), web_site_media_reporter_path(p), :method => :delete, :confirm => t("confirms.delete"), :class => 'btn btn-danger', :rel => 'tooltip', :title => t('buttons.delete'))
+  if can? :destroy,WebSiteMediaReporter
+    g.column html: {class: 'btn-cell'} do |p|
+      link_to(fa_icon('trash'), web_site_media_reporter_path(p), :method => :delete, :confirm => t("confirms.delete"), :class => 'btn btn-danger', :rel => 'tooltip', :title => t('buttons.delete'))
+    end
   end
+
+
+
 
 end -%>
 <style type="text/css">

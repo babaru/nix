@@ -34,12 +34,12 @@
       <%= f.error_notification %>
 
       <div class="form-inputs">
-        <%= f.input :name, required: true %>
-        <%= f.input :business_category_id,collection:BusinessCategory.second_categories.map{|bc| [bc.name_cn,bc.id]},required: true%>
-        <%= f.input :supplier_id,collection:@suppliers.map{|s| [s.name,s.id]},required: true%>
-        <%= f.input :project_id,collection:@projects.map{|p| [p.client.name.to_s+'--'+p.name.to_s,p.id]},required: true%>
-        <%= f.input :price, required: true %>
-        <%= f.input :notes, required: false %>
+        <%= f.input :name, required: false %>
+        <%= f.input :business_category_id,collection:@specs,required: true%>
+        <%= f.input :supplier_id,collection:@suppliers,required: true%>
+        <%= f.input :project_id,collection:[[@project.name.to_s,@project.id]],required: true%>
+        <%= f.input :quantity, required: true %>
+        <%= f.input :notes, required: false,input_html: { rows: 5 } %>
       </div>
 
       <div class="form-actions">
@@ -50,6 +50,13 @@
 </div>
     <script language='javascript'>
         $(document).ready(function(){
+            $("body").find("select[id='order_project_id']").css("background-color","#EEE").each(
+                    function(){
+                        this.onchange = undefined;
+                        $(this).bind("focus",function(){this.defaultIndex=this.selectedIndex;});
+                        $(this).bind("change",function(){this.selectedIndex=this.defaultIndex;});
+                    }
+            );
          $('#order_business_category_id').bind('change',function(){
              var category_id = $('#order_business_category_id').val();
              $.ajax({
@@ -64,3 +71,4 @@
          })
         });
     </script>
+

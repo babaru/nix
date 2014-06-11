@@ -7,9 +7,11 @@ class Permission < ActiveRecord::Base
 
   def self.create_permissions
 
-    _models = ['BusinessCategory','Client','Department','Order','Permission','Project','Supplier','User']
+    _models = ['BusinessCategory','Client','Order','Project','Supplier','User',
+               'GrassResource','Moderator','WebSiteMediaReporter','FashionMediaInfo','TravelingPhotographyMediaInfo',
+               'NetworkOpinionLeaderBlogger','SupplierEvaluation']
     _models.each do |m|
-      ['update','create','destroy'].each do |item|
+      ['update','create','destroy','read'].each do |item|
         if Permission.where('subject_class= ? and action= ?',m,item).blank?
           _permission = Permission.new()
           _permission.subject_class= m

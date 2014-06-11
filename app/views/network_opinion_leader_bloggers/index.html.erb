@@ -8,8 +8,8 @@
                                                                                   name: fa_icon('plus-sign', text: t('model.create', :model => NetworkOpinionLeaderBlogger.model_name.human)),
                                                                                   url: new_network_opinion_leader_blogger_path,
                                                                                   options: {class: 'btn btn-primary'}
-                                                                          })),
-                                                                  render_cell(
+                                                                          }) if can? :create,NetworkOpinionLeaderBlogger),
+                                                                  (render_cell(
                                                                           :button,
                                                                           :show,
                                                                           data:
@@ -18,7 +18,7 @@
                                                                                           url: upload_network_opinion_leader_blogger_path,
                                                                                           options: {class: 'btn btn-success'}
                                                                                   }
-                                                                  ),
+                                                                  )if can? :create,NetworkOpinionLeaderBlogger or can? :update,NetworkOpinionLeaderBlogger),
                                                                   render_cell(:button, :show,
                                                                               data:
                                                                                       {
@@ -159,13 +159,21 @@
     m.updated_name
   end
 
-  g.column html: {class: 'btn-cell'} do |p|
-    link_to(fa_icon('edit'), edit_network_opinion_leader_blogger_path(p), :class => 'btn', :rel => 'tooltip', :title => t('buttons.edit'))
+  if can? :update,NetworkOpinionLeaderBlogger
+    g.column html: {class: 'btn-cell'} do |p|
+      link_to(fa_icon('edit'), edit_network_opinion_leader_blogger_path(p), :class => 'btn', :rel => 'tooltip', :title => t('buttons.edit'))
+    end
   end
 
-  g.column html: {class: 'btn-cell'} do |p|
-    link_to(fa_icon('trash'), network_opinion_leader_blogger_path(p), :method => :delete, :confirm => t("confirms.delete"), :class => 'btn btn-danger', :rel => 'tooltip', :title => t('buttons.delete'))
+  if can? :destroy,NetworkOpinionLeaderBlogger
+    g.column html: {class: 'btn-cell'} do |p|
+      link_to(fa_icon('trash'), network_opinion_leader_blogger_path(p), :method => :delete, :confirm => t("confirms.delete"), :class => 'btn btn-danger', :rel => 'tooltip', :title => t('buttons.delete'))
+    end
   end
+
+
+
+
 
 end -%>
 <style type="text/css">

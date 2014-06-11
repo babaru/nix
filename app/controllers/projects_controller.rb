@@ -31,14 +31,8 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
-    _orders = @project.orders
-    _orders ||= []
-    _cat_ids =  _orders.map{|o|o.business_category_id}
-    _cat_ids ||= [0]
-    @order_info = @project.get_order_info(params[:selected_id].to_i)
-    @business_categories = BusinessCategory.where('id in (?)',_cat_ids.uniq)
-    params[:selected_id] ||= @business_categories.first.id unless @business_categories.blank?
-    @orders_grid = initialize_grid(Order.where('project_id = ? and business_category_id = ?',@project.id,params[:selected_id].to_i).order('is_finished asc'))
+    @orders_grid = initialize_grid(Order.where('project_id = ?',@project.id).order('is_finished asc'))
+    @order_info = @project.get_order_info
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }

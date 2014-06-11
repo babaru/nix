@@ -26,14 +26,34 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @order = Order.new()
-    @order.project_id = params[:project_id] unless params[:project_id].blank?
-    @projects = Project.all()
-    @projects ||= []
+    @order = Order.new({:project_id=>params[:project_id]})
+    @project=@order.project
     @suppliers = []
+    @specs = BusinessCategory.specs
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @order }
+    end
+  end
+
+  def create
+    params[:order][:created_by] = current_user.id
+    params[:order][:updated_by] = current_user.id
+    @order = Order.new(params[:order])
+    respond_to do |format|
+      Client.transaction do
+        if @order.save
+          format.html { redirect_to project_path(@order.project), notice: 'Order was successfully created.' }
+          format.json { render json: @order, status: :created, location: @order }
+        else
+          @project=@order.project
+          @specs = BusinessCategory.specs
+          @suppliers = Supplier.where('business_category_id = ?',@order.business_category_id)
+
+          format.html { render action: "new" }
+          format.json { render json: @order.errors, status: :unprocessable_entity }
+        end
+      end
     end
   end
 
@@ -79,36 +99,17 @@ class OrdersController < ApplicationController
     end
   end
 
-  def create
-    params[:order][:created_by] = current_user.id
-    params[:order][:updated_by] = current_user.id
-    @order = Order.new(params[:order])
-    @projects = Project.all()
-    @projects ||= []
-    respond_to do |format|
-      Client.transaction do
-        if @order.save
-          format.html { redirect_to project_path(id:@order.project_id,selected_id:@order.business_category_id), notice: 'Order was successfully created.' }
-          format.json { render json: @order, status: :created, location: @order }
-        else
-          bs = BusinessCategory.find_by_id(params[:order][:business_category_id])
-          @suppliers = []
-          @suppliers = bs.suppliers unless bs.blank?
-          format.html { render action: "new" }
-          format.json { render json: @order.errors, status: :unprocessable_entity }
-        end
-      end
-    end
-  end
+
 
   def ajax_get_suppliers
     txt = "<option value='' ></option>"
-    bs = BusinessCategory.find_by_id(params[:id])
-    _suppliers = []
-    _suppliers = bs.suppliers unless bs.blank?
-    _suppliers.each do |s|
-      txt  = txt + "<option value='#{s.id}'>#{s.contact_name}#{'('+s.name+')' unless s.name.blank?}</option>"
+    _suppliers = Supplier.where('business_category_id = ?',params[:id])
+    unless _suppliers.blank?
+      _suppliers.each do |s|
+        txt  = txt + "<option value='#{s.id}'>#{s.contact_name}#{'('+s.name+')' unless s.name.blank?}</option>"
+      end
     end
+
     render :text => txt
   end
 

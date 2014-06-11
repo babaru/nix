@@ -7,8 +7,8 @@
                                                                                   name: fa_icon('plus-sign', text: t('model.create', :model => GrassResource.model_name.human)),
                                                                                   url: new_grass_resource_path,
                                                                                   options: {class: 'btn btn-primary'}
-                                                                          })),
-                                                                  render_cell(
+                                                                          })if can? :create,GrassResource),
+                                                                  (render_cell(
                                                                           :button,
                                                                           :show,
                                                                           data:
@@ -17,7 +17,7 @@
                                                                                           url: upload_grass_resource_path,
                                                                                           options: {class: 'btn btn-success'}
                                                                                   }
-                                                                  ),
+                                                                  )if can? :create,GrassResource or can? :update,GrassResource),
                                                                   render_cell(:button, :show,
                                                                               data:
                                                                                       {
@@ -139,16 +139,17 @@
     m.updated_name
   end
 
-
-
-  g.column html: {class: 'btn-cell'} do |p|
-    link_to(fa_icon('edit'), edit_grass_resource_path(p), :class => 'btn', :rel => 'tooltip', :title => t('buttons.edit'))
+  if can? :update,GrassResource
+    g.column html: {class: 'btn-cell'} do |p|
+      link_to(fa_icon('edit'), edit_grass_resource_path(p), :class => 'btn', :rel => 'tooltip', :title => t('buttons.edit'))
+    end
   end
 
-  g.column html: {class: 'btn-cell'} do |p|
-    link_to(fa_icon('trash'), grass_resource_path(p), :method => :delete, :confirm => t("confirms.delete"), :class => 'btn btn-danger', :rel => 'tooltip', :title => t('buttons.delete'))
+  if can? :destroy,GrassResource
+    g.column html: {class: 'btn-cell'} do |p|
+      link_to(fa_icon('trash'), grass_resource_path(p), :method => :delete, :confirm => t("confirms.delete"), :class => 'btn btn-danger', :rel => 'tooltip', :title => t('buttons.delete'))
+    end
   end
-
 end -%>
 <style type="text/css">
     .td_style{

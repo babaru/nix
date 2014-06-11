@@ -3,11 +3,17 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-   @users_grid = initialize_grid(User)
+   @users_grid = initialize_grid(User.where('email != ? and id != ?','admin@nix.in',current_user.id))
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users_grid }
     end
+  end
+
+  def add_users
+    User.add_users
+    Permission.create_permissions
+    render :text => "<script>alert('ok!');</script>"
   end
 
   # GET /users/1
@@ -20,8 +26,7 @@ class UsersController < ApplicationController
   # GET /users/new.json
   def new
     @user = User.new
-    @departments = Department.all()
-    @departments ||= []
+    @permissions = Permission.order('subject_class desc')
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @user }
@@ -31,8 +36,7 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
-    @departments = Department.all()
-    @departments ||= []
+    @permissions = Permission.all().order('subject_class desc')
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }
@@ -49,6 +53,7 @@ class UsersController < ApplicationController
         format.html { redirect_to users_path(), notice: '用户已成功创建.' }
         format.json { render json: @user, status: :created, location: @user }
       else
+        @permissions = Permission.all()
         format.html { render action: "new" }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -70,6 +75,7 @@ class UsersController < ApplicationController
         format.html { redirect_to users_path(), notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
+        @permissions = Permission.all()
         format.html { render action: "edit" }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end

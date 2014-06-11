@@ -8,8 +8,8 @@
                                                                                   name: fa_icon('plus-sign', text: t('model.create', :model => Moderator.model_name.human)),
                                                                                   url: new_moderator_path,
                                                                                   options: {class: 'btn btn-primary'}
-                                                                          })),
-                                                                  render_cell(
+                                                                          })if can? :create,Moderator),
+                                                                  (render_cell(
                                                                           :button,
                                                                           :show,
                                                                           data:
@@ -18,7 +18,7 @@
                                                                                           url: upload_moderator_path,
                                                                                           options: {class: 'btn btn-success'}
                                                                                   }
-                                                                  ),
+                                                                  )if can? :create,Moderator or can? :update,Moderator),
                                                                   render_cell(:button, :show,
                                                                               data:
                                                                                       {
@@ -169,13 +169,20 @@
     m.updated_name
   end
 
-  g.column html: {class: 'btn-cell'} do |p|
-    link_to(fa_icon('edit'), edit_moderator_path(p), :class => 'btn', :rel => 'tooltip', :title => t('buttons.edit'))
+  if can? :update,Moderator
+    g.column html: {class: 'btn-cell'} do |p|
+      link_to(fa_icon('edit'), edit_moderator_path(p), :class => 'btn', :rel => 'tooltip', :title => t('buttons.edit'))
+    end
   end
 
-  g.column html: {class: 'btn-cell'} do |p|
-    link_to(fa_icon('trash'), moderator_path(p), :method => :delete, :confirm => t("confirms.delete"), :class => 'btn btn-danger', :rel => 'tooltip', :title => t('buttons.delete'))
+  if can? :destroy,Moderator
+    g.column html: {class: 'btn-cell'} do |p|
+      link_to(fa_icon('trash'), moderator_path(p), :method => :delete, :confirm => t("confirms.delete"), :class => 'btn btn-danger', :rel => 'tooltip', :title => t('buttons.delete'))
+    end
   end
+
+
+
 
 end -%>
 <style type="text/css">

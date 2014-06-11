@@ -44,8 +44,8 @@
   <table class="plan-summary" id="master-plan-summary">
     <tbody><tr>
       <th style="width:100px;">项目预算</th>
-      <th style="width:180px;">订单总数(已完成订单/总订单)</th>
-      <th style="width:180px;">总金额(已完成金额/总金额)</th>
+      <th style="width:180px;">已完成订单/总订单</th>
+      <th style="width:180px;">已完成金额/总金额</th>
       <th></th>
     </tr>
     <tr>
@@ -91,72 +91,11 @@
     </tbody></table>
 </div>
 
-<ul class="nav nav-tabs">
-  <% @business_categories.each do |cat| %>
-      <% if cat.id == params[:selected_id].to_i %>
-          <li class="active">
-      <% else %>
-          <li>
-      <% end %>
-      <%= link_to(content_tag(:span, cat.name_cn),project_path(id: @project.id,selected_id: cat.id ))%>
-      </li>
-  <% end %>
-</ul>
-
-<div class="padding">
-  <table class="plan-summary" id="medium-master-plan-summary">
-    <tr>
-      <th style="width:10%;">订单数(已完成数/总数)</th>
-      <th style="width:10%;">订单金额(已完成金额/总金额)</th>
-      <th></th>
-    </tr>
-    <tr>
-      <td>
-        <div class="label-group master-plan-value-group">
-          <span class="item medium">
-            <%= content_tag(
-                        :span,
-                        @order_info[:select_finished_order_count].to_i,
-                        class: 'medium-net-cost'
-                ) %>
-          </span>
-          <span class="item company">
-            <%= content_tag(
-                        :span,
-                        @order_info[:select_order_count].to_i,
-                        class: 'company-net-cost'
-                ) %>
-          </span>
-        </div>
-      </td>
-      <td>
-        <div class="label-group master-plan-value-group">
-          <span class="item medium">
-            <%= content_tag(
-                        :span,
-                        number_to_currency(@order_info[:select_finished_order_price].to_f, precision: 0, unit: '￥'),
-                        class: 'medium-net-cost'
-                ) %>
-          </span>
-          <span class="item company">
-            <%= content_tag(
-                        :span,
-                        number_to_currency(@order_info[:select_order_price].to_f, precision: 0, unit: '￥'),
-                        class: 'company-net-cost'
-                ) %>
-          </span>
-        </div>
-      </td>
-      <td></td>
-    </tr>
-
-  </table>
-</div>
 
 <%= grid(@orders_grid, :show_filters => :when_filtered) do |g|
 
 
-  g.column name: t('activerecord.attributes.order.name'), attribute: 'name' do |order|
+  g.column name: t('activerecord.attributes.order.name') do |order|
     order.name
   end
 
@@ -165,57 +104,72 @@
   end
 
   g.column name: t('activerecord.attributes.supplier.contact_name') do |order|
-    link_to content_tag(:strong, order.supplier.contact_name), supplier_path(id:order.supplier,selected_id:order.business_category_id),:target => '_blank' if order.supplier
+    order.supplier.contact_name if order.supplier
   end
 
-  g.column name: t('activerecord.attributes.supplier.contact_way') do |order|
-    order.supplier.contact_way if order.supplier
+  g.column name: t('activerecord.attributes.supplier.phone') do |order|
+    order.supplier.phone if order.supplier
+  end
+
+  g.column name: t('activerecord.attributes.supplier.qq') do |order|
+    order.supplier.qq if order.supplier
+  end
+
+  g.column name: t('activerecord.attributes.supplier.email') do |order|
+    order.supplier.email if order.supplier
+  end
+
+  g.column name: t('activerecord.attributes.supplier.spec') do |order|
+    order.supplier.spec_name if order.supplier
   end
 
   g.column name: t('activerecord.attributes.order.price') do |order|
-    content_tag(:strong, number_to_currency(order.price, precision: 0, unit: '￥'))
+    content_tag(:strong, number_to_currency(order.all_price, precision: 0, unit: '￥'))
   end
 
-  g.column name: t('activerecord.attributes.order.is_finished'), attribute: 'is_finished' do |order|
-    fa_icon('ok-sign') if order.is_finished?
-  end
-
-
-
-  g.column name: t('activerecord.attributes.order.finished_at') do |order|
-    order.finished_at.strftime('%Y-%m-%d %H:%M:%S') if order.is_finished?
+  g.column name: t('activerecord.attributes.order.is_finished') do |order|
+    order.is_finished? ? fa_icon('ok-sign')+order.finished_at.strftime('%Y-%m-%d %H:%M:%S') : ''
   end
 
   g.column name: t('activerecord.attributes.order.notes') do |order|
     order.notes
   end
 
-  g.column name: t('activerecord.attributes.order.updated_by'), attribute: 'updated_by' do |order|
+  g.column name: t('activerecord.attributes.order.updated_by') do |order|
     order.updated_name
   end
 
-  g.column name: t('activerecord.attributes.order.updated_at'), attribute: 'updated_at' do |order|
+  g.column name: t('activerecord.attributes.order.updated_at') do |order|
     order.updated_at.strftime('%Y-%m-%d') if order.updated_at
   end
 
-  g.column name: t('activerecord.attributes.order.created_by'), attribute: 'created_by' do |order|
+  g.column name: t('activerecord.attributes.order.created_by') do |order|
     order.created_name
   end
 
-  g.column name: t('activerecord.attributes.order.created_at'), attribute: 'created_at' do |order|
+  g.column name: t('activerecord.attributes.order.created_at') do |order|
     order.created_at.strftime('%Y-%m-%d') if order.created_at
   end
 
-  g.column html: {class: ''} do |order|
-    link_to(fa_icon('rocket', text: '完成订单'), finish_order_path(order), class: 'btn btn-success', method: :post) if !order.is_finished? and can? :update,Order
+  g.column html: {class: 'td-finish'} do |order|
+    link_to(fa_icon('rocket', text: '完成订单'), finish_order_path(order), class: 'btn btn-success btn-success1', :title => t('buttons.finish'), method: :post) if !order.is_finished?
   end
 
   g.column :html => {class: 'btn-cell'} do |order|
-    link_to(icon('icon-edit'), edit_order_path(order), :class => 'btn', :rel => 'tooltip', :title => t('buttons.edit')) if can? :update,Order
+    link_to(icon('icon-edit'), edit_order_path(order), :class => 'btn', :rel => 'tooltip', :title => t('buttons.edit'))
   end
 
   g.column :html => {class: 'btn-cell'} do |order|
-    link_to(icon('icon-trash'), order_path(order), :method => :delete, :confirm => '确定要删除这个订单么？', :class => 'btn btn-danger', :rel => 'tooltip', :title => t('buttons.delete')) if can? :destroy,Order
+    link_to(icon('icon-trash'), order_path(order), :method => :delete, :confirm => '确定要删除这个订单么？', :class => 'btn btn-danger', :rel => 'tooltip', :title => t('buttons.delete'))
   end
 end -%>
+
+<style>
+  .btn-success1 {
+      padding: 1px 5px;
+  }
+  .td-finish{
+     width: 75px;
+  }
+</style>
 

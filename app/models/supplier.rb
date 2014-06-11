@@ -7,6 +7,7 @@ class Supplier < ActiveRecord::Base
   TITLE_ITEMS=[]
   validates :contact_name, presence:{message:'联系人不能为空'}
   validates :business_category_id, presence:{message:'规格不能为空'}
+  validates :price, numericality: { greater_than: 0 }
   validates :price, presence:{message:'价格不能为空'}
   validates :client_id, presence:{message:'服务客户不能为空，若没有请先添加客户'}
   validates :is_personal, presence:{message:'公司/个人不能为空'}

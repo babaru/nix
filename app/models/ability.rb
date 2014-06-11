@@ -4,7 +4,6 @@ class Ability
   def initialize(user)
 
     can :manage, :all if user and user.is_sys_admin?
-    can :read, :all
     if user
       can do |action, subject_class, subject|
         department_permission = user.departments.any? do |department|

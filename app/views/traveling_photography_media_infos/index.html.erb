@@ -8,8 +8,8 @@
                                                                                   name: fa_icon('plus-sign', text: t('model.create', :model => TravelingPhotographyMediaInfo.model_name.human)),
                                                                                   url: new_traveling_photography_media_info_path,
                                                                                   options: {class: 'btn btn-primary'}
-                                                                          })),
-                                                                  render_cell(
+                                                                          }) if can? :create,TravelingPhotographyMediaInfo),
+                                                                  (render_cell(
                                                                           :button,
                                                                           :show,
                                                                           data:
@@ -18,7 +18,7 @@
                                                                                           url: upload_traveling_photography_media_info_path,
                                                                                           options: {class: 'btn btn-success'}
                                                                                   }
-                                                                  ),
+                                                                  ) if can? :create,TravelingPhotographyMediaInfo or can? :update,TravelingPhotographyMediaInfo),
                                                                   render_cell(:button, :show,
                                                                               data:
                                                                                       {
@@ -111,13 +111,20 @@
     m.updated_name
   end
 
-  g.column html: {class: 'btn-cell'} do |p|
-    link_to(fa_icon('edit'), edit_traveling_photography_media_info_path(p), :class => 'btn', :rel => 'tooltip', :title => t('buttons.edit'))
+  if can? :update,TravelingPhotographyMediaInfo
+    g.column html: {class: 'btn-cell'} do |p|
+      link_to(fa_icon('edit'), edit_traveling_photography_media_info_path(p), :class => 'btn', :rel => 'tooltip', :title => t('buttons.edit'))
+    end
   end
 
-  g.column html: {class: 'btn-cell'} do |p|
-    link_to(fa_icon('trash'), traveling_photography_media_info_path(p), :method => :delete, :confirm => t("confirms.delete"), :class => 'btn btn-danger', :rel => 'tooltip', :title => t('buttons.delete'))
+  if can? :destroy,TravelingPhotographyMediaInfo
+    g.column html: {class: 'btn-cell'} do |p|
+      link_to(fa_icon('trash'), traveling_photography_media_info_path(p), :method => :delete, :confirm => t("confirms.delete"), :class => 'btn btn-danger', :rel => 'tooltip', :title => t('buttons.delete'))
+    end
   end
+
+
+
 
 end -%>
 <style type="text/css">

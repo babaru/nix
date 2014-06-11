@@ -239,22 +239,22 @@ ActiveRecord::Schema.define(:version => 20140604113245) do
     t.integer  "project_id"
     t.integer  "business_category_id"
     t.integer  "supplier_id"
-    t.integer  "is_finished",          :limit => 2,                               :default => 0
+    t.integer  "is_finished",          :limit => 2, :default => 0
     t.datetime "finished_at"
-    t.decimal  "price",                             :precision => 8, :scale => 2, :default => 0.0
+    t.integer  "quantity"
     t.integer  "created_by"
     t.integer  "updated_by"
     t.text     "notes"
-    t.datetime "created_at",                                                                       :null => false
-    t.datetime "updated_at",                                                                       :null => false
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
   end
 
   add_index "orders", ["business_category_id"], :name => "index_orders_on_business_category_id"
   add_index "orders", ["created_by"], :name => "index_orders_on_created_by"
   add_index "orders", ["finished_at"], :name => "index_orders_on_finished_at"
   add_index "orders", ["is_finished"], :name => "index_orders_on_is_finished"
-  add_index "orders", ["price"], :name => "index_orders_on_price"
   add_index "orders", ["project_id"], :name => "index_orders_on_project_id"
+  add_index "orders", ["quantity"], :name => "index_orders_on_quantity"
   add_index "orders", ["supplier_id"], :name => "index_orders_on_supplier_id"
   add_index "orders", ["updated_by"], :name => "index_orders_on_updated_by"
 

@@ -16,6 +16,7 @@ zh-CN:
       moderator: 版主信息
       grass_resource: 草根资源
       specification: 类别规格
+      supplier_evaluation: 供应商评价
     attributes:
       specification:
         name: 名称
@@ -31,6 +32,7 @@ zh-CN:
         department: 所属部门
         department_permission: 部门权限
         department_id: 所属部门
+        permissions: 个人权限
       supplier:
         name: 供应商名称
         contact_name: 联系人
@@ -72,11 +74,12 @@ zh-CN:
         is_started_at: 启动时间
         assigned_users: 执行人员
       order:
-        name: 名称
-        business_category_id: 业务类别
+        name: 订单名称
+        business_category_id: 规格
         supplier_id: 供应商
         project_id: 所属项目
-        price: 价格
+        quantity: 数量
+        price: 总价格(单价×数量)
         notes: 备注
         category_name: 类别
         created_by: 创建人
@@ -85,7 +88,7 @@ zh-CN:
         updated_at: 更新时间
         is_finished: 已完成？
         finished_at: 完成时间
-        supplier_name: 供应商
+        supplier_name: 供应商名称
       department:
         name: 部门名称
         permissions: 权限 

@@ -3,13 +3,14 @@ class SupplierEvaluationsController < ApplicationController
   add_breadcrumb(I18n.t('model.list', model: Supplier.model_name.human), :suppliers_path)
 
   def index
-    add_breadcrumb(I18n.t('model.list', model: SupplierEvaluation.model_name.human))
     @supplier = Supplier.find(params[:supplier_id])
+    add_breadcrumb(@supplier.show_name+'评价列表')
     @supplier_evaluations = initialize_grid(SupplierEvaluation.where('supplier_id = ?',@supplier.id))
   end
 
   def new
     @supplier = Supplier.find(params[:id])
+    add_breadcrumb(@supplier.show_name+'评价列表',supplier_supplier_evaluations_path(@supplier))
     @supplier_evaluation = SupplierEvaluation.new(:supplier_id=>params[:id])
   end
 
