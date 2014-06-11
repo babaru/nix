@@ -36,7 +36,7 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
-    @permissions = Permission.all().order('subject_class desc')
+    @permissions = Permission.order('subject_class desc')
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }
