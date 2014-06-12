@@ -33,8 +33,9 @@ class BusinessCategoriesController < ApplicationController
     @first_categories = BusinessCategory.where('parent_id=0')
     @business_category = BusinessCategory.find(params[:id])
     params[:business_category][:updated_by]=current_user.id
+    @business_category.attributes = params[:business_category]
     respond_to do |format|
-      if @business_category.update_attributes(params[:business_category])
+      if @business_category.save
         format.html { redirect_to business_categories_path(), notice: 'BusinessCategory was successfully updated.' }
         format.json { head :no_content }
       else

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :has_login
+  add_breadcrumb(I18n.t('model.list', model: User.model_name.human), :users_path,except: :index)
   # GET /users
   # GET /users.json
   def index
@@ -26,7 +27,7 @@ class UsersController < ApplicationController
   # GET /users/new.json
   def new
     @user = User.new
-    @permissions = Permission.order('subject_class desc')
+    @permissions = Permission.order('action desc')
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @user }
@@ -36,7 +37,7 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
-    @permissions = Permission.order('subject_class desc')
+    @permissions = Permission.order('action desc')
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }
@@ -69,9 +70,9 @@ class UsersController < ApplicationController
     end
 
     @user = User.find(params[:id])
-
+    @user.attributes = params[:user]
     respond_to do |format|
-      if @user.update_attributes(params[:user])
+      if @user.save
         format.html { redirect_to users_path(), notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else

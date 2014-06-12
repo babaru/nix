@@ -1,4 +1,4 @@
-<%= form_tag({},:method=>'get',:style=>"vertical-align: middle;") do -%>
+<%= form_tag({},:method=>'get',:style=>"vertical-align: middle;",:id=>'commit_form') do -%>
 <%= render_cell(:page_title, :show, data:{name: "#{t('model.list', model: WebSiteMediaReporter.model_name.human)}",
                                           toolbar: {
                                                   right:
@@ -46,15 +46,15 @@
     <tr><td style="width:60px">查询条件：</td><td>
       <ul style="list-style-type:none;margin: 0;">
       <% unless @city_select_name.blank? -%>
-          <li style="display: inline;padding-right: 10px;"><a href="#" onclick="$('#city_select_ids').val('');$('form').submit();" class="label label-warning" title="区域:<%= @city_select_name -%>">区域:<%=truncate_u(@city_select_name,6,'...')+'  X'%></a></li>
+          <li style="display: inline;padding-right: 10px;"><a href="#" onclick="$('#city_select_ids').val('');$('#commit_form').submit();" class="label label-warning" title="区域:<%= @city_select_name -%>">区域:<%=truncate_u(@city_select_name,6,'...')+'  X'%></a></li>
       <% end -%>
 
         <% unless @format_select_name.blank? -%>
-            <li style="display: inline;padding-right: 10px;"><a href="#" onclick="$('#format_select_ids').val('');$('form').submit();" class="label label-warning" title="媒体介质:<%= @format_select_name -%>">媒体介质:<%=truncate_u(@format_select_name,6,'...')+'  X'%></a></li>
+            <li style="display: inline;padding-right: 10px;"><a href="#" onclick="$('#format_select_ids').val('');$('#commit_form').submit();" class="label label-warning" title="媒体介质:<%= @format_select_name -%>">媒体介质:<%=truncate_u(@format_select_name,6,'...')+'  X'%></a></li>
         <% end -%>
 
         <% unless @level_select_name.blank? -%>
-            <li style="display: inline;padding-right: 10px;"><a href="#" onclick="$('#level_select_ids').val('');$('form').submit();" class="label label-warning" title="媒体级别:<%= @level_select_name -%>">媒体级别:<%=truncate_u(@level_select_name,6,'...')+'  X'%></a></li>
+            <li style="display: inline;padding-right: 10px;"><a href="#" onclick="$('#level_select_ids').val('');$('#commit_form').submit();" class="label label-warning" title="媒体级别:<%= @level_select_name -%>">媒体级别:<%=truncate_u(@level_select_name,6,'...')+'  X'%></a></li>
         <% end -%>
       </ul>
     </td></tr>
@@ -64,7 +64,7 @@
       <td style="vertical-align: top;">
         <ul class="nav nav-pills" style="margin:0;float:left" id="city_select">
           <%@cities.each do |c| -%>
-              <li ><a style="padding: 0 10px;" href="#" onclick="$('#city_select_ids').val('<%= c[1] -%>');$('form').submit();"><%= c[0] -%></a></li>
+              <li ><a style="padding: 0 10px;" href="#" onclick="$('#city_select_ids').val('<%= c[1] -%>');$('#commit_form').submit();"><%= c[0] -%></a></li>
           <% end -%>
         </ul>
         <span style="float:right;color:#666;border:1px solid #666;cursor: pointer" id="btn_change_select" onclick="change_select()">&nbsp;+ 多选&nbsp;</span>
@@ -88,7 +88,7 @@
           <td style="vertical-align: top;">
             <ul class="nav nav-pills" style="margin:0;float:left" id="format_select">
               <% (0..10).each do |i| -%>
-                  <li ><a style="padding: 0 10px;" href="#" onclick="$('#format_select_ids').val('<%= @formats[i][1] -%>');$('form').submit();"><%= @formats[i][0] -%></a></li>
+                  <li ><a style="padding: 0 10px;" href="#" onclick="$('#format_select_ids').val('<%= @formats[i][1] -%>');$('#commit_form').submit();"><%= @formats[i][0] -%></a></li>
               <% end -%>
             </ul>
             <span style="float:right;color:#666;border:1px solid #666;cursor: pointer" id="btn_change_select_format" onclick="change_select_format()">&nbsp;+ 多选&nbsp;</span>
@@ -112,7 +112,7 @@
           <td style="vertical-align: top;">
             <ul class="nav nav-pills" style="margin:0;float:left" id="level_select">
               <% (0..6).each do |i| -%>
-                  <li ><a style="padding: 0 10px;" href="#" onclick="$('#level_select_ids').val('<%= @levels[i][1] -%>');$('form').submit();"><%= @levels[i][0] -%></a></li>
+                  <li ><a style="padding: 0 10px;" href="#" onclick="$('#level_select_ids').val('<%= @levels[i][1] -%>');$('#commit_form').submit();"><%= @levels[i][0] -%></a></li>
               <% end -%>
             </ul>
             <span style="float:right;color:#666;border:1px solid #666;cursor: pointer" id="btn_change_select_level" onclick="change_select_level()">&nbsp;+ 多选&nbsp;</span>
@@ -248,7 +248,7 @@ end -%>
       })
 
       $('#level_select_ids').val(item);
-      $('form').submit();
+      $('#commit_form').submit();
   }
   function clear_level_select_ids(){
       $('#level_select').show();
@@ -273,7 +273,7 @@ end -%>
         })
 
         $('#format_select_ids').val(item);
-        $('form').submit();
+        $('#commit_form').submit();
     }
   function clear_format_select_ids(){
       $('#format_select').show();
@@ -309,7 +309,7 @@ end -%>
         })
 
         $('#city_select_ids').val(item);
-        $('form').submit();
+        $('#commit_form').submit();
     }
     $(document).ready(function(){
 

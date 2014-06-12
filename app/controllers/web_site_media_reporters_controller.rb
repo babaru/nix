@@ -1,6 +1,6 @@
 class WebSiteMediaReportersController < ApplicationController
   before_filter :has_login
-  add_breadcrumb(I18n.t('model.list', model: WebSiteMediaReporter.model_name.human), :web_site_media_reporters_path, only: :index)
+  add_breadcrumb(I18n.t('model.list', model: WebSiteMediaReporter.model_name.human), :web_site_media_reporters_path, except: :index)
 
 
   def index
@@ -225,8 +225,36 @@ class WebSiteMediaReportersController < ApplicationController
       sql += " and birthday <= ?"
       sql_attr << params[:birthday_end]
     end
+
     if params[:is_substation]=='1'
       sql += " and is_substation = 1"
+    end
+
+    @cities = City::PLACES
+    unless params[:city_select_ids].blank?
+      city_ids = City.get_city_ids(params[:city_select_ids].split(','))
+
+      sql += " and city_id in (?)"
+      sql_attr << city_ids
+      _city = @cities.select{|x| params[:city_select_ids].split(',').include?(x[1].to_s)}
+
+      @city_select_name = _city.map{|x| x[0]}.join('/') unless _city.blank?
+    end
+
+    @formats = WebSiteMediaReporter::FORMATS
+    unless params[:format_select_ids].blank?
+      sql += " and format_id in (?)"
+      sql_attr << params[:format_select_ids].split(',')
+      _format = @formats.select{|x| params[:format_select_ids].split(',').include?(x[1].to_s)}
+      @format_select_name = _format.map{|x| x[0]}.join('/') unless _format.blank?
+    end
+
+    @levels = WebSiteMediaReporter::LEVELS
+    unless params[:level_select_ids].blank?
+      sql += " and level in (?)"
+      sql_attr << params[:level_select_ids].split(',')
+      _level = @levels.select{|x| params[:level_select_ids].split(',').include?(x[1].to_s)}
+      @level_select_name = _level.map{|x| x[0]}.join('/') unless _level.blank?
     end
 
     data = WebSiteMediaReporter.where([sql]+sql_attr)

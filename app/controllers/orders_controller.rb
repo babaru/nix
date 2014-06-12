@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_filter :has_login
-  add_breadcrumb(I18n.t('model.list', model: Order.model_name.human), :orders_path, except: :index)
+  #add_breadcrumb(I18n.t('model.list', model: Order.model_name.human), :orders_path, except: :index)
 
 
   def index
@@ -30,6 +30,10 @@ class OrdersController < ApplicationController
     @project=@order.project
     @suppliers = []
     @specs = BusinessCategory.specs
+    add_breadcrumb(I18n.t('model.list', model: Client.model_name.human), :clients_path)
+    add_breadcrumb("#{@project.client.name} #{t('model.list', model: Project.model_name.human)}",client_projects_path(@project.client))
+    add_breadcrumb("#{@project.name}",project_path(@project))
+    add_breadcrumb("添加订单")
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @order }
@@ -49,7 +53,9 @@ class OrdersController < ApplicationController
           @project=@order.project
           @specs = BusinessCategory.specs
           @suppliers = Supplier.where('business_category_id = ?',@order.business_category_id)
-
+          add_breadcrumb(I18n.t('model.list', model: Client.model_name.human), :clients_path)
+          add_breadcrumb("#{@project.client.name} #{t('model.list', model: Project.model_name.human)}",client_projects_path(@project.client))
+          add_breadcrumb("#{@project.name}",project_path(@project))
           format.html { render action: "new" }
           format.json { render json: @order.errors, status: :unprocessable_entity }
         end
@@ -59,11 +65,13 @@ class OrdersController < ApplicationController
 
   def edit
     @order = Order.find_by_id(params[:id])
-    @projects = Project.all()
-    @projects ||= []
-    bs = BusinessCategory.find_by_id(@order.business_category_id)
-    @suppliers = []
-    @suppliers = bs.suppliers unless bs.blank?
+    @project=@order.project
+    @suppliers = Supplier.where('business_category_id = ?',@order.business_category_id)
+    @specs = BusinessCategory.specs
+    add_breadcrumb(I18n.t('model.list', model: Client.model_name.human), :clients_path)
+    add_breadcrumb("#{@project.client.name} #{t('model.list', model: Project.model_name.human)}",client_projects_path(@project.client))
+    add_breadcrumb("#{@project.name}",project_path(@project))
+    add_breadcrumb("编辑订单")
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @order }
@@ -75,14 +83,18 @@ class OrdersController < ApplicationController
     params[:order][:updated_by] = current_user.id
     respond_to do |format|
       Client.transaction do
-        if @order.update_attributes(params[:order])
-          format.html { redirect_to project_path(id:@order.project_id,selected_id:@order.business_category_id), notice: 'Order was successfully updated.' }
+        @order.attributes = params[:order]
+        if @order.save
+          format.html { redirect_to project_path(@order.project), notice: 'Order was successfully updated.' }
           format.json { render json: @order, status: :created, location: @order }
         else
-          bs = BusinessCategory.find_by_id(params[:order][:business_category_id])
-          @suppliers = []
-          @suppliers = bs.suppliers unless bs.blank?
-          format.html { render action: "new" }
+          @project=@order.project
+          @specs = BusinessCategory.specs
+          @suppliers = Supplier.where('business_category_id = ?',@order.business_category_id)
+          add_breadcrumb(I18n.t('model.list', model: Client.model_name.human), :clients_path)
+          add_breadcrumb("#{@project.client.name} #{t('model.list', model: Project.model_name.human)}",client_projects_path(@project.client))
+          add_breadcrumb("#{@project.name}",project_path(@project))
+          format.html { render action: "edit" }
           format.json { render json: @order.errors, status: :unprocessable_entity }
         end
       end

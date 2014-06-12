@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-    attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :role_ids, :space_ids, :space_roles,:department_id,:permission_ids
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :role_ids, :space_ids, :space_roles,:department_id,:permission_ids
   # attr_accessible :title, :body
   has_many :user_permissions
   has_many :permissions,through: :user_permissions
@@ -13,6 +13,9 @@ class User < ActiveRecord::Base
   has_many :department_users
   has_many :departments, through: :department_users
   belongs_to :department
+  validates :name, presence:{message:'用户名不能为空！'}
+  validates :email, presence:{message:'邮箱不能为空！'}
+
 
   def self.all_the_other_users(user_id)
     result = []

@@ -49,7 +49,7 @@ SimpleNavigation::Configuration.run do |navigation|
     #                            when the item should be highlighted, you can set a regexp which is matched
     #                            against the current URI.  You may also use a proc, or the symbol <tt>:subpath</tt>.
     #
-    primary.item(:page_dashboard, t('dashboard'), dashboard_path)
+    #primary.item(:page_dashboard, t('dashboard'), dashboard_path)
     #客户
     if can? :read,Client
       primary.item(

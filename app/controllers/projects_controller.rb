@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   before_filter :has_login
-  add_breadcrumb(I18n.t('model.list', model: Client.model_name.human), :clients_path, only: :index)
+  #add_breadcrumb(I18n.t('model.list', model: Client.model_name.human), :clients_path, only: :index)
+  add_breadcrumb(I18n.t('model.list', model: Client.model_name.human), :clients_path)
 
   # GET /projects
   # GET /projects.json
@@ -33,6 +34,8 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @orders_grid = initialize_grid(Order.where('project_id = ?',@project.id).order('is_finished asc'))
     @order_info = @project.get_order_info
+    add_breadcrumb("#{@project.client.name} #{t('model.list', model: Project.model_name.human)}",client_projects_path(@project.client))
+    add_breadcrumb("#{@project.name}")
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }
@@ -87,9 +90,10 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1.json
   def update
     @project = Project.find(params[:id])
+    @project.attributes = params[:project]
     @project.updated_by = current_user.id
     respond_to do |format|
-      if @project.update_attributes(params[:project])
+      if @project.save
         format.html { redirect_to client_projects_path(client_id: @project.client_id), notice: "成功修改#{Project.model_name.human}" }
         format.json { head :no_content }
       else

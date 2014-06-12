@@ -1,4 +1,4 @@
-<%= form_tag({},:method=>'get') do -%>
+<%= form_tag({},:method=>'get',:id=>'commit_form') do -%>
 <%= render_cell(:page_title, :show, data:{name: "#{t('model.list', model: FashionMediaInfo.model_name.human)}",
                                           toolbar: {
                                                   right:

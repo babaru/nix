@@ -2,7 +2,7 @@ class SpecificationsController < ApplicationController
   def new
     @specification = BusinessCategory.new
     @categories = BusinessCategory.where('parent_id>0')
-
+    add_breadcrumb(I18n.t('model.list', model: BusinessCategory.model_name.human), :business_categories_path)
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @specification}
@@ -10,13 +10,9 @@ class SpecificationsController < ApplicationController
   end
 
   def create
-    pp "-------------------"
     params[:specification][:created_by] = current_user.id
     params[:specification][:updated_by] = current_user.id
     @specification = BusinessCategory.new(params[:specification])
-    pp "-------------------"
-    pp params[:specification]
-    pp params[:specification][:parent_id]
     return
     respond_to do |format|
       if @specification.save

@@ -84,7 +84,8 @@ class ClientsController < ApplicationController
 	    	params[:client][:logo] = new_file_name
     	end
 	  	params[:client][:updated_by] = current_user.id
-      if @client.update_attributes(params[:client])
+      @client.attributes = params[:client]
+      if @client.save
         format.html { redirect_to clients_path, notice: 'Client was successfully updated.' }
         format.json { head :no_content }
       else

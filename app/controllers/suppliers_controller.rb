@@ -105,9 +105,9 @@ class SuppliersController < ApplicationController
     params[:supplier][:updated_by]=current_user.id
    @supplier = Supplier.find(params[:id])
 
-
+    @supplier.attributes = params[:supplier]
     respond_to do |format|
-      if  @supplier.other_valid? and @supplier.update_attributes(params[:supplier])
+      if  @supplier.other_valid? and @supplier.save
         format.html { redirect_to suppliers_path(), notice: 'Supplier was successfully updated.' }
         format.json { head :no_content }
       else
