@@ -63,7 +63,7 @@
         </td>
       </tr>
       <tr class="selectors">
-        <td class="title">资源类别</td>
+        <td class="title">类别</td>
         <td>
           <ul class="nav nav-pills">
             <%GrassResource::TYPE.each do |fc|%>
@@ -74,7 +74,7 @@
       </tr>
       <% if @f_type%>
           <tr class="selectors">
-            <td class="title">媒体类别</td>
+            <td class="title">媒体</td>
             <td>
               <ul class="nav nav-pills">
                 <%GrassResource::MEDIA_TYPE.each do |sc|%>
@@ -88,56 +88,41 @@
   </div>
 
 <%= grid(@medias_grid, :show_filters => :when_filtered) do |g|
-
-  g.column name: t('activerecord.attributes.grass_resource.media_type_id') do |m|
-    link_to(m.type_name,"/grass_resources?type_id=#{m.type_id}&media_type_id=#{m.media_type_id}")
+  g.column name: t('activerecord.attributes.grass_resource.category') ,:class=>'td_style' do |m|
+    m.type_name
   end
 
-  g.column name: t('activerecord.attributes.grass_resource.nickname') do |m|
+  g.column name: t('activerecord.attributes.grass_resource.media_type_id') ,:class=>'td_style' do |m|
+    m.media_name
+  end
+
+  g.column name: t('activerecord.attributes.grass_resource.nickname') ,:class=>'td_style' do |m|
     m.nickname
   end
 
-  g.column name: t('activerecord.attributes.grass_resource.media_url') do |m|
+  g.column name: t('activerecord.attributes.grass_resource.media_url') ,:class=>'td_style' do |m|
     if [2,3].include?(m.media_type_id)
       link_to m.media_url,m.media_url,:target=>'_blank'
     else
       m.media_url
     end
-
-
   end
-  g.column name: t('activerecord.attributes.grass_resource.fans_number') do |m|
+
+  g.column name: t('activerecord.attributes.grass_resource.fans_number') ,:class=>'td_style' do |m|
     m.fans_number
   end
-  g.column name: t('activerecord.attributes.grass_resource.category') do |m|
-    m.category
-  end
-  g.column name: t('activerecord.attributes.grass_resource.regional') do |m|
+
+  g.column name: t('activerecord.attributes.grass_resource.regional') ,:class=>'td_style' do |m|
     m.regional
   end
-  g.column name: t('activerecord.attributes.grass_resource.content_location'),:class=>'td_style' do |m|
-    m.content_location
+  g.column name: t('activerecord.attributes.grass_resource.content_location') do |m|
+    m.content_location.to_s
   end
-    g.column name: t('activerecord.attributes.grass_resource.price') do |m|
+
+  g.column name: t('activerecord.attributes.grass_resource.price'),:class=>'td_style' do |m|
     m.price
-    end
-
-
-  g.column name: t('activerecord.attributes.traveling_photography_media_info.created_at') do |m|
-    m.created_at.strftime('%Y-%m-%d')
   end
 
-  g.column name: t('activerecord.attributes.traveling_photography_media_info.created_by') do |m|
-    m.created_name
-  end
-
-  g.column name: t('activerecord.attributes.traveling_photography_media_info.updated_at') do |m|
-    m.updated_at.strftime('%Y-%m-%d')
-  end
-
-  g.column name: t('activerecord.attributes.traveling_photography_media_info.updated_by') do |m|
-    m.updated_name
-  end
 
   if can? :update,GrassResource
     g.column html: {class: 'btn-cell'} do |p|
@@ -153,7 +138,7 @@
 end -%>
 <style type="text/css">
     .td_style{
-        width: 500px;
+        min-width: 50px;
     }
 
 </style>

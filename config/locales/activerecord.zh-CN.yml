@@ -207,7 +207,8 @@ zh-CN:
         regional: 区域
         type_id: 资源类别
         content_location: 内容定位
-        media_type_id: 媒体类别
+        media_type_id: 媒体
+        type_id: 类别
         price: 报价
         created_by: 创建人
         updated_by: 更新人

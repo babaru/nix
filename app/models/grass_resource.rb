@@ -4,6 +4,11 @@ class GrassResource < ActiveRecord::Base
   belongs_to :updated_man, :class_name => "User", :foreign_key => "updated_by"
   TYPE=[['时尚',1],['汽车',2]]
   MEDIA_TYPE=[['微信',1],['微博',2],['博客',3]]
+  validates :type_id, presence:{message:'类别不能为空'}
+  validates :media_type_id, presence:{message:'媒体不能为空'}
+  validates :nickname, presence:{message:'昵称不能为空'}
+  validates :media_url, presence:{message:'地址不能为空'}
+  validates :fans_number, presence:{message:'粉丝数不能为空'}
 
 
 
@@ -20,12 +25,17 @@ class GrassResource < ActiveRecord::Base
   end
 
   def type_name
-    _type_name = ''
     _type = GrassResource::TYPE.find{|x| x[1] == self.type_id.to_i}
-    _type_name += _type[0] + '-草根资源' if _type
+    _type.blank? ? '' : _type[0]
+    # _type_name += _type[0] + '-草根资源' if _type
+    # _media_type = GrassResource::MEDIA_TYPE.find{|x| x[1] == self.media_type_id.to_i}
+    # _type_name += '('+_media_type[0]+')' if _media_type
+    # _type_name
+  end
+
+  def media_name
     _media_type = GrassResource::MEDIA_TYPE.find{|x| x[1] == self.media_type_id.to_i}
-    _type_name += '('+_media_type[0]+')' if _media_type
-    _type_name
+    _media_type.blank? ? '' : _media_type[0]
   end
 
   def self.create_new_template(data=nil)
@@ -44,11 +54,13 @@ class GrassResource < ActiveRecord::Base
       end
 
       #sheet1.row(0).default_format = format
-      sheet1.row(0).replace ['资源类别','媒体类别','昵称','地址','粉丝','类别','地区','内容定位','报价']
+      sheet1.row(0).replace ['ID','类别','媒体','昵称','地址','粉丝','地区','内容定位','报价']
       sheet1.row(1).set_format(9,Spreadsheet::Format.new(:color => :red))
       sheet1.row(1)[9]='由于excel与系统中表格结构有所不同，因此填写数据时请按照提示进行填写，资源类别与媒体类别请从下方粘贴'
-      sheet1.row(2)[9]='资源类别包括：   '+ GrassResource::TYPE.map{|x|x[0]}.join('、')
-      sheet1.row(3)[9]='媒体类别包括：   '+ GrassResource::MEDIA_TYPE.map{|x|x[0]}.join('、')
+      sheet1.row(2).set_format(9,Spreadsheet::Format.new(:color => :red))
+      sheet1.row(2)[9]='ID是记录的唯一标识，如果填写则是对该条记录进行修改，不填写则视为新增一条新纪录。'
+      sheet1.row(3)[9]='类别包括：   '+ GrassResource::TYPE.map{|x|x[0]}.join('、')
+      sheet1.row(4)[9]='媒体包括：   '+ GrassResource::MEDIA_TYPE.map{|x|x[0]}.join('、')
       new_file = temp_folder_name + "媒体资源库-草根资源上传模板.xls"
     else
       GrassResource::TYPE.each do |t|
@@ -70,7 +82,7 @@ class GrassResource < ActiveRecord::Base
           (0..7).each do |i|
             sheet1.row(_index+1).set_format(i,Spreadsheet::Format.new(:color => :black,:horizontal_align => :center,:pattern_fg_color=>'silver',:pattern=>0, :size => 10,:border_color=>:black,:border=>:thin))
           end
-          sheet1.row(_index+1).replace ['序号','昵称','地址','粉丝','类别','地区','内容定位','报价']
+          sheet1.row(_index+1).replace ['ID','昵称','地址','粉丝','类别','地区','内容定位','报价']
           #sheet1.row(_index+1).height = 18
           _index = _index+2
           _item = data.select{|x|x.type_id.to_i==t[1] and x.media_type_id==m[1]}
@@ -85,7 +97,7 @@ class GrassResource < ActiveRecord::Base
               sheet1.row(_index+i).set_format(6,Spreadsheet::Format.new(:italic=>false, :text_wrap=>true,:color => :black,:horizontal_align => :left,:pattern_fg_color=>'silver',:pattern=>0, :size => 10,:right_color=>:black,:left_color=>:black,:border=>:thin))
               sheet1.row(_index+i).set_format(7,Spreadsheet::Format.new(:italic=>false, :text_wrap=>true,:color => :black,:horizontal_align => :left,:pattern_fg_color=>'silver',:pattern=>0, :size => 10,:right_color=>:black,:left_color=>:black,:border=>:thin))
 
-              sheet1.row(i+_index).replace [i+1,
+              sheet1.row(i+_index).replace [d.id.to_s,
                                             d.nickname,
                                             d.media_url,
                                             d.fans_number,
@@ -112,36 +124,63 @@ class GrassResource < ActiveRecord::Base
   end
 
   def self.create_by_excel(_sheet=nil,user=nil)
-    return false if _sheet.nil? or user.nil?
-    error_numbers = []
+    _error_info = ''
+    _error_info = '上传文件错误，请重新上传！' if _sheet.nil? or user.nil?
     ActiveRecord::Base.transaction do
       _sheet.each_with_index do |row,index|
         next if index==0
-        break if row[0].to_s.strip.blank?
-        _data = GrassResource.new()
-        _type_name = row[0].to_s.strip
+
+
+        if row[0].to_s.strip.blank?
+          _data = GrassResource.new()
+        else
+          _data = GrassResource.find_by_id(row[0].to_s.to_i)
+          if _data.blank?
+            _error_info = 'ID错误，在第'+index.to_s+'行'
+            break
+          end
+        end
+
+        _type_name = row[1].to_s.strip
         _type= GrassResource::TYPE.find{|x| x[0]==_type_name}
         if _type.blank?
-          error_numbers << (index+1).to_s
-          next
+          _error_info = '类别不能为空！，在第'+index.to_s+'行'
+          break
+        else
+          _data.type_id = _type[1]
         end
-        _data.type_id = _type[1]
 
-        _media_type_name = row[1].to_s.strip
+
+        _media_type_name = row[2].to_s.strip
         _media_type= GrassResource::MEDIA_TYPE.find{|x| x[0]==_media_type_name}
         if _media_type.blank?
-          error_numbers << (index+1).to_s
-          next
-        end
-        _data.media_type_id = _media_type[1]
-
-        _data.nickname = row[2]
-        _data.media_url = row[3]
-        unless row[4].to_s.to_i==0
-          _data.fans_number = row[4].to_s.to_i
+          _error_info = '媒体不能为空！，在第'+index.to_s+'行'
+          break
+        else
+          _data.media_type_id = _media_type[1]
         end
 
-        _data.category = row[5]
+        if row[3].to_s.strip.blank?
+          _error_info = '昵称不能为空！，在第'+index.to_s+'行'
+          break
+        else
+          _data.nickname = row[3].to_s
+        end
+
+        if row[4].to_s.strip.blank?
+          _error_info = '地址不能为空！，在第'+index.to_s+'行'
+          break
+        else
+          _data.media_url = row[4].to_s
+        end
+
+        if row[5].to_s.strip.blank?
+          _error_info = '粉丝数不能为空！，在第'+index.to_s+'行'
+          break
+        else
+          _data.fans_number = row[5].to_s.to_i
+        end
+
         _data.regional = row[6]
         _data.content_location = row[7]
         _data.price = row[8].to_s.to_i unless row[8].to_s.blank?
@@ -152,11 +191,12 @@ class GrassResource < ActiveRecord::Base
         _data.updated_by=user.id
         _data.deleted=0
         _data.save
+        pp "--------------------"+index.to_s
       end
-      if error_numbers.count > 0
+      if _error_info != ''
         raise ActiveRecord::Rollback
       end
     end
-    error_numbers
+    _error_info
   end
 end

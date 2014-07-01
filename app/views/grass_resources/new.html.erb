@@ -35,24 +35,11 @@
 
       <div class="form-inputs">
 
-        <div class="control-group string required grass_resource_type_id"><label class="string required control-label" for="grass_resource_type_id"><abbr title="带*星号的为必填项">*</abbr> 资源类别</label><div class="controls">
-          <select class="string required" id="grass_resource_type_id" name="grass_resource[type_id]">
-            <%GrassResource::TYPE.each do |fc|%>
-                <option value="<%= fc[1] -%>"><%= fc[0] -%></option>
-            <%end%>
-          </select></div></div>
-
-        <div class="control-group string required grass_resource_media_type_id"><label class="string required control-label" for="grass_resource_media_type_id"><abbr title="带*星号的为必填项">*</abbr> 媒体类别</label><div class="controls">
-          <select class="string required" id="grass_resource_media_type_id" name="grass_resource[media_type_id]">
-            <%GrassResource::MEDIA_TYPE.each do |sc|%>
-                <option value="<%= sc[1] -%>"><%= sc[0] -%></option>
-            <%end%>
-          </select></div></div>
-
+        <%= f.input :type_id, required: true,:as=>:select,:collection=> GrassResource::TYPE%>
+        <%= f.input :media_type_id, required: true,:as=>:select,:collection=> GrassResource::MEDIA_TYPE%>
         <%= f.input :nickname, required: true %>
         <%= f.input :media_url, required: true %>
         <%= f.input :fans_number, required: true %>
-        <%= f.input :category, required: false %>
         <%= f.input :regional, required: false %>
         <%= f.input :content_location, required: false ,:as=>:text,input_html: { rows: 5 }%>
 

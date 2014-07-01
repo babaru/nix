@@ -64,7 +64,6 @@ class ModeratorsController < ApplicationController
     end
 
 
-
     unless params[:birthday_start].blank?
       sql += " and birthday >= ?"
       sql_attr << params[:birthday_start]
@@ -74,6 +73,7 @@ class ModeratorsController < ApplicationController
       sql += " and birthday <= ?"
       sql_attr << params[:birthday_end]
     end
+
     @medias_grid = initialize_grid(Moderator.where([sql]+sql_attr))
     respond_to do |format|
       format.html # index.html.erb

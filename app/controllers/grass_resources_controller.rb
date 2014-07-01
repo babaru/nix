@@ -109,11 +109,11 @@ class GrassResourcesController < ApplicationController
             workbook = Spreadsheet.open("#{Rails.root}/public/files/temp/"+new_file_name)
 
             _sheet = workbook.worksheet(0)
-            error_numbers = GrassResource.create_by_excel(_sheet,current_user)
+            _error_info = GrassResource.create_by_excel(_sheet,current_user)
             FileUtils.rm Dir["#{Rails.root}/public/files/temp/*.xls"]
-            if error_numbers.count>0
+            if _error_info != ''
               respond_to do |format|
-                format.html { redirect_to grass_resources_path, alert: "上传失败，失败编号为#{error_numbers.join(",")}。请检查数据填写是否正确！！！" }
+                format.html { redirect_to grass_resources_path,  alert: _error_info }
                 format.json { render json: {}, status: :created, location: {} }
               end
             else
