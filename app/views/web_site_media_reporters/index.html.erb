@@ -153,7 +153,7 @@
 
 <%= grid(@reporters_grid, :show_filters => :when_filtered,:class=> 'tablestyle') do |g|
 
-  g.column name: t('activerecord.attributes.web_site_media_reporter.region_id') do |reporter|
+  g.column name: t('activerecord.attributes.web_site_media_reporter.region_id'),:class=>"td_style" do |reporter|
 
     if reporter.is_substation==1
       reporter.region_name.to_s+"(分站)"
@@ -161,18 +161,21 @@
       reporter.region_name
     end
   end
-  g.column name: t('activerecord.attributes.web_site_media_reporter.province_id') do |reporter|
+
+  g.column name: t('activerecord.attributes.web_site_media_reporter.province_id'),:class=>"td_style" do |reporter|
     reporter.province_name
   end
-  g.column name: t('activerecord.attributes.web_site_media_reporter.city_id') do |reporter|
+  
+  g.column name: t('activerecord.attributes.web_site_media_reporter.city_id'),:class=>"td_style" do |reporter|
     reporter.city_name
   end
-  g.column name: t('activerecord.attributes.web_site_media_reporter.format_id') do |reporter|
+
+  g.column name: t('activerecord.attributes.web_site_media_reporter.format_id'),:class=>"td_style" do |reporter|
     reporter.format_type
   end
 
   WebSiteMediaReporter::ATTR.each do |a|
-    g.column name: t('activerecord.attributes.web_site_media_reporter.'+a.to_s) do |reporter|
+    g.column name: t('activerecord.attributes.web_site_media_reporter.'+a.to_s),:class=>"td_style" do |reporter|
      if a=='married'
        if reporter[a].blank?
           ''
@@ -184,25 +187,17 @@
      elsif a== 'birthday'
        reporter[a].to_s.gsub('年','-').gsub('月','-').gsub('日','')
      else
-       reporter[a]
+       ("<label title=#{reporter[a].to_s} style='padding: 0;margin: 0;'>"+truncate_u(reporter[a].to_s,20,'...')+'</label>').html_safe
      end
     end
   end
 
-  g.column name: t('activerecord.attributes.traveling_photography_media_info.created_at') do |m|
-    m.created_at.strftime('%Y-%m-%d')
+  g.column name: t('activerecord.attributes.web_site_media_reporter.notes') do |reporter|
+    ("<label title=#{reporter.notes.to_s} style='padding: 0;margin: 0;'>"+truncate_u(reporter.notes.to_s,20,'...')+'</label>').html_safe
   end
 
-  g.column name: t('activerecord.attributes.traveling_photography_media_info.created_by') do |m|
+  g.column name: t('activerecord.attributes.web_site_media_reporter.created_by') do |m|
     m.created_name
-  end
-
-  g.column name: t('activerecord.attributes.traveling_photography_media_info.updated_at') do |m|
-    m.updated_at.strftime('%Y-%m-%d')
-  end
-
-  g.column name: t('activerecord.attributes.traveling_photography_media_info.updated_by') do |m|
-    m.updated_name
   end
 
   if can? :update,WebSiteMediaReporter
@@ -229,10 +224,13 @@ end -%>
    #grid{
        overflow: auto;
    }
+   .td_style{
+       min-width: 100px;
+   }
 
 </style>
             <script>
-                $('#grid').attr('style','max-height:720px');
+                $('#grid').attr('style','max-height:450px');
             </script>
 
 <script language='javascript'>
@@ -297,20 +295,20 @@ end -%>
       $('#btn_change_select').hide();
       $('#city_select_item').show();
   }
-    function change_city_select_ids(){
-        data = $("input[name='city_id']:checked");
-        if(data.length==0){
-            alert('请选择城市！');
-            return;
-        }
-        var item=[];
-        data.each(function(){
-            item.push($(this).val())
-        })
+  function change_city_select_ids(){
+      data = $("input[name='city_id']:checked");
+      if(data.length==0){
+          alert('请选择地区！');
+          return;
+      }
+      var item=[];
+      data.each(function(){
+          item.push($(this).val())
+      });
 
-        $('#city_select_ids').val(item);
-        $('#commit_form').submit();
-    }
+      $('#city_select_ids').val(item);
+      $('#commit_form').submit();
+  }
     $(document).ready(function(){
 
 //        $('.nav-pills li a').bind('click',function(){

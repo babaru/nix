@@ -35,43 +35,14 @@
 
 
       <div class="form-inputs">
-        <div class="control-group string required web_site_media_reporter_region_id"><label class="string required control-label" for="web_site_media_reporter_region_id"><abbr title="带*星号的为必填项">*</abbr> 地区</label><div class="controls">
-          <select class="string required" id="web_site_media_reporter_region_id" name="web_site_media_reporter[region_id]">
-            <% if @regions -%>
-                <% @regions.each do |r| -%>
-                    <option value="<%= r.id -%>" <%= @reporter.region_id==r.id ? 'selected' : '' -%>><%= r.name -%></option>
-                <% end -%>
-            <% end -%>
-          </select></div></div>
-
-        <div class="control-group string required web_site_media_reporter_province_id"><label class="string required control-label" for="web_site_media_reporter_province_id"><abbr title="带*星号的为必填项">*</abbr> 省份</label><div class="controls">
-          <select class="string required" id="web_site_media_reporter_province_id" name="web_site_media_reporter[province_id]">
-            <% if @provinces -%>
-                <% @provinces.each do |r| -%>
-                    <option value="<%= r.id -%>" <%= @reporter.province_id==r.id ? 'selected' : '' -%>><%= r.name -%></option>
-                <% end -%>
-            <% end -%>
-          </select></div></div>
-
-        <div class="control-group string required web_site_media_reporter_city_id"><label class="string required control-label" for="web_site_media_reporter_city_id"><abbr title="带*星号的为必填项">*</abbr> 城市</label><div class="controls">
-          <select class="string required" id="web_site_media_reporter_city_id" name="web_site_media_reporter[city_id]">
-            <% if @cities -%>
-                <% @cities.each do |r| -%>
-                    <option value="<%= r.id -%>" <%= @reporter.city_id==r.id ? 'selected' : '' -%>><%= r.name -%></option>
-                <% end -%>
-            <% end -%>
-          </select></div></div>
-
-        <div class="control-group string required web_site_media_reporter_format_id"><label class="string required control-label" for="web_site_media_reporter_format_id"><abbr title="带*星号的为必填项">*</abbr> 媒体介质</label><div class="controls">
-          <select class="string required" id="web_site_media_reporter_format_id" name="web_site_media_reporter[format_id]">
-            <% WebSiteMediaReporter::FORMATS.each do |m| -%>
-                <option value="<%= m[1] -%>" <%= @reporter.format_id==m[1] ? 'selected' : '' -%>><%= m[0] -%></option>
-            <% end -%>
-          </select></div></div>
 
 
+        <%= f.input :region_id, required: false,:as=>:select,:collection=>@regions %>
+        <%= f.input :province_id, required: false,:as=>:select,:collection=> @provinces%>
+        <%= f.input :city_id, required: false,:as=>:select,:collection=> @cities%>
+        <%= f.input :format_id, required: false,:as=>:select,:collection=> WebSiteMediaReporter::FORMATS%>
         <%= f.input :media_name, required: true %>
-        <%= f.input :level, required: true %>
+        <%= f.input :level, required: false,:as=>:select,:collection=> WebSiteMediaReporter::LEVELS%>
         <%= f.input :name, required: true %>
 
         <div class="control-group string required web_site_media_reporter_sex"><label class="string required control-label" for="web_site_media_reporter_sex"><abbr title="带*星号的为必填项">*</abbr> 性别</label><div class="controls">
@@ -81,29 +52,24 @@
           </select></div></div>
 
 
-        <%= f.input :department_name, required: true %>
+        <%= f.input :department_name, required: false %>
         <%= f.input :job_name, required: true %>
-        <%= f.input :telephone, required: true %>
-        <%= f.input :mobile, required: true %>
-        <%= f.input :email, required: true %>
-        <%= f.input :instant_messaging, required: true %>
-        <%= f.input :micro_blog, required: true %>
-        <%= f.input :micro_message, required: true %>
-        <%= f.input :office_address, required: true %>
+        <%= f.input :telephone, required: false %>
+        <%= f.input :mobile, required: false %>
+        <%= f.input :email, required: false %>
+        <%= f.input :instant_messaging, required: false %>
+        <%= f.input :micro_blog, required: false %>
+        <%= f.input :micro_message, required: false %>
+        <%= f.input :office_address, required: false %>
         <%= f.input :working_conditions, required: false %>
-        <%= f.input :birthday, as: :date_picker, required: true %>
+        <%= f.input :birthday, as: :date_picker, required: false %>
         <%= f.input :id_number, required: true %>
-        <%= f.input :origin_place, required: true %>
-
-        <div class="control-group string required web_site_media_reporter_married"><label class="string required control-label" for="web_site_media_reporter_married"><abbr title="带*星号的为必填项">*</abbr> 性别</label><div class="controls">
-          <select class="string required" id="web_site_media_reporter_married" name="web_site_media_reporter[married]">
-            <option value="true" <%= @reporter.married==true ? 'selected' : '' -%>>已婚</option>
-            <option value="false" <%= @reporter.married==false ? 'selected' : '' -%>>未婚</option>
-          </select></div></div>
-        <%= f.input :has_children, required: true %>
-        <%= f.input :has_car, required: true %>
-        <%= f.input :other_about, required: true %>
-        <%= f.input :active_record, required: true,:as=>:text,input_html: { rows: 5 } %>
+        <%= f.input :origin_place, required: false %>
+        <%= f.input :married, required: false,:as=>:select,:collection=> [['已婚',true],['未婚',false]]%>
+        <%= f.input :has_children, required: false %>
+        <%= f.input :has_car, required: false %>
+        <%= f.input :other_about, required: true,:as=>:text,input_html: { rows: 5 } %>
+        <%= f.input :active_record, required: false,:as=>:text,input_html: { rows: 5 } %>
         <%= f.input :maintenance_record, required: false,:as=>:text,input_html: { rows: 5 } %>
         <%= f.input :notes, required: false,:as=>:text,input_html: { rows: 5 } %>
       </div>

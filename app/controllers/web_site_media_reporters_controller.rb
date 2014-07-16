@@ -94,10 +94,9 @@ class WebSiteMediaReportersController < ApplicationController
   def new
     @reporter = WebSiteMediaReporter.new
     @reporter.created_by = current_user.id
-    @regions=Region.all() || []
-    @provinces = Province.where(:region_id => @regions.first().id) unless @regions.blank?
-    @cities = City.where(:province_id => @provinces.first().id) unless @provinces.blank?
-
+    @regions,@provinces,@cities = [],[],[]
+    @regions1=Region.all() || []
+    @regions = @regions1.map{|x| [x.name,x.id]} unless @regions1.blank?
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @reporter }
@@ -116,9 +115,13 @@ class WebSiteMediaReportersController < ApplicationController
         format.html { redirect_to web_site_media_reporters_path, notice: "成功创建#{WebSiteMediaReporter.model_name.human}" }
         format.json { render json: @reporter, status: :created, location: @reporter }
       else
-        @regions=Region.all() || []
-        @provinces = Province.where(:region_id => @regions.first().id) unless @regions.blank?
-        @cities = City.where(:province_id => @provinces.first().id) unless @provinces.blank?
+        @regions,@provinces,@cities = [],[],[]
+        @regions1=Region.all() || []
+        @regions = @regions1.map{|x| [x.name,x.id]} unless @regions1.blank?
+        @provinces1 = Province.where(:region_id => @reporter.region_id) unless @regions1.blank?
+        @provinces = @provinces1.map{|x| [x.name,x.id]} unless @provinces1.blank?
+        @cities1 = City.where(:province_id => @reporter.province_id) unless @provinces1.blank?
+        @cities = @cities1.map{|x| [x.name,x.id]} unless @cities1.blank?
         format.html { render action: "new" }
         format.json { render json: @reporter.errors, status: :unprocessable_entity }
       end
@@ -127,19 +130,31 @@ class WebSiteMediaReportersController < ApplicationController
 
   def edit
     @reporter = WebSiteMediaReporter.find(params[:id])
-    @regions=Region.all() || []
-    @provinces = Province.where(:region_id => @reporter.region_id) unless @regions.blank?
-    @cities = City.where(:province_id => @reporter.province_id) unless @provinces.blank?
+    @regions,@provinces,@cities = [],[],[]
+    @regions1=Region.all() || []
+    @regions = @regions1.map{|x| [x.name,x.id]} unless @regions1.blank?
+    @provinces1 = Province.where(:region_id => @reporter.region_id) unless @regions1.blank?
+    @provinces = @provinces1.map{|x| [x.name,x.id]} unless @provinces1.blank?
+    @cities1 = City.where(:province_id => @reporter.province_id) unless @provinces1.blank?
+    @cities = @cities1.map{|x| [x.name,x.id]} unless @cities1.blank?
   end
 
   def update
     @reporter = WebSiteMediaReporter.find(params[:id])
     @reporter.updated_by = current_user.id
+    @reporter.attributes = params[:web_site_media_reporter]
     respond_to do |format|
-      if @reporter.update_attributes(params[:web_site_media_reporter])
+      if @reporter.other_valid? and @reporter.save
         format.html { redirect_to web_site_media_reporters_path, notice: "成功修改#{WebSiteMediaReporter.model_name.human}" }
         format.json { head :no_content }
       else
+        @regions,@provinces,@cities = [],[],[]
+        @regions1=Region.all() || []
+        @regions = @regions1.map{|x| [x.name,x.id]} unless @regions1.blank?
+        @provinces1 = Province.where(:region_id => @reporter.region_id) unless @regions1.blank?
+        @provinces = @provinces1.map{|x| [x.name,x.id]} unless @provinces1.blank?
+        @cities1 = City.where(:province_id => @reporter.province_id) unless @provinces1.blank?
+        @cities = @cities1.map{|x| [x.name,x.id]} unless @cities1.blank?
         format.html { render action: "edit" }
         format.json { render json: @reporter.errors, status: :unprocessable_entity }
       end
@@ -161,8 +176,9 @@ class WebSiteMediaReportersController < ApplicationController
 
 
   def ajax_get_provinces
-    txt = ""
+    txt = "<option value=''></option>"
     region = Region.find_by_id(params[:id].to_i)
+
     _provinces = []
     _provinces = region.provinces unless region.blank?
     _provinces.each do |s|
@@ -172,7 +188,7 @@ class WebSiteMediaReportersController < ApplicationController
   end
 
   def ajax_get_cities
-    txt = ""
+    txt = "<option value=''></option>"
     province = Province.find_by_id(params[:id].to_i)
     _cities = []
     _cities = province.cities unless province.blank?
@@ -273,15 +289,18 @@ class WebSiteMediaReportersController < ApplicationController
             workbook = Spreadsheet.open("#{Rails.root}/public/files/temp/"+new_file_name)
 
             _sheet = workbook.worksheet(0)
-            WebSiteMediaReporter.create_by_excel(_sheet,current_user)
+            _error_info = WebSiteMediaReporter.create_by_excel(_sheet,current_user)
             FileUtils.rm Dir["#{Rails.root}/public/files/temp/*.xls"]
-
             respond_to do |format|
+              if _error_info == ''
+                format.html { redirect_to web_site_media_reporters_path, notice: "上传完成！！！"}
+                format.json { render json: {}, status: :created, location: {} }
+              else
+                format.html { redirect_to web_site_media_reporters_path(), alert: _error_info }
+                format.json { render json: {}, status: :created, location: {} }
+              end
 
-              format.html { redirect_to web_site_media_reporters_path, notice: "上传完成！！！"}
-              format.json { render json: {}, status: :created, location: {} }
             end
-
           #rescue Exception => e
           #  ActiveRecord::Rollback
           #  render :text => "<script>alert('#{e.to_s}');history.go(-1);</script>"
