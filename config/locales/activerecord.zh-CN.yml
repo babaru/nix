@@ -104,6 +104,7 @@ zh-CN:
         address: 地址
         coverage: 日均覆盖人数(万人)
         man: 男
+        qq: QQ
         woman: 女
         notes: 备注
         created_by: 创建人
@@ -118,6 +119,7 @@ zh-CN:
         position: 职位
         mobile: 电话
         email: 邮箱
+        qq: QQ
         weixin: 微信
         address: 地址
         coverage: 日均覆盖人数(万人)
@@ -130,6 +132,7 @@ zh-CN:
         updated_at: 更新时间   
       network_opinion_leader_blogger:
         city_id: 所属城市
+        qq: QQ
         nickname: 昵称
         name: 姓名
         media_name: 媒体
@@ -161,6 +164,7 @@ zh-CN:
         estranged_brand: 疏远品牌
       moderator:
         nickname: 昵称
+        qq: QQ
         position: 职位
         topic_of_concern: 关注话题
         product_name: 产品

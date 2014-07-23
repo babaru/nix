@@ -35,25 +35,18 @@
 
       <div class="form-inputs">
 
-        <div class="control-group string required fashion_media_info_city_id"><label class="string required control-label" for="fashion_media_info_city_id"><abbr title="带*星号的为必填项">*</abbr> 城市</label><div class="controls">
-          <select class="string required" id="fashion_media_info_city_id" name="fashion_media_info[city_id]">
-            <% if @cities -%>
-                <% @cities.each do |r| -%>
-                    <option value="<%= r.id -%>"><%= r.name -%></option>
-                <% end -%>
-            <% end -%>
-          </select></div></div>
-
+      <%= f.input :city_id, required: false,:as=>:select,:collection=> @cities.map{|x| [x.name,x.id]}%>
       <%= f.input :web_site, required: true %>
-      <%= f.input :web_site_introduction, required: true %>
+      <%= f.input :web_site_introduction, required: true,:as=>:text,input_html: { rows: 5 } %>
       <%= f.input :content_name, required: true %>
       <%= f.input :position, required: true %>
-      <%= f.input :mobile, required: true %>
-      <%= f.input :email, required: true %>
-      <%= f.input :address, required: true %>
+      <%= f.input :mobile, required: false %>
+      <%= f.input :email, required: false %>
+      <%= f.input :qq, required: false %>
+      <%= f.input :address, required: true,:as=>:text,input_html: { rows: 5 } %>
       <%= f.input :coverage, required: true %>
-        <%= f.input :man, required: false %>
-        <%= f.input :woman, required: false %>
+      <%= f.input :man, required: true %>
+      <%= f.input :woman, required: true %>
 
 
 

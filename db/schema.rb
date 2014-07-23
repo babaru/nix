@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140604113245) do
+ActiveRecord::Schema.define(:version => 20140723021255) do
 
   create_table "business_categories", :force => true do |t|
     t.string   "name_cn",    :default => ""
@@ -123,6 +123,7 @@ ActiveRecord::Schema.define(:version => 20140604113245) do
     t.integer  "deleted",               :limit => 2, :default => 0
     t.datetime "created_at",                                        :null => false
     t.datetime "updated_at",                                        :null => false
+    t.string   "qq"
   end
 
   add_index "fashion_media_infos", ["city_id"], :name => "index_fashion_media_infos_on_city_id"
@@ -195,6 +196,7 @@ ActiveRecord::Schema.define(:version => 20140604113245) do
     t.integer  "updated_by"
     t.datetime "created_at",                                     :null => false
     t.datetime "updated_at",                                     :null => false
+    t.string   "qq"
   end
 
   create_table "network_opinion_leader_bloggers", :force => true do |t|
@@ -224,6 +226,7 @@ ActiveRecord::Schema.define(:version => 20140604113245) do
     t.integer  "deleted",            :limit => 2, :default => 0
     t.datetime "created_at",                                     :null => false
     t.datetime "updated_at",                                     :null => false
+    t.string   "qq"
   end
 
   add_index "network_opinion_leader_bloggers", ["blog_style"], :name => "index_network_opinion_leader_bloggers_on_blog_style"
@@ -412,6 +415,7 @@ ActiveRecord::Schema.define(:version => 20140604113245) do
     t.integer  "deleted",               :limit => 2, :default => 0
     t.datetime "created_at",                                        :null => false
     t.datetime "updated_at",                                        :null => false
+    t.string   "qq"
   end
 
   add_index "traveling_photography_media_infos", ["coverage"], :name => "index_traveling_photography_media_infos_on_coverage"

@@ -183,7 +183,6 @@ class SuppliersController < ApplicationController
                 format.html { redirect_to suppliers_path(), alert: _error_info }
                 format.json { render json: {}, status: :created, location: {} }
               end
-
             end
           # rescue Exception => e
           #   ActiveRecord::Rollback

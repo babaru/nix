@@ -90,10 +90,16 @@ class WebSiteMediaReporter < ActiveRecord::Base
 
     sheet1.row(0).default_format = format
     sheet1.row(0).replace ['ID','区域','省份','城市','媒体介质','媒体名称','媒体级别','姓名','性别','部门名称','职务名称','电话','手机','邮箱','QQ','微博','办公地址','从业情况','生日','身份证号','籍贯','已婚？','是否有子女（性别）','是否有车（品牌）','其他（个人兴趣，爱好）','活动记录','维护记录','备注','创建时间','创建人','更新时间','更新人']
+    [5,7,8,10,19,24].each do |index|
+      sheet1.row(0).set_format(index,Spreadsheet::Format.new(:color => :red,:horizontal_align => :center,:pattern_fg_color=>'silver',:pattern=>1, :size => 10,:border_color=>:black,:border=>:thin))
+    end
+    [11,12,13,14].each do |index|
+      sheet1.row(0).set_format(index,Spreadsheet::Format.new(:color => :blue,:horizontal_align => :center,:pattern_fg_color=>'silver',:pattern=>1, :size => 10,:border_color=>:black,:border=>:thin))
+    end
     sheet2 = workbook.create_worksheet(:name => '记者基本信息Excel说明')
     sheet2.row(0).replace ['1.下载的记者基本信息列表可以直接进行上传，其中如果填写ID则表示对该条已有数据进行修改，如果没有填写ID则代表是增加一条新的供应商记录。']
     sheet2.row(1).replace ["2.某些涉及的内容要求一定要规范填写如 \"媒体介质\",\"媒体级别\"等，如果不确定请从页面复制粘贴。"]
-    sheet2.row(2).replace ["3.上传数据库请注意，\"媒体名称\",\"姓名\",\"职务名称\",\"身份证号\",\"其他（个人兴趣，爱好）\"等项必须填写，\"QQ\",\"Email\",\"电话\",\"手机\"四项中必须填写一项。"]
+    sheet2.row(2).replace ["3.上传数据库请注意，上传数据库请注意，红色项必须填写，蓝色项中必须填写一项。"]
     sheet2.row(3).replace ['4.下载记者基本信息Excel是根据你所提供的查询条件，如果想下载全部供应商则请去掉所有查询条件。']
     sheet2.row(4).replace ['5.如有其他问题请联系 于洋(创意部) QQ:234016483 电话:18641013958']
     unless data.blank?

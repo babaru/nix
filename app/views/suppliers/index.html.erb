@@ -1,4 +1,4 @@
-<%= form_tag({},:method=>'get',:style=>"vertical-align: middle;") do -%>
+<%= form_tag({},:method=>'get',:style=>"vertical-align: middle;",:id=>'commit_form') do -%>
 <%= render_cell(
   :page_title,
   :show,
@@ -69,11 +69,11 @@
     <tr><td style="width:60px">查询条件：</td><td>
       <ul style="list-style-type:none;margin: 0;">
         <% unless @fir_category_select_name.blank? -%>
-            <li style="display: inline;padding-right: 10px;"><a href="#" onclick="$('#fir_category_select_ids').val('');$('form').submit();" class="label label-warning" title="一级分类:<%= @fir_category_select_name -%>">一级分类:<%=truncate_u(@fir_category_select_name,6,'...')+'  X'%></a></li>
+            <li style="display: inline;padding-right: 10px;"><a href="#" onclick="$('#fir_category_select_ids').val('');$('#commit_form').submit();" class="label label-warning" title="一级分类:<%= @fir_category_select_name -%>">一级分类:<%=truncate_u(@fir_category_select_name,6,'...')+'  X'%></a></li>
         <% end -%>
 
         <% unless @sec_category_select_name.blank? -%>
-            <li style="display: inline;padding-right: 10px;"><a href="#" onclick="$('#sec_category_select_ids').val('');$('form').submit();" class="label label-warning" title="二级分类:<%= @sec_category_select_name -%>">二级分类:<%=truncate_u(@sec_category_select_name,6,'...')+'  X'%></a></li>
+            <li style="display: inline;padding-right: 10px;"><a href="#" onclick="$('#sec_category_select_ids').val('');$('#commit_form').submit();" class="label label-warning" title="二级分类:<%= @sec_category_select_name -%>">二级分类:<%=truncate_u(@sec_category_select_name,6,'...')+'  X'%></a></li>
         <% end -%>
       </ul>
     </td></tr>
@@ -83,7 +83,7 @@
           <td style="vertical-align: top;">
             <ul class="nav nav-pills" style="margin:0;float:left" id="fir_category_select">
               <%@first_categories.each do |f| -%>
-                  <li ><a style="padding: 0 10px;" href="#" onclick="$('#fir_category_select_ids').val('<%= f.id -%>');$('form').submit();"><%= f.name_cn -%></a></li>
+                  <li ><a style="padding: 0 10px;" href="#" onclick="$('#fir_category_select_ids').val('<%= f.id -%>');$('#commit_form').submit();"><%= f.name_cn -%></a></li>
               <% end -%>
             </ul>
             <span style="float:right;color:#666;border:1px solid #666;cursor: pointer" id="btn_change_select_fir_category" onclick="change_select_fir_category()">&nbsp;+ 多选&nbsp;</span>
@@ -107,7 +107,7 @@
           <td style="vertical-align: top;">
             <ul class="nav nav-pills" style="margin:0;float:left" id="sec_category_select">
               <%@s_cats.each do |f| -%>
-                  <li ><a style="padding: 0 10px;" href="#" onclick="$('#sec_category_select_ids').val('<%= f.id -%>');$('form').submit();"><%= f.name_cn -%></a></li>
+                  <li ><a style="padding: 0 10px;" href="#" onclick="$('#sec_category_select_ids').val('<%= f.id -%>');$('#commit_form').submit();"><%= f.name_cn -%></a></li>
               <% end -%>
             </ul>
             <span style="float:right;color:#666;border:1px solid #666;cursor: pointer" id="btn_change_select_sec_category" onclick="change_select_sec_category()">&nbsp;+ 多选&nbsp;</span>
@@ -225,7 +225,7 @@ end -%>
             item.push($(this).val())
         });
         $('#fir_category_select_ids').val(item);
-        $('form').submit();
+        $('#commit_form').submit();
     }
     function clear_fir_category_select_ids(){
         $('#fir_category_select').show();
@@ -249,7 +249,7 @@ end -%>
             item.push($(this).val())
         });
         $('#sec_category_select_ids').val(item);
-        $('form').submit();
+        $('#commit_form').submit();
     }
     function clear_sec_category_select_ids(){
         $('#sec_category_select').show();

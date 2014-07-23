@@ -51,7 +51,7 @@ class FashionMediaInfosController < ApplicationController
   def new
     @media = FashionMediaInfo.new()
     @media.created_by = current_user.id
-    @cities = City.all(:order=>'province_id asc')
+    @cities = City.all(:order=>'CONVERT(name USING gbk)')
 
     respond_to do |format|
       format.html # new.html.erb
@@ -71,7 +71,7 @@ class FashionMediaInfosController < ApplicationController
         format.html { redirect_to fashion_media_infos_path, notice: "成功创建#{FashionMediaInfo.model_name.human}" }
         format.json { render json: @media, status: :created, location: @media }
       else
-        @cities = City.all(:order=>'province_id asc')
+        @cities = City.all(:order=>'CONVERT(name USING gbk)')
         format.html { render action: "new" }
         format.json { render json: @media.errors, status: :unprocessable_entity }
       end
@@ -80,17 +80,19 @@ class FashionMediaInfosController < ApplicationController
 
   def edit
     @media = FashionMediaInfo.find(params[:id])
-    @cities = City.all(:order=>'province_id asc')
+    @cities = City.all(:order=>'CONVERT(name USING gbk)')
   end
 
   def update
     @media = FashionMediaInfo.find(params[:id])
+    @media.attributes = params[:fashion_media_info]
     @media.updated_by = current_user.id
     respond_to do |format|
-      if @media.update_attributes(params[:fashion_media_info])
+      if @media.other_valid? and @media.save
         format.html { redirect_to fashion_media_infos_path, notice: "成功修改#{FashionMediaInfo.model_name.human}" }
         format.json { head :no_content }
       else
+        @cities = City.all(:order=>'CONVERT(name USING gbk)')
         format.html { render action: "edit" }
         format.json { render json: @media.errors, status: :unprocessable_entity }
       end
@@ -147,6 +149,7 @@ class FashionMediaInfosController < ApplicationController
       sql_attr << params[:coverage1].to_f
     end
 
+
     data = FashionMediaInfo.where([sql]+sql_attr)
     new_file = FashionMediaInfo.create_new_template(data)
     send_file new_file, :type => "application/octet-stream", :disposition => "attachment"
@@ -163,23 +166,18 @@ class FashionMediaInfosController < ApplicationController
             workbook = Spreadsheet.open("#{Rails.root}/public/files/temp/"+new_file_name)
 
             _sheet = workbook.worksheet(0)
-            error_numbers = FashionMediaInfo.create_by_excel(_sheet,current_user)
+            _error_info = FashionMediaInfo.create_by_excel(_sheet,current_user)
             FileUtils.rm Dir["#{Rails.root}/public/files/temp/*.xls"]
-            #if error_numbers.count>0
-            #  respond_to do |format|
-            #    format.html { redirect_to fashion_media_infos_path, alert: "上传失败，失败编号为#{error_numbers.join(",")}。请检查城市是否填写正确！！！" }
-            #    format.json { render json: {}, status: :created, location: {} }
-            #  end
-            #else
-            #  respond_to do |format|
-            #    format.html { redirect_to fashion_media_infos_path, notice: "上传完成！！！" }
-            #    format.json { render json: {}, status: :created, location: {} }
-            #  end
-            #end
             respond_to do |format|
-              format.html { redirect_to fashion_media_infos_path, notice: "上传完成！！！" }
-              format.json { render json: {}, status: :created, location: {} }
+              if _error_info == ''
+                format.html { redirect_to fashion_media_infos_path(), notice: '上传完成！！！' }
+                format.json { render json: {}, status: :created, location: {} }
+              else
+                format.html { redirect_to fashion_media_infos_path(), alert: _error_info }
+                format.json { render json: {}, status: :created, location: {} }
+              end
             end
+
           rescue Exception => e
             ActiveRecord::Rollback
             render :text => "<script>alert('#{e.to_s}');history.go(-1);</script>"

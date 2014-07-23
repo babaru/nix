@@ -78,6 +78,9 @@
   g.column name: t('activerecord.attributes.fashion_media_info.email') do |m|
     m.email
   end
+  g.column name: t('activerecord.attributes.fashion_media_info.qq') do |m|
+    m.qq
+  end
   g.column name: t('activerecord.attributes.fashion_media_info.address') do |m|
     m.address
   end
@@ -94,16 +97,9 @@
     m.notes
   end
 
-  g.column name: t('activerecord.attributes.fashion_media_info.created_at') do |m|
-    m.created_at.strftime('%Y-%m-%d')
-  end
 
-  g.column name: t('activerecord.attributes.fashion_media_info.created_by') do |m|
-    m.created_name
-  end
-
-  g.column name: t('activerecord.attributes.fashion_media_info.updated_at') do |m|
-    m.updated_at.strftime('%Y-%m-%d')
+  g.column name: t('activerecord.attributes.fashion_media_info.updated_by') do |m|
+    m.updated_name
   end
 
   g.column name: t('activerecord.attributes.fashion_media_info.created_by') do |m|
@@ -142,7 +138,7 @@ end -%>
 
 </style>
 <script>
-  $('#grid').attr('style','height:750px');
+  $('#grid').attr('style','height:300px');
 </script>
 
 

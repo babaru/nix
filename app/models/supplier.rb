@@ -118,6 +118,12 @@ class Supplier < ActiveRecord::Base
     excel_title += ['平均分','评价'] unless suppliers.nil?
     format = Spreadsheet::Format.new(:color => :black,:horizontal_align => :center,:pattern_fg_color=>'silver',:pattern=>1, :size => 10,:border_color=>:black,:border=>:thin)
     sheet1.row(0).default_format = format
+    [2,3,7,8,9].each do |index|
+      sheet1.row(0).set_format(index,Spreadsheet::Format.new(:color => :red,:horizontal_align => :center,:pattern_fg_color=>'silver',:pattern=>1, :size => 10,:border_color=>:black,:border=>:thin))
+    end
+    [4,5,6].each do |index|
+      sheet1.row(0).set_format(index,Spreadsheet::Format.new(:color => :blue,:horizontal_align => :center,:pattern_fg_color=>'silver',:pattern=>1, :size => 10,:border_color=>:black,:border=>:thin))
+    end
     sheet1.row(0).replace excel_title
     sheet2 = workbook.create_worksheet(:name => '供应商Excel说明')
     sheet2.row(0).replace ['1.下载的供应商列表可以直接进行上传，其中如果填写ID则表示对该条已有数据进行修改，如果没有填写ID则代表是增加一条新的供应商记录。']
@@ -125,7 +131,7 @@ class Supplier < ActiveRecord::Base
     sheet2.row(2).replace ["3.上传的供应商数据中不包括\"平均分\"和\"评价\"，此两项需要上传数据以后在页面进行操作。"]
     sheet2.row(3).replace ['4.下载供应商Excel是根据你所提供的查询条件，如果想下载全部供应商则请去掉所有查询条件。']
     sheet2.row(4).replace ['5.如有其他问题请联系 于洋(创意部) QQ:234016483 电话:18641013958']
-    sheet2.row(5).replace ["6.上传数据库请注意，\"公司/个人\",\"联系人\",\"规格\",\"单价\",\"服务客户\"等项必须填写，\"QQ\",\"Email\",\"联系电话\"三项中必须填写一项。"]
+    sheet2.row(5).replace ["6.上传数据库请注意，红色项必须填写，蓝色项中必须填写一项。"]
     if suppliers.nil?
        new_file = temp_folder_name + "供应商模板-#{Time.now.strftime('%Y-%m-%d')}.xls"
     else
