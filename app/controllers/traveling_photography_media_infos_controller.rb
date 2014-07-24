@@ -61,7 +61,6 @@ class TravelingPhotographyMediaInfosController < ApplicationController
   def create
     @media = TravelingPhotographyMediaInfo.new(params[:traveling_photography_media_info])
 
-    #@project.assigned_users << current_user
     @media.updated_by = current_user.id
     @media.created_by = current_user.id
 
@@ -70,7 +69,6 @@ class TravelingPhotographyMediaInfosController < ApplicationController
         format.html { redirect_to traveling_photography_media_infos_path, notice: "成功创建#{TravelingPhotographyMediaInfo.model_name.human}" }
         format.json { render json: @media, status: :created, location: @media }
       else
-        @cities = City.all(:order=>'province_id asc')
         format.html { render action: "new" }
         format.json { render json: @media.errors, status: :unprocessable_entity }
       end
@@ -83,9 +81,10 @@ class TravelingPhotographyMediaInfosController < ApplicationController
 
   def update
     @media = TravelingPhotographyMediaInfo.find(params[:id])
+    @media.attributes=params[:traveling_photography_media_info]
     @media.updated_by = current_user.id
     respond_to do |format|
-      if @media.update_attributes(params[:traveling_photography_media_info])
+      if @media.other_valid? and @media.save
         format.html { redirect_to traveling_photography_media_infos_path, notice: "成功修改#{TravelingPhotographyMediaInfo.model_name.human}" }
         format.json { head :no_content }
       else
@@ -162,11 +161,16 @@ class TravelingPhotographyMediaInfosController < ApplicationController
             workbook = Spreadsheet.open("#{Rails.root}/public/files/temp/"+new_file_name)
 
             _sheet = workbook.worksheet(0)
-            TravelingPhotographyMediaInfo.create_by_excel(_sheet,current_user)
+            _error_info = TravelingPhotographyMediaInfo.create_by_excel(_sheet,current_user)
             FileUtils.rm Dir["#{Rails.root}/public/files/temp/*.xls"]
             respond_to do |format|
-              format.html { redirect_to traveling_photography_media_infos_path, notice: "上传完成，共上传数据#{(_sheet.count)-1}条！！！" }
-              format.json { render json: {}, status: :created, location: {} }
+              if _error_info == ''
+                format.html { redirect_to traveling_photography_media_infos_path(), notice: '上传完成！！！' }
+                format.json { render json: {}, status: :created, location: {} }
+              else
+                format.html { redirect_to traveling_photography_media_infos_path(), alert: _error_info }
+                format.json { render json: {}, status: :created, location: {} }
+              end
             end
           rescue Exception => e
             ActiveRecord::Rollback

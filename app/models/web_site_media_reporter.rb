@@ -137,6 +137,7 @@ class WebSiteMediaReporter < ActiveRecord::Base
     ActiveRecord::Base.transaction do
       _sheet.each_with_index do |row,index|
         next if index==0
+        break if row.blank?
         if row[0].to_s.strip.blank?
           data = WebSiteMediaReporter.new({:created_by=>user.id})
         else

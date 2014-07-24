@@ -298,7 +298,7 @@ SimpleNavigation::Configuration.run do |navigation|
     if can? :read,WebSiteMediaReporter or can? :read,FashionMediaInfo or can? :read,TravelingPhotographyMediaInfo or can? :read,NetworkOpinionLeaderBlogger or can? :read,Moderator or can? :read,GrassResource
       primary.item(
           :page_dashboard,
-          WebSiteMediaReporter.model_name.human,
+          '网络媒体资源',
           nil
       )do |supplier_menu|
         if can? :read,WebSiteMediaReporter

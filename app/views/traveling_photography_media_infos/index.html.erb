@@ -63,7 +63,7 @@
   g.column name: t('activerecord.attributes.traveling_photography_media_info.web_site') do |m|
     m.web_site
   end
-  g.column name: t('activerecord.attributes.traveling_photography_media_info.web_site_introduction') do |m|
+  g.column name: t('activerecord.attributes.traveling_photography_media_info.web_site_introduction'),:class=>'td_style' do |m|
     m.web_site_introduction
   end
   g.column name: t('activerecord.attributes.traveling_photography_media_info.content_name') do |m|
@@ -95,20 +95,12 @@
     m.notes
   end
 
-  g.column name: t('activerecord.attributes.traveling_photography_media_info.created_at') do |m|
-    m.created_at.strftime('%Y-%m-%d')
+  g.column name: t('activerecord.attributes.traveling_photography_media_info.updated_by') do |m|
+    m.updated_name
   end
 
   g.column name: t('activerecord.attributes.traveling_photography_media_info.created_by') do |m|
     m.created_name
-  end
-
-  g.column name: t('activerecord.attributes.traveling_photography_media_info.updated_at') do |m|
-    m.updated_at.strftime('%Y-%m-%d')
-  end
-
-  g.column name: t('activerecord.attributes.traveling_photography_media_info.updated_by') do |m|
-    m.updated_name
   end
 
   if can? :update,TravelingPhotographyMediaInfo
@@ -123,9 +115,6 @@
     end
   end
 
-
-
-
 end -%>
 <style type="text/css">
     .tablestyle{
@@ -135,11 +124,14 @@ end -%>
     #grid{
         overflow: auto;
     }
+    .td_style{
+        width: 750px;
+    }
 
 </style>
-            <script>
-                $('#grid').attr('style','height:750px');
-            </script>
+<script>
+    $('#grid').attr('style','height:300px');
+</script>
 
 
 
