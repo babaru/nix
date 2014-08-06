@@ -70,7 +70,7 @@ class NetworkOpinionLeaderBloggersController < ApplicationController
   def new
     @media = NetworkOpinionLeaderBlogger.new()
     @media.created_by = current_user.id
-    @cities = City.all(:order=>'province_id asc')
+    @cities = City.all(:order=>'CONVERT(name USING gbk)')
 
     respond_to do |format|
       format.html # new.html.erb
@@ -90,7 +90,7 @@ class NetworkOpinionLeaderBloggersController < ApplicationController
         format.html { redirect_to network_opinion_leader_bloggers_path, notice: "成功创建#{TravelingPhotographyMediaInfo.model_name.human}" }
         format.json { render json: @media, status: :created, location: @media }
       else
-        @cities = City.all(:order=>'province_id asc')
+        @cities = City.all(:order=>'CONVERT(name USING gbk)')
         format.html { render action: "new" }
         format.json { render json: @media.errors, status: :unprocessable_entity }
       end
@@ -99,18 +99,19 @@ class NetworkOpinionLeaderBloggersController < ApplicationController
 
   def edit
     @media = NetworkOpinionLeaderBlogger.find(params[:id])
-    @cities = City.all(:order=>'province_id asc')
+    @cities = City.all(:order=>'CONVERT(name USING gbk)')
   end
 
   def update
     @media = NetworkOpinionLeaderBlogger.find(params[:id])
+    @media.attributes = params[:network_opinion_leader_blogger]
     @media.updated_by = current_user.id
     respond_to do |format|
-      if @media.update_attributes(params[:network_opinion_leader_blogger])
+      if @media.other_valid? and @media.save
         format.html { redirect_to network_opinion_leader_bloggers_path, notice: "成功修改#{NetworkOpinionLeaderBlogger.model_name.human}" }
         format.json { head :no_content }
       else
-        @cities = City.all(:order=>'province_id asc')
+        @cities = City.all(:order=>'CONVERT(name USING gbk)')
         format.html { render action: "edit" }
         format.json { render json: @media.errors, status: :unprocessable_entity }
       end
@@ -204,11 +205,16 @@ class NetworkOpinionLeaderBloggersController < ApplicationController
             workbook = Spreadsheet.open("#{Rails.root}/public/files/temp/"+new_file_name)
 
             _sheet = workbook.worksheet(0)
-            NetworkOpinionLeaderBlogger.create_by_excel(_sheet,current_user)
+            _error_info = NetworkOpinionLeaderBlogger.create_by_excel(_sheet,current_user)
             FileUtils.rm Dir["#{Rails.root}/public/files/temp/*.xls"]
             respond_to do |format|
-              format.html { redirect_to network_opinion_leader_bloggers_path, notice: '上传成功.' }
-              format.json { render json: {}, status: :created, location: {} }
+              if _error_info == ''
+                format.html { redirect_to network_opinion_leader_bloggers_path(), notice: '上传完成！！！' }
+                format.json { render json: {}, status: :created, location: {} }
+              else
+                format.html { redirect_to network_opinion_leader_bloggers_path(), alert: _error_info }
+                format.json { render json: {}, status: :created, location: {} }
+              end
             end
           rescue Exception => e
             ActiveRecord::Rollback

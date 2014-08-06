@@ -92,6 +92,9 @@
   g.column name: t('activerecord.attributes.network_opinion_leader_blogger.email') do |m|
     m.email
   end
+  g.column name: t('activerecord.attributes.network_opinion_leader_blogger.qq') do |m|
+    m.qq
+  end
   g.column name: t('activerecord.attributes.network_opinion_leader_blogger.id_number') do |m|
     m.id_number
   end
@@ -110,9 +113,6 @@
 
   g.column name: t('activerecord.attributes.network_opinion_leader_blogger.blog_address') do |m|
     link_to m.blog_address,m.blog_address,:target=>'_blank'
-  end
-  g.column name: t('activerecord.attributes.network_opinion_leader_blogger.web_url') do |m|
-  link_to m.web_url,m.web_url,:target=>'_blank'
   end
 
   g.column name: t('activerecord.attributes.network_opinion_leader_blogger.weixin') do |m|

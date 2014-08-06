@@ -104,7 +104,7 @@
     m.email
   end
 
-  g.column name: t('activerecord.attributes.moderator.office_address') do |m|
+  g.column name: t('activerecord.attributes.moderator.office_address'),:class=>'td_style' do |m|
     m.office_address
   end
   g.column name: t('activerecord.attributes.moderator.id_number') do |m|
@@ -153,16 +153,9 @@
     m.notes
   end
 
-  g.column name: t('activerecord.attributes.traveling_photography_media_info.created_at') do |m|
-    m.created_at.strftime('%Y-%m-%d')
-  end
 
   g.column name: t('activerecord.attributes.traveling_photography_media_info.created_by') do |m|
     m.created_name
-  end
-
-  g.column name: t('activerecord.attributes.traveling_photography_media_info.updated_at') do |m|
-    m.updated_at.strftime('%Y-%m-%d')
   end
 
   g.column name: t('activerecord.attributes.traveling_photography_media_info.updated_by') do |m|
@@ -193,8 +186,15 @@ end -%>
     #grid{
         overflow: auto;
     }
+    .td_style{
+        width: 250px;
+    }
+
 
 </style>
+<script>
+    $('#grid').attr('style','height:300px');
+</script>
 
 
 

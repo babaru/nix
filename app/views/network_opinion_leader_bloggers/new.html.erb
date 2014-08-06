@@ -35,41 +35,26 @@
 
       <div class="form-inputs">
 
-        <div class="control-group string required network_opinion_leader_blogger_city_id"><label class="string required control-label" for="network_opinion_leader_blogger_city_id"><abbr title="带*星号的为必填项">*</abbr> 城市</label><div class="controls">
-          <select class="string required" id="network_opinion_leader_blogger_city_id" name="network_opinion_leader_blogger[city_id]">
-            <% if @cities -%>
-                <% @cities.each do |r| -%>
-                    <option value="<%= r.id -%>"><%= r.name -%></option>
-                <% end -%>
-            <% end -%>
-          </select></div></div>
 
-
+        <%= f.input :city_id, required: false,:as=>:select,:collection=> @cities.map{|x| [x.name,x.id]}%>
         <%= f.input :nickname, required: true %>
         <%= f.input :name, required: true %>
-
-        <div class="control-group string required network_opinion_leader_blogger_sex"><label class="string required control-label" for="network_opinion_leader_blogger_sex"><abbr title="带*星号的为必填项">*</abbr> 性别</label><div class="controls">
-          <select class="string required" id="network_opinion_leader_blogger_sex" name="network_opinion_leader_blogger[sex]">
-            <option value="1">男</option>
-            <option value="0">女</option>
-          </select></div></div>
-
-
+        <%= f.input :sex, required: true,:as=>:select,:collection=> [['男',1],['女',0]]%>
         <%= f.input :media_name, required: true %>
         <%= f.input :position, required: true %>
-        <%= f.input :mobile, required: true %>
-        <%= f.input :email, required: true %>
+        <%= f.input :mobile, required: false %>
+        <%= f.input :email, required: false %>
+        <%= f.input :qq, required: false %>
         <%= f.input :id_number, required: true %>
         <%= f.input :birthday, as: :date_picker, required: true %>
-        <%= f.input :working_conditions, required: true %>
+        <%= f.input :working_conditions, required: false,:as=>:text,input_html: { rows: 5 } %>
         <%= f.input :blog_traffic, required: true %>
         <%= f.input :blog_address, required: true %>
-        <%= f.input :weixin, required: true %>
-        <%= f.input :active_record, required: false %>
-        <%= f.input :maintenance_record, required: false %>
-        <%= f.input :blog_style, required: true %>
-        <%= f.input :friendly_brand, required: false %>
-        <%= f.input :estranged_brand, required: false %>
+        <%= f.input :active_record, required: false,:as=>:text,input_html: { rows: 5 } %>
+        <%= f.input :maintenance_record, required: false,:as=>:text,input_html: { rows: 5 } %>
+        <%= f.input :blog_style, required: false,:as=>:text,input_html: { rows: 5 } %>
+        <%= f.input :friendly_brand, required: false,:as=>:text,input_html: { rows: 5 } %>
+        <%= f.input :estranged_brand, required: false,:as=>:text,input_html: { rows: 5 } %>
 
 
         <%= f.input :notes, required: false ,:as=>:text,input_html: { rows: 5 }%>
