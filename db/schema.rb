@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140723021255) do
+ActiveRecord::Schema.define(:version => 20140821083246) do
 
   create_table "business_categories", :force => true do |t|
     t.string   "name_cn",    :default => ""
@@ -165,6 +165,14 @@ ActiveRecord::Schema.define(:version => 20140723021255) do
     t.integer  "deleted",          :limit => 2
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
+    t.integer  "read_count"
+    t.string   "trade"
+    t.string   "partnership"
+    t.integer  "level"
+    t.string   "contact_name"
+    t.string   "contact_way"
+    t.integer  "out_price"
+    t.text     "notes"
   end
 
   create_table "moderators", :force => true do |t|

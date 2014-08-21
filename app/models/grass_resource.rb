@@ -1,19 +1,29 @@
 class GrassResource < ActiveRecord::Base
-  attr_accessible :nickname, :media_url, :fans_number, :category, :regional, :content_location,:type_id, :media_type_id
+  attr_accessible :nickname, :media_url, :fans_number, :category, :regional, :content_location,:type_id, :media_type_id,:created_by,:read_count,:trade,:partnership,:level,:contact_name,:contact_way
   belongs_to :created_man, :class_name => "User", :foreign_key => "created_by"
   belongs_to :updated_man, :class_name => "User", :foreign_key => "updated_by"
   TYPE=[['时尚',1],['汽车',2]]
   MEDIA_TYPE=[['微信',1],['微博',2],['博客',3]]
-  validates :type_id, presence:{message:'类别不能为空'}
-  validates :media_type_id, presence:{message:'媒体不能为空'}
-  validates :nickname, presence:{message:'昵称不能为空'}
-  validates :media_url, presence:{message:'地址不能为空'}
-  validates :fans_number, presence:{message:'粉丝数不能为空'}
+  # validates :type_id, presence:{message:'类别不能为空'}
+  # validates :media_type_id, presence:{message:'媒体不能为空'}
+  # validates :nickname, presence:{message:'昵称不能为空'}
+  # validates :media_url, presence:{message:'地址不能为空'}
+  # validates :fans_number, presence:{message:'粉丝数不能为空'}
 
 
 
   def other_valid?
     errors.size == 0
+  end
+
+  def level_info
+    info = ''
+    if self.level.to_i>0
+      (0..self.level).each do |x|
+        info +='★'
+      end
+    end
+    info
   end
 
   def created_name
@@ -123,67 +133,73 @@ class GrassResource < ActiveRecord::Base
     new_file
   end
 
-  def self.create_by_excel(_sheet=nil,user=nil)
+  def self.create_by_excel(_sheet=nil,user=nil,_type_id=1)
     _error_info = ''
     _error_info = '上传文件错误，请重新上传！' if _sheet.nil? or user.nil?
+
     ActiveRecord::Base.transaction do
       _sheet.each_with_index do |row,index|
-        next if index==0
+        if _type_id==1
+          next if index==0
+          next if index==1
+          next if index==2
+          next if index==3
+          next if index==4
+        elsif _type_id==2
+          next if index==0
+          next if index==1
+        end
 
+
+        break if row.blank?
 
         if row[0].to_s.strip.blank?
-          _data = GrassResource.new()
+          _data = GrassResource.new({:created_by=>user.id,:type_id => _type_id})
         else
           _data = GrassResource.find_by_id(row[0].to_s.to_i)
           if _data.blank?
-            _error_info = 'ID错误，在第'+index.to_s+'行'
+            _error_info = 'ID错误，在第'+(index+1).to_s+'行'
             break
           end
         end
 
-        _type_name = row[1].to_s.strip
-        _type= GrassResource::TYPE.find{|x| x[0]==_type_name}
-        if _type.blank?
-          _error_info = '类别不能为空！，在第'+index.to_s+'行'
+        if row[1].to_s.strip.blank?
+          _error_info = '昵称不能为空！，在第'+(index+1).to_s+'行'
           break
         else
-          _data.type_id = _type[1]
+          _data.nickname = row[1].to_s
         end
 
 
-        _media_type_name = row[2].to_s.strip
-        _media_type= GrassResource::MEDIA_TYPE.find{|x| x[0]==_media_type_name}
-        if _media_type.blank?
-          _error_info = '媒体不能为空！，在第'+index.to_s+'行'
-          break
-        else
-          _data.media_type_id = _media_type[1]
+        _data.media_url = row[2].to_s
+        _data.fans_number = row[3].to_s.to_i
+        if _type_id==1
+          _data.read_count = row[4].to_s.to_i
+          _data.trade = row[5].to_s.strip
+          _data.category = row[6].to_s.strip
+          _data.regional = row[7].to_s.strip
+          _data.partnership = row[8].to_s.strip
+
+          _data.level = row[9].to_s.strip.gsub(' ','').size
+          _data.content_location = row[10].to_s.strip
+          _data.contact_name = row[11].to_s.strip
+          _data.contact_way = row[12].to_s.strip
+          _data.price = row[13].to_s.strip.to_i unless row[13].to_s.strip.blank?
+        elsif _type_id==2
+          _data.trade = row[4].to_s.strip
+          _data.category = row[5].to_s.strip
+          _data.regional = row[6].to_s.strip
+          _data.partnership = row[7].to_s.strip
+
+          _data.level = row[8].to_s.strip.gsub(' ','').size
+          _data.content_location = row[9].to_s.strip
+          _data.contact_name = row[10].to_s.strip
+          _data.contact_way = row[11].to_s.strip
+          _data.price = row[12].to_s.strip.to_i unless row[12].to_s.strip.blank?
+          _data.out_price = row[13].to_s.strip
+          _data.notes = row[14].to_s.strip
         end
 
-        if row[3].to_s.strip.blank?
-          _error_info = '昵称不能为空！，在第'+index.to_s+'行'
-          break
-        else
-          _data.nickname = row[3].to_s
-        end
-
-        if row[4].to_s.strip.blank?
-          _error_info = '地址不能为空！，在第'+index.to_s+'行'
-          break
-        else
-          _data.media_url = row[4].to_s
-        end
-
-        if row[5].to_s.strip.blank?
-          _error_info = '粉丝数不能为空！，在第'+index.to_s+'行'
-          break
-        else
-          _data.fans_number = row[5].to_s.to_i
-        end
-
-        _data.regional = row[6]
-        _data.content_location = row[7]
-        _data.price = row[8].to_s.to_i unless row[8].to_s.blank?
 
         _data.created_at=Time.now
         _data.updated_at=Time.now
@@ -191,11 +207,10 @@ class GrassResource < ActiveRecord::Base
         _data.updated_by=user.id
         _data.deleted=0
         _data.save
-        pp "--------------------"+index.to_s
-      end
-      if _error_info != ''
-        raise ActiveRecord::Rollback
-      end
+       end
+       if _error_info != ''
+         raise ActiveRecord::Rollback
+       end
     end
     _error_info
   end

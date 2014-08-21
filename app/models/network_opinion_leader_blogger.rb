@@ -111,6 +111,7 @@ class NetworkOpinionLeaderBlogger < ActiveRecord::Base
     ActiveRecord::Base.transaction do
       _sheet.each_with_index do |row,index|
         next if index==0
+        next if index==1
         break if row.blank?
 
         if row[0].to_s.strip.blank?
@@ -118,7 +119,7 @@ class NetworkOpinionLeaderBlogger < ActiveRecord::Base
         else
           _data = NetworkOpinionLeaderBlogger.find_by_id(row[0].to_s.to_i)
           if _data.blank?
-            _error_info = 'ID错误，在第'+index.to_s+'行' if _data.blank?
+            _error_info = 'ID错误，在第'+(index+1).to_s+'行' if _data.blank?
             break
           end
         end
@@ -132,77 +133,80 @@ class NetworkOpinionLeaderBlogger < ActiveRecord::Base
         end
 
         if row[2].to_s.strip.blank?
-          _error_info = '昵称不能为空！，在第'+index.to_s+'行'
+          _error_info = '昵称不能为空！，在第'+(index+1).to_s+'行'
           break
         else
           _data.nickname = row[2].to_s.strip
         end
 
         if row[3].to_s.strip.blank?
-          _error_info = '姓名不能为空！，在第'+index.to_s+'行'
+          _error_info = '姓名不能为空！，在第'+(index+1).to_s+'行'
           break
         else
           _data.name = row[3].to_s.strip
         end
 
         if row[4].to_s.strip.blank?
-          _error_info = '性别不能为空！，在第'+index.to_s+'行'
+          _error_info = '性别不能为空！，在第'+(index+1).to_s+'行'
           break
         else
           _data.sex= (row[4].to_s.strip=='男' ? 1 : 0)
         end
 
         if row[5].to_s.strip.blank?
-          _error_info = '媒体不能为空！，在第'+index.to_s+'行'
+          _error_info = '媒体不能为空！，在第'+(index+1).to_s+'行'
           break
         else
           _data.media_name= row[5].to_s.strip
         end
 
         if row[6].to_s.strip.blank?
-          _error_info = '职位不能为空！，在第'+index.to_s+'行'
+          _error_info = '职位不能为空！，在第'+(index+1).to_s+'行'
           break
         else
           _data.position= row[6].to_s.strip
         end
 
-        if row[7].to_s.strip.blank? and row[8].to_s.strip.blank? and row[9].to_s.strip.blank?
-          _error_info = '电话，QQ，Email 不能同时为空！，在第'+index.to_s+'行'
+        if row[7].to_s.strip.blank? and row[8].to_s.strip.blank?
+          _error_info = '电话，Email 不能同时为空！，在第'+(index+1).to_s+'行'
           break
         else
           _data.mobile = row[7].to_s.strip
           _data.email = row[8].to_s.strip
-          _data.qq = row[9].to_s.strip
         end
 
-        if row[10].to_s.strip.blank?
-          _error_info = '身份证不能为空！，在第'+index.to_s+'行'
-          break
-        else
-          _data.id_number= row[10].to_s.strip
-        end
+        _data.id_number= row[9].to_s.strip
+        _data.birthday= row[10].to_s.strip.to_datetime
+        # if row[10].to_s.strip.blank?
+        #   _error_info = '身份证不能为空！，在第'+(index+1).to_s+'行'
+        #   break
+        # else
+        #   _data.id_number= row[10].to_s.strip
+        # end
+        #
+        # if row[11].to_s.strip.blank?
+        #   _error_info = '生日不能为空！，在第'+(index+1).to_s+'行'
+        #   break
+        # else
+        #   _data.birthday= row[11].to_s.strip.to_datetime
+        # end
 
-        if row[11].to_s.strip.blank?
-          _error_info = '生日不能为空！，在第'+index.to_s+'行'
-          break
-        else
-          _data.birthday= row[11].to_s.strip.to_datetime
-        end
+        _data.working_conditions = row[11].to_s.strip
 
-        _data.working_conditions = row[12].to_s.strip
+        # if row[12].to_s.strip.blank?
+        #   _error_info = '博客访问量不能为空！，在第'+(index+1).to_s+'行'
+        #   break
+        # else
+        #   _data.blog_traffic= row[13].to_s.strip.to_i
+        # end
+
+        _data.blog_traffic= row[12].to_s.strip.to_i.to_s
 
         if row[13].to_s.strip.blank?
-          _error_info = '博客访问量不能为空！，在第'+index.to_s+'行'
+          _error_info = '博客地址不能为空！，在第'+(index+1).to_s+'行'
           break
         else
-          _data.blog_traffic= row[13].to_s.strip
-        end
-
-        if row[14].to_s.strip.blank?
-          _error_info = '博客地址不能为空！，在第'+index.to_s+'行'
-          break
-        else
-          _data.blog_address= row[14].to_s.strip.to_datetime
+          _data.blog_address= row[13].to_s.strip.to_datetime
         end
 
         _data.weixin = row[15]

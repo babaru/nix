@@ -106,13 +106,17 @@ class FashionMediaInfo < ActiveRecord::Base
     ActiveRecord::Base.transaction do
       _sheet.each_with_index do |row,index|
         next if index==0
+        next if index==1
+        next if index==2
+        next if index==3
+        next if index==4
         break if row.blank?
         if row[0].to_s.strip.blank?
           _data = FashionMediaInfo.new()
         else
           _data = FashionMediaInfo.find_by_id(row[0].to_s.to_i)
           if _data.blank?
-            _error_info = 'ID错误，在第'+index.to_s+'行' if _data.blank?
+            _error_info = 'ID错误，在第'+(index+1).to_s+'行' if _data.blank?
             break
           end
         end
@@ -123,76 +127,92 @@ class FashionMediaInfo < ActiveRecord::Base
         end
 
         if row[2].to_s.strip.blank?
-          _error_info = '网站不能为空！，在第'+index.to_s+'行'
+          _error_info = '网站不能为空！，在第'+(index+1).to_s+'行'
           break
         else
           _data.web_site = row[2].to_s.strip
         end
 
-        if row[3].to_s.strip.blank?
-          _error_info = '网站介绍不能为空！，在第'+index.to_s+'行'
-          break
-        else
-          _data.web_site_introduction = row[3].to_s.strip
-        end
+        # if row[3].to_s.strip.blank?
+        #   _error_info = '网站介绍不能为空！，在第'+(index+1).to_s+'行'
+        #   break
+        # else
+        #   _data.web_site_introduction = row[3].to_s.strip
+        # end
 
-        if row[4].to_s.strip.blank?
-          _error_info = '联系人不能为空！，在第'+index.to_s+'行'
-          break
-        else
-          _data.content_name = row[4].to_s.strip
-        end
+        _data.web_site_introduction = row[3].to_s.strip
 
-        if row[5].to_s.strip.blank?
-          _error_info = '职位不能为空！，在第'+index.to_s+'行'
-          break
-        else
-          _data.position = row[5].to_s.strip
-        end
+        # if row[4].to_s.strip.blank?
+        #   _error_info = '联系人不能为空！，在第'+(index+1).to_s+'行'
+        #   break
+        # else
+        #   _data.content_name = row[4].to_s.strip
+        # end
 
-        if row[6].to_s.strip.blank? and row[7].to_s.strip.blank? and row[8].to_s.strip.blank?
-          _error_info = '电话，QQ，Email 不能同时为空！，在第'+index.to_s+'行'
-          break
-        else
-          _data.mobile = row[6].to_s.strip
-          _data.email = row[7].to_s.strip
-          _data.qq = row[8].to_s.strip
-        end
+        _data.content_name = row[4].to_s.strip
 
-        if row[9].to_s.strip.blank?
-          _error_info = '地址不能为空！，在第'+index.to_s+'行'
-          break
-        else
-          _data.address = row[9].to_s.strip
-        end
+        # if row[5].to_s.strip.blank?
+        #   _error_info = '职位不能为空！，在第'+(index+1).to_s+'行'
+        #   break
+        # else
+        #   _data.position = row[5].to_s.strip
+        # end
 
-        if row[10].to_s.strip.blank?
-          _error_info = '日均覆盖人数不能为空！，在第'+index.to_s+'行'
-          break
-        else
-          _data.coverage = row[10].to_s.strip
-        end
+        _data.position = row[5].to_s.strip
 
-        if row[11].to_s.strip.blank?
-          _error_info = '日均覆盖人数（男）不能为空！，在第'+index.to_s+'行'
-          break
-        else
-          _data.man = row[11].to_s.strip
-        end
+        # if row[6].to_s.strip.blank? and row[7].to_s.strip.blank?
+        #   _error_info = '电话，Email 不能同时为空！，在第'+(index+1).to_s+'行'
+        #   break
+        # else
+        #   _data.mobile = row[6].to_s.strip
+        #   _data.email = row[7].to_s.strip
+        # end
 
-        if row[12].to_s.strip.blank?
-          _error_info = '日均覆盖人数（女）不能为空！，在第'+index.to_s+'行'
-          break
-        else
-          _data.woman = row[12].to_s.strip
-        end
+        _data.mobile = row[6].to_s.strip
+        _data.email = row[7].to_s.strip
 
-        if (row[11].to_f+row[12].to_f)>row[10].to_f
-          _error_info = '日均覆盖男人数与女人数之和不能大于日均覆盖人数！，在第'+index.to_s+'行'
-          break
-        end
+        # if row[8].to_s.strip.blank?
+        #   _error_info = '地址不能为空！，在第'+(index+1).to_s+'行'
+        #   break
+        # else
+        #   _data.address = row[8].to_s.strip
+        # end
 
-        _data.notes=row[13]
+        _data.address = row[8].to_s.strip
+
+        # if row[9].to_s.strip.blank?
+        #   _error_info = '日均覆盖人数不能为空！，在第'+(index+1).to_s+'行'
+        #   break
+        # else
+        #   _data.coverage = row[9].to_s.strip
+        # end
+
+        _data.coverage = row[9].to_s.strip
+
+        # if row[10].to_s.strip.blank?
+        #   _error_info = '日均覆盖人数（男）不能为空！，在第'+(index+1).to_s+'行'
+        #   break
+        # else
+        #   _data.man = row[10].to_s.strip
+        # end
+
+        _data.man = row[10].to_s.strip
+
+        # if row[11].to_s.strip.blank?
+        #   _error_info = '日均覆盖人数（女）不能为空！，在第'+(index+1).to_s+'行'
+        #   break
+        # else
+        #   _data.woman = row[11].to_s.strip
+        # end
+
+        _data.woman = row[11].to_s.strip
+
+        # if (row[10].to_f+row[11].to_f)>row[9].to_f
+        #   _error_info = '日均覆盖男人数与女人数之和不能大于日均覆盖人数！，在第'+(index+1).to_s+'行'
+        #   break
+        # end
+
+        _data.notes=row[12]
 
         _data.created_at=Time.now
         _data.updated_at=Time.now

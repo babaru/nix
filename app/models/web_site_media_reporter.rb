@@ -1,5 +1,5 @@
 class WebSiteMediaReporter < ActiveRecord::Base
-  attr_accessible     :region_id, :is_substation,:province_id, :city_id,:married, :format_id, :media_name, :level, :name, :sex, :department_name, :job_name, :telephone, :mobile, :email, :instant_messaging, :micro_blog, :micro_message, :office_address, :working_conditions, :birthday, :id_number, :origin_place, :has_children, :has_car, :other_about, :active_record, :maintenance_record, :notes
+  attr_accessible     :region_id, :is_substation,:province_id,:created_by, :city_id,:married, :format_id, :media_name, :level, :name, :sex, :department_name, :job_name, :telephone, :mobile, :email, :instant_messaging, :micro_blog, :micro_message, :office_address, :working_conditions, :birthday, :id_number, :origin_place, :has_children, :has_car, :other_about, :active_record, :maintenance_record, :notes
   belongs_to :province
   belongs_to :city
   belongs_to :region
@@ -134,16 +134,22 @@ class WebSiteMediaReporter < ActiveRecord::Base
   def self.create_by_excel(_sheet=nil,user=nil)
     _error_info = ''
     _error_info = '上传文件错误，请重新上传！' if _sheet.nil? or user.nil?
+    _m_name=''
+    _office_address1 = ''
     ActiveRecord::Base.transaction do
       _sheet.each_with_index do |row,index|
         next if index==0
+        next if index==1
+        next if index==2
+        next if index==3
+
         break if row.blank?
         if row[0].to_s.strip.blank?
           data = WebSiteMediaReporter.new({:created_by=>user.id})
         else
           data = WebSiteMediaReporter.find_by_id(row[0].to_s.to_i)
           if data.blank?
-            _error_info = 'ID错误，在第'+index.to_s+'行' if data.blank?
+            _error_info = 'ID错误，在第'+(index+1).to_s+'行' if data.blank?
             break
           end
         end
@@ -155,7 +161,7 @@ class WebSiteMediaReporter < ActiveRecord::Base
 
         _city = City.where("name like ?","%#{row[3].to_s.strip}%").first unless row[3].to_s.strip.blank?
         if _city.blank?
-          _error_info = '城市不能为空！，在第'+index.to_s+'行'
+          _error_info = '城市不能为空！，在第'+(index+1).to_s+'行'
           break
         else
           data.city_id=_city.id
@@ -168,16 +174,16 @@ class WebSiteMediaReporter < ActiveRecord::Base
 
 
         if row[5].to_s.strip().blank?
-          _error_info = '媒体名称不能为空！，在第'+index.to_s+'行'
-          break
+          data.media_name = _m_name
         else
           data.media_name = row[5].to_s.strip()
+          _m_name=row[5].to_s.strip()
         end
 
         data.level=row[6]
 
         if row[7].to_s.strip().blank?
-          _error_info = '姓名不能为空！，在第'+index.to_s+'行'
+          _error_info = '姓名不能为空！，在第'+(index+1).to_s+'行'
           break
         else
           data.media_name = row[7].to_s.strip()
@@ -187,14 +193,14 @@ class WebSiteMediaReporter < ActiveRecord::Base
         data.department_name=row[9]
 
         if row[10].to_s.strip().blank?
-          _error_info = '职位名称不能为空！，在第'+index.to_s+'行'
+          _error_info = '职位名称不能为空！，在第'+(index+1).to_s+'行'
           break
         else
           data.media_name = row[10].to_s.strip()
         end
 
         if row[11].to_s.strip().blank? and row[12].to_s.strip().blank? and row[13].to_s.strip().blank? and row[14].to_s.strip().blank?
-          _error_info = '4种联系方式不能同时为空！，在第'+index.to_s+'行'
+          _error_info = '4种联系方式不能同时为空！，在第'+(index+1).to_s+'行'
           break
         else
           data.telephone=row[11]
@@ -212,12 +218,14 @@ class WebSiteMediaReporter < ActiveRecord::Base
         data.working_conditions=row[17]
         data.birthday=row[18].to_s
 
-        if row[19].to_s.strip().blank?
-          _error_info = '身份证号不能为空！，在第'+index.to_s+'行'
-          break
-        else
-          data.media_name = row[19].to_s.strip()
-        end
+        # if row[19].to_s.strip().blank?
+        #   _error_info = '身份证号不能为空！，在第'+(index+1).to_s+'行'
+        #   break
+        # else
+        #   data.media_name = row[19].to_s.strip()
+        # end
+
+        data.media_name = row[19].to_s.strip()
 
         data.origin_place=row[20]
 
@@ -231,12 +239,14 @@ class WebSiteMediaReporter < ActiveRecord::Base
         data.has_car=row[23]
         data.other_about=row[24]
 
-        if row[24].to_s.strip().blank?
-          _error_info = '其他（个人兴趣，爱好）不能为空！，在第'+index.to_s+'行'
-          break
-        else
-          data.media_name = row[24].to_s.strip()
-        end
+        # if row[24].to_s.strip().blank?
+        #   _error_info = '其他（个人兴趣，爱好）不能为空！，在第'+(index+1).to_s+'行'
+        #   break
+        # else
+        #   data.media_name = row[24].to_s.strip()
+        # end
+
+        data.media_name = row[24].to_s.strip()
 
         data.active_record=row[25]
         data.maintenance_record=row[26]

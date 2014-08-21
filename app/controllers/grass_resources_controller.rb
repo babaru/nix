@@ -5,18 +5,20 @@ class GrassResourcesController < ApplicationController
 
 
   def index
-    sql,sql_attr = 'deleted=0 ',[]
     @f_type,@s_type=nil,nil
-    unless params[:type_id].blank?
-      sql += ' and type_id = ?'
-      sql_attr << params[:type_id].to_i
-      @f_type = GrassResource::TYPE.find{|x| x[1] == params[:type_id].to_i}
-      unless params[:media_type_id].blank?
-        sql += ' and media_type_id = ?'
-        sql_attr << params[:media_type_id].to_i
-        @s_type = GrassResource::MEDIA_TYPE.find{|x| x[1] == params[:media_type_id].to_i}
-      end
-    end
+    params[:type_id] ||=1
+    sql,sql_attr = 'deleted=0 and type_id = ? ',[params[:type_id].to_i]
+
+    # unless params[:type_id].blank?
+    #   sql += ' and type_id = ?'
+    #   sql_attr << params[:type_id].to_i
+    #   @f_type = GrassResource::TYPE.find{|x| x[1] == params[:type_id].to_i}
+    #   unless params[:media_type_id].blank?
+    #     sql += ' and media_type_id = ?'
+    #     sql_attr << params[:media_type_id].to_i
+    #     @s_type = GrassResource::MEDIA_TYPE.find{|x| x[1] == params[:media_type_id].to_i}
+    #   end
+    # end
 
     @medias_grid = initialize_grid(GrassResource.where([sql]+sql_attr))
     respond_to do |format|
@@ -86,8 +88,7 @@ class GrassResourcesController < ApplicationController
   end
 
   def download_grass_resource
-    sql,sql_attr=' deleted=0 ',[]
-
+    sql,sql_attr = 'deleted=0 and type_id = ? ',[params[:type_id].to_i]
     data = GrassResource.where([sql]+sql_attr)
     new_file = GrassResource.create_new_template(data)
     send_file new_file, :type => "application/octet-stream", :disposition => "attachment"
@@ -109,7 +110,7 @@ class GrassResourcesController < ApplicationController
             workbook = Spreadsheet.open("#{Rails.root}/public/files/temp/"+new_file_name)
 
             _sheet = workbook.worksheet(0)
-            _error_info = GrassResource.create_by_excel(_sheet,current_user)
+            _error_info = GrassResource.create_by_excel(_sheet,current_user,params[:type_id].to_i)
             FileUtils.rm Dir["#{Rails.root}/public/files/temp/*.xls"]
             if _error_info != ''
               respond_to do |format|

@@ -1,4 +1,4 @@
-<%= render_cell(:page_title, :show, data:{name: "#{t('model.list', model: GrassResource.model_name.human)}",
+<%= render_cell(:page_title, :show, data:{name: params[:type_id]==1 ? '微信' : '微博'+"#{t('model.list', model: GrassResource.model_name.human)}",
                                           toolbar: {
                                                   right:
                                                           [
@@ -14,7 +14,7 @@
                                                                           data:
                                                                                   {
                                                                                           name: fa_icon('cloud-upload', text: t('model.upload', model: GrassResource.model_name.human)),
-                                                                                          url: upload_grass_resource_path,
+                                                                                          url: upload_grass_resource_path(:type_id=>params[:type_id]),
                                                                                           options: {class: 'btn btn-success'}
                                                                                   }
                                                                   )if can? :create,GrassResource or can? :update,GrassResource),
@@ -22,19 +22,7 @@
                                                                               data:
                                                                                       {
                                                                                               name: fa_icon('download-alt', text: t('model.download',:model => GrassResource.model_name.human)),
-                                                                                              url: download_grass_resource_path,
-                                                                                              options:
-                                                                                                      {
-                                                                                                              class: 'btn btn-info',
-                                                                                                              method: :post
-                                                                                                      }
-                                                                                      }
-                                                                  ),
-                                                                  render_cell(:button, :show,
-                                                                              data:
-                                                                                      {
-                                                                                              name: fa_icon('download-alt', text: '下载草根资源上传模板'),
-                                                                                              url: download_grass_resource_template_path,
+                                                                                              url: download_grass_resource_path(params),
                                                                                               options:
                                                                                                       {
                                                                                                               class: 'btn btn-info',
@@ -88,35 +76,55 @@
   </div>
 
 <%= grid(@medias_grid, :show_filters => :when_filtered) do |g|
-  g.column name: t('activerecord.attributes.grass_resource.category') ,:class=>'td_style' do |m|
-    m.type_name
-  end
-
-  g.column name: t('activerecord.attributes.grass_resource.media_type_id') ,:class=>'td_style' do |m|
-    m.media_name
-  end
-
   g.column name: t('activerecord.attributes.grass_resource.nickname') ,:class=>'td_style' do |m|
     m.nickname
   end
 
   g.column name: t('activerecord.attributes.grass_resource.media_url') ,:class=>'td_style' do |m|
-    if [2,3].include?(m.media_type_id)
-      link_to m.media_url,m.media_url,:target=>'_blank'
-    else
-      m.media_url
-    end
+    m.media_url
   end
+
 
   g.column name: t('activerecord.attributes.grass_resource.fans_number') ,:class=>'td_style' do |m|
     m.fans_number
   end
 
+  if params[:type_id]==1
+    g.column name: t('activerecord.attributes.grass_resource.read_count') ,:class=>'td_style' do |m|
+      m.read_count
+    end
+  end
+
+  g.column name: t('activerecord.attributes.grass_resource.trade') ,:class=>'td_style' do |m|
+    m.trade
+  end
+
+  g.column name: t('activerecord.attributes.grass_resource.category') ,:class=>'td_style' do |m|
+    m.category
+  end
+
   g.column name: t('activerecord.attributes.grass_resource.regional') ,:class=>'td_style' do |m|
     m.regional
   end
+
+  g.column name: t('activerecord.attributes.grass_resource.partnership') ,:class=>'td_style' do |m|
+    m.partnership
+  end
+
+  g.column name: t('activerecord.attributes.grass_resource.level') ,:class=>'td_style' do |m|
+    m.level_info
+  end
+
   g.column name: t('activerecord.attributes.grass_resource.content_location') do |m|
     m.content_location.to_s
+  end
+
+  g.column name: t('activerecord.attributes.grass_resource.contact_name'),:class=>'td_style' do |m|
+    m.contact_name
+  end
+
+  g.column name: t('activerecord.attributes.grass_resource.contact_way'),:class=>'td_style' do |m|
+    m.contact_way
   end
 
   g.column name: t('activerecord.attributes.grass_resource.price'),:class=>'td_style' do |m|

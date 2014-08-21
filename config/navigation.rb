@@ -369,8 +369,19 @@ SimpleNavigation::Configuration.run do |navigation|
         if can? :read,GrassResource
           supplier_menu.item(
               :grass_resources,
-              t('model.list', model: '草根资源'),
-              grass_resources_path,
+              '微信草根资源列表',
+              grass_resources_path(:type_id=>1),
+              {
+                  link:
+                      {
+                          icon: 'list'
+                      }
+              }
+          )
+          supplier_menu.item(
+              :grass_resources,
+              '微博草根资源列表',
+              grass_resources_path(:type_id=>2),
               {
                   link:
                       {

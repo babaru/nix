@@ -209,6 +209,12 @@ zh-CN:
         fans_number: 粉丝数
         category: 类别
         regional: 区域
+        read_count: 阅读数
+        trade: 行业
+        partnership: 合作关系
+        level: 推荐级别
+        contact_name: 联系人
+        contact_way: 联系方式
         type_id: 资源类别
         content_location: 内容定位
         media_type_id: 媒体

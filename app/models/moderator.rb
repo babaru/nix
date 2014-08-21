@@ -88,6 +88,9 @@ class Moderator < ActiveRecord::Base
     ActiveRecord::Base.transaction do
       _sheet.each_with_index do |row,index|
         next if index==0
+        next if index==1
+        next if index==2
+        next if index==3
         _data = Moderator.new()
         _data.media_name = row[1]
         _data.brand_name = row[2]
